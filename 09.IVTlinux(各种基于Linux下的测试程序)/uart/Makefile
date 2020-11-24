@@ -1,0 +1,1 @@
+obj-y += uart.o
