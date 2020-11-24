@@ -1,0 +1,56 @@
+C51 COMPILER V9.54   KALMAN                                                                06/05/2017 12:51:54 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE KALMAN
+OBJECT MODULE PLACED IN .\Objects\Kalman.obj
+COMPILER INVOKED BY: D:\Program Files (x86)\Keil_v5\C51\BIN\C51.EXE ..\User\Kalman.c LARGE OPTIMIZE(8,SPEED) BROWSE INCD
+                    -IR(..\Lib;..\User) DEBUG OBJECTEXTEND PRINT(.\Listings\Kalman.lst) TABS(2) OBJECT(.\Objects\Kalman.obj)
+
+line level    source
+
+   1          #include "config.h"
+   2          #include "math.h"
+   3          
+   4          double KalmanGain;//  卡尔曼增益
+   5          double EstimateCovariance;//估计协方差
+   6          double MeasureCovariance;//测量协方差
+   7          double EstimateValue;//估计值
+   8          
+   9          void  KalmanFilterInit(void)
+  10          {
+  11   1        EstimateValue=0;
+  12   1        EstimateCovariance=0.1;
+  13   1        MeasureCovariance=0.02;
+  14   1      }
+  15          
+  16          double KalmanFilter(double Measure)
+  17          {
+  18   1        //计算卡尔曼增益
+  19   1        KalmanGain = EstimateCovariance * sqrt(1/(EstimateCovariance*EstimateCovariance+MeasureCovariance*Measure
+             -Covariance));
+  20   1      
+  21   1        //计算本次滤波估计值
+  22   1        EstimateValue = (EstimateValue + KalmanGain*(Measure-EstimateValue));
+  23   1        //更新估计协方差
+  24   1      
+  25   1        EstimateCovariance=sqrt(1-KalmanGain)*EstimateCovariance;
+  26   1        //更新测量方差
+  27   1        MeasureCovariance=sqrt(1-KalmanGain)*MeasureCovariance;
+  28   1        
+  29   1        //返回估计值
+  30   1        return EstimateValue;
+  31   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    343    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     16       4
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

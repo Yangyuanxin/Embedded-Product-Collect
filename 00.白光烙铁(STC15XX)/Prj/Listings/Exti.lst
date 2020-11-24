@@ -1,0 +1,123 @@
+C51 COMPILER V9.54   EXTI                                                                  08/30/2017 10:15:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE EXTI
+OBJECT MODULE PLACED IN .\Objects\Exti.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\Lib\Exti.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) DEBU
+                    -G OBJECTEXTEND PRINT(.\Listings\Exti.lst) TABS(2) OBJECT(.\Objects\Exti.obj)
+
+line level    source
+
+   1          
+   2          /*************  功能说明  **************
+   3          
+   4          本文件为STC15xxx系列的外中断初始化和中断程序,用户可以在这个文件中修改自己需要的中断程序.
+   5          
+   6          ******************************************/
+   7          
+   8          
+   9          
+  10          #include  "Exti.h"
+  11          
+  12          
+  13          /********************* INT0中断函数 *************************/
+  14          void Ext_INT0 (void) interrupt INT0_VECTOR    //进中断时已经清除标志
+  15          {
+  16   1        
+  17   1      }
+  18          
+  19          /********************* INT1中断函数 *************************/
+  20          void Ext_INT1 (void) interrupt INT1_VECTOR    //进中断时已经清除标志
+  21          {
+  22   1      }
+  23          
+  24          /********************* INT2中断函数 *************************/
+  25          void Ext_INT2 (void) interrupt INT2_VECTOR  //
+  26          {
+  27   1      }
+  28          
+  29          /********************* INT3中断函数 *************************/
+  30          void Ext_INT3 (void) interrupt INT3_VECTOR
+  31          {
+  32   1      }
+  33          
+  34          /********************* INT4中断函数 *************************/
+  35          void Ext_INT4 (void) interrupt INT4_VECTOR
+  36          {
+  37   1        INT_CLKO &= 0xBF;               //关中断
+  38   1      
+  39   1        
+  40   1        INT_CLKO |= 0x40;               //开中断
+  41   1      }
+  42          
+  43          //========================================================================
+  44          // 函数: u8 Ext_Inilize(u8 EXT, EXTI_InitTypeDef *INTx)
+  45          // 描述: 外部中断初始化程序.
+  46          // 参数: INTx: 结构参数,请参考Exti.h里的定义.
+  47          // 返回: 成功返回0, 空操作返回1,错误返回2.
+  48          // 版本: V1.0, 2012-10-22
+  49          //========================================================================
+  50          u8  Ext_Inilize(u8 EXT, EXTI_InitTypeDef *INTx)
+  51          {
+  52   1        if(EXT >  EXT_INT4) return 1; //空操作
+  53   1        
+  54   1        if(EXT == EXT_INT0) //外中断0
+C51 COMPILER V9.54   EXTI                                                                  08/30/2017 10:15:49 PAGE 2   
+
+  55   1        {
+  56   2          if(INTx->EXTI_Interrupt == ENABLE)    EX0 = 1;  //允许中断
+  57   2          else                  EX0 = 0;  //禁止中断
+  58   2          if(INTx->EXTI_Polity == PolityHigh)   PX0 = 1;  //高优先级中断
+  59   2          else                  PX0 = 0;  //低优先级中断
+  60   2          if(INTx->EXTI_Mode == EXT_MODE_Fall)  IT0 = 1;  //下降沿中断
+  61   2          else                  IT0 = 0;  //上升,下降沿中断
+  62   2          return  0;    //成功
+  63   2        }
+  64   1      
+  65   1        if(EXT == EXT_INT1) //外中断1
+  66   1        {
+  67   2          if(INTx->EXTI_Interrupt == ENABLE)    EX1 = 1;  //允许中断
+  68   2          else                  EX1 = 0;  //禁止中断
+  69   2          if(INTx->EXTI_Polity == PolityHigh)   PX1 = 1;  //高优先级中断
+  70   2          else                  PX1 = 0;  //低优先级中断
+  71   2          if(INTx->EXTI_Mode == EXT_MODE_Fall)  IT1 = 1;  //下降沿中断
+  72   2          else                  IT1 = 0;  //上升,下降沿中断
+  73   2          return  0;    //成功
+  74   2        }
+  75   1      
+  76   1        if(EXT == EXT_INT2)   //外中断2, 固定为下降沿低优先级中断
+  77   1        {
+  78   2          if(INTx->EXTI_Interrupt == ENABLE)  INT_CLKO |=  (1 << 4);  //允许中断  
+  79   2          else                INT_CLKO &= ~(1 << 4);  //禁止中断
+  80   2          return  0;    //成功
+  81   2        }
+  82   1      
+  83   1        if(EXT == EXT_INT3)   //外中断3, 固定为下降沿低优先级中断
+  84   1        {
+  85   2          if(INTx->EXTI_Interrupt == ENABLE)  INT_CLKO |=  (1 << 5);  //允许中断  
+  86   2          else                INT_CLKO &= ~(1 << 5);  //禁止中断
+  87   2          return  0;    //成功
+  88   2        }
+  89   1      
+  90   1        if(EXT == EXT_INT4)   //外中断4, 固定为下降沿低优先级中断
+  91   1        {
+  92   2          if(INTx->EXTI_Interrupt == ENABLE)  INT_CLKO |=  (1 << 6);  //允许中断  
+  93   2          else                INT_CLKO &= ~(1 << 6);  //禁止中断
+  94   2          return  0;    //成功
+  95   2        }
+  96   1        return 2; //失败
+  97   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    193    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

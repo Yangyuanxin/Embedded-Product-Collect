@@ -1,0 +1,52 @@
+C51 COMPILER V9.54   MAIN                                                                  08/30/2017 10:15:48 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\User\main.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) DEB
+                    -UG OBJECTEXTEND PRINT(.\Listings\main.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*!
+   2           *     COPYRIGHT NOTICE
+   3           *     Copyright (c) 2017,BG0BGH
+   4           *     All rights reserved.
+   5           *
+   6           *     除注明出处外，以下所有内容版权均属王志浩所有，未经允许，不得用于商业用途，
+   7           *     修改内容时必须保留作者的版权声明。
+   8           *
+   9           * @file      主程序文件
+  10           * @brief     
+  11           * @author    王志浩
+  12           * @version   V2.2
+  13           * @date      2017-8-30
+  14           */
+  15          #include "config.h"
+  16          
+  17          void main(void)
+  18          {
+  19   1        //系统初始化
+  20   1        Sys_Init();
+  21   1        while(1)
+  22   1        {
+  23   2          //按键设定参数
+  24   2          ParaSet();
+  25   2          //显示主界面
+  26   2          Sys_Monitor();
+  27   2        }
+  28   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     11    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,1246 @@
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE EC11
+OBJECT MODULE PLACED IN .\Objects\EC11.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\User\EC11.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) DEB
+                    -UG OBJECTEXTEND PRINT(.\Listings\EC11.lst) TABS(2) OBJECT(.\Objects\EC11.obj)
+
+line level    source
+
+   1          /*!
+   2           *     COPYRIGHT NOTICE
+   3           *     Copyright (c) 2017,BG0BGH
+   4           *     All rights reserved.
+   5           *
+   6           *     除注明出处外，以下所有内容版权均属王志浩所有，未经允许，不得用于商业用途，
+   7           *     修改内容时必须保留作者的版权声明。
+   8           *
+   9           * @file      EC11.c
+  10           * @brief     
+  11           * @author    王志浩
+  12           * @version   V2.2
+  13           * @date      2017-8-30
+  14           */
+  15          #include "config.h"
+  16          
+  17          
+  18          EC11_State_s  ec11_state;
+  19          unsigned char str_buff[20];//缓存
+  20          unsigned char ShutdownCounterFlag;//如果进菜单或者工厂模式，该位置1，停止休眠计数器计数
+  21          unsigned char BeepCounterFlag = 0;//蜂鸣器工作标志位
+  22          
+  23          //调用此函数打开蜂鸣器，并打开定时器0，由定时器0来调整蜂鸣器响的时间进而调整音量，避免延时函数对主程序影响
+  24          void Beep(unsigned int beep)
+  25          {
+  26   1        if(beep>0 && beep<11)
+  27   1        {
+  28   2          BeepCounterFlag = 1;
+  29   2        }
+  30   1        else
+  31   1        {
+  32   2          BeepCounterFlag = 0;
+  33   2        }
+  34   1      }
+  35          
+  36          //捕捉EC11按下和旋转信息
+  37          void EC11_Capture(void)
+  38          {
+  39   1        static unsigned char Aold=0,Bold=0;
+  40   1        static unsigned char RotatingFlag=0;
+  41   1        static unsigned int KeyDown_Counter=0,KeyDown_Counter_Old=0;
+  42   1      
+  43   1        //如果同时为高电平，说明转了
+  44   1        if(EC11_A && EC11_B)
+  45   1        {
+  46   2          RotatingFlag = 1;
+  47   2        }
+  48   1        //如果转了之后
+  49   1        if(RotatingFlag)
+  50   1        {
+  51   2          //同时为低电平，判断上次的值，即可得出转的方向
+  52   2          if(!EC11_A && !EC11_B)
+  53   2          {
+  54   3            if(Aold)
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 2   
+
+  55   3            {
+  56   4              RotatingFlag = 0;
+  57   4              CoderUseFlag = 1;
+  58   4              if(!FAC_DATA_Table.Adjust_s.Encoder)
+  59   4              {
+  60   5                Beep(MENU_DATA_Table.Other_s.Beep_Volume);
+  61   5                ec11_state.Coder = 2;
+  62   5              }
+  63   4              else
+  64   4              {
+  65   5                Beep(MENU_DATA_Table.Other_s.Beep_Volume);
+  66   5                ec11_state.Coder = 1;
+  67   5              }
+  68   4            }
+  69   3            if(Bold)
+  70   3            {
+  71   4              RotatingFlag = 0;
+  72   4              CoderUseFlag = 1;
+  73   4              if(!FAC_DATA_Table.Adjust_s.Encoder)
+  74   4              {
+  75   5                Beep(MENU_DATA_Table.Other_s.Beep_Volume);
+  76   5                ec11_state.Coder = 1;
+  77   5              }
+  78   4              else
+  79   4              {
+  80   5                Beep(MENU_DATA_Table.Other_s.Beep_Volume);
+  81   5                ec11_state.Coder = 2;
+  82   5              }
+  83   4            }
+  84   3          }
+  85   2        }
+  86   1        //保存上次的值
+  87   1        Aold = EC11_A;
+  88   1        Bold = EC11_B;
+  89   1        
+  90   1        //记录按键按下时间
+  91   1        if(!EC11_KEY)
+  92   1        {
+  93   2          _nop_();
+  94   2          if(!EC11_KEY)
+  95   2          {
+  96   3            KeyDown_Counter++;
+  97   3            if(KeyDown_Counter >= KEYHOLD_TIME)
+  98   3            {
+  99   4              BEEP_ON;
+ 100   4              Delay_ms(100);
+ 101   4              BEEP_OFF;
+ 102   4            }
+ 103   3          }
+ 104   2        }
+ 105   1        else
+ 106   1        {
+ 107   2          KeyDown_Counter_Old = KeyDown_Counter;
+ 108   2          KeyDown_Counter = 0;
+ 109   2        }
+ 110   1      
+ 111   1        //根据按下时间判断长按短按
+ 112   1        if((KeyDown_Counter_Old < KEYHOLD_TIME) && (KeyDown_Counter_Old > KEYDOWN_TIME))
+ 113   1        {
+ 114   2          Beep(MENU_DATA_Table.Other_s.Beep_Volume);
+ 115   2          ec11_state.Key = 1;
+ 116   2          CoderUseFlag = 1;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 3   
+
+ 117   2        }
+ 118   1        else if(KeyDown_Counter_Old >= KEYHOLD_TIME)
+ 119   1        {
+ 120   2          //Beep(MENU_DATA_Table.Other_s.Beep_Volume);
+ 121   2          ec11_state.Key = 2;
+ 122   2          CoderUseFlag = 1;
+ 123   2          KeyDown_Counter_Old = KEYHOLD_TIME;
+ 124   2        }
+ 125   1      
+ 126   1      }
+ 127          
+ 128          
+ 129          static char Page_num = 0,Option_num = 80 ,option_var;//页号，选项号
+ 130          /* 菜单数据 */
+ 131          MENU_MSG_s MENU_MSG = 
+ 132          {   
+ 133              {//页参数名
+ 134                {"温度设置"},
+ 135                {"时间设置"},
+ 136                {"其它设置"},
+ 137              },
+ 138              {//TEMP参数选项   
+ 139                {
+ 140                  {"最高温度:%d"},   
+ 141                  {"休眠温度:%d"},
+ 142                  {"默认温度:%d"},
+ 143                  {"默认通道:%d"},
+ 144                },
+ 145                {//TIME参数选项
+ 146                  {"休眠时间:%d"}, 
+ 147                  {"关屏时间:%d"},
+ 148                  {"贷记时间:%d"},//待机时间
+ 149                  {0},
+ 150                },
+ 151                {//OTHER参数选项
+ 152                  {"工作模式:%u"},
+ 153                  {"烙铁头选择:%u"},
+ 154                  {"振动灵敏度:%u"},
+ 155                  {"蜂鸣器音量:%u"},
+ 156                },
+ 157              }  
+ 158          };
+ 159          MENU_DATA_s MENU_DATA_Table = 
+ 160          { 
+ 161            //Max_Temp    Slp_Temp   Default_Temp Default_CH
+ 162            { 410 ,       0,          0,          0       },//温度参数值
+ 163            //Slp_Time    Scr_Time    Shd_Time 
+ 164            { 1 ,         1,          1                   },//时间参数值
+ 165            //Wrk_Mode    Heater_Tip  Shk_Sens    Bep_Volm
+ 166            { 0,          1,          0,          0       },//其他参数值
+ 167          };
+ 168          FAC_DATA_s          FAC_DATA_Table = 
+ 169          {
+ 170            //工厂模式
+ 171            {    
+ 172              {//页参数名
+ 173                {"参书校准"},
+ 174                {"通道设置"},
+ 175                {"其它设置"}
+ 176              },
+ 177              {//TEMP参数选项   
+ 178                {
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 4   
+
+ 179                  {"烙铁头校准:%d"},   
+ 180                  {"电压校准:%d"},
+ 181                  {"编码器校准:%d"},
+ 182                  {"恢复出厂:%d"},
+ 183                },
+ 184                {
+ 185                  {"通道1:%d"},   
+ 186                  {"通道2:%d"},
+ 187                  {"通道3:%d"},
+ 188                  {"通道4:%d"},
+ 189                },
+ 190                {
+ 191                  {"温度步进:%d"},   
+ 192                  {"保护电压:%d"},
+ 193                  {"恢复出厂:%d"},
+ 194                  {0},
+ 195                },
+ 196              },  
+ 197            },
+ 198              //以下为工厂模式参数
+ 199            //Iron        Voltage     Encoder     
+ 200            { 0,          244,        0,                  },//校准参数值
+ 201            //Ch1         Ch2         Ch3         Ch4
+ 202            { 200,        300,        370,        400     },//通道温度设定
+ 203            //Temp_Step   Lim_Voltage Recovery
+ 204            { 10,         20,       0,                    },//其他
+ 205            //烙铁头参数
+ 206            {
+ 207              {
+ 208                120,  173,  209,  245,  287,  329,  381,  432,  480,  565,  625,  685,  740,  800,
+ 209              },
+ 210              {
+ 211                118,  148,  184,  213,  264,  303,  350,  401,  480,  565,  625,  685,  740,  800,
+ 212              },
+ 213              {
+ 214                118,  148,  184,  213,  264,  303,  350,  401,  480,  565,  625,  685,  740,  800,
+ 215              },
+ 216              {
+ 217                120,  148,  186,  214,  255,  304,  340,  390,  480,  565,  625,  685,  740,  800,
+ 218              },
+ 219              {
+ 220                120,  148,  186,  214,  255,  304,  340,  390,  480,  565,  625,  685,  740,  800,
+ 221              },
+ 222              {
+ 223                120,  148,  186,  214,  255,  304,  340,  390,  480,  565,  625,  685,  740,  800,
+ 224              },
+ 225            },
+ 226          };
+ 227          
+ 228          /* OLED打印 */
+ 229          void OLED_printf(unsigned char x,unsigned char y,char *str,float str_num)
+ 230          {
+ 231   1        int num_temp = (int)(str_num );
+ 232   1        sprintf((char *)str_buff , str ,num_temp);//静态值
+ 233   1        OLED_Print(x,2*y,str_buff);     
+ 234   1      }
+ 235          unsigned char Select_flag = 0;
+ 236          /* 光标 */
+ 237          void Display_cursor(void)
+ 238          {
+ 239   1        OLED_CLS();
+ 240   1        if(Option_num != 80)//页面光标
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 5   
+
+ 241   1        {
+ 242   2          if(!Select_flag)
+ 243   2          {
+ 244   3            OLED_P8x16Str(104,2*Option_num,"< ");  
+ 245   3          }
+ 246   2          else
+ 247   2          {
+ 248   3            OLED_P8x16Str(104,2*Option_num,"<="); 
+ 249   3          }     
+ 250   2        }
+ 251   1        else                //选项光标
+ 252   1        {
+ 253   2          OLED_P8x16Str(112,2*Page_num+2,"< ");     
+ 254   2        }
+ 255   1      }
+ 256          /* 显示 */
+ 257          void DisPlay(unsigned char num)
+ 258          {
+ 259   1        unsigned char j;
+ 260   1        float var_temp;
+ 261   1        
+ 262   1        //显示一级菜单
+ 263   1        if(Option_num == 80)
+ 264   1        {
+ 265   2          OLED_P14x16Str(50,0,"菜单");
+ 266   2          for(j = 0;j < num;j++)//换行
+ 267   2          {
+ 268   3            OLED_printf(0,j+1,MENU_MSG.OPTINO_NAME[j],0);//显示值
+ 269   3          }
+ 270   2        }
+ 271   1        //显示二级菜单
+ 272   1        else
+ 273   1        {
+ 274   2      
+ 275   2          switch(Page_num)
+ 276   2          {
+ 277   3            case 0:
+ 278   3            {              
+ 279   4              var_temp = MENU_DATA_Table.Temp_s.Max_Temp;
+ 280   4              OLED_printf(0,0,MENU_MSG.ADS_str[Page_num][0],var_temp);//显示值
+ 281   4              var_temp = MENU_DATA_Table.Temp_s.Slp_Temp;
+ 282   4              OLED_printf(0,1,MENU_MSG.ADS_str[Page_num][1],var_temp);//显示值    
+ 283   4              var_temp = MENU_DATA_Table.Temp_s.Default_Temp;
+ 284   4              OLED_printf(0,2,MENU_MSG.ADS_str[Page_num][2],var_temp);//显示值
+ 285   4              var_temp = MENU_DATA_Table.Temp_s.Default_CH;
+ 286   4              OLED_printf(0,3,MENU_MSG.ADS_str[Page_num][3],var_temp);//显示值          
+ 287   4            }break;
+ 288   3            case 1:
+ 289   3            {
+ 290   4              var_temp = MENU_DATA_Table.Time_s.Slp_Time;
+ 291   4              OLED_printf(0,0,MENU_MSG.ADS_str[Page_num][0],var_temp);//显示值 
+ 292   4              var_temp = MENU_DATA_Table.Time_s.ScrSaver_Time;
+ 293   4              OLED_printf(0,1,MENU_MSG.ADS_str[Page_num][1],var_temp);//显示值 
+ 294   4              var_temp = MENU_DATA_Table.Time_s.Shutdown_Time;
+ 295   4              OLED_printf(0,2,MENU_MSG.ADS_str[Page_num][2],var_temp);//显示值          
+ 296   4            }break;
+ 297   3            case 2:
+ 298   3            {
+ 299   4              var_temp = MENU_DATA_Table.Other_s.Work_Mode;
+ 300   4              OLED_printf(0,0,MENU_MSG.ADS_str[Page_num][0],var_temp);//显示值 
+ 301   4              var_temp = MENU_DATA_Table.Other_s.Heater_Tip;
+ 302   4              OLED_printf(0,1,MENU_MSG.ADS_str[Page_num][1],var_temp);//显示值 
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 6   
+
+ 303   4              var_temp = MENU_DATA_Table.Other_s.Shock_Sensor;
+ 304   4              OLED_printf(0,2,MENU_MSG.ADS_str[Page_num][2],var_temp);//显示值 
+ 305   4              var_temp = MENU_DATA_Table.Other_s.Beep_Volume;
+ 306   4              OLED_printf(0,3,MENU_MSG.ADS_str[Page_num][3],var_temp);//显示值 
+ 307   4              switch (MENU_DATA_Table.Other_s.Work_Mode)
+ 308   4              {
+ 309   5                case 0 :
+ 310   5                {
+ 311   6                  OLED_P14x16Str(64,0,"整场");  
+ 312   6                }break;
+ 313   5                case 1 :
+ 314   5                {
+ 315   6                  OLED_P14x16Str(64,0,"整场");  
+ 316   6                }break;
+ 317   5                case 2 :
+ 318   5                {
+ 319   6                  OLED_P14x16Str(64,0,"工厂");  
+ 320   6                }break;
+ 321   5              }
+ 322   4            }break;
+ 323   3            default:;
+ 324   3          }     
+ 325   2        }   
+ 326   1      }
+ 327          
+ 328          
+ 329          /* 参数值更改值*/
+ 330          unsigned char set_var()
+ 331          { 
+ 332   1        unsigned char var_flag = 1;
+ 333   1        //微增量
+ 334   1        float div_num = 1.0f; //
+ 335   1      
+ 336   1        /**************************/
+ 337   1        while(var_flag)//检测 按键
+ 338   1        {
+ 339   2          if((ec11_state.Key+ec11_state.Coder) > 0)//如果编码器有动作
+ 340   2          {
+ 341   3            if(ec11_state.Key == 1)
+ 342   3            {
+ 343   4              Select_flag = 0;
+ 344   4              ec11_state.Key = 0;
+ 345   4              return(0);
+ 346   4            }
+ 347   3            else if(ec11_state.Key == 2)
+ 348   3            {
+ 349   4              Select_flag = 0;        
+ 350   4              ec11_state.Key = 0;       
+ 351   4              var_flag = 0; 
+ 352   4              Option_num = 80;
+ 353   4              return(0);
+ 354   4            }
+ 355   3            else if(ec11_state.Coder == 1)//顺时针
+ 356   3            {
+ 357   4              ec11_state.Coder = 0;
+ 358   4              switch(Page_num)//页号
+ 359   4              {
+ 360   5                case 0:
+ 361   5                {
+ 362   6                  switch(Option_num)
+ 363   6                  {
+ 364   7                    case 0:
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 7   
+
+ 365   7                    {
+ 366   8                      MENU_DATA_Table.Temp_s.Max_Temp += FAC_DATA_Table.Other_s.Temp_Step;
+ 367   8                      if(MENU_DATA_Table.Temp_s.Max_Temp >= 700)
+ 368   8                        MENU_DATA_Table.Temp_s.Max_Temp = 700;
+ 369   8                    }break;
+ 370   7                    case 1:
+ 371   7                    {
+ 372   8                      MENU_DATA_Table.Temp_s.Slp_Temp += FAC_DATA_Table.Other_s.Temp_Step;
+ 373   8                      if(MENU_DATA_Table.Temp_s.Slp_Temp >= MENU_DATA_Table.Temp_s.Max_Temp)
+ 374   8                        MENU_DATA_Table.Temp_s.Slp_Temp = MENU_DATA_Table.Temp_s.Max_Temp;
+ 375   8                    }break;
+ 376   7                    case 2:
+ 377   7                    {
+ 378   8                      MENU_DATA_Table.Temp_s.Default_Temp += FAC_DATA_Table.Other_s.Temp_Step;
+ 379   8                      if(MENU_DATA_Table.Temp_s.Default_Temp >= MENU_DATA_Table.Temp_s.Max_Temp)
+ 380   8                        MENU_DATA_Table.Temp_s.Default_Temp = MENU_DATA_Table.Temp_s.Max_Temp;
+ 381   8                    }break;
+ 382   7                    case 3:
+ 383   7                    {
+ 384   8                      MENU_DATA_Table.Temp_s.Default_CH += div_num;
+ 385   8                      if(MENU_DATA_Table.Temp_s.Default_CH >= 5)
+ 386   8                        MENU_DATA_Table.Temp_s.Default_CH = 5;
+ 387   8                    }break;
+ 388   7                  default:break;
+ 389   7                  }
+ 390   6                }break;
+ 391   5                case 1: 
+ 392   5                {
+ 393   6                  switch(Option_num)
+ 394   6                  {
+ 395   7                    case 0:
+ 396   7                    {
+ 397   8                      MENU_DATA_Table.Time_s.Slp_Time += div_num;
+ 398   8                    } break;
+ 399   7                    case 1:
+ 400   7                    {
+ 401   8                      MENU_DATA_Table.Time_s.ScrSaver_Time += div_num;
+ 402   8                    }break;
+ 403   7                    case 2:
+ 404   7                    {
+ 405   8                      MENU_DATA_Table.Time_s.Shutdown_Time += div_num;
+ 406   8                    }break;
+ 407   7                  default:break;
+ 408   7                  }
+ 409   6                }break;
+ 410   5                case 2:
+ 411   5                {
+ 412   6                  switch(Option_num)
+ 413   6                  {
+ 414   7                    case 0:
+ 415   7                    {
+ 416   8                      MENU_DATA_Table.Other_s.Work_Mode += 2;
+ 417   8                      if(MENU_DATA_Table.Other_s.Work_Mode>2)
+ 418   8                      {
+ 419   9                        MENU_DATA_Table.Other_s.Work_Mode = 0;
+ 420   9                      }
+ 421   8                    }break;
+ 422   7                    case 1:
+ 423   7                    {
+ 424   8                      MENU_DATA_Table.Other_s.Heater_Tip += div_num;
+ 425   8                      if(MENU_DATA_Table.Other_s.Heater_Tip>8)
+ 426   8                      {
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 8   
+
+ 427   9                        MENU_DATA_Table.Other_s.Heater_Tip = 1;
+ 428   9                      }
+ 429   8                    }break;
+ 430   7                    case 2:
+ 431   7                    {
+ 432   8                      MENU_DATA_Table.Other_s.Shock_Sensor += div_num;
+ 433   8                      if(MENU_DATA_Table.Other_s.Shock_Sensor>10)
+ 434   8                      {
+ 435   9                        MENU_DATA_Table.Other_s.Shock_Sensor = 0;
+ 436   9                      }
+ 437   8                    }break;
+ 438   7                    case 3:
+ 439   7                    {
+ 440   8                      MENU_DATA_Table.Other_s.Beep_Volume += div_num;
+ 441   8                      if(MENU_DATA_Table.Other_s.Beep_Volume>10)
+ 442   8                      {
+ 443   9                        MENU_DATA_Table.Other_s.Beep_Volume = 0;
+ 444   9                        BEEP_OFF;
+ 445   9                      }
+ 446   8                    }break;
+ 447   7                  default :break;
+ 448   7                  }
+ 449   6                }break;
+ 450   5              default :break;
+ 451   5              }//页号检查    
+ 452   4            } //顺时针
+ 453   3            else if(ec11_state.Coder == 2)//逆时针
+ 454   3            {
+ 455   4              ec11_state.Coder = 0;
+ 456   4              switch(Page_num)//页号
+ 457   4              {
+ 458   5                case 0:
+ 459   5                {
+ 460   6                  switch(Option_num)
+ 461   6                  {
+ 462   7                    case 0:
+ 463   7                    {
+ 464   8                      MENU_DATA_Table.Temp_s.Max_Temp -= FAC_DATA_Table.Other_s.Temp_Step;
+ 465   8                      if(MENU_DATA_Table.Temp_s.Max_Temp > 1000)
+ 466   8                        MENU_DATA_Table.Temp_s.Max_Temp = 0;
+ 467   8                    }break;
+ 468   7                    case 1:
+ 469   7                    {
+ 470   8                      MENU_DATA_Table.Temp_s.Slp_Temp -= FAC_DATA_Table.Other_s.Temp_Step;
+ 471   8                      if(MENU_DATA_Table.Temp_s.Slp_Temp > 1000)
+ 472   8                        MENU_DATA_Table.Temp_s.Slp_Temp = 0;
+ 473   8                    }break;
+ 474   7                    case 2:
+ 475   7                    {
+ 476   8                      MENU_DATA_Table.Temp_s.Default_Temp -= FAC_DATA_Table.Other_s.Temp_Step;
+ 477   8                      if(MENU_DATA_Table.Temp_s.Default_Temp > 1000)
+ 478   8                        MENU_DATA_Table.Temp_s.Default_Temp = 0;
+ 479   8                    }break;
+ 480   7                    case 3:
+ 481   7                    {
+ 482   8                      MENU_DATA_Table.Temp_s.Default_CH -= div_num;
+ 483   8                      if(MENU_DATA_Table.Temp_s.Default_CH > 100)
+ 484   8                        MENU_DATA_Table.Temp_s.Default_CH = 0;
+ 485   8                    }break;
+ 486   7                  default:break;
+ 487   7                  }
+ 488   6                }break;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 9   
+
+ 489   5                case 1: 
+ 490   5                {
+ 491   6                  switch(Option_num)
+ 492   6                  {
+ 493   7                    case 0:
+ 494   7                    {
+ 495   8                      MENU_DATA_Table.Time_s.Slp_Time -= div_num;
+ 496   8                      if(MENU_DATA_Table.Time_s.Slp_Time > 100)
+ 497   8                        MENU_DATA_Table.Time_s.Slp_Time = 0;
+ 498   8                    } break;
+ 499   7                    case 1:
+ 500   7                    {
+ 501   8                      MENU_DATA_Table.Time_s.ScrSaver_Time -= div_num;
+ 502   8                      if(MENU_DATA_Table.Time_s.ScrSaver_Time > 100)
+ 503   8                        MENU_DATA_Table.Time_s.ScrSaver_Time = 0;
+ 504   8                    }break;
+ 505   7                    case 2:
+ 506   7                    {
+ 507   8                      MENU_DATA_Table.Time_s.Shutdown_Time -= div_num;
+ 508   8                      if(MENU_DATA_Table.Time_s.Shutdown_Time > 100)
+ 509   8                        MENU_DATA_Table.Time_s.Shutdown_Time = 0;
+ 510   8                    }break;
+ 511   7                  default:break;
+ 512   7                  }
+ 513   6                }break;
+ 514   5                case 2:
+ 515   5                {
+ 516   6                  switch(Option_num)
+ 517   6                  {
+ 518   7                    case 0:
+ 519   7                    {
+ 520   8                      MENU_DATA_Table.Other_s.Work_Mode -= 2;
+ 521   8                      if(MENU_DATA_Table.Other_s.Work_Mode>100)
+ 522   8                      {
+ 523   9                        MENU_DATA_Table.Other_s.Work_Mode = 2;
+ 524   9                      }
+ 525   8                    }break;
+ 526   7                    case 1:
+ 527   7                    {
+ 528   8                      MENU_DATA_Table.Other_s.Heater_Tip -= div_num;
+ 529   8                      if(MENU_DATA_Table.Other_s.Heater_Tip==0)
+ 530   8                      {
+ 531   9                        MENU_DATA_Table.Other_s.Heater_Tip = 8;
+ 532   9                      }
+ 533   8                    }break;
+ 534   7                    case 2:
+ 535   7                    {
+ 536   8                      MENU_DATA_Table.Other_s.Shock_Sensor -= div_num;
+ 537   8                      if(MENU_DATA_Table.Other_s.Shock_Sensor>100)
+ 538   8                      {
+ 539   9                        MENU_DATA_Table.Other_s.Shock_Sensor = 10;
+ 540   9                      }
+ 541   8                    }break;
+ 542   7                    case 3:
+ 543   7                    {
+ 544   8                      MENU_DATA_Table.Other_s.Beep_Volume -= div_num;
+ 545   8                      if(MENU_DATA_Table.Other_s.Beep_Volume>100)
+ 546   8                      {
+ 547   9                        MENU_DATA_Table.Other_s.Beep_Volume = 10;
+ 548   9                      }
+ 549   8                    }break;
+ 550   7                  default :;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 10  
+
+ 551   7                  }
+ 552   6                }break;
+ 553   5              default :break;
+ 554   5              }//页号检查    
+ 555   4            } //逆时针
+ 556   3            else
+ 557   3            {
+ 558   4              return(0);
+ 559   4            }
+ 560   3            
+ 561   3            /* 显示函数 */
+ 562   3            Display_cursor();
+ 563   3            DisPlay(option_var);
+ 564   3            /* 显示函数 */
+ 565   3            
+ 566   3          }//如果编码器有动作
+ 567   2        /**************************/
+ 568   2          return(1);
+ 569   2        }
+ 570   1        return(0);
+ 571   1      }
+ 572          
+ 573          /* 选项查询 */
+ 574          unsigned char option_check_data()
+ 575          {
+ 576   1        unsigned char Option_flag = 1;  //Option_flag 选项标志
+ 577   1        unsigned char first_enter = 1;    //首次进入标志
+ 578   1        switch(Page_num)       //option_var  选项元素个数
+ 579   1        {
+ 580   2          case 0:   //TEMP 元素个数
+ 581   2            option_var = 3;
+ 582   2          break;
+ 583   2          case 1:   //TIME 元素个数
+ 584   2            option_var = 2;
+ 585   2          break;
+ 586   2          case 2:   //OTHER 元素个数 
+ 587   2            option_var = 3;
+ 588   2          break;
+ 589   2          default:break;
+ 590   2        }
+ 591   1        Option_num = 0;
+ 592   1        while(Option_flag)//进入循环等待 按键信息
+ 593   1        {
+ 594   2          if(first_enter)//第一次进入时直接显示界面，以后如果有操作才更新界面
+ 595   2          {
+ 596   3            Display_cursor();
+ 597   3            DisPlay(Option_num);
+ 598   3            first_enter = 0;
+ 599   3          }
+ 600   2          if((ec11_state.Key+ec11_state.Coder) > 0)//编码器有动作
+ 601   2          {
+ 602   3            if(ec11_state.Key == 1)
+ 603   3            {
+ 604   4              Select_flag = 1;
+ 605   4              Display_cursor();
+ 606   4              DisPlay(Option_num);
+ 607   4              ec11_state.Key = 0;
+ 608   4              while(set_var());
+ 609   4              while((ec11_state.Key+ec11_state.Coder) > 0)//按键确定退出
+ 610   4              {
+ 611   5                if(ec11_state.Key == 2)
+ 612   5                {
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 11  
+
+ 613   6                  return(0);
+ 614   6                }
+ 615   5              } 
+ 616   4            }
+ 617   3            else if(ec11_state.Key == 2)
+ 618   3            {
+ 619   4              ec11_state.Key = 0;
+ 620   4              Option_flag = 0;//选项标志清零 退出
+ 621   4              Option_num = 80;
+ 622   4              return(0);
+ 623   4            }
+ 624   3            else if(ec11_state.Coder == 1)
+ 625   3            {
+ 626   4              ec11_state.Coder = 0;
+ 627   4              ++Option_num;
+ 628   4            }
+ 629   3            else if(ec11_state.Coder == 2)
+ 630   3            {
+ 631   4              ec11_state.Coder = 0;
+ 632   4              --Option_num;
+ 633   4            }
+ 634   3            else
+ 635   3            {
+ 636   4            }
+ 637   3      
+ 638   3            /* 循环选项号 */
+ 639   3            if(Option_num  > option_var)//选项循环
+ 640   3              Option_num = 0;//选项号循环
+ 641   3            if(Option_num < 0)//选项循环
+ 642   3              Option_num = option_var;
+ 643   3             /* 选项号循环 */
+ 644   3                /* 显示函数 */
+ 645   3            Display_cursor();
+ 646   3            DisPlay(Option_num);
+ 647   3          }//编码器有动作
+ 648   2          
+ 649   2        }//进入循环等待 按键信息
+ 650   1        return(1);
+ 651   1      }
+ 652            unsigned char Page_flag = 1;//页面标志
+ 653          /* 页面查询 */
+ 654          unsigned char Menu_check_data() 
+ 655          {              
+ 656   1      
+ 657   1        unsigned char first_enter = 1;//首次进入
+ 658   1        
+ 659   1        while(Page_flag)//等待 扫描页面
+ 660   1        {
+ 661   2          if(first_enter)
+ 662   2          {
+ 663   3            Display_cursor();
+ 664   3            DisPlay(3);//页面 
+ 665   3            first_enter = 0;
+ 666   3            ec11_state.Key = 0;
+ 667   3            ec11_state.Coder = 0;
+ 668   3          }
+ 669   2          if((ec11_state.Key+ec11_state.Coder) > 0)//是否接收值 Page
+ 670   2          {
+ 671   3            /* 确定页面 */
+ 672   3            if(ec11_state.Key == 1)
+ 673   3            {    /*刷新*/
+ 674   4              ec11_state.Key = 0;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 12  
+
+ 675   4              while(option_check_data());//进入选项查询
+ 676   4            }                         
+ 677   3            /* 退出页面 */   
+ 678   3            else if(ec11_state.Key == 2)
+ 679   3            {
+ 680   4              ec11_state.Key = 0;
+ 681   4              Page_flag = 0;
+ 682   4              return(0);  
+ 683   4            } 
+ 684   3            /* 页号加减 */
+ 685   3            else if(ec11_state.Coder == 1)
+ 686   3            {
+ 687   4              ec11_state.Coder = 0;
+ 688   4              ++Page_num;
+ 689   4            }
+ 690   3            else if(ec11_state.Coder == 2)
+ 691   3            {
+ 692   4              ec11_state.Coder = 0;
+ 693   4              --Page_num;
+ 694   4            }
+ 695   3            else
+ 696   3            {}
+ 697   3              
+ 698   3            if(Page_num > 2) //页面号循环 
+ 699   3              Page_num = 0;
+ 700   3            if(Page_num < 0)
+ 701   3              Page_num = 2; 
+ 702   3      
+ 703   3              Display_cursor();
+ 704   3              DisPlay(3);//页面       
+ 705   3          }//if() 是否接收值 Page
+ 706   2        }//while()
+ 707   1        return(1);
+ 708   1      }
+ 709          
+ 710          unsigned int ParaSet()
+ 711          {
+ 712   1        unsigned char KEY_flag = 1;
+ 713   1        //如果不是在休眠状态下的按键
+ 714   1        if(ec11_state.Key == 1)
+ 715   1        {
+ 716   2          ec11_state.Key = 0;
+ 717   2          if(MENU_DATA_Table.Other_s.Work_Mode == 1)
+ 718   2            MENU_DATA_Table.Other_s.Work_Mode = 0;
+ 719   2          else if(MENU_DATA_Table.Other_s.Work_Mode == 0)
+ 720   2            MENU_DATA_Table.Other_s.Work_Mode = 1;
+ 721   2          //存储
+ 722   2          EEPROM_SectorErase(0x0);
+ 723   2          EEPROM_write_n(0x0,(unsigned char *)&MENU_DATA_Table,sizeof(MENU_DATA_Table));
+ 724   2        }
+ 725   1        if(ec11_state.Key == 2)
+ 726   1        {
+ 727   2          ShutdownCounterFlag = 1;
+ 728   2          OLED_CLS();//清屏
+ 729   2          Page_flag = 1;
+ 730   2          while(KEY_flag)
+ 731   2          {
+ 732   3            if(Menu_check_data());
+ 733   3            while(Page_flag == 1);
+ 734   3            OLED_CLS();//清屏
+ 735   3            //存储
+ 736   3            EEPROM_SectorErase(0x0);
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 13  
+
+ 737   3            EEPROM_write_n(0x0,(unsigned char *)&MENU_DATA_Table,sizeof(MENU_DATA_Table));
+ 738   3            
+ 739   3            KEY_flag = 0;//退出循环
+ 740   3          }
+ 741   2          if(MENU_DATA_Table.Other_s.Work_Mode == 2)
+ 742   2          {
+ 743   3            //软关机
+ 744   3            IAP_CONTR = 0x20;
+ 745   3          }
+ 746   2        }
+ 747   1        ShutdownCounterFlag = 0;
+ 748   1        return 0;
+ 749   1      }
+ 750          
+ 751          
+ 752          //以下为工厂模式菜单
+ 753          /* 显示 */
+ 754          void DisPlay_Fac(unsigned char num)
+ 755          {
+ 756   1        unsigned char j;
+ 757   1        float var_temp;
+ 758   1        
+ 759   1        //显示一级菜单
+ 760   1        if(Option_num == 80)
+ 761   1        {
+ 762   2          OLED_P14x16Str(32,0,"工厂模式");     
+ 763   2          for(j = 0;j < num;j++)//换行
+ 764   2          {
+ 765   3            OLED_printf(0,j+1,FAC_DATA_Table.FAC_MSG_s.OPTINO_NAME[j],0);//显示值
+ 766   3          }
+ 767   2        }
+ 768   1        //显示二级菜单
+ 769   1        else
+ 770   1        {
+ 771   2      
+ 772   2          switch(Page_num)
+ 773   2          {
+ 774   3            case 0:
+ 775   3            {              
+ 776   4              var_temp = FAC_DATA_Table.Adjust_s.Iron;
+ 777   4              OLED_printf(0,0,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][0],var_temp);//显示值
+ 778   4              var_temp = FAC_DATA_Table.Adjust_s.Voltage;
+ 779   4              OLED_printf(0,1,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][1],var_temp);//显示值
+ 780   4              var_temp = FAC_DATA_Table.Adjust_s.Encoder;
+ 781   4              OLED_printf(0,2,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][2],var_temp);//显示值          
+ 782   4            }break;
+ 783   3            case 1:
+ 784   3            {              
+ 785   4              var_temp = FAC_DATA_Table.Channel_s.Ch1;
+ 786   4              OLED_printf(0,0,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][0],var_temp);//显示值
+ 787   4              var_temp = FAC_DATA_Table.Channel_s.Ch2;
+ 788   4              OLED_printf(0,1,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][1],var_temp);//显示值
+ 789   4              var_temp = FAC_DATA_Table.Channel_s.Ch3;
+ 790   4              OLED_printf(0,2,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][2],var_temp);//显示值    
+ 791   4              var_temp = FAC_DATA_Table.Channel_s.Ch4;
+ 792   4              OLED_printf(0,3,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][3],var_temp);//显示值          
+ 793   4            }break;
+ 794   3            case 2:
+ 795   3            {              
+ 796   4              var_temp = FAC_DATA_Table.Other_s.Temp_Step;
+ 797   4              OLED_printf(0,0,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][0],var_temp);//显示值 
+ 798   4              var_temp = FAC_DATA_Table.Other_s.Lim_Voltage;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 14  
+
+ 799   4              OLED_printf(0,1,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][1],var_temp);//显示值          
+ 800   4              var_temp = FAC_DATA_Table.Other_s.Recovery;
+ 801   4              OLED_printf(0,2,FAC_DATA_Table.FAC_MSG_s.ADS_str[Page_num][2],var_temp);//显示值          
+ 802   4            }break;
+ 803   3            default:break;
+ 804   3          }     
+ 805   2        }   
+ 806   1      }
+ 807          
+ 808          
+ 809          /* 参数值更改值*/
+ 810          unsigned char set_var_fac()
+ 811          { 
+ 812   1        unsigned char var_flag = 1;
+ 813   1        //微增量
+ 814   1        float div_num = 1.0f; //
+ 815   1      
+ 816   1        /**************************/
+ 817   1        while(var_flag)//检测 按键
+ 818   1        {
+ 819   2          if((ec11_state.Key+ec11_state.Coder) > 0)//如果编码器有动作
+ 820   2          {
+ 821   3            if(ec11_state.Key == 1)
+ 822   3            {
+ 823   4              Select_flag = 0;
+ 824   4              ec11_state.Key = 0;
+ 825   4              return(0);
+ 826   4            }
+ 827   3            else if(ec11_state.Key == 2)
+ 828   3            {  
+ 829   4              Select_flag = 0;
+ 830   4              ec11_state.Key = 0;       
+ 831   4              var_flag = 0; 
+ 832   4              Option_num = 80;
+ 833   4              return(0);
+ 834   4            }
+ 835   3            else if(ec11_state.Coder == 1)//顺时针
+ 836   3            {
+ 837   4              ec11_state.Coder = 0;
+ 838   4              switch(Page_num)//页号
+ 839   4              {
+ 840   5                case 0:
+ 841   5                {
+ 842   6                  switch(Option_num)
+ 843   6                  {
+ 844   7                    case 0:
+ 845   7                    {
+ 846   8                      FAC_DATA_Table.Adjust_s.Iron += div_num;
+ 847   8                      if(FAC_DATA_Table.Adjust_s.Iron >= 8)
+ 848   8                        FAC_DATA_Table.Adjust_s.Iron = 8;
+ 849   8                    }break;
+ 850   7                    case 1:
+ 851   7                    {
+ 852   8                      FAC_DATA_Table.Adjust_s.Voltage += div_num;
+ 853   8                    }break;
+ 854   7                    case 2:
+ 855   7                    {
+ 856   8                      FAC_DATA_Table.Adjust_s.Encoder += div_num;
+ 857   8                      if(FAC_DATA_Table.Adjust_s.Encoder >= 1)
+ 858   8                        FAC_DATA_Table.Adjust_s.Encoder = 1;
+ 859   8                    }break;
+ 860   7                  default:break;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 15  
+
+ 861   7                  }
+ 862   6                }break;
+ 863   5                case 1:
+ 864   5                {
+ 865   6                  switch(Option_num)
+ 866   6                  {
+ 867   7                    case 0:
+ 868   7                    {
+ 869   8                      FAC_DATA_Table.Channel_s.Ch1 += FAC_DATA_Table.Other_s.Temp_Step;
+ 870   8                      if(FAC_DATA_Table.Channel_s.Ch1 >= MENU_DATA_Table.Temp_s.Max_Temp)
+ 871   8                        FAC_DATA_Table.Channel_s.Ch1 = MENU_DATA_Table.Temp_s.Max_Temp;
+ 872   8                    }break;
+ 873   7                    case 1:
+ 874   7                    {
+ 875   8                      FAC_DATA_Table.Channel_s.Ch2 += FAC_DATA_Table.Other_s.Temp_Step;
+ 876   8                      if(FAC_DATA_Table.Channel_s.Ch2 >= MENU_DATA_Table.Temp_s.Max_Temp)
+ 877   8                        FAC_DATA_Table.Channel_s.Ch2 = MENU_DATA_Table.Temp_s.Max_Temp;
+ 878   8                    }break;
+ 879   7                    case 2:
+ 880   7                    {
+ 881   8                      FAC_DATA_Table.Channel_s.Ch3 += FAC_DATA_Table.Other_s.Temp_Step;
+ 882   8                      if(FAC_DATA_Table.Channel_s.Ch3 >= MENU_DATA_Table.Temp_s.Max_Temp)
+ 883   8                        FAC_DATA_Table.Channel_s.Ch3 = MENU_DATA_Table.Temp_s.Max_Temp;
+ 884   8                    }break;
+ 885   7                    case 3:
+ 886   7                    {
+ 887   8                      FAC_DATA_Table.Channel_s.Ch4 += FAC_DATA_Table.Other_s.Temp_Step;
+ 888   8                      if(FAC_DATA_Table.Channel_s.Ch4 >= MENU_DATA_Table.Temp_s.Max_Temp)
+ 889   8                        FAC_DATA_Table.Channel_s.Ch4 = MENU_DATA_Table.Temp_s.Max_Temp;
+ 890   8                    }break;
+ 891   7                  default:break;
+ 892   7                  }
+ 893   6                }break;
+ 894   5                case 2:
+ 895   5                {
+ 896   6                  switch(Option_num)
+ 897   6                  {
+ 898   7                    case 0:
+ 899   7                    {
+ 900   8                      FAC_DATA_Table.Other_s.Temp_Step += div_num;
+ 901   8                      if(FAC_DATA_Table.Other_s.Temp_Step > 50)
+ 902   8                        FAC_DATA_Table.Other_s.Temp_Step = 50;
+ 903   8                    }break;
+ 904   7                    case 1:
+ 905   7                    {
+ 906   8                      FAC_DATA_Table.Other_s.Lim_Voltage += div_num;
+ 907   8                      if(FAC_DATA_Table.Other_s.Lim_Voltage > 30)
+ 908   8                        FAC_DATA_Table.Other_s.Lim_Voltage = 30;
+ 909   8                    }break;
+ 910   7                    case 2:
+ 911   7                    {
+ 912   8                      FAC_DATA_Table.Other_s.Recovery += div_num;
+ 913   8                      if(FAC_DATA_Table.Other_s.Recovery >= 1)
+ 914   8                        FAC_DATA_Table.Other_s.Recovery = 1;
+ 915   8                    }break;
+ 916   7                  default:break;
+ 917   7                  }
+ 918   6                }break;
+ 919   5              default :break;
+ 920   5              }//页号检查    
+ 921   4            } //顺时针
+ 922   3            else if(ec11_state.Coder == 2)//逆时针
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 16  
+
+ 923   3            {
+ 924   4              ec11_state.Coder = 0;
+ 925   4              switch(Page_num)//页号
+ 926   4              {
+ 927   5                case 0:
+ 928   5                {
+ 929   6                  switch(Option_num)
+ 930   6                  {
+ 931   7                    case 0:
+ 932   7                    {
+ 933   8                      FAC_DATA_Table.Adjust_s.Iron -= div_num;
+ 934   8                      if(FAC_DATA_Table.Adjust_s.Iron > 100)
+ 935   8                        FAC_DATA_Table.Adjust_s.Iron = 0;
+ 936   8                    }break;
+ 937   7                    case 1:
+ 938   7                    {
+ 939   8                      FAC_DATA_Table.Adjust_s.Voltage -= div_num;
+ 940   8                      if(FAC_DATA_Table.Adjust_s.Voltage >= 1000)
+ 941   8                        FAC_DATA_Table.Adjust_s.Voltage = 0;
+ 942   8                    }break;
+ 943   7                    case 2:
+ 944   7                    {
+ 945   8                      FAC_DATA_Table.Adjust_s.Encoder -= div_num;
+ 946   8                      if(FAC_DATA_Table.Adjust_s.Encoder >= 100)
+ 947   8                        FAC_DATA_Table.Adjust_s.Encoder = 0;
+ 948   8                    }break;
+ 949   7                  default:break;
+ 950   7                  }
+ 951   6                }break;
+ 952   5                case 1:
+ 953   5                {
+ 954   6                  switch(Option_num)
+ 955   6                  {
+ 956   7                    case 0:
+ 957   7                    {
+ 958   8                      FAC_DATA_Table.Channel_s.Ch1 -= FAC_DATA_Table.Other_s.Temp_Step;
+ 959   8                      if(FAC_DATA_Table.Channel_s.Ch1 >= 1000)
+ 960   8                        FAC_DATA_Table.Channel_s.Ch1 = 0;
+ 961   8                    }break;
+ 962   7                    case 1:
+ 963   7                    {
+ 964   8                      FAC_DATA_Table.Channel_s.Ch2 -= FAC_DATA_Table.Other_s.Temp_Step;
+ 965   8                      if(FAC_DATA_Table.Channel_s.Ch2 >= 1000)
+ 966   8                        FAC_DATA_Table.Channel_s.Ch2 = 0;
+ 967   8                    }break;
+ 968   7                    case 2:
+ 969   7                    {
+ 970   8                      FAC_DATA_Table.Channel_s.Ch3 -= FAC_DATA_Table.Other_s.Temp_Step;
+ 971   8                      if(FAC_DATA_Table.Channel_s.Ch3 >= 1000)
+ 972   8                        FAC_DATA_Table.Channel_s.Ch3 = 0;
+ 973   8                    }break;
+ 974   7                    case 3:
+ 975   7                    {
+ 976   8                      FAC_DATA_Table.Channel_s.Ch4 -= FAC_DATA_Table.Other_s.Temp_Step;
+ 977   8                      if(FAC_DATA_Table.Channel_s.Ch4 >= 1000)
+ 978   8                        FAC_DATA_Table.Channel_s.Ch4 = 0;
+ 979   8                    }break;
+ 980   7                  default:break;
+ 981   7                  }
+ 982   6                }break;
+ 983   5                case 2:
+ 984   5                {
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 17  
+
+ 985   6                  switch(Option_num)
+ 986   6                  {
+ 987   7                    case 0:
+ 988   7                    {
+ 989   8                      FAC_DATA_Table.Other_s.Temp_Step -= div_num;
+ 990   8                      if(FAC_DATA_Table.Other_s.Temp_Step == 0)
+ 991   8                        FAC_DATA_Table.Other_s.Temp_Step = 1;
+ 992   8                    }break;
+ 993   7                    case 1:
+ 994   7                    {
+ 995   8                      FAC_DATA_Table.Other_s.Lim_Voltage -= div_num;
+ 996   8                      if(FAC_DATA_Table.Other_s.Lim_Voltage >= 100)
+ 997   8                        FAC_DATA_Table.Other_s.Lim_Voltage = 0;
+ 998   8                    }break;
+ 999   7                    case 2:
+1000   7                    {
+1001   8                      FAC_DATA_Table.Other_s.Recovery -= div_num;
+1002   8                      if(FAC_DATA_Table.Other_s.Recovery >= 100)
+1003   8                        FAC_DATA_Table.Other_s.Recovery = 0;
+1004   8                    }break;
+1005   7                  default:break;
+1006   7                  }
+1007   6                }break;
+1008   5              default :break;
+1009   5              }//页号检查    
+1010   4            } //逆时针
+1011   3            else
+1012   3            {
+1013   4              return(0);
+1014   4            }
+1015   3            
+1016   3            /* 显示函数 */
+1017   3            Display_cursor();
+1018   3            DisPlay_Fac(option_var);
+1019   3            /* 显示函数 */
+1020   3            
+1021   3          }//如果编码器有动作
+1022   2        /**************************/
+1023   2          return(1);
+1024   2        }
+1025   1        return(0);
+1026   1      }
+1027          
+1028          /* 选项查询 */
+1029          unsigned char option_check_data_fac()
+1030          {
+1031   1        unsigned char Option_flag = 1;  //Option_flag 选项标志
+1032   1        unsigned char first_enter = 1;    //首次进入标志
+1033   1        switch(Page_num)       //option_var  选项元素个数
+1034   1        {
+1035   2          case 0:   //调整 元素个数
+1036   2            option_var = 2;
+1037   2          break;
+1038   2          case 1:   //通道 元素个数
+1039   2            option_var = 3;
+1040   2          break;
+1041   2          case 2:   //通道 元素个数
+1042   2            option_var = 2;
+1043   2          break;
+1044   2          default:break;
+1045   2        }
+1046   1        Option_num = 0;
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 18  
+
+1047   1        while(Option_flag)//进入循环等待 按键信息
+1048   1        {
+1049   2          if(first_enter)//第一次进入时直接显示界面，以后如果有操作才更新界面
+1050   2          {
+1051   3            Display_cursor();
+1052   3            DisPlay_Fac(Option_num);
+1053   3            first_enter = 0;
+1054   3          }
+1055   2          if((ec11_state.Key+ec11_state.Coder) > 0)//编码器有动作
+1056   2          {
+1057   3            if(ec11_state.Key == 1)
+1058   3            {
+1059   4              ec11_state.Key = 0;
+1060   4              Select_flag = 1;
+1061   4              Display_cursor();
+1062   4              DisPlay_Fac(option_var);
+1063   4              while(set_var_fac());
+1064   4              while((ec11_state.Key+ec11_state.Coder) > 0)//按键确定退出
+1065   4              {
+1066   5                if(ec11_state.Key == 2)
+1067   5                {
+1068   6                  return(0);
+1069   6                }
+1070   5              } 
+1071   4            }
+1072   3            else if(ec11_state.Key == 2)
+1073   3            {
+1074   4              ec11_state.Key = 0;
+1075   4              Option_flag = 0;//选项标志清零 退出
+1076   4              Option_num = 80;
+1077   4              return(0);
+1078   4            }
+1079   3            else if(ec11_state.Coder == 1)
+1080   3            {
+1081   4              ec11_state.Coder = 0;
+1082   4              ++Option_num;
+1083   4            }
+1084   3            else if(ec11_state.Coder == 2)
+1085   3            {
+1086   4              ec11_state.Coder = 0;
+1087   4              --Option_num;
+1088   4            }
+1089   3            else
+1090   3            {
+1091   4            }
+1092   3      
+1093   3            /* 循环选项号 */
+1094   3            if(Option_num  > option_var)//选项循环
+1095   3              Option_num = 0;//选项号循环
+1096   3            if(Option_num < 0)//选项循环
+1097   3              Option_num = option_var;
+1098   3             /* 选项号循环 */
+1099   3                /* 显示函数 */
+1100   3            Display_cursor();
+1101   3            DisPlay_Fac(Option_num);
+1102   3          }//编码器有动作
+1103   2          
+1104   2        }//进入循环等待 按键信息
+1105   1        return(1);
+1106   1      }
+1107          /* 页面查询 */
+1108          unsigned char Fac_check_data() 
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 19  
+
+1109          {              
+1110   1      
+1111   1        unsigned char first_enter = 1;//首次进入
+1112   1        
+1113   1        while(Page_flag)//等待 扫描页面
+1114   1        {
+1115   2          if(first_enter)
+1116   2          {
+1117   3            Display_cursor();
+1118   3            DisPlay_Fac(3);//页面 
+1119   3            first_enter = 0;
+1120   3            ec11_state.Key = 0;
+1121   3            ec11_state.Coder = 0;
+1122   3          }
+1123   2          if((ec11_state.Key+ec11_state.Coder) > 0)//是否接收值 Page
+1124   2          {
+1125   3            /* 确定页面 */
+1126   3            if(ec11_state.Key == 1)
+1127   3            {    /*刷新*/
+1128   4              ec11_state.Key = 0;
+1129   4              while(option_check_data_fac());//进入选项查询
+1130   4            }                         
+1131   3            /* 退出页面 */   
+1132   3            else if(ec11_state.Key == 2)
+1133   3            {
+1134   4              ec11_state.Key = 0;
+1135   4              Page_flag = 0;
+1136   4              return(0);  
+1137   4            } 
+1138   3            /* 页号加减 */
+1139   3            else if(ec11_state.Coder == 1)
+1140   3            {
+1141   4              ec11_state.Coder = 0;
+1142   4              ++Page_num;
+1143   4            }
+1144   3            else if(ec11_state.Coder == 2)
+1145   3            {
+1146   4              ec11_state.Coder = 0;
+1147   4              --Page_num;
+1148   4            }
+1149   3            else
+1150   3            {}
+1151   3              
+1152   3            if(Page_num > 2) //页面号循环 
+1153   3              Page_num = 0;
+1154   3            if(Page_num < 0)
+1155   3              Page_num = 2; 
+1156   3      
+1157   3              Display_cursor();
+1158   3              DisPlay_Fac(3);//页面       
+1159   3          }//if() 是否接收值 Page
+1160   2        }//while()
+1161   1        return(1);
+1162   1      }
+1163          
+1164          unsigned int ParaSet_Fac()
+1165          {
+1166   1        unsigned char KEY_flag = 1;
+1167   1        
+1168   1        OLED_CLS();//清屏
+1169   1        Page_flag = 1;
+1170   1        while(KEY_flag)
+C51 COMPILER V9.54   EC11                                                                  08/30/2017 10:15:48 PAGE 20  
+
+1171   1        {
+1172   2          if(Fac_check_data());
+1173   2          while(Page_flag == 1);
+1174   2          OLED_CLS();//清屏
+1175   2          
+1176   2          //存储
+1177   2          EEPROM_SectorErase(0x200);
+1178   2          EEPROM_write_n(0x200,(unsigned char *)&FAC_DATA_Table,sizeof(FAC_DATA_Table));  
+1179   2          
+1180   2          KEY_flag = 0;//退出循环
+1181   2        }
+1182   1      
+1183   1        return 0;
+1184   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   5456    ----
+   CONSTANT SIZE    =     30    ----
+   XDATA SIZE       =    835      37
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

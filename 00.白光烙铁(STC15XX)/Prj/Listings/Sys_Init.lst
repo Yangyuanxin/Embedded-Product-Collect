@@ -1,0 +1,243 @@
+C51 COMPILER V9.54   SYS_INIT                                                              08/30/2017 10:15:48 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE SYS_INIT
+OBJECT MODULE PLACED IN .\Objects\Sys_Init.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\User\Sys_Init.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User)
+                    - DEBUG OBJECTEXTEND PRINT(.\Listings\Sys_Init.lst) TABS(2) OBJECT(.\Objects\Sys_Init.obj)
+
+line level    source
+
+   1          /*!
+   2           *     COPYRIGHT NOTICE
+   3           *     Copyright (c) 2017,BG0BGH
+   4           *     All rights reserved.
+   5           *
+   6           *     ≥˝◊¢√˜≥ˆ¥¶Õ‚£¨“‘œ¬À˘”–ƒ⁄»›∞Ê»®æ˘ ÙÕı÷æ∫∆À˘”–£¨Œ¥æ≠‘ –Ì£¨≤ªµ√”√”⁄…Ã“µ”√Õæ£¨
+   7           *     –ﬁ∏ƒƒ⁄»› ±±ÿ–Î±£¡Ù◊˜’ﬂµƒ∞Ê»®…˘√˜°£
+   8           *
+   9           * @file      œµÕ≥≥ı ºªØ
+  10           * @brief     
+  11           * @author    Õı÷æ∫∆
+  12           * @version   V2.2
+  13           * @date      2017-8-30
+  14           */
+  15          #include "config.h"
+  16          
+  17          /************************∂®“Â»´æ÷±‰¡ø*****************************/
+  18          void GPIO_Init(void)
+  19          {
+  20   1        //Ω·ππ∂®“Â
+  21   1        GPIO_InitTypeDef  GPIO_InitStructure;   
+  22   1        
+  23   1        //≈‰÷√P01£®sleep£©,P03£®beep£©Œ™…œ¿≠
+  24   1        GPIO_InitStructure.Pin  = GPIO_Pin_1|GPIO_Pin_3;
+  25   1        GPIO_InitStructure.Mode = GPIO_PullUp;
+  26   1        GPIO_Inilize(GPIO_P0,&GPIO_InitStructure);
+  27   1      
+  28   1        
+  29   1        //≈‰÷√P20~P24£®OLED∆¡£©Œ™…œ¿≠
+  30   1        GPIO_InitStructure.Pin  = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2|GPIO_Pin_3|GPIO_Pin_4;
+  31   1        GPIO_InitStructure.Mode = GPIO_PullUp;
+  32   1        GPIO_Inilize(GPIO_P2,&GPIO_InitStructure);
+  33   1        
+  34   1        //≈‰÷√P30~P32£®EC11±‡¬Î∆˜£©Œ™ø™¬©
+  35   1        GPIO_InitStructure.Pin  = GPIO_Pin_0|GPIO_Pin_1|GPIO_Pin_2;
+  36   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  37   1        GPIO_Inilize(GPIO_P3,&GPIO_InitStructure);
+  38   1        
+  39   1        //≈‰÷√P13°¢P15°¢P17£®ADC£©Œ™∏ﬂ◊Ë
+  40   1        GPIO_InitStructure.Pin  = GPIO_Pin_3|GPIO_Pin_5|GPIO_Pin_7;
+  41   1        GPIO_InitStructure.Mode = GPIO_OUT_OD;
+  42   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);
+  43   1        
+  44   1        //≈‰÷√P10£®PWM£©Œ™Õ∆ÕÏ
+  45   1        GPIO_InitStructure.Pin  = GPIO_Pin_0;
+  46   1        GPIO_InitStructure.Mode = GPIO_OUT_PP;
+  47   1        GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);
+  48   1      
+  49   1      }
+  50          
+  51          void ADC_Init(void)
+  52          {
+  53   1        //Ω·ππ∂®“Â
+  54   1        ADC_InitTypeDef   ADC_InitStructure;    
+C51 COMPILER V9.54   SYS_INIT                                                              08/30/2017 10:15:48 PAGE 2   
+
+  55   1        
+  56   1        ADC_InitStructure.ADC_Px        = ADC_P13|ADC_P15|ADC_P17;  
+  57   1        ADC_InitStructure.ADC_Speed     = ADC_180T;       //ADCÀŸ∂»     ADC_90T,ADC_180T,ADC_360T,ADC_540T
+  58   1        ADC_InitStructure.ADC_Power     = ENABLE;         //ADCπ¶¬      ENABLE,DISABLE
+  59   1        ADC_InitStructure.ADC_AdjResult = ADC_RES_H2L8;   //ADCΩ·π˚µ˜’˚,  ADC_RES_H2L8,ADC_RES_H8L2
+  60   1        ADC_InitStructure.ADC_Polity    = PolityLow;      //”≈œ»º∂…Ë÷√  PolityHigh,PolityLow
+  61   1        ADC_InitStructure.ADC_Interrupt = DISABLE;        //÷–∂œ‘ –Ì    ENABLE,DISABLE
+  62   1        ADC_Inilize(&ADC_InitStructure);                  //≥ı ºªØ
+  63   1        ADC_PowerControl(ENABLE);                         //µ•∂¿µƒADCµÁ‘¥≤Ÿ◊˜∫Ø ˝, ENABLEªÚDISABLE
+  64   1      }
+  65          
+  66          void Iron_Init(void)
+  67          {
+  68   1        //Ω·ππ∂®“Â
+  69   1        PCA_InitTypeDef   PCA_InitStructure;
+  70   1      
+  71   1        PCA_InitStructure.PCA_Clock    = PCA_Clock_Timer0_OF;   //PCA_Clock_1T, PCA_Clock_2T, PCA_Clock_4T, PCA_Cl
+             -ock_6T, PCA_Clock_8T, PCA_Clock_12T, PCA_Clock_Timer0_OF, PCA_Clock_ECI
+  72   1        PCA_InitStructure.PCA_IoUse    = PCA_P12_P11_P10_P37; //PCA_P12_P11_P10_P37, PCA_P34_P35_P36_P37, PCA_P24
+             -_P25_P26_P27
+  73   1        PCA_InitStructure.PCA_Interrupt_Mode = DISABLE;   //ENABLE, DISABLE
+  74   1        PCA_InitStructure.PCA_Polity   = PolityLow;     //”≈œ»º∂…Ë÷√  PolityHigh,PolityLow
+  75   1        PCA_Init(PCA_Counter,&PCA_InitStructure);
+  76   1      
+  77   1        PCA_InitStructure.PCA_Mode     = PCA_Mode_PWM;    //PCA_Mode_PWM, PCA_Mode_Capture, PCA_Mode_SoftTimer, PCA
+             -_Mode_HighPulseOutput
+  78   1        PCA_InitStructure.PCA_PWM_Wide = PCA_PWM_8bit;    //PCA_PWM_8bit, PCA_PWM_7bit, PCA_PWM_6bit
+  79   1        PCA_InitStructure.PCA_Value    = 128 << 8;      //∂‘”⁄PWM,∏ﬂ8ŒªŒ™PWM’ºø’±»
+  80   1        PCA_Init(PCA1,&PCA_InitStructure);
+  81   1        
+  82   1        CR = 1;
+  83   1      }
+  84          void Iron_Run()
+  85          {
+  86   1        AUXR1 = (AUXR1 & ~(3<<4)) | (0<<4);     //∆‰ µ «∞— ‰≥ˆø⁄◊™“∆¡À£¨Œ“≤ª÷™µ¿‘ı√¥πÿ
+  87   1      }
+  88          
+  89          
+  90          void Iron_Off(void)
+  91          {
+  92   1        AUXR1 = (AUXR1 & ~(3<<4)) | (2<<4);     //∆‰ µ «∞— ‰≥ˆø⁄◊™“∆¡À£¨Œ“≤ª÷™µ¿‘ı√¥πÿ
+  93   1        P10 = 0;
+  94   1      }
+  95          void EXTI_Init(void)
+  96          {
+  97   1        EXTI_InitTypeDef  EXTI_InitStructure;         //Ω·ππ∂®“Â
+  98   1        
+  99   1        //±‡¬Î∆˜µƒ∞¥º¸≈‰÷√Œ™∏ﬂ”≈œ»º∂÷–∂œ
+ 100   1        EXTI_InitStructure.EXTI_Mode = EXT_MODE_Fall;
+ 101   1        EXTI_InitStructure.EXTI_Polity = PolityLow;
+ 102   1        EXTI_InitStructure.EXTI_Interrupt = ENABLE;
+ 103   1        Ext_Inilize(EXT_INT4,&EXTI_InitStructure);
+ 104   1      
+ 105   1      }
+ 106          
+ 107          void Timer_Init(void)
+ 108          {
+ 109   1        //Ω·ππ∂®“Â
+ 110   1        TIM_InitTypeDef   TIM_InitStructure;  
+ 111   1        
+ 112   1        TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //÷∏∂®π§◊˜ƒ£ Ω,   TIM_16BitAutoReload,TIM_16Bit,TI
+             -M_8BitAutoReload,TIM_16BitAutoReloadNoMask
+C51 COMPILER V9.54   SYS_INIT                                                              08/30/2017 10:15:48 PAGE 3   
+
+ 113   1        TIM_InitStructure.TIM_Polity    = PolityLow;      //÷∏∂®÷–∂œ”≈œ»º∂, PolityHigh,PolityLow
+ 114   1        TIM_InitStructure.TIM_Interrupt = ENABLE;       //÷–∂œ «∑Ò‘ –Ì,   ENABLEªÚDISABLE
+ 115   1        TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_12T;      //÷∏∂® ±÷”‘¥,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK
+             -_Ext
+ 116   1        TIM_InitStructure.TIM_ClkOut    = DISABLE;        // «∑Ò ‰≥ˆ∏ﬂÀŸ¬ˆ≥Â, ENABLEªÚDISABLE
+ 117   1        TIM_InitStructure.TIM_Value     = 0xFF9C;       //≥ı÷µ,50us
+ 118   1        TIM_InitStructure.TIM_Run       = ENABLE;       // «∑Ò≥ı ºªØ∫Û∆Ù∂Ø∂® ±∆˜, ENABLEªÚDISABLE
+ 119   1        Timer_Inilize(Timer0,&TIM_InitStructure);       //≥ı ºªØTimer0    Timer0,Timer1,Timer2
+ 120   1        
+ 121   1        TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //÷∏∂®π§◊˜ƒ£ Ω,   TIM_16BitAutoReload,TIM_16Bit,TI
+             -M_8BitAutoReload,TIM_16BitAutoReloadNoMask
+ 122   1        TIM_InitStructure.TIM_Polity    = PolityHigh;     //÷∏∂®÷–∂œ”≈œ»º∂, PolityHigh,PolityLow
+ 123   1        TIM_InitStructure.TIM_Interrupt = ENABLE;       //÷–∂œ «∑Ò‘ –Ì,   ENABLEªÚDISABLE
+ 124   1        TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_1T;     //÷∏∂® ±÷”‘¥,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK_
+             -Ext
+ 125   1        TIM_InitStructure.TIM_ClkOut    = DISABLE;        // «∑Ò ‰≥ˆ∏ﬂÀŸ¬ˆ≥Â, ENABLEªÚDISABLE
+ 126   1        TIM_InitStructure.TIM_Value     = 0xA240;       //≥ı÷µ,1ms
+ 127   1        TIM_InitStructure.TIM_Run       = ENABLE;       // «∑Ò≥ı ºªØ∫Û∆Ù∂Ø∂® ±∆˜, ENABLEªÚDISABLE
+ 128   1        Timer_Inilize(Timer1,&TIM_InitStructure);       //≥ı ºªØTimer0    Timer0,Timer1,Timer2
+ 129   1        
+ 130   1        TIM_InitStructure.TIM_Mode      = TIM_16BitAutoReload;  //÷∏∂®π§◊˜ƒ£ Ω,   TIM_16BitAutoReload,TIM_16Bit,TI
+             -M_8BitAutoReload,TIM_16BitAutoReloadNoMask
+ 131   1        TIM_InitStructure.TIM_Polity    = PolityLow;      //÷∏∂®÷–∂œ”≈œ»º∂, PolityHigh,PolityLow
+ 132   1        TIM_InitStructure.TIM_Interrupt = ENABLE;       //÷–∂œ «∑Ò‘ –Ì,   ENABLEªÚDISABLE
+ 133   1        TIM_InitStructure.TIM_ClkSource = TIM_CLOCK_12T;      //÷∏∂® ±÷”‘¥,     TIM_CLOCK_1T,TIM_CLOCK_12T,TIM_CLOCK
+             -_Ext
+ 134   1        TIM_InitStructure.TIM_ClkOut    = DISABLE;        // «∑Ò ‰≥ˆ∏ﬂÀŸ¬ˆ≥Â, ENABLEªÚDISABLE
+ 135   1        TIM_InitStructure.TIM_Value     = 0x3CB0;       //≥ı÷µ,25ms
+ 136   1        TIM_InitStructure.TIM_Run       = ENABLE;       // «∑Ò≥ı ºªØ∫Û∆Ù∂Ø∂® ±∆˜, ENABLEªÚDISABLE
+ 137   1        Timer_Inilize(Timer2,&TIM_InitStructure);       //≥ı ºªØTimer0    Timer0,Timer1,Timer2
+ 138   1      }
+ 139          
+ 140          void ParaInit(void)
+ 141          {
+ 142   1        unsigned char temp[5],i;
+ 143   1        
+ 144   1        //œ»∂¡EEPROM«∞ŒÂŒª
+ 145   1        EEPROM_read_n(0x0,(unsigned char *)&temp,sizeof(temp));
+ 146   1        for(i=0;i<5;i++)
+ 147   1        {
+ 148   2          temp[0] &= temp[i];
+ 149   2        }
+ 150   1        
+ 151   1        //»Áπ˚∂º «OXFF£¨ƒ«√¥÷ÿ–¬À¢EEPROM£¨’‚—˘µƒª∞œ¬‘ÿµƒ ±∫Ú÷ª–Ë“™π¥—°±æ¥ŒΩ´EEPROM»´≤øÃÓ≥‰Œ™FFµƒª∞£¨æÕø…“‘ µœ÷÷ÿ–
+             -¬À¢EEPROM
+ 152   1        if(temp[0] == 0xff)
+ 153   1        {
+ 154   2          EEPROM_SectorErase(0x0);
+ 155   2          EEPROM_SectorErase(0x200);
+ 156   2          EEPROM_write_n(0x0,(unsigned char *)&MENU_DATA_Table,sizeof(MENU_DATA_Table));
+ 157   2          EEPROM_write_n(0x200,(unsigned char *)&FAC_DATA_Table,sizeof(FAC_DATA_Table));
+ 158   2        }
+ 159   1        
+ 160   1        EEPROM_read_n(0x0,(unsigned char *)&MENU_DATA_Table,sizeof(MENU_DATA_Table));
+ 161   1        EEPROM_read_n(0x200,(unsigned char *)&FAC_DATA_Table,sizeof(FAC_DATA_Table));
+ 162   1      }
+ 163          
+ 164          void Sys_Init(void)
+ 165          
+ 166          {
+ 167   1        //πÀ√˚Àº“Â£¨æÕ≤ª“ª“ª–¥¡À
+ 168   1        EA = 0;
+C51 COMPILER V9.54   SYS_INIT                                                              08/30/2017 10:15:48 PAGE 4   
+
+ 169   1        GPIO_Init();
+ 170   1        BEEP_ON;
+ 171   1        OLED_Init();
+ 172   1        Draw_BMP(Logo);
+ 173   1        ADC_Init();
+ 174   1        Iron_Init();
+ 175   1        EXTI_Init();
+ 176   1        Timer_Init();
+ 177   1        ParaInit();
+ 178   1        //KalmanFilterInit();
+ 179   1        BEEP_OFF;
+ 180   1        Delay_ms(200);Delay_ms(200);
+ 181   1        Delay_ms(200);Delay_ms(200);
+ 182   1        Delay_ms(200);Delay_ms(200);
+ 183   1        OLED_CLS();
+ 184   1        //»Áπ˚ƒ¨»œŒ¬∂»≤ªŒ™0£¨‘ÚΩ´ƒ¨»œŒ¬∂»…Ë∂®Œ™ø™ª˙Œ¬∂»
+ 185   1        if(MENU_DATA_Table.Temp_s.Default_Temp != 0)
+ 186   1        {
+ 187   2          IronTemp_AM = MENU_DATA_Table.Temp_s.Default_Temp;
+ 188   2        }
+ 189   1        if(MENU_DATA_Table.Temp_s.Default_CH != 0)
+ 190   1        {
+ 191   2          chn = MENU_DATA_Table.Temp_s.Default_CH;
+ 192   2        }
+ 193   1        //»Áπ˚ƒ¨»œŒ¬∂»Œ™0£¨‘ÚΩ´…œ¥ŒŒ¬∂»…Ë∂®Œ™ø™ª˙Œ¬∂»
+ 194   1        if(MENU_DATA_Table.Temp_s.Default_Temp == 0)
+ 195   1        {
+ 196   2          IronTemp_AM = MENU_DATA_Table.Temp_s.Last_Temp;
+ 197   2        }
+ 198   1        if(MENU_DATA_Table.Temp_s.Default_CH == 0)
+ 199   1        {
+ 200   2          chn = MENU_DATA_Table.Temp_s.Last_CH;
+ 201   2        }
+ 202   1        EA = 1;
+ 203   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    662    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----      32
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

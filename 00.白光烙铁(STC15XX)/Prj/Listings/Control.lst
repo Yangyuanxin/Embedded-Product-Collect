@@ -1,0 +1,695 @@
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE CONTROL
+OBJECT MODULE PLACED IN .\Objects\Control.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\User\Control.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) 
+                    -DEBUG OBJECTEXTEND PRINT(.\Listings\Control.lst) TABS(2) OBJECT(.\Objects\Control.obj)
+
+line level    source
+
+   1          /*!
+   2           *     COPYRIGHT NOTICE
+   3           *     Copyright (c) 2017,BG0BGH
+   4           *     All rights reserved.
+   5           *
+   6           *     除注明出处外，以下所有内容版权均属王志浩所有，未经允许，不得用于商业用途，
+   7           *     修改内容时必须保留作者的版权声明。
+   8           *
+   9           * @file      Control.c
+  10           * @brief     
+  11           * @author    王志浩
+  12           * @version   V2.2
+  13           * @date      2017-8-30
+  14           */
+  15          #include "config.h"
+  16          
+  17          unsigned int IronTemp_Now = 0;//当前温度
+  18          unsigned int IronTemp_AM = 375;//目标温度
+  19          unsigned char SetTempFlag = 0;//设定温度标志位，该位被置后由定时器清零，可大字显示设定温度
+  20          
+  21          //NTC温度表，依次为-10℃~50℃对应的ADC值
+  22           unsigned int code NTCTAB[61] =
+  23          {
+  24            324, 318, 312, 306, 300, 294, 288, 282, 276, 269, 263, 257, 251, 245, 238, 232, 226, 220, 214, 209, 
+  25            203, 197, 192, 186, 181, 175, 170, 165, 160, 155, 150, 146, 141, 137, 132, 128, 124, 120, 116, 112, 
+  26            108, 105, 101,  98,  95,  92,  89,  86,  83,  80,  77,  75,  72,  70,  67,  65,  63,  61,  59,  57,
+  27            55 
+  28          };
+  29          
+  30          
+  31          //BEAT的中值滤波程序，去掉最大值最小值求平均
+  32          static u16 mid_filter(unsigned char channel)
+  33          {
+  34   1        u16 var_buf[NUM] = 0 ;                        //缓冲数据
+  35   1        u16 sum = 0,var_max = 0, var_min = 1023;      //最值初值装入最小值装满值 最大值装空
+  36   1        u8 temp;
+  37   1        for(temp = 0; temp < NUM; temp++)
+  38   1        {
+  39   2         var_buf[temp] = Get_ADC10bitResult(channel); //下面代替延时
+  40   2         if(var_buf[temp] > var_max)                  //最大
+  41   2           {
+  42   3             var_max = var_buf[temp];
+  43   3           }
+  44   2         else if(var_buf[temp] < var_min)             //最小
+  45   2           {
+  46   3             var_min = var_buf[temp];
+  47   3           }
+  48   2          sum +=var_buf[temp];  
+  49   2        }
+  50   1        sum -= var_max;
+  51   1        sum -= var_min;                               //去除最值
+  52   1        return(sum >> DIV);                           //右移代替除法
+  53   1      }
+  54          //限幅滤波程序，温度在限定幅度范围内波动时，return值保持上一次的值不变
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 2   
+
+  55          unsigned int lim_filter(unsigned int data_new,unsigned int lim)
+  56          {
+  57   1        static unsigned int data_old;
+  58   1        int deta;
+  59   1        deta = (int)(data_new - data_old);
+  60   1        if(deta > lim || deta <-lim)
+  61   1        {
+  62   2          data_old = data_new;
+  63   2          return data_new;
+  64   2        }
+  65   1        else
+  66   1        {
+  67   2          data_old = data_new;
+  68   2          return data_old;
+  69   2        }
+  70   1      }
+  71          
+  72          //ADC读电压
+  73          float GetVoltage(void)
+  74          {
+  75   1        return ((float)Get_ADC10bitResult(3) * (float)FAC_DATA_Table.Adjust_s.Voltage) / 6801.0f;
+  76   1      }
+  77          
+  78          //查表法读室温，二分法查表
+  79          float GetRoomTemp(void)
+  80          {
+  81   1        u16 temp=0;
+  82   1        unsigned char det = 60,head = 0,tail = 60,mid = 0;
+  83   1        
+  84   1        temp = Get_ADC10bitResult(7);
+  85   1      
+  86   1        //小于-10℃直接等于
+  87   1        if(temp >= NTCTAB[head])
+  88   1        {
+  89   2          return -10.0f;
+  90   2        }
+  91   1        //大于50℃直接等于
+  92   1        else if(temp <= NTCTAB[tail])
+  93   1        {
+  94   2          return 50.0f;
+  95   2        }
+  96   1        //否则，二分法查表
+  97   1        else
+  98   1        {
+  99   2          //头-尾 ！= 1 就循环
+ 100   2          while(det > 1)
+ 101   2          {
+ 102   3            //中值
+ 103   3            mid = (head + tail)/2;
+ 104   3            //如果恰好为中值 直接return
+ 105   3            if(temp == (NTCTAB[mid]))
+ 106   3            {
+ 107   4              return (float)(mid - 10);
+ 108   4            }
+ 109   3            else if(temp > (NTCTAB[mid]))
+ 110   3            {
+ 111   4              tail = mid;
+ 112   4            }
+ 113   3            else
+ 114   3            {
+ 115   4              head = mid;
+ 116   4            }
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 3   
+
+ 117   3            det = tail - head;
+ 118   3          }
+ 119   2          return ((float)head-10.0f+1.0f/(float)(NTCTAB[head]-NTCTAB[tail]));
+ 120   2        }
+ 121   1      }
+ 122          
+ 123          //读烙铁温度，查表法
+ 124          unsigned int GetIronTemp(unsigned char num)
+ 125          {
+ 126   1        u16 temp=0;
+ 127   1        unsigned char det = 13,head = 0,tail = 13,mid = 0,i=0;
+ 128   1        
+ 129   1        //关烙铁，避免读到24V电平，将来有调用他的函数再决定打不打开烙铁
+ 130   1        Iron_Off();
+ 131   1        
+ 132   1        //延时并先空读几次避免误差
+ 133   1        //Delay_us(20);
+ 134   1        Get_ADC10bitResult(5); 
+ 135   1        //Get_ADC10bitResult(5);
+ 136   1        temp = lim_filter(mid_filter(5),20);
+ 137   1        //temp = mid_filter(5);
+ 138   1        
+ 139   1        //小于50℃返回0
+ 140   1        if(temp <= FAC_DATA_Table.Heater_Tip[num-1][head])
+ 141   1        {
+ 142   2          return 0;
+ 143   2        }
+ 144   1        //大于700℃直接等于
+ 145   1        else if(temp < 900 && temp>=FAC_DATA_Table.Heater_Tip[num-1][tail])
+ 146   1        {
+ 147   2          return 700;
+ 148   2        }
+ 149   1        else if(temp > 900)
+ 150   1        {
+ 151   2          return 800;
+ 152   2        }
+ 153   1        //否则，二分法查表
+ 154   1        else
+ 155   1        {
+ 156   2          //头-尾 ！= 1 就循环
+ 157   2          while(det > 1)
+ 158   2          {
+ 159   3            //中值
+ 160   3            mid = (head + tail) / 2;
+ 161   3            //如果恰好为中值 直接return
+ 162   3            if(temp == FAC_DATA_Table.Heater_Tip[num-1][mid])
+ 163   3            {
+ 164   4              return mid * 50 + 50;
+ 165   4            }
+ 166   3            else if(temp < (FAC_DATA_Table.Heater_Tip[num-1][mid]))
+ 167   3            {
+ 168   4              tail = mid;
+ 169   4            }
+ 170   3            else
+ 171   3            {
+ 172   4              head = mid;
+ 173   4            }
+ 174   3            det = tail - head;
+ 175   3          }
+ 176   2          //线性插值计算
+ 177   2          return 50 * (head + 1) + (unsigned int)((float)(temp - FAC_DATA_Table.Heater_Tip[num-1][head]) * 50.0f /
+             - (float)(FAC_DATA_Table.Heater_Tip[num-1][tail] - FAC_DATA_Table.Heater_Tip[num-1][head]));
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 4   
+
+ 178   2        }
+ 179   1      }
+ 180          //PD控制烙铁温度，P参数分段
+ 181          void IronTempControl(unsigned int temp)
+ 182          {
+ 183   1        static float fDelta[2]; //0是当前误差,1是上次误差；
+ 184   1        float fP=0,fD=0;
+ 185   1        float Control_P = 1.0f,Control_D = 0.01f;
+ 186   1        float ControlOut = 0;
+ 187   1        //反馈温度
+ 188   1        if(FtyModeFlag)
+ 189   1        {
+ 190   2          IronTemp_Now = GetIronTemp(FAC_DATA_Table.Adjust_s.Iron);
+ 191   2        }
+ 192   1        else
+ 193   1        {
+ 194   2          IronTemp_Now = GetIronTemp(MENU_DATA_Table.Other_s.Heater_Tip);
+ 195   2        }
+ 196   1        
+ 197   1        //误差计算
+ 198   1        fDelta[0] = (float)temp - (float)IronTemp_Now; 
+ 199   1        
+ 200   1        //P参数分段
+ 201   1        if(fDelta[0] > 40)
+ 202   1        {
+ 203   2          Control_P = 6.5f;
+ 204   2        }
+ 205   1        else if(fDelta[0] > 30)
+ 206   1        {
+ 207   2          Control_P = 5.5f;
+ 208   2        }
+ 209   1        else if(fDelta[0] > 20)
+ 210   1        {
+ 211   2          Control_P = 4.0f;
+ 212   2        }
+ 213   1        else if(fDelta[0] > 10)
+ 214   1        {
+ 215   2          Control_P = 2.5f;
+ 216   2        }
+ 217   1        else if(fDelta[0] > 5)
+ 218   1        {
+ 219   2          Control_P = 1.0f;
+ 220   2        }
+ 221   1        //PD计算
+ 222   1        fP = Control_P * fDelta[0];
+ 223   1        fD = Control_D * (fDelta[0] - fDelta[1]);
+ 224   1        
+ 225   1        ControlOut = fP + fD;
+ 226   1        
+ 227   1        //设定温度大于50且小于最高温度才开烙铁
+ 228   1        if(temp > 50 && temp <= MENU_DATA_Table.Temp_s.Max_Temp && ((unsigned char)GetVoltage()>=FAC_DATA_Table.O
+             -ther_s.Lim_Voltage))
+ 229   1        {
+ 230   2          //大于255
+ 231   2          if(ControlOut > 255.0f)
+ 232   2          {
+ 233   3            Iron_Run();
+ 234   3            ControlOut = 255.0f;
+ 235   3            UpdatePwm((unsigned char)ControlOut);
+ 236   3          }
+ 237   2          //正常
+ 238   2          else if(ControlOut > 0.001f)
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 5   
+
+ 239   2          {
+ 240   3            Iron_Run();
+ 241   3            UpdatePwm((unsigned char)ControlOut);
+ 242   3          }
+ 243   2          //负数
+ 244   2          else
+ 245   2          {
+ 246   3            ControlOut = 0.0f;
+ 247   3            Iron_Off();
+ 248   3          }
+ 249   2        }
+ 250   1        else
+ 251   1        {
+ 252   2          ControlOut = 0.0f;
+ 253   2          Iron_Off();
+ 254   2        }
+ 255   1      
+ 256   1        //传递
+ 257   1        fDelta[1] = fDelta[0];
+ 258   1        
+ 259   1      }
+ 260          
+ 261          //普通模式下的监控界面
+ 262          void Normal_Monitor(void)
+ 263          {
+ 264   1        int deta = 0,tmp;
+ 265   1        static unsigned int IronTemp_Display = 0,sum = 0,counter = 0;
+ 266   1        //对显示的温度再次滤波保持显示值稳定
+ 267   1        if(counter<50)
+ 268   1        {
+ 269   2          sum += lim_filter(IronTemp_Now,20);
+ 270   2          //sum += IronTemp_Now;
+ 271   2          counter ++;
+ 272   2        }
+ 273   1        else
+ 274   1        {
+ 275   2          IronTemp_Display = sum / (counter-2);
+ 276   2          counter = 0;
+ 277   2          sum = 0;
+ 278   2        }
+ 279   1        deta = (int)IronTemp_Display - (int)IronTemp_AM;
+ 280   1        if(deta<10 && deta>-10)
+ 281   1        {
+ 282   2          IronTemp_Display = IronTemp_AM;
+ 283   2        }
+ 284   1        
+ 285   1        
+ 286   1        if(counter == 1)
+ 287   1        {
+ 288   2          //显示电压
+ 289   2          sprintf((char *)str_buff , "%3.1fV" ,GetVoltage());
+ 290   2          OLED_P8x16Str(0,6,str_buff); 
+ 291   2          //室温
+ 292   2          sprintf((char *)str_buff , "%3.0f`C" ,GetRoomTemp());
+ 293   2          OLED_P8x16Str(48,6,str_buff); 
+ 294   2          //烙铁头
+ 295   2          tmp = MENU_DATA_Table.Other_s.Heater_Tip;
+ 296   2          sprintf((char *)str_buff , "%1d" ,tmp);
+ 297   2          OLED_P8x16Str(112,6,str_buff); 
+ 298   2        }
+ 299   1      
+ 300   1      
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 6   
+
+ 301   1        if(P01)
+ 302   1        {
+ 303   2          OLED_P8x16Str(96,6,"."); 
+ 304   2        }
+ 305   1        else
+ 306   1        {
+ 307   2          OLED_P8x16Str(96,6," "); 
+ 308   2        }
+ 309   1        //编码器调整温度
+ 310   1        if(ec11_state.Coder == 1)
+ 311   1        {
+ 312   2          IronTemp_AM +=FAC_DATA_Table.Other_s.Temp_Step;
+ 313   2          SetTempFlag = 1;
+ 314   2          ec11_state.Coder = 0;
+ 315   2          MENU_DATA_Table.Temp_s.Last_Temp = IronTemp_AM;
+ 316   2        }
+ 317   1        else if(ec11_state.Coder == 2)
+ 318   1        {
+ 319   2          IronTemp_AM -=FAC_DATA_Table.Other_s.Temp_Step;
+ 320   2          SetTempFlag = 1;
+ 321   2          ec11_state.Coder = 0;
+ 322   2          MENU_DATA_Table.Temp_s.Last_Temp = IronTemp_AM;
+ 323   2        }
+ 324   1        //限制设定温度范围
+ 325   1        if(IronTemp_AM > 700)
+ 326   1        {
+ 327   2          IronTemp_AM = 0;
+ 328   2        }
+ 329   1        else if(IronTemp_AM > MENU_DATA_Table.Temp_s.Max_Temp)
+ 330   1        {
+ 331   2          IronTemp_AM = MENU_DATA_Table.Temp_s.Max_Temp;
+ 332   2        }
+ 333   1        else if(IronTemp_AM < 0)
+ 334   1        {
+ 335   2          IronTemp_AM = 0;
+ 336   2        }
+ 337   1        //显示设定温度
+ 338   1        sprintf((char *)str_buff , "设定:%3u`C      " ,IronTemp_AM);
+ 339   1        OLED_printf(0,0,str_buff,0); 
+ 340   1        
+ 341   1        
+ 342   1        //设定温度时大字显示设定的温度
+ 343   1        if(SetTempFlag)
+ 344   1        {
+ 345   2          if(IronTemp_Display<690)
+ 346   2          {
+ 347   3            sprintf((char *)str_buff , " %3u `C " ,IronTemp_AM);
+ 348   3            OLED_P16x32Temp(0,2,str_buff);  
+ 349   3          }
+ 350   2          else
+ 351   2          {
+ 352   3            OLED_P16x32Temp(0,2," --- `C ");  
+ 353   3          }
+ 354   2        }
+ 355   1        else
+ 356   1        {
+ 357   2          if(IronTemp_Display<690)
+ 358   2          {
+ 359   3            sprintf((char *)str_buff , " %3u `C " ,IronTemp_Display);
+ 360   3            OLED_P16x32Temp(0,2,str_buff);  
+ 361   3          }
+ 362   2          else
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 7   
+
+ 363   2          {
+ 364   3            OLED_P16x32Temp(0,2," --- `C ");  
+ 365   3          }
+ 366   2        }
+ 367   1      }
+ 368          unsigned int chn=0;
+ 369          void Channel_Monitor(void)
+ 370          {
+ 371   1        int deta = 0,tmp;
+ 372   1        static unsigned int IronTemp_Display = 0,sum = 0,counter = 0;
+ 373   1        //显示温度滤波
+ 374   1        if(counter<50)
+ 375   1        {
+ 376   2          sum += lim_filter(IronTemp_Now,25);
+ 377   2          counter ++;
+ 378   2        }
+ 379   1        else
+ 380   1        {
+ 381   2          IronTemp_Display = sum / (counter - 2);
+ 382   2          counter = 0;
+ 383   2          sum = 0;
+ 384   2        }
+ 385   1        deta = (int)IronTemp_Display - (int)IronTemp_AM;
+ 386   1        if(deta<10 && deta>-10)
+ 387   1        {
+ 388   2          IronTemp_Display = IronTemp_AM;
+ 389   2        }
+ 390   1        
+ 391   1        if(counter == 1)
+ 392   1        {
+ 393   2          //显示电压
+ 394   2          sprintf((char *)str_buff , "%3.1fV" ,GetVoltage());
+ 395   2          OLED_P8x16Str(0,6,str_buff); 
+ 396   2          //室温
+ 397   2          sprintf((char *)str_buff , "%3.0f`C" ,GetRoomTemp());
+ 398   2          OLED_P8x16Str(48,6,str_buff); 
+ 399   2          //烙铁头
+ 400   2          tmp = MENU_DATA_Table.Other_s.Heater_Tip;
+ 401   2          sprintf((char *)str_buff , "%1d" ,tmp);
+ 402   2          OLED_P8x16Str(112,6,str_buff); 
+ 403   2        }
+ 404   1        
+ 405   1        //显示烙铁工作状态
+ 406   1        if(IronUseFlag)
+ 407   1        {
+ 408   2          OLED_P8x16Str(96,6,"."); 
+ 409   2        }
+ 410   1        else
+ 411   1        {
+ 412   2          OLED_P8x16Str(96,6," "); 
+ 413   2        }
+ 414   1        
+ 415   1        //编码器调整通道
+ 416   1        if(ec11_state.Coder == 1)
+ 417   1        {
+ 418   2          chn ++;
+ 419   2          SetTempFlag = 1;
+ 420   2          ec11_state.Coder = 0;
+ 421   2          MENU_DATA_Table.Temp_s.Last_CH = chn;
+ 422   2        }
+ 423   1        else if(ec11_state.Coder == 2)
+ 424   1        {
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 8   
+
+ 425   2          chn --;
+ 426   2          SetTempFlag = 1;
+ 427   2          ec11_state.Coder = 0;
+ 428   2          MENU_DATA_Table.Temp_s.Last_CH = chn;
+ 429   2        }
+ 430   1        //限制通道范围
+ 431   1        if(chn > 100)
+ 432   1        {
+ 433   2          chn = 0;
+ 434   2        }
+ 435   1        if(chn > 5)
+ 436   1        {
+ 437   2          chn = 5;
+ 438   2        }
+ 439   1        else if(chn < 0)
+ 440   1        {
+ 441   2          chn = 0;
+ 442   2        }
+ 443   1        
+ 444   1        //设定目标温度
+ 445   1        switch (chn)
+ 446   1        {
+ 447   2          case 0:
+ 448   2          {
+ 449   3            chn = 0;
+ 450   3            IronTemp_AM = 0;
+ 451   3          }break;
+ 452   2          case 1:
+ 453   2          {
+ 454   3            IronTemp_AM = FAC_DATA_Table.Channel_s.Ch1;
+ 455   3          }break;
+ 456   2          case 2:
+ 457   2          {
+ 458   3            IronTemp_AM = FAC_DATA_Table.Channel_s.Ch2;
+ 459   3          }break;
+ 460   2          case 3:
+ 461   2          {
+ 462   3            IronTemp_AM = FAC_DATA_Table.Channel_s.Ch3;
+ 463   3          }break;
+ 464   2          case 4:
+ 465   2          {
+ 466   3            IronTemp_AM = FAC_DATA_Table.Channel_s.Ch4;
+ 467   3          }break;
+ 468   2          case 5:
+ 469   2          {
+ 470   3            IronTemp_AM = MENU_DATA_Table.Temp_s.Max_Temp;
+ 471   3          }break;
+ 472   2        }
+ 473   1        sprintf((char *)str_buff , "设定:%3u`C" ,IronTemp_AM);
+ 474   1        OLED_printf(0,0,str_buff,0);  
+ 475   1        sprintf((char *)str_buff , "通道:%1u" ,chn);
+ 476   1        OLED_printf(78,0,str_buff,0); 
+ 477   1      
+ 478   1        //设定温度时大字显示设定的温度  
+ 479   1        if(SetTempFlag)
+ 480   1        {
+ 481   2          if(IronTemp_Display<690)
+ 482   2          {
+ 483   3            sprintf((char *)str_buff , " %3u `C " ,IronTemp_AM);
+ 484   3            OLED_P16x32Temp(0,2,str_buff);  
+ 485   3          }
+ 486   2          else
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 9   
+
+ 487   2          {
+ 488   3            OLED_P16x32Temp(0,2," --- `C ");  
+ 489   3          }
+ 490   2        }
+ 491   1        else
+ 492   1        {
+ 493   2          if(IronTemp_Display<690)
+ 494   2          {
+ 495   3            sprintf((char *)str_buff , " %3u `C " ,IronTemp_Display);
+ 496   3            OLED_P16x32Temp(0,2,str_buff);  
+ 497   3          }
+ 498   2          else
+ 499   2          {
+ 500   3            OLED_P16x32Temp(0,2," --- `C ");  
+ 501   3          }
+ 502   2        }
+ 503   1      }
+ 504          
+ 505          unsigned int  LastVotage=0;
+ 506          unsigned char FtyModeFlag = 0;
+ 507          void Factory_Model(void)
+ 508          {
+ 509   1        unsigned int temp[9]={0},str=0;
+ 510   1        unsigned char i;
+ 511   1        unsigned char code recoverycode[5] = {0xff,0xff,0xff,0xff,0xff};
+ 512   1        
+ 513   1        IronTemp_AM = 0;
+ 514   1        ShutdownCounterFlag = 1;
+ 515   1        FtyModeFlag = 1;
+ 516   1        
+ 517   1        
+ 518   1        //先记录下这个值，将来如果调整了，我们就计算
+ 519   1        LastVotage = FAC_DATA_Table.Adjust_s.Voltage;
+ 520   1      
+ 521   1      
+ 522   1        ParaSet_Fac();
+ 523   1      
+ 524   1      
+ 525   1        ec11_state.Key = 0;
+ 526   1        ec11_state.Coder = 0;
+ 527   1      
+ 528   1        //烙铁校准
+ 529   1        if(FAC_DATA_Table.Adjust_s.Iron > 0)
+ 530   1        {
+ 531   2          OLED_printf(0,0,"烙铁头 %d 校准",FAC_DATA_Table.Adjust_s.Iron);
+ 532   2          OLED_printf(0,1,"每50摄氏度校准",0);
+ 533   2          OLED_printf(0,2,"烙铁头一次!",0);
+ 534   2          while(ec11_state.Key != 1);
+ 535   2          ec11_state.Key = 0;
+ 536   2          OLED_CLS();
+ 537   2          Iron_Run();
+ 538   2          for(i=0;i<=13;i++)
+ 539   2          {
+ 540   3            OLED_printf(0,0,"%d `C时",50+i*50);
+ 541   3            OLED_printf(0,1,"AD = :%d",FAC_DATA_Table.Heater_Tip[FAC_DATA_Table.Adjust_s.Iron][i]);
+ 542   3            OLED_printf(0,3,"短按编码器保存",0);
+ 543   3            
+ 544   3            if(i<=8)
+ 545   3            {
+ 546   4              IronTemp_AM = 50+i*50;
+ 547   4            }
+ 548   3            else
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 10  
+
+ 549   3            {
+ 550   4              IronTemp_AM = 0;
+ 551   4            }
+ 552   3            
+ 553   3            while(ec11_state.Key != 1)
+ 554   3            {
+ 555   4              if(ec11_state.Coder == 1)
+ 556   4              {
+ 557   5                FAC_DATA_Table.Heater_Tip[FAC_DATA_Table.Adjust_s.Iron-1][i] ++;
+ 558   5                OLED_printf(0,1,"AD = :%d",FAC_DATA_Table.Heater_Tip[FAC_DATA_Table.Adjust_s.Iron-1][i]);
+ 559   5                ec11_state.Coder = 0;
+ 560   5              }
+ 561   4              if(ec11_state.Coder == 2)
+ 562   4              {
+ 563   5                FAC_DATA_Table.Heater_Tip[FAC_DATA_Table.Adjust_s.Iron-1][i] --;
+ 564   5                OLED_printf(0,1,"AD = :%d",FAC_DATA_Table.Heater_Tip[FAC_DATA_Table.Adjust_s.Iron-1][i]);
+ 565   5                ec11_state.Coder = 0;
+ 566   5              }
+ 567   4            }
+ 568   3            ec11_state.Key = 0;
+ 569   3            
+ 570   3          }
+ 571   2      
+ 572   2          OLED_CLS();
+ 573   2          OLED_printf(0,2,"(已校准烙铁头%d)",FAC_DATA_Table.Adjust_s.Iron);
+ 574   2          FAC_DATA_Table.Adjust_s.Iron = 0;
+ 575   2          //存储
+ 576   2          EEPROM_SectorErase(0x200);
+ 577   2          EEPROM_write_n(0x200,(unsigned char *)&FAC_DATA_Table,sizeof(FAC_DATA_Table));  
+ 578   2          
+ 579   2      
+ 580   2        }
+ 581   1        if(FAC_DATA_Table.Other_s.Recovery == 1)
+ 582   1        {
+ 583   2          OLED_printf(0,3,"(已恢复出厂设置)",0);
+ 584   2          FAC_DATA_Table.Other_s.Recovery = 0;
+ 585   2          //存储
+ 586   2          EEPROM_SectorErase(0x200);
+ 587   2          EEPROM_write_n(0x200,(unsigned char *)&FAC_DATA_Table,sizeof(FAC_DATA_Table));  
+ 588   2          
+ 589   2          EEPROM_SectorErase(0x0);
+ 590   2          EEPROM_write_n(0x0,(unsigned char *)&recoverycode,sizeof(recoverycode));
+ 591   2        }
+ 592   1        
+ 593   1        
+ 594   1        OLED_printf(0,0,"短按继续校准",0);
+ 595   1        OLED_printf(0,1,"长按退出工厂模式",0);
+ 596   1        while(ec11_state.Key == 0);
+ 597   1        if(ec11_state.Key == 2)
+ 598   1        {
+ 599   2          ec11_state.Key = 0;
+ 600   2          MENU_DATA_Table.Other_s.Work_Mode = 0;
+ 601   2          //存储
+ 602   2          EEPROM_SectorErase(0x0);
+ 603   2          EEPROM_write_n(0x0,(unsigned char *)&MENU_DATA_Table,sizeof(MENU_DATA_Table));
+ 604   2          ShutdownCounterFlag = 0;
+ 605   2          IAP_CONTR = 0x20;
+ 606   2        }
+ 607   1      }
+ 608          unsigned char First_Sleep = 1;
+ 609          void Sys_Monitor()
+ 610          {
+C51 COMPILER V9.54   CONTROL                                                               08/30/2017 10:15:48 PAGE 11  
+
+ 611   1        //如果不是在休眠或关屏，则显示监控信息
+ 612   1        if((IronSleepFlag||IronScrSaverFlag)!=1)
+ 613   1        {
+ 614   2          switch (MENU_DATA_Table.Other_s.Work_Mode)
+ 615   2          {
+ 616   3            case 0:
+ 617   3            {
+ 618   4              Normal_Monitor();
+ 619   4            }break;
+ 620   3            case 1:
+ 621   3            {
+ 622   4              Channel_Monitor();
+ 623   4            }break;
+ 624   3            case 2:
+ 625   3            {
+ 626   4              
+ 627   4              Factory_Model();
+ 628   4              
+ 629   4            }break;
+ 630   3            default:break;
+ 631   3          }
+ 632   2        }
+ 633   1        //如果是休眠
+ 634   1        else if(IronSleepFlag)
+ 635   1        {
+ 636   2          OLED_P8x16Str(0,0,"                ");
+ 637   2          OLED_P8x16Str(0,2,"   Sleeping...  ");
+ 638   2          OLED_P8x16Str(0,4,"                ");
+ 639   2          OLED_P8x16Str(0,6,"                ");
+ 640   2        }
+ 641   1        //关屏
+ 642   1        else if(IronScrSaverFlag)
+ 643   1        {
+ 644   2          OLED_P8x16Str(0,0,"                ");
+ 645   2          OLED_P8x16Str(0,2,"                ");
+ 646   2          OLED_P8x16Str(0,4,"                ");
+ 647   2          OLED_P8x16Str(0,6,"                ");
+ 648   2        }
+ 649   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   4414    ----
+   CONSTANT SIZE    =    463    ----
+   XDATA SIZE       =     33     139
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

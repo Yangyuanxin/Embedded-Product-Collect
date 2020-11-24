@@ -1,0 +1,74 @@
+C51 COMPILER V9.54   DELAY                                                                 08/30/2017 10:15:48 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN .\Objects\delay.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\Lib\delay.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) DEB
+                    -UG OBJECTEXTEND PRINT(.\Listings\delay.lst) TABS(2) OBJECT(.\Objects\delay.obj)
+
+line level    source
+
+   1          
+   2          /*---------------------------------------------------------------------*/
+   3          /* --- STC MCU International Limited ----------------------------------*/
+   4          /* --- STC 1T Series MCU Demo Programme -------------------------------*/
+   5          /* --- Mobile: (86)13922805190 ----------------------------------------*/
+   6          /* --- Fax: 86-0513-55012956,55012947,55012969 ------------------------*/
+   7          /* --- Tel: 86-0513-55012928,55012929,55012966 ------------------------*/
+   8          /* --- Web: www.GXWMCU.com --------------------------------------------*/
+   9          /* --- QQ:  800003751 -------------------------------------------------*/
+  10          /* 如果要在程序中使用此代码,请在程序中注明使用了宏晶科技的资料及程序   */
+  11          /*---------------------------------------------------------------------*/
+  12          
+  13          
+  14          /*************  功能说明  **************
+  15          
+  16          本文件为STC15xxx系列的延时程序,用户几乎可以不修改这个程序.
+  17          
+  18          ******************************************/
+  19          
+  20          #include  "delay.h"
+  21          
+  22          
+  23          
+  24          void Delay_us(unsigned char us)   //@22.1184MHz
+  25          {
+  26   1        unsigned char i = 3,j;
+  27   1        
+  28   1        for(j=0;j<us;j++)
+  29   1        {
+  30   2          while (--i);
+  31   2        }
+  32   1      }
+  33          
+  34          void Delay_ms(unsigned char ms)   //@22.1184MHz
+  35          {
+  36   1        unsigned char i = 22,j = 128,k;
+  37   1        
+  38   1        for(k=0;k<ms;k++)
+  39   1        {
+  40   2          _nop_();
+  41   2          i = 22;
+  42   2          j = 128;
+  43   2          do
+  44   2          {
+  45   3            while (--j);
+  46   3          } while (--i);
+  47   2        }
+  48   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     35    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.54   DELAY                                                                 08/30/2017 10:15:48 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

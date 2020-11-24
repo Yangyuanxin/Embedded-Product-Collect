@@ -1,0 +1,121 @@
+C51 COMPILER V9.54   ADC                                                                   08/30/2017 10:15:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\Objects\ADC.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\Lib\ADC.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) DEBUG
+                    - OBJECTEXTEND PRINT(.\Listings\ADC.lst) TABS(2) OBJECT(.\Objects\ADC.obj)
+
+line level    source
+
+   1          
+   2          
+   3          #include  "adc.h"
+   4          
+   5          
+   6          //========================================================================
+   7          // 函数: void ADC_Inilize(ADC_InitTypeDef *ADCx)
+   8          // 描述: ADC初始化程序.
+   9          // 参数: ADCx: 结构参数,请参考adc.h里的定义.
+  10          // 返回: none.
+  11          // 版本: V1.0, 2012-10-22
+  12          //========================================================================
+  13          void  ADC_Inilize(ADC_InitTypeDef *ADCx)
+  14          {
+  15   1        P1ASF = ADCx->ADC_Px;
+  16   1        ADC_CONTR = (ADC_CONTR & ~ADC_90T) | ADCx->ADC_Speed;
+  17   1        if(ADCx->ADC_Power == ENABLE) ADC_CONTR |= 0x80;
+  18   1        else              ADC_CONTR &= 0x7F;
+  19   1        if(ADCx->ADC_AdjResult == ADC_RES_H2L8) PCON2 |=  (1<<5); //10位AD结果的高2位放ADC_RES的低2位，低8位在ADC
+             -_RESL。
+  20   1        else                  PCON2 &= ~(1<<5); //10位AD结果的高8位放ADC_RES，低2位在ADC_RESL的低2位。
+  21   1        if(ADCx->ADC_Interrupt == ENABLE) EADC = 1;     //中断允许    ENABLE,DISABLE
+  22   1        else                EADC = 0;
+  23   1        if(ADCx->ADC_Polity == PolityHigh)  PADC = 1;   //优先级设置  PolityHigh,PolityLow
+  24   1        else                PADC = 0;
+  25   1      }
+  26          
+  27          
+  28          //========================================================================
+  29          // 函数: void ADC_PowerControl(u8 pwr)
+  30          // 描述: ADC电源控制程序.
+  31          // 参数: pwr: 电源控制,ENABLE或DISABLE.
+  32          // 返回: none.
+  33          // 版本: V1.0, 2012-10-22
+  34          //========================================================================
+  35          void  ADC_PowerControl(u8 pwr)
+  36          {
+  37   1        if(pwr == ENABLE) ADC_CONTR |= 0x80;
+  38   1        else        ADC_CONTR &= 0x7f;
+  39   1      }
+  40          
+  41          //========================================================================
+  42          // 函数: u16  Get_ADC10bitResult(u8 channel)
+  43          // 描述: 查询法读一次ADC结果.
+  44          // 参数: channel: 选择要转换的ADC.
+  45          // 返回: 10位ADC结果.
+  46          // 版本: V1.0, 2012-10-22
+  47          //========================================================================
+  48          u16 Get_ADC10bitResult(u8 channel)  //channel = 0~7
+  49          {
+  50   1        u16 adc;
+  51   1        u8  i;
+  52   1      
+  53   1        if(channel > ADC_CH7) return  1024; //错误,返回1024,调用的程序判断  
+C51 COMPILER V9.54   ADC                                                                   08/30/2017 10:15:49 PAGE 2   
+
+  54   1        ADC_RES = 0;
+  55   1        ADC_RESL = 0;
+  56   1      
+  57   1        ADC_CONTR = (ADC_CONTR & 0xe0) | ADC_START | channel; 
+  58   1        NOP(4);     //对ADC_CONTR操作后要4T之后才能访问
+  59   1      
+  60   1        for(i=0; i<250; i++)    //超时
+  61   1        {
+  62   2          if(ADC_CONTR & ADC_FLAG)
+  63   2          {
+  64   3            ADC_CONTR &= ~ADC_FLAG;
+  65   3            if(PCON2 &  (1<<5))   //10位AD结果的高2位放ADC_RES的低2位，低8位在ADC_RESL。
+  66   3            {
+  67   4              adc = (u16)(ADC_RES & 3);
+  68   4              adc = (adc << 8) | ADC_RESL;
+  69   4            }
+  70   3            else    //10位AD结果的高8位放ADC_RES，低2位在ADC_RESL的低2位。
+  71   3            {
+  72   4              adc = (u16)ADC_RES;
+  73   4              adc = (adc << 2) | (ADC_RESL & 3);
+  74   4            }
+  75   3            return  adc;
+  76   3          }
+  77   2        }
+  78   1        return  1024; //错误,返回1024,调用的程序判断
+  79   1      }
+  80          
+  81          
+  82          //========================================================================
+  83          // 函数: void ADC_int(void) interrupt ADC_VECTOR
+  84          // 描述: ADC中断函数.
+  85          // 参数: none.
+  86          // 返回: none.
+  87          // 版本: V1.0, 2012-10-22
+  88          //========================================================================
+  89          void ADC_int (void) interrupt ADC_VECTOR
+  90          {
+  91   1        ADC_CONTR &= ~ADC_FLAG;
+  92   1      }
+  93          
+  94          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    193    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

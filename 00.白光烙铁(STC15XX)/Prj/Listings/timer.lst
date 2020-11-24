@@ -1,0 +1,335 @@
+C51 COMPILER V9.54   TIMER                                                                 08/30/2017 10:15:49 PAGE 1   
+
+
+C51 COMPILER V9.54, COMPILATION OF MODULE TIMER
+OBJECT MODULE PLACED IN .\Objects\timer.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE ..\Lib\timer.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(..\Lib;..\User) DEB
+                    -UG OBJECTEXTEND PRINT(.\Listings\timer.lst) TABS(2) OBJECT(.\Objects\timer.obj)
+
+line level    source
+
+   1          
+   2          /*************  功能说明  **************
+   3          
+   4          本文件为STC15xxx系列的定时器初始化和中断程序,用户可以在这个文件中修改自己需要的中断程序.
+   5          
+   6          
+   7          ******************************************/
+   8          
+   9          
+  10          
+  11          #include  "timer.h"
+  12          int temp = 0;
+  13          
+  14          /********************* Timer0中断函数************************/
+  15          void timer0_int (void) interrupt TIMER0_VECTOR
+  16          {
+  17   1        static unsigned int BeepCounter = 0;
+  18   1        
+  19   1        //旋转或按下后BeepCounterFlag被置位，开始计数
+  20   1        if(BeepCounterFlag)
+  21   1        {
+  22   2          BeepCounter++;
+  23   2        }
+  24   1      
+  25   1        //计数小于设定值时打开，大于时关闭,Beep_Volume的值决定了占空比
+  26   1        if((BeepCounter > 0) && (BeepCounter <= MENU_DATA_Table.Other_s.Beep_Volume*150))
+  27   1        {
+  28   2          BEEP_ON;
+  29   2        }
+  30   1        else
+  31   1        {
+  32   2          BEEP_OFF;
+  33   2        }
+  34   1        //清零
+  35   1        if(BeepCounter == 1500)
+  36   1        {
+  37   2          BeepCounter = 0;
+  38   2          BeepCounterFlag = 0;
+  39   2        }
+  40   1      }
+  41          unsigned char IronUseFlag = 0;
+  42          unsigned char CoderUseFlag = 0;
+  43          unsigned char IronSleepFlag = 0;
+  44          unsigned char IronScrSaverFlag = 0;
+  45          unsigned char IronShutdownFlag = 0;
+  46          
+  47          /********************* Timer1中断函数************************/
+  48          void timer1_int (void) interrupt TIMER1_VECTOR
+  49          {
+  50   1        static unsigned int Timer0_Counter=0,IronUseCounter=0;
+  51   1        static unsigned char Sec_Conter=0,Min_Conter=0;
+  52   1        static unsigned char P01_Old = 0;
+  53   1        //定时器0分段计数器自加
+  54   1        Timer0_Counter++;
+C51 COMPILER V9.54   TIMER                                                                 08/30/2017 10:15:49 PAGE 2   
+
+  55   1        
+  56   1        //1ms处理部分
+  57   1        EC11_Capture();//捕捉EC11信息 
+  58   1      
+  59   1        //20ms处理部分
+  60   1        if(Timer0_Counter%10 == 0)
+  61   1        {
+  62   2          if(P01 != P01_Old)
+  63   2          {
+  64   3            IronUseCounter++;
+  65   3          }
+  66   2          
+  67   2          if(IronUseFlag || CoderUseFlag)//烙铁或编码器用了，那要看看现在是不是休眠什么的状态了
+  68   2          {
+  69   3            if(IronSleepFlag)//从休眠中唤醒
+  70   3            {
+  71   4              Sec_Conter = 0;
+  72   4              Min_Conter = 0;
+  73   4              ec11_state.Key = 0;
+  74   4              ec11_state.Coder = 0;
+  75   4              IronSleepFlag = 0;
+  76   4            }
+  77   3            else if(IronScrSaverFlag)//从关屏中唤醒
+  78   3            {
+  79   4              Sec_Conter = 0;
+  80   4              Min_Conter = 0;
+  81   4              ec11_state.Key = 0;
+  82   4              ec11_state.Coder = 0;
+  83   4              IronScrSaverFlag = 0;
+  84   4              IronSleepFlag = 0;
+  85   4            }
+  86   3            else if(IronShutdownFlag)//掉电唤醒
+  87   3            {
+  88   4              Sec_Conter = 0;
+  89   4              Min_Conter = 0;
+  90   4              ec11_state.Key = 0;
+  91   4              ec11_state.Coder = 0;
+  92   4              IronShutdownFlag = 0;
+  93   4            }
+  94   3          }
+  95   2        }
+  96   1        //100ms处理部分
+  97   1        if(Timer0_Counter%100 == 0)
+  98   1        {
+  99   2      
+ 100   2          //温度控制
+ 101   2      
+ 102   2          if(IronSleepFlag || IronScrSaverFlag)
+ 103   2          {
+ 104   3            IronTempControl(MENU_DATA_Table.Temp_s.Slp_Temp);
+ 105   3          }
+ 106   2          else
+ 107   2          {
+ 108   3            IronTempControl(IronTemp_AM);
+ 109   3          }
+ 110   2          
+ 111   2          P01_Old = P01;
+ 112   2        }
+ 113   1        
+ 114   1      
+ 115   1        
+ 116   1        //1000ms处理部分
+C51 COMPILER V9.54   TIMER                                                                 08/30/2017 10:15:49 PAGE 3   
+
+ 117   1        if(Timer0_Counter == 200)
+ 118   1        {
+ 119   2          //一秒内看10次，如果这10次有N次烙铁手柄状态发生变化，那么认为是确实在使用
+ 120   2          if(IronUseCounter>MENU_DATA_Table.Other_s.Shock_Sensor)
+ 121   2          {
+ 122   3            IronUseFlag = 1;
+ 123   3            IronUseCounter = 0;
+ 124   3          }
+ 125   2          else
+ 126   2          {
+ 127   3            IronUseFlag = 0;
+ 128   3            IronUseCounter = 0;
+ 129   3          }
+ 130   2      
+ 131   2          //如果没用，那么开始计时，只要用了就清零
+ 132   2          if(IronUseFlag==0 && CoderUseFlag==0 && ShutdownCounterFlag==0)
+ 133   2          {
+ 134   3            Sec_Conter++;
+ 135   3          }
+ 136   2          else
+ 137   2          {
+ 138   3            Sec_Conter = 0;
+ 139   3            Min_Conter = 0;
+ 140   3            CoderUseFlag = 0;
+ 141   3          }
+ 142   2          Timer0_Counter = 0;
+ 143   2        }
+ 144   1        
+ 145   1        //每分钟
+ 146   1        if(Sec_Conter == 250)//定时不准
+ 147   1        {
+ 148   2          Min_Conter++;
+ 149   2          Sec_Conter = 0;
+ 150   2          //以下是休眠、关屏、和软关机
+ 151   2          //如果睡眠时间不为0且不在休眠或关屏状态
+ 152   2          if((MENU_DATA_Table.Time_s.Slp_Time != 0) && (IronSleepFlag == 0) && (IronScrSaverFlag == 0))
+ 153   2          {
+ 154   3            if(Min_Conter == MENU_DATA_Table.Time_s.Slp_Time)
+ 155   3            {
+ 156   4              IronSleepFlag = 1;
+ 157   4              IronScrSaverFlag = 0;
+ 158   4              BEEP_ON;
+ 159   4              Delay_ms(150);
+ 160   4              BEEP_OFF;
+ 161   4              //清计时器为关屏做准备
+ 162   4              Sec_Conter = 0;
+ 163   4              Min_Conter = 0;
+ 164   4            }
+ 165   3          }
+ 166   2          //已经休眠,且尚未关屏,不管关屏时间，如果关屏时间是0，那直接休眠的时候就把屏关了
+ 167   2          if((IronSleepFlag == 1) && (IronScrSaverFlag == 0))
+ 168   2          {
+ 169   3            if(Min_Conter == MENU_DATA_Table.Time_s.ScrSaver_Time)
+ 170   3            {
+ 171   4              IronSleepFlag = 0;
+ 172   4              IronScrSaverFlag = 1;
+ 173   4              BEEP_ON;
+ 174   4              Delay_ms(150);
+ 175   4              BEEP_OFF;
+ 176   4              //清计时器为软关机做准备
+ 177   4              Sec_Conter = 0;
+ 178   4              Min_Conter = 0;
+C51 COMPILER V9.54   TIMER                                                                 08/30/2017 10:15:49 PAGE 4   
+
+ 179   4            }
+ 180   3          }
+ 181   2          //如果软关机时间不为0且已经关屏
+ 182   2          else if((MENU_DATA_Table.Time_s.Shutdown_Time != 0) && (IronScrSaverFlag == 1))
+ 183   2          {
+ 184   3            if(Min_Conter == MENU_DATA_Table.Time_s.Shutdown_Time)
+ 185   3            {
+ 186   4              //清计时器为掉电唤醒做准备
+ 187   4              Sec_Conter = 0;
+ 188   4              Min_Conter = 0;
+ 189   4              //清休眠、关屏标志位
+ 190   4              IronScrSaverFlag = 0;
+ 191   4              IronSleepFlag = 0;
+ 192   4              IronShutdownFlag = 1;
+ 193   4              //蜂鸣器响
+ 194   4              BEEP_ON;
+ 195   4              Delay_ms(250);
+ 196   4              Delay_ms(50);
+ 197   4              BEEP_OFF;
+ 198   4              //软关机
+ 199   4              P10 = 0;//确保烙铁关到位了
+ 200   4              PCON |= 0x02;
+ 201   4            }
+ 202   3          }
+ 203   2      
+ 204   2        }
+ 205   1      }
+ 206          /********************* Timer2中断函数************************/
+ 207          void timer2_int (void) interrupt TIMER2_VECTOR
+ 208          {
+ 209   1        static unsigned char SetTempCounter = 0;
+ 210   1        
+ 211   1        if(SetTempFlag == 1)
+ 212   1        {
+ 213   2          SetTempCounter++;
+ 214   2        }
+ 215   1        if(SetTempCounter == 60)
+ 216   1        {
+ 217   2          SetTempCounter = 0;
+ 218   2          SetTempFlag = 0;
+ 219   2          if((MENU_DATA_Table.Temp_s.Default_Temp == 0) || (MENU_DATA_Table.Temp_s.Default_CH == 0))
+ 220   2          EEPROM_SectorErase(0x0);
+ 221   2          EEPROM_write_n(0x0,(unsigned char *)&MENU_DATA_Table,sizeof(MENU_DATA_Table));
+ 222   2        }
+ 223   1      }
+ 224          
+ 225          
+ 226          //========================================================================
+ 227          // 函数: u8 Timer_Inilize(u8 TIM, TIM_InitTypeDef *TIMx)
+ 228          // 描述: 定时器初始化程序.
+ 229          // 参数: TIMx: 结构参数,请参考timer.h里的定义.
+ 230          // 返回: 成功返回0, 空操作返回1,错误返回2.
+ 231          // 版本: V1.0, 2012-10-22
+ 232          //========================================================================
+ 233          u8  Timer_Inilize(u8 TIM, TIM_InitTypeDef *TIMx)
+ 234          {
+ 235   1        if(TIM > Timer2)  return 1; //空操作
+ 236   1      
+ 237   1        if(TIM == Timer0)
+ 238   1        {
+ 239   2          TR0 = 0;    //停止计数
+ 240   2          if(TIMx->TIM_Interrupt == ENABLE)   ET0 = 1;  //允许中断
+C51 COMPILER V9.54   TIMER                                                                 08/30/2017 10:15:49 PAGE 5   
+
+ 241   2          else                  ET0 = 0;  //禁止中断
+ 242   2          if(TIMx->TIM_Polity == PolityHigh)    PT0 = 1;  //高优先级中断
+ 243   2          else                  PT0 = 0;  //低优先级中断
+ 244   2          if(TIMx->TIM_Mode >  TIM_16BitAutoReloadNoMask) return 2; //错误
+ 245   2          TMOD = (TMOD & ~0x03) | TIMx->TIM_Mode; //工作模式,0: 16位自动重装, 1: 16位定时/计数, 2: 8位自动重装, 3:
+             - 16位自动重装, 不可屏蔽中断
+ 246   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_12T)  AUXR &= ~0x80;  //12T
+ 247   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_1T)   AUXR |=  0x80;  //1T
+ 248   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)  TMOD |=  0x04;  //对外计数或分频
+ 249   2          else                    TMOD &= ~0x04;  //定时
+ 250   2          if(TIMx->TIM_ClkOut == ENABLE)  INT_CLKO |=  0x01;  //输出时钟
+ 251   2          else              INT_CLKO &= ~0x01;  //不输出时钟
+ 252   2          
+ 253   2          TH0 = (u8)(TIMx->TIM_Value >> 8);
+ 254   2          TL0 = (u8)TIMx->TIM_Value;
+ 255   2          if(TIMx->TIM_Run == ENABLE) TR0 = 1;  //开始运行
+ 256   2          return  0;    //成功
+ 257   2        }
+ 258   1      
+ 259   1        if(TIM == Timer1)
+ 260   1        {
+ 261   2          TR1 = 0;    //停止计数
+ 262   2          if(TIMx->TIM_Interrupt == ENABLE)   ET1 = 1;  //允许中断
+ 263   2          else                  ET1 = 0;  //禁止中断
+ 264   2          if(TIMx->TIM_Polity == PolityHigh)    PT1 = 1;  //高优先级中断
+ 265   2          else                  PT1 = 0;  //低优先级中断
+ 266   2          if(TIMx->TIM_Mode >= TIM_16BitAutoReloadNoMask) return 2; //错误
+ 267   2          TMOD = (TMOD & ~0x30) | TIMx->TIM_Mode; //工作模式,0: 16位自动重装, 1: 16位定时/计数, 2: 8位自动重装
+ 268   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_12T)  AUXR &= ~0x40;  //12T
+ 269   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_1T)   AUXR |=  0x40;  //1T
+ 270   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)  TMOD |=  0x40;  //对外计数或分频
+ 271   2          else                    TMOD &= ~0x40;  //定时
+ 272   2          if(TIMx->TIM_ClkOut == ENABLE)  INT_CLKO |=  0x02;  //输出时钟
+ 273   2          else              INT_CLKO &= ~0x02;  //不输出时钟
+ 274   2          
+ 275   2          TH1 = (u8)(TIMx->TIM_Value >> 8);
+ 276   2          TL1 = (u8)TIMx->TIM_Value;
+ 277   2          if(TIMx->TIM_Run == ENABLE) TR1 = 1;  //开始运行
+ 278   2          return  0;    //成功
+ 279   2        }
+ 280   1      
+ 281   1        if(TIM == Timer2)   //Timer2,固定为16位自动重装, 中断无优先级
+ 282   1        {
+ 283   2          AUXR &= ~(1<<4);  //停止计数
+ 284   2          if(TIMx->TIM_Interrupt == ENABLE)     IE2  |=  (1<<2);  //允许中断
+ 285   2          else                    IE2  &= ~(1<<2);  //禁止中断
+ 286   2          if(TIMx->TIM_ClkSource >  TIM_CLOCK_Ext)  return 2;
+ 287   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_12T)  AUXR &= ~(1<<2);  //12T
+ 288   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_1T)   AUXR |=  (1<<2);  //1T
+ 289   2          if(TIMx->TIM_ClkSource == TIM_CLOCK_Ext)  AUXR |=  (1<<3);  //对外计数或分频
+ 290   2          else                    AUXR &= ~(1<<3);  //定时
+ 291   2          if(TIMx->TIM_ClkOut == ENABLE)  INT_CLKO |=  0x04;  //输出时钟
+ 292   2          else              INT_CLKO &= ~0x04;  //不输出时钟
+ 293   2      
+ 294   2          TH2 = (u8)(TIMx->TIM_Value >> 8);
+ 295   2          TL2 = (u8)TIMx->TIM_Value;
+ 296   2          if(TIMx->TIM_Run == ENABLE) AUXR |=  (1<<4);  //开始运行
+ 297   2          return  0;    //成功
+ 298   2        }
+ 299   1        return 2; //错误
+ 300   1      }
+
+C51 COMPILER V9.54   TIMER                                                                 08/30/2017 10:15:49 PAGE 6   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1221    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     17    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
