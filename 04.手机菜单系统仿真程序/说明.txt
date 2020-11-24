@@ -1,0 +1,55 @@
+1. MenuSampleCode目录是代码  这份代码我在我的硬件上测试过。
+2.说明文档是：一个占用内存极少的菜单系统的实现.pdf 
+3.menu.gif是一个演示
+4.目录说明
+MenuSampleCode\SI    Source Insight 3.5 的工程文件
+MenuSampleCode\Menu.Uv2  Keil 的工程
+MenuSampleCode\Src   源代码
+MenuSampleCode\Obj   目标文件
+MenuSampleCode\Lst   列表文件
+可以看MenuSampleCode\Lst\menu.m51最后编译的结果:
+代码状况：
+
+Program Size: data=9.0 xdata=110 code=15731
+creating hex file from ".\Obj\menu"...
+".\Obj\menu" - 0 Error(s), 0 Warning(s).
+这是打开动态条项生成功能时的结果。
+
+Program Size: data=9.0 xdata=79 code=15155
+creating hex file from ".\Obj\menu"...
+".\Obj\menu" - 0 Error(s), 0 Warning(s).
+这是关闭动态条项生成功能时的结果。
+
+菜单深度均为4层深度。
+25+4*3 = 37Byte 可见占用内存还是挺小的。
+源文件说明
+ CPU.H        CPU相关定义
+ Main.C       主函数
+ Ks0108.C     LCD驱动
+ ASCII.c      8x8 8x16 英文字模
+ KeyScan.C    键盘扫描
+ MenuPara.C   菜单函数使用模版
+ MenuTop.C    顶层菜单和菜单核心代码
+ MenuFSM.C    菜单核心和FSM代码
+ MenuFunc.C   功能菜单和动态条项生成代码
+ MenuLanguage.C   语言切换代码
+ MenuMeasure.C    空例子
+ PIC.C            图标
+ MenuMain.C       菜单主循环
+ KeyScan.H       
+ Ks0108.H     
+ Menu.H
+ Menu.C           main函数
+ Chinese.txt      用到的中文
+ Chinese.C        中文字模
+
+Simulation.exe是uCGUI上移植的演示。
+可以通过你的键盘控制菜单：
+你的PC键盘的四个方向键：
+向上键  ：确定  
+向下键  ：ESC
+向左键  ：向左
+向右键  ：向右
+默认语言是英文，你可以进入设置成中文。
+PS:不提供这个的代码。请不要问我要。其实Src的源代码的效果也就是这个的运行效果。
+包括动态条项生成功能。

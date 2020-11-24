@@ -1,0 +1,79 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.14.0.0
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: sfdsf fdsfs, sdfsd, LIC=AK101-CRBPZ-NR7XL-0UEHN-69JM8-7GGFA
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
+Toolchain Path:  D:\install\install\keil5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 1 (build 106)
+Assembler:       Armasm.exe V5.05 update 1 (build 106)
+Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
+Library Manager: ArmAr.exe V5.05 update 1 (build 106)
+Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
+CPU DLL:         SARMCM3.DLL V5.14.0.0
+Dialog DLL:      DARMSTM.DLL V1.65.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.13.0
+Dialog DLL:      TARMSTM.DLL V1.64.0.0
+ 
+<h2>Project:</h2>
+D:\code\stm32.cc\04.STM32 TCPÍ¨ÐÅ\USER\main.uvproj
+Project File Date:  06/02/2018
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(71): warning:  #177-D: variable "aa" was declared but never referenced
+        int aa,i;
+main.c(71): warning:  #177-D: variable "i" was declared but never referenced
+        int aa,i;
+main.c(73): warning:  #177-D: variable "led0pwmval" was declared but never referenced
+        u16 led0pwmval=0;
+main.c(74): warning:  #177-D: variable "dir" was declared but never referenced
+        u8 dir=1;       
+main.c(212): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+        }while(strstr(USART2_RX_BUF,"lockopen") == NULL);
+main.c(250): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+        }while(strstr(USART2_RX_BUF,"lockclose") == NULL);
+main.c(283): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+         if (strstr(USART2_RX_BUF,"lockflag1") != NULL)
+main.c(288): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                else if(strstr(USART2_RX_BUF,"lockflag0") != NULL)
+main.c(297): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                        printf(USART2_RX_BUF);
+main.c(318): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        while(strncmp(USART2_RX_BUF,USART2_RX_FLAG,200)<=0);
+main.c(318): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        while(strncmp(USART2_RX_BUF,USART2_RX_FLAG,200)<=0);
+main.c(319): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        if (strstr(USART2_RX_BUF, Response) != NULL)
+main.c(322): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                                printf(USART2_RX_BUF);
+main.c(331): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+        printf(USART2_RX_BUF);
+main.c(351): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        if (strstr(USART2_RX_BUF, Response) != NULL)
+main.c(354): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                                printf(USART2_RX_BUF);
+main.c(363): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+        printf(USART2_RX_BUF);
+main.c(405): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+                        if (strstr(USART2_RX_BUF, Response) != NULL)
+main.c(408): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+                                printf(USART2_RX_BUF);
+main.c(417): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *restrict"
+        printf(USART2_RX_BUF);
+main.c: 20 warnings, 0 errors
+linking...
+..\OBJ\main.axf: Error: L6218E: Undefined symbol TIM3_PWM_Init (referred from main.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 1 error messages.
+"..\OBJ\main.axf" - 1 Error(s), 20 Warning(s).
+Target not created.
+</pre>
+</body>
+</html>

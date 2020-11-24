@@ -1,0 +1,29 @@
+---- Jump2Menu Matches (28 in 5 files) ----
+Menu.C:void Jump2Menu(U8 Index,U8 FlashMode)
+Menu.H:extern void Jump2Menu(U8 Index,U8 FlashMode);
+MenuFunc.C:            Jump2Menu(MenuDataIndex,FlashMode_AutoInit);
+MenuFunc.C:            Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuFunc.C:            Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuFunc.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuFunc.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuFunc.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuPara.C:            Jump2Menu(MenuTopIndex,FlashMode_AutoInit);
+MenuPara.C:            Jump2Menu(SelfMenuIndex,FlashMode_ReFlash);
+MenuPara.C:            Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuPara.C:            Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(MenuIndex,FlashMode_AutoInit);
+MenuTop.C:        Jump2Menu(MenuTopIndex,FlashMode_ReFlash);
+MenuTop.C:    Jump2Menu(MenuTopIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(MenuTopIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(MenuTopIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuTop.C:            Jump2Menu(MenuFuncIndex,FlashMode_AutoInit);
+MenuTop.C:            Jump2Menu(MenuParaIndex,FlashMode_AutoInit);
+MenuTop.C:            Jump2Menu(MenuMeasureIndex,FlashMode_AutoInit);
+MenuTop.C:            Jump2Menu(MenuLanguageIndex,FlashMode_ManualInit);
+MenuTop.C:            Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuTop.C:            Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuTop.C:            Jump2Menu(MenuTopIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);
+MenuTop.C:    Jump2Menu(SelfMenuIndex,FlashMode_NoAction);

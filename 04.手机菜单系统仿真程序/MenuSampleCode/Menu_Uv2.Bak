@@ -1,0 +1,132 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+Target (Target 1), 0x0000 // Tools: 'MCS-51'
+
+Group (Source Group 1)
+
+File 1,1,<.\Src\Main.C><Main.C> 0x0 
+File 1,1,<.\Src\Ks0108.C><Ks0108.C> 0x0 
+File 1,1,<.\Src\MenuTop.C><MenuTop.C> 0x0 
+File 1,1,<.\Src\MenuFSM.C><MenuFSM.C> 0x0 
+File 1,1,<.\Src\MenuFunc.C><MenuFunc.C> 0x0 
+File 1,1,<.\Src\MenuLanguage.C><MenuLanguage.C> 0x0 
+File 1,1,<.\Src\MenuMeasure.C><MenuMeasure.C> 0x0 
+File 1,1,<.\Src\MenuPara.C><MenuPara.C> 0x0 
+File 1,1,<.\Src\KeyScan.C><KeyScan.C> 0x0 
+File 1,1,<.\Src\Menu.C><Menu.C> 0x0 
+File 1,1,<.\Src\MenuMain.C><MenuMain.C> 0x0 
+
+
+Options 1,0,0  // Target 'Target 1'
+ Device (AT89S52)
+ Vendor (Atmel)
+ Cpu (IRAM(0-0xFF) IROM(0-0x1FFF) CLOCK(33000000) MODAT2)
+ FlashUt ()
+ StupF ()
+ FlashDR ()
+ DevID ()
+ Rgf (REGX51.H)
+ Mem ()
+ C ()
+ A ()
+ RL ()
+ OH ()
+ DBC_IFX ()
+ DBC_CMS ()
+ DBC_AMS ()
+ DBC_LMS ()
+ UseEnv=0
+ EnvBin ()
+ EnvInc ()
+ EnvLib ()
+ EnvReg (ÿAtmel\)
+ OrgReg (ÿAtmel\)
+ TgStat=16
+ OutDir (.\Obj\)
+ OutName (menu)
+ GenApp=1
+ GenLib=0
+ GenHex=1
+ Debug=1
+ Browse=1
+ LstDir (.\Lst\)
+ HexSel=0
+ MG32K=0
+ TGMORE=0
+ RunUsr 0 0 <>
+ RunUsr 1 0 <>
+ BrunUsr 0 0 <>
+ BrunUsr 1 0 <>
+ SVCSID <>
+ MODEL5=2
+ RTOS5=0
+ ROMSZ5=2
+ DHOLD5=0
+ XHOLD5=0
+ T51FL=80
+ XT51FL=0
+ CBANKS5=0
+ XBANKS5=0
+ RCB51 { 0,0,0,0,0,255,255,0,0 }
+ RXB51 { 0,0,0,0,0,0,0,0,0 }
+ OCM51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ OCR51 { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IRO51 { 1,0,0,0,0,0,32,0,0 }
+ IRA51 { 0,0,0,0,0,0,1,0,0 }
+ XRA51 { 0,0,0,0,0,0,0,0,0 }
+ XRA512 { 0,0,0,0,0,0,0,0,0 }
+ IROM512 { 0,0,0,0,0,0,0,0,0 }
+ C51FL=21630224
+ C51VA=0
+ C51MSC ()
+ C51DEF ()
+ C51UDF ()
+ INCC5 ()
+ AX51FL=4
+ AX51MSC ()
+ AX51SET ()
+ AX51RST ()
+ INCA5 ()
+ PropFld { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+ IncBld=1
+ AlwaysBuild=0
+ GenAsm=0
+ AsmAsm=0
+ PublicsOnly=0
+ StopCode=3
+ CustArgs ()
+ LibMods ()
+ BankNo=65535
+ LX51FL=292
+ LX51OVL ()
+ LX51MSC ()
+ LX51DWN ()
+ LX51LFI ()
+ LX51ASN ()
+ LX51RES ()
+ LX51CCL ()
+ LX51UCL ()
+ LX51CSC ()
+ LX51UCS ()
+ LX51COB ()
+ LX51XDB ()
+ LX51PDB ()
+ LX51BIB ()
+ LX51DAB ()
+ LX51IDB ()
+ LX51PRC ()
+ LX51STK ()
+ LX51COS ()
+ LX51XDS ()
+ LX51BIS ()
+ LX51DAS ()
+ LX51IDS ()
+  OPTDL (S8051.DLL)()(DP51.DLL)(-pAT52)(S8051.DLL)()(TP51.DLL)(-pAT52)
+  OPTDBG 45054,8,()()()()()()()()()() (BIN\VDM51.DLL)()()()
+ FLASH1 { 1,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,0,0,0,0 }
+ FLASH2 ()
+ FLASH3 ()
+ FLASH4 ()
+EndOpt
+
