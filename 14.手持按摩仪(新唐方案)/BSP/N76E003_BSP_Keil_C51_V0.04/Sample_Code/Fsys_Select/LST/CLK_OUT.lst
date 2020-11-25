@@ -1,0 +1,113 @@
+C51 COMPILER V9.52.0.0   CLK_OUT                                                           06/01/2016 11:50:27 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE CLK_OUT
+OBJECT MODULE PLACED IN .\Output\CLK_OUT.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\CLK_OUT.c OPTIMIZE(0,SPEED) BROWSE INCDIR(..\..\Include) DEFINE(FOSC_2
+                    -21184) DEBUG OBJECTEXTEND PRINT(.\LST\CLK_OUT.lst) TABS(2) OBJECT(.\Output\CLK_OUT.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 Clock Output demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Typedef.h"
+  21          #include "Define.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Common.h"
+  24          #include "Delay.h"
+  25          
+  26          bit BIT_TMP;
+  27          //======================================================================================================
+  28          
+  29          void main(void)
+  30          {
+  31   1      ////------------------------------------------------------------------------------------------------------
+  32   1      ///*********************************** Change system closk source ***************************************/
+  33   1      ////------------------------------------------------------------------------------------------------------
+  34   1      ////***** HXT enable part ****
+  35   1      //    set_EXTEN1;                       //step1: enable clock source
+  36   1      //    clr_EXTEN0;
+  37   1      //    while((CKSWT&SET_BIT7)==0);       //step2: check ready
+  38   1      //    clr_OSC1;                         //step3: switching system clock source if needed
+  39   1      //    set_OSC0;
+  40   1      //    while((CKEN&SET_BIT0)==1);        //step4: check system clock switching OK or NG 
+  41   1        
+  42   1      ////***** LXT enable part*****
+  43   1      //    clr_EXTEN1;                       //step1: enable clock source
+  44   1      //    set_EXTEN0;
+  45   1      //    while((CKSWT&SET_BIT6)==0);       //step2: check ready
+C51 COMPILER V9.52.0.0   CLK_OUT                                                           06/01/2016 11:50:27 PAGE 2   
+
+  46   1      //    clr_OSC1;                         //step3: switching system clock source if needed
+  47   1      //    set_OSC0;  
+  48   1      //    while((CKEN&SET_BIT0)==1);        //step4: check system clock switching OK or NG  
+  49   1      //                
+  50   1      ////***** HIRC enable part *****               
+  51   1      //    set_HIRCEN;                       //step1: enable clock source
+  52   1      //    while((CKSWT&SET_BIT5)==0);       //step2: check ready
+  53   1      //    clr_OSC1;                         //step3: switching system clock source if needed
+  54   1      //    clr_OSC0;
+  55   1      //    while((CKEN&SET_BIT0)==1);        //step4: check system clock switching OK or NG
+  56   1      ////------------------------------------------------------------------------------------------------------
+             ---
+  57   1       
+  58   1        
+  59   1          /* Note
+  60   1             MCU power on system clock is HIRC (22.1184MHz), if need change Fsys source pleaes copy hange system
+             - closk source demo
+  61   1          */
+  62   1          
+  63   1          Set_All_GPIO_Quasi_Mode();                   //in Common.c
+  64   1          set_CLOEN;                                  //System Clock Output Enable
+  65   1      //     Please measure P2.6 pin for system clock output, it should as system clock;
+  66   1      
+  67   1          while(1)
+  68   1          {
+  69   2              P05 = 0;
+  70   2              Timer0_Delay1ms(500);
+  71   2              P05 = 1;
+  72   2              Timer0_Delay1ms(500);
+  73   2          }
+  74   1      /* =================== */
+  75   1      }
+  76          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     35    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

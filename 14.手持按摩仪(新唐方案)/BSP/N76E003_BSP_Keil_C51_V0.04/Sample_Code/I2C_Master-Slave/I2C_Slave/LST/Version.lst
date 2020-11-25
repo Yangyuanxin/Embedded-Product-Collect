@@ -1,0 +1,13 @@
+C51 COMPILER V9.52.0.0   VERSION                                                           08/31/2016 15:24:47 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE VERSION
+OBJECT MODULE PLACED IN .\Output\Version.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\..\Common\Version.c BROWSE INCDIR(..\..\..\Include) DEFINE(FOSC_22118
+                    -4) DEBUG OBJECTEXTEND PRINT(.\LST\Version.lst) TABS(2) OBJECT(.\Output\Version.obj)
+
+line level    source
+
+*** ERROR C318 OF ..\..\..\Common\Version.c: can't open file '..\..\..\Common\Version.c'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

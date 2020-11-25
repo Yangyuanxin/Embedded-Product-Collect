@@ -1,0 +1,118 @@
+C51 COMPILER V9.52.0.0   UART0_MODE_1                                                      08/31/2016 13:37:38 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE UART0_MODE_1
+OBJECT MODULE PLACED IN .\Output\UART0_mode_1.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Source\UART0_mode_1.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBU
+                    -G OBJECTEXTEND PRINT(.\LST\UART0_mode_1.lst) TABS(2) OBJECT(.\Output\UART0_mode_1.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 UART-0 Mode1 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Define.h"
+  21          #include "Common.h"
+  22          #include "Delay.h"
+  23          #include "SFR_Macro.h"
+  24          #include "Function_define.h"
+  25          
+  26          
+  27          /******************************************************************************
+  28           * FUNCTION_PURPOSE: Serial interrupt, echo received data.
+  29           * FUNCTION_INPUTS : P2.0(RXD) serial input
+  30           * FUNCTION_OUTPUTS: P0.3(TXD) serial output
+  31           * Following setting in Common.c
+  32           ******************************************************************************/
+  33          
+  34          //void InitialUART0_Timer1(UINT32 u32Baudrate)    //T1M = 1, SMOD = 1
+  35          //{
+  36          //    SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  37          //    TMOD |= 0x20;    //Timer1 Mode1
+  38          //    
+  39          //    set_SMOD;        //UART0 Double Rate Enable
+  40          //    set_T1M;
+  41          //    clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+  42          
+  43          // 
+  44          //#ifdef FOSC_160000
+  45          //    TH1 = 256 - (1000000/u32Baudrate+1);               /*16 MHz */
+C51 COMPILER V9.52.0.0   UART0_MODE_1                                                      08/31/2016 13:37:38 PAGE 2   
+
+  46          //#endif      
+  47          //    set_TR1;
+  48          //}
+  49          ////---------------------------------------------------------------
+  50          //void InitialUART0_Timer3(UINT32 u32Baudrate) //use timer3 as Baudrate generator
+  51          //{
+  52          //    SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  53          //    set_SMOD;        //UART0 Double Rate Enable
+  54          //    T3CON &= 0xF8;   //T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)
+  55          //    set_BRCK;        //UART0 baud rate clock source = Timer3
+  56          //#ifdef FOSC_160000
+  57          //  RH3    = HIBYTE(65536 - (1000000/u32Baudrate));     /*16 MHz */
+  58          //  RL3    = LOBYTE(65536 - (1000000/u32Baudrate));     /*16 MHz */
+  59          //#endif
+  60          //    set_TR3;         //Trigger Timer3
+  61          //}
+  62          
+  63          
+  64          
+  65          /*******************************************************************************
+  66           * FUNCTION_PURPOSE: Main function 
+  67           ******************************************************************************/
+  68          void main (void)
+  69          {
+  70   1      
+  71   1      #if 0 
+                  InitialUART0_Timer1(9600);           //UART0 Baudrate initial,T1M=0,SMOD=0
+                  while(1)
+                  Send_Data_To_UART0(0x55);
+              #else
+  76   1          InitialUART0_Timer3(115200);
+  77   1          while(1)
+  78   1          Send_Data_To_UART0(0x55);
+  79   1      #endif
+  80   1          
+  81   1          
+  82   1      }
+  83          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     18    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

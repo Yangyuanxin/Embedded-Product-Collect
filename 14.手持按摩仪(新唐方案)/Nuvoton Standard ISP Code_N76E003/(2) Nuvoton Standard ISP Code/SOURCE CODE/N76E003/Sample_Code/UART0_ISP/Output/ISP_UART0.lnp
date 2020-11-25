@@ -1,0 +1,6 @@
+".\Output\UART0_transfer.obj",
+".\Output\main.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\ISP_UART0" 
+PRINT(".\LST\ISP_UART0.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

@@ -1,0 +1,6 @@
+".\Output\Pin_Int.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\Pin_Int" 
+PRINT(".\LST\Pin_Int.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

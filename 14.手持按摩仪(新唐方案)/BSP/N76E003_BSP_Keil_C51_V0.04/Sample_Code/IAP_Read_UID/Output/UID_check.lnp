@@ -1,0 +1,6 @@
+".\Output\UID_check.obj",
+".\Output\STARTUP.obj",
+".\Output\Delay.obj" 
+TO ".\Output\UID_check" 
+PRINT(".\List\UID_check.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

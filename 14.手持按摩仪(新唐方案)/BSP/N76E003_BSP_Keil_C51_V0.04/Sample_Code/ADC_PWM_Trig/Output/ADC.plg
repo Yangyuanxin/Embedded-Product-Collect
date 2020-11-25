@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+H:\MC9S08DZ60中文数据手册\N76E003用户资料\N76E003用户资料\BSP\N76E003_BSP_Keil_C51_V0.04\Sample_Code\ADC_PWM_Trig\ADC.uvproj
+Project File Date:  12/06/2017
+
+<h2>Output:</h2>
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=38.1 xdata=0 code=1756
+creating hex file from ".\Output\ADC"...
+".\Output\ADC" - 0 Error(s), 0 Warning(s).

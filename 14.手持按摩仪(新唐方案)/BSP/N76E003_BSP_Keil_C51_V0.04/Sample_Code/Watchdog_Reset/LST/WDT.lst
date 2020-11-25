@@ -1,0 +1,125 @@
+C51 COMPILER V9.52.0.0   WDT                                                               11/02/2016 13:18:17 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE WDT
+OBJECT MODULE PLACED IN .\Output\WDT.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\WDT.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJECTEXT
+                    -END PRINT(.\LST\WDT.lst) TABS(2) OBJECT(.\Output\WDT.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 Watch Dog reste functiondemo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          /***********************************************************************
+  26            WDT CONFIG enable 
+  27            warning : this macro is only when ICP not enable CONFIG WDT function
+  28            copy this marco code to you code to enable WDT reset.
+  29          ************************************************************************/
+  30          void Enable_WDT_Reset_Config(void)
+  31          {
+  32   1          set_IAPEN;
+  33   1          IAPAL = 0x04;
+  34   1          IAPAH = 0x00;
+  35   1          IAPFD = 0x0F;
+  36   1          IAPCN = 0xE1;
+  37   1          set_CFUEN;
+  38   1          set_IAPGO;                                  //trigger IAP
+  39   1          while((CHPCON&SET_BIT6)==SET_BIT6);          //check IAPFF (CHPCON.6)
+  40   1          clr_CFUEN;
+  41   1          clr_IAPEN;
+  42   1      }
+  43          
+  44          
+  45          /*********************************************************************************************************
+C51 COMPILER V9.52.0.0   WDT                                                               11/02/2016 13:18:17 PAGE 2   
+
+             -***
+  46          *    Main function 
+  47          **********************************************************************************************************
+             -**/
+  48          void main (void)
+  49          {
+  50   1        Set_All_GPIO_Quasi_Mode;
+  51   1      
+  52   1        clr_GPIO1;
+  53   1        Timer0_Delay1ms(50);          //toggle I/O to show MCU Reset
+  54   1        set_GPIO1;
+  55   1        Timer0_Delay1ms(50);
+  56   1        clr_GPIO1;
+  57   1        Timer0_Delay1ms(50);
+  58   1        set_GPIO1;
+  59   1        Timer0_Delay1ms(50);
+  60   1        
+  61   1      //----------------------------------------------------------------------------------------------
+  62   1      // WDT Init
+  63   1      // Warning:
+  64   1      // Always check CONFIG WDT enable first, CONFIG not enable, SFR can't enable WDT reset
+  65   1      // Please call Enable_WDT_Reset_Config() function to enable CONFIG WDT reset
+  66   1      //----------------------------------------------------------------------------------------------
+  67   1      
+  68   1      //  Enable_WDT_Reset_Config();
+  69   1          TA=0xAA;TA=0x55;WDCON=0x07;           //Setting WDT prescale 
+  70   1          set_WDCLR;                            //Clear WDT timer
+  71   1          while((WDCON|~SET_BIT6)==0xFF);       //confirm WDT clear is ok before into power down mode
+  72   1          EA = 1;
+  73   1          set_WDTR;                             //WDT run
+  74   1          
+  75   1          while(1)
+  76   1          {
+  77   2            clr_GPIO1;
+  78   2            Timer0_Delay1ms(500);
+  79   2            set_GPIO1;
+  80   2            Timer0_Delay1ms(500);
+  81   2            clr_GPIO1;
+  82   2            Timer0_Delay1ms(500);
+  83   2            set_GPIO1;
+  84   2            Timer0_Delay1ms(500);
+  85   2            set_PD;
+  86   2          }
+  87   1      }
+  88          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    288    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>STM32/Flash</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>151</Column0><Column1>5</Column1><Column2>27</Column2><Column3>1242260</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Debug-Log</Factory></Window><Window><Factory>Find-in-Files</Factory></Window></Windows></PreferedWindows><ColumnWidth0>16</ColumnWidth0><ColumnWidth1>666</ColumnWidth1><ColumnWidth2>401</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+      <Debug-Log><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window><Window><Factory>Find-in-Files</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1221</ColumnWidth1></Debug-Log>
+      <Find-in-Files>
+        
+        
+        
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window><Window><Factory>Debug-Log</Factory></Window></Windows></PreferedWindows><ColumnWidth0>814</ColumnWidth0><ColumnWidth1>62</ColumnWidth1><ColumnWidth2>754</ColumnWidth2></Find-in-Files>
+      <TerminalIO/>
+    <SourceBrowser/></Static>
+    <Windows>
+      
+      
+    <Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-6653-5439</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>STM32</ExpandedNode><ExpandedNode>STM32/DRIVER</ExpandedNode><ExpandedNode>STM32/DRIVER/KI</ExpandedNode><ExpandedNode>STM32/DRIVER/MEASURE</ExpandedNode><ExpandedNode>STM32/DRIVER/MODBUS</ExpandedNode><ExpandedNode>STM32/DRIVER/RELAY</ExpandedNode><ExpandedNode>STM32/STM32F10xFWLib</ExpandedNode></NodeDict></Session>
+          </Tab>
+        <Tab><Identity>TabID-30253-9163</Identity><TabName>&#x30BD;&#x30FC;&#x30B9;&#x30D6;&#x30e9;&#x30A6;&#x30B6;</TabName><Factory>SourceBrowser</Factory><Session><TypeFilter>2147483647</TypeFilter><FileFilter>1</FileFilter></Session></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd3><Tabs><Tab><Identity>TabID-379-705</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-3121-16824</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-24645-32643</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>D:\work\9.9\MODBUS\MODBUS.C</Filename><XPos>0</XPos><YPos>365</YPos><SelStart>7824</SelStart><SelEnd>7824</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\work\9.9\RELAY\relay.c</Filename><XPos>0</XPos><YPos>616</YPos><SelStart>15283</SelStart><SelEnd>15283</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>D:\work\9.9\MODBUS\MODBUS_MASTER.C</Filename><XPos>0</XPos><YPos>321</YPos><SelStart>7242</SelStart><SelEnd>7242</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\work\9.9\RELAY\relay.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\work\9.9\KI\ki.h</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>840</SelStart><SelEnd>854</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00bfa0e0><key>iaridepm.enu1</key></Toolbar-00bfa0e0></Sizes></Row0></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>436</Bottom><Right>220</Right><x>-2</x><y>-2</y><xscreen>-152092</xscreen><yscreen>0</yscreen><sizeHorzCX>-148527343</sizeHorzCX><sizeHorzCY>0</sizeHorzCY><sizeVertCX>216797</sizeVertCX><sizeVertCY>632948</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>211</Bottom><Right>1026</Right><x>-2</x><y>-2</y><xscreen>1028</xscreen><yscreen>213</yscreen><sizeHorzCX>1003906</sizeHorzCX><sizeHorzCY>307803</sizeHorzCY><sizeVertCX>9766</sizeVertCX><sizeVertCY>0</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

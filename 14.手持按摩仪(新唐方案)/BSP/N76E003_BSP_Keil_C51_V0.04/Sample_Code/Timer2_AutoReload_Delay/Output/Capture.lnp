@@ -1,0 +1,7 @@
+".\Output\Capture.obj",
+".\Output\Common.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\Capture" 
+PRINT(".\LST\Capture.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

@@ -1,0 +1,87 @@
+C51 COMPILER V9.52.0.0   XRAM_768BYTE                                                      11/02/2016 13:19:20 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE XRAM_768BYTE
+NO OBJECT MODULE REQUESTED
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\xRAM_768byte.c BROWSE INCDIR(..\..\Include) DEBUG OBJECTEXTEND PRINT(.
+                    -\LST\xRAM_768byte.lst) TABS(2) SRC(.\Output\xRAM_768byte.SRC)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E003.h"
+   3          #include "Function_define.h"
+   4          
+   5          /******************************************************
+   6           The C file combine with assembler code compiler
+   7            Please always confirm the .c file option mark enable 
+   8            "Generate assembler SRC file" and "Assembler SRC file
+   9          ******************************************************/
+  10          
+  11          
+  12          /*------------------------------------------------
+  13          The main C function.  Program execution starts
+  14          here after stack initialization.
+  15          ------------------------------------------------*/
+  16          void main (void) 
+  17          {
+  18   1      
+  19   1        Set_All_GPIO_Quasi_Mode;
+  20   1                     
+  21   1      #pragma asm 
+  22   1            MOV DPH,0
+  23   1            MOV DPL,0
+  24   1            
+  25   1            ;Write XRAM
+  26   1      L1:
+  27   1            MOV A,DPL
+  28   1            MOVX @DPTR,A
+  29   1            INC DPTR
+  30   1            MOV A,DPH
+  31   1            CJNE A,#03H,L1
+  32   1      
+  33   1      
+  34   1            ;read check
+  35   1            MOV DPL,#0
+  36   1            MOV DPH,#0
+  37   1      L2:
+  38   1            MOV A,DPL
+  39   1            MOV 11H,A
+  40   1            MOVX A,@DPTR
+  41   1            CJNE A,11H,L3
+  42   1            INC DPTR
+  43   1            MOV A,DPH
+  44   1            CJNE A,#03H,L2
+  45   1            MOV P1,#69
+  46   1            sjmp $
+  47   1            ;read check end 
+  48   1      
+  49   1      
+  50   1            ;error alart
+  51   1      L3:
+  52   1            MOV R0,#05h
+  53   1            MOV A,#55H
+  54   1            MOVX @R0,A
+C51 COMPILER V9.52.0.0   XRAM_768BYTE                                                      11/02/2016 13:19:20 PAGE 2   
+
+  55   1            MOV P1,A
+  56   1            sjmp $
+  57   1            
+  58   1      #pragma endasm 
+  59   1                   
+  60   1      
+  61   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    122    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

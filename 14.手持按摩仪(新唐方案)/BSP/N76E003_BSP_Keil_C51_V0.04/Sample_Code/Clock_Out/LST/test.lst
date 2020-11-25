@@ -1,0 +1,330 @@
+C51 COMPILER V9.51   TEST                                                                  12/22/2014 17:29:40 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE TEST
+OBJECT MODULE PLACED IN .\Output\test.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\test.c OPTIMIZE(0,SPEED) BROWSE INCDIR(..\..\Include) DEFINE(FOSC_1105
+                    -92) DEBUG OBJECTEXTEND PRINT(.\LST\test.lst) OBJECT(.\Output\test.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2014 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Weblink: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : May/01/2014
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: NUC8G885 Clock Output demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include <intrins.h>
+  20          #include "NUC8G885.h"
+  21          #include "Version.h"
+  22          #include "Typedef.h"
+  23          #include "Define.h"
+  24          #include "SFR_Macro.h"
+  25          #include "Common.h"
+  26          #include "Delay.h"
+  27          
+  28          /*
+  29          //-------- <<< Use Configuration Wizard in Context Menu >>> ------------
+  30          //
+  31          ////<e0> System Clock Source Configuration
+  32          // <o1> System Clock Source Selection
+  33          //      <0=> 2~25MHz    XTAL
+  34          //      <1=> 32.768KHz  XTAL
+  35          //      <2=> 22.1184MHz Internal
+  36          //      <3=> 10KHz      Internal
+  37          //      <4=> OSC-In     External
+  38          //</e>
+  39          //
+  40          //<e2> Clock Divider Configuration
+  41          //     <o3.0..7>  System Clock Source Devider <1-255>
+  42          //                     <i> Fsys = (System Clock Source) / (2 * Devider)
+  43          //</e>
+  44          //
+  45          //-------- <<< end of configuration section >>> ------------------------------
+C51 COMPILER V9.51   TEST                                                                  12/22/2014 17:29:40 PAGE 2   
+
+  46          */
+  47          
+  48          #define SYS_CLK_EN              0
+  49          #define SYS_SEL                 0
+  50          #define SYS_DIV_EN              0                   //0: Fsys=Fosc, 1: Fsys = Fosc/(2*CKDIV)
+  51          #define SYS_DIV                 4
+  52          
+  53          #define NOP _nop_ ()
+  54          
+  55          bit BIT_TMP;
+  56          /*****************************************************************************/
+  57          void INT0_ISR (void)            interrupt 0
+  58          {
+  59   1          clr_IE0;                                    //clear interrupt flag
+  60   1          //while(1)
+  61   1          {
+  62   2              clr_P25;
+  63   2      //         Random_Delay();
+  64   2      //         set_P25;
+  65   2      //         Random_Delay();
+  66   2          }
+  67   1      }
+  68          /*****************************************************************************/
+  69          void WakeUp_Timer_ISR (void)   interrupt 17     //ISR for self wake-up timer
+  70          {
+  71   1          clr_WKTF;                                   //clear interrupt flag
+  72   1          P37 = 0;
+  73   1      //    clr_WKTR;
+  74   1      //     while(1)
+  75   1      //     {
+  76   1              //clr_P24;
+  77   1      //         Random_Delay();
+  78   1      //         set_P24;
+  79   1      //         Random_Delay();
+  80   1      //     }
+  81   1      }
+  82          //========================================================================================================
+  83          void main(void)
+  84          {
+  85   1          Set_All_GPIO_Quasi_Mode();                   //in Common.c
+  86   1          CKDIV = 1;                            //Fsys = Fosc / (2* CLKDIV) = Fcpu
+  87   1          
+  88   1      #if 1
+  89   1          TA = 0xAA;
+  90   1          TA = 0x55;
+  91   1          SFRS = 1;
+  92   1          P2SR |= SET_BIT6;
+  93   1          TA = 0xAA;
+  94   1          TA = 0x55;
+  95   1          SFRS = 0;
+  96   1          
+  97   1          set_CLOEN;                                  //System Clock Output Enable
+  98   1      
+  99   1          set_EWKT;
+ 100   1          WKCON |= 0x04;    
+ 101   1          
+ 102   1          //step1: enable clock source
+ 103   1          set_EXTEN1;
+ 104   1          clr_EXTEN0;
+ 105   1          
+ 106   1          //step2: check ready
+ 107   1          while((CKSWT&SET_BIT7)==0);
+C51 COMPILER V9.51   TEST                                                                  12/22/2014 17:29:40 PAGE 3   
+
+ 108   1          
+ 109   1          //step3: switching system clock source
+ 110   1          TA=0xAA;
+ 111   1          TA=0x55;
+ 112   1          CKSWT = 0x02;
+ 113   1      
+ 114   1          //while(P37 == 1);
+ 115   1          
+ 116   1          EA = 1;
+ 117   1          set_WKTR; 
+ 118   1          while(1)
+ 119   1          {
+ 120   2               P37 = 1;
+ 121   2               Random_Delay();
+ 122   2               set_PD;                                 //Enter Power Down        
+ 123   2          }
+ 124   1      
+ 125   1      #endif
+ 126   1      
+ 127   1      
+ 128   1      
+ 129   1      
+ 130   1      
+ 131   1      #if 1
+ 132   1          //set_CLOEN;                                  //System Clock Output Enable
+ 133   1          //step1: enable clock source
+ 134   1          set_EXTEN1;
+ 135   1          clr_EXTEN0;
+ 136   1          
+ 137   1          //step2: check ready
+ 138   1          while((CKSWT&SET_BIT7)==0);
+ 139   1          //Delay10us(40);
+ 140   1          
+ 141   1          //step3: switching system clock source
+ 142   1          //clr_OSC1;
+ 143   1          //set_OSC0;
+ 144   1          TA=0xAA;
+ 145   1          TA=0x55;
+ 146   1          CKSWT = 0x02;
+ 147   1      #endif
+ 148   1          InitialUART0_Timer1_Type4(115200);             /* 9600 Baud Rate*/
+ 149   1      
+ 150   1          set_WKTR; 
+ 151   1          set_EWKT;
+ 152   1          WKCON |= 0x03;
+ 153   1          
+ 154   1          set_EX0;                                    //INT0
+ 155   1          EA = 1;
+ 156   1      
+ 157   1          while(1)
+ 158   1          {
+ 159   2               Send_Data_To_UART0(0x55);
+ 160   2               Send_Data_To_UART0(0xAA);
+ 161   2               Send_Data_To_UART0(0x55);
+ 162   2               Send_Data_To_UART0(0xAA);
+ 163   2               Send_Data_To_UART0(0x5A);
+ 164   2               Send_Data_To_UART0(0xA5);
+ 165   2               Send_Data_To_UART0(0x0F);
+ 166   2               Send_Data_To_UART0(0xF0);
+ 167   2               Send_Data_To_UART0(0x00);
+ 168   2               Send_Data_To_UART0(0xFF);
+ 169   2               Send_Data_To_UART0(0x55);
+C51 COMPILER V9.51   TEST                                                                  12/22/2014 17:29:40 PAGE 4   
+
+ 170   2               Send_Data_To_UART0(0xAA);
+ 171   2               
+ 172   2               set_P25;
+ 173   2               set_PD;                                 //Enter Power Down
+ 174   2          }
+ 175   1      
+ 176   1      
+ 177   1      
+ 178   1      
+ 179   1      
+ 180   1           
+ 181   1      
+ 182   1           
+ 183   1           Set_All_GPIO_Quasi_Mode();                   //in Common.c
+ 184   1      //     set_CLOEN;                                  //System Clock Output Enable
+ 185   1           
+ 186   1      //      while(1)
+ 187   1      //      {
+ 188   1      //         clr_P24;
+ 189   1      //         Random_Delay();
+ 190   1      //         set_P24;
+ 191   1      //         Random_Delay();
+ 192   1      //      }
+ 193   1           
+ 194   1          // InitialUART0_Timer1_Type4(115200);             /* 9600 Baud Rate*/
+ 195   1      
+ 196   1      //     Show_FW_Version_Number_To_PC();
+ 197   1      //     
+ 198   1      //     printf ("\n*===================================================================");
+ 199   1      //     printf ("\n*  Name: NUC8G885 Clock Output (P2.6) Demo Code.");
+ 200   1      //     printf ("\n*===================================================================\n");
+ 201   1      
+ 202   1          //P3M1 = 0x00;
+ 203   1          //P3M2 = 0x00;
+ 204   1      #if 1    
+ 205   1          //set_CLOEN;                                  //System Clock Output Enable
+ 206   1          //P35 = 0;
+ 207   1          //step1: enable clock source
+ 208   1          set_EXTEN1;
+ 209   1          clr_EXTEN0;
+ 210   1          
+ 211   1          //step2: check ready
+ 212   1          while((CKSWT&SET_BIT7)==0);
+ 213   1          //Delay10us(40);
+ 214   1          //P36 = 0;
+ 215   1          
+ 216   1          //step3: switching system clock source
+ 217   1          clr_OSC1;
+ 218   1          set_OSC0;
+ 219   1          
+ 220   1          InitialUART0_Timer1_Type4(115200);             /* 9600 Baud Rate*/
+ 221   1      #endif    
+ 222   1          //set_CLOEN;                                  //System Clock Output Enable
+ 223   1          
+ 224   1          //Delay10us(100);
+ 225   1          
+ 226   1          
+ 227   1          
+ 228   1          set_WKTR; 
+ 229   1          set_EWKT;
+ 230   1          WKCON |= 0x03;
+ 231   1          //RWK = 0xF0;
+C51 COMPILER V9.51   TEST                                                                  12/22/2014 17:29:40 PAGE 5   
+
+ 232   1          
+ 233   1          set_EX0;                                    //INT0
+ 234   1          EA = 1;
+ 235   1      
+ 236   1          while(1)
+ 237   1          {
+ 238   2               //set_WKTR;                                   //Wake-up timer run 
+ 239   2               //printf ("\n*  Name: NUC8G885 Clock Output (P2.6) Demo Code.");
+ 240   2      //          Random_Delay();
+ 241   2               Send_Data_To_UART0(0x55);
+ 242   2               Send_Data_To_UART0(0xAA);
+ 243   2               Send_Data_To_UART0(0x55);
+ 244   2               Send_Data_To_UART0(0xAA);
+ 245   2               Send_Data_To_UART0(0x55);
+ 246   2      //          NOP;
+ 247   2      //          NOP;
+ 248   2      //          NOP;
+ 249   2      //          NOP;
+ 250   2      //          NOP;
+ 251   2              //set_P24;
+ 252   2              //P31 = 1;
+ 253   2               set_P25;
+ 254   2               set_PD;                                 //Enter Power Down
+ 255   2          }
+ 256   1          
+ 257   1      //     /* Change system closk source */
+ 258   1      //     #if SYS_CLK_EN == 1
+ 259   1      //         #if   SYS_SEL == 0
+ 260   1      //             System_Clock_Select(E_HXTEN);       //Fosc = 2~25MHz XTAL
+ 261   1      //         #elif SYS_SEL == 1
+ 262   1      //             System_Clock_Select(E_LXTEN);       //Fosc = 32.768KHz XTAL
+ 263   1      //         #elif SYS_SEL == 2
+ 264   1      //             System_Clock_Select(E_HIRCEN);      //Fosc = 22.1184MHz Internal RC
+ 265   1      //         #elif SYS_SEL == 3
+ 266   1      //             System_Clock_Select(E_LIRCEN);      //Fosc = 10KHz Internal RC
+ 267   1      //         #elif SYS_SEL == 4
+ 268   1      //             System_Clock_Select(E_OSCEN);       //Fosc = OSC-In External OSC
+ 269   1      //         #endif
+ 270   1      //     #endif
+ 271   1          
+ 272   1      //     #if SYS_DIV_EN == 1
+ 273   1      //         CKDIV = SYS_DIV;                        //Fsys = Fosc / (2* CLKDIV) = Fcpu
+ 274   1      //     #endif
+ 275   1      
+ 276   1          //set_CLOEN;                                  //System Clock Output Enable
+ 277   1      //     printf ("\n*  Please measure P2.6 pin for system clock output, it should be 22.1184MHz");
+ 278   1      //     while(1)
+ 279   1      //     {
+ 280   1      //         P02 = 0;
+ 281   1      //         Timer0_Delay1ms(1000);
+ 282   1      //         P02 = 1;
+ 283   1      //         Timer0_Delay1ms(1000);
+ 284   1      //     }
+ 285   1      /* =================== */
+ 286   1      }
+ 287          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    398    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.51   TEST                                                                  12/22/2014 17:29:40 PAGE 6   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

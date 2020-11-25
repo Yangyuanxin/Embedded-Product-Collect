@@ -1,0 +1,166 @@
+C51 COMPILER V9.52.0.0   ROMCONST                                                          07/17/2015 13:32:37 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE ROMCONST
+OBJECT MODULE PLACED IN .\Output\ROMCONST.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\ROMCONST.C OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include;..\..\Common)
+                    - DEFINE(FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\List\ROMCONST.lst) TABS(2) OBJECT(.\Output\ROMCONST.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 GPIO demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Version.h"
+  21          #include "Typedef.h"
+  22          #include "Define.h"
+  23          #include "SFR_Macro.h"
+  24          #include "Common.h"
+  25          #include "Delay.h"
+  26          #include "WR_AP.h"
+  27          
+  28          
+  29          /*
+  30          //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
+  31          //
+  32          //<e0> System Clock Source Configuration
+  33          // <o1> System Clock Source Selection
+  34          //      <0=> 22.1184MHz Internal
+  35          //      <1=> 10KHz      Internal
+  36          //</e>
+  37          //
+  38          //<e2> Clock Divider Configuration
+  39          //     <o3.0..7>  System Clock Source Devider
+  40          //                     <i> Fsys = (System Clock Source) / (2 * Devider)
+  41          //                     <1-255>
+  42          //</e>
+  43          //
+  44          // <o4> Port0 Mode Selection (P0[3:0])
+  45          //      <0=> Quasi-Bidirectional
+C51 COMPILER V9.52.0.0   ROMCONST                                                          07/17/2015 13:32:37 PAGE 2   
+
+  46          //      <1=> Push-Pull
+  47          //      <2=> Input-Only (high-impedance)
+  48          //      <3=> Open-Drain
+  49          //
+  50          // <o6> Port2 Mode Selection (P2.0)
+  51          //      <0=> Quasi-Bidirectional
+  52          //      <1=> Push-Pull
+  53          //      <2=> Input-Only (high-impedance)
+  54          //      <3=> Open-Drain
+  55          //
+  56          // <o7> Port3 Mode Selection (P3.0)
+  57          //      <0=> Quasi-Bidirectional
+  58          //      <1=> Push-Pull
+  59          //      <2=> Input-Only (high-impedance)
+  60          //      <3=> Open-Drain
+  61          //-------- <<< end of configuration section >>> ------------------------------
+  62          */
+  63          bit BIT_TMP;
+  64          UINT8 code_data1,code_data2;
+  65          UINT8 u8rddata = 0xaa;
+  66          UXD8 u8unib11,u8unib10,u8unib9,u8unib8,u8unib7,u8unib6,u8unib5,u8unib4,u8unib3,u8unib2,u8unib1,u8unib0;
+  67          
+  68          
+  69          
+  70          /*typedef void (*iap_func)(void);
+  71          UINT8 IAP_Func1(void);
+  72          iap_func  ROM_FUN = NULL; 
+  73          
+  74          
+  75              void myTest(void)
+  76              {
+  77                P02=~P02;
+  78              }
+  79              void myTest1(void)
+  80              {
+  81                P03=~P03;
+  82              }
+  83          
+  84          
+  85          
+  86          void main (void) 
+  87          {
+  88          
+  89          ROM_FUN = 0X2000;
+  90          
+  91           if (ROM_FUN!=NULL)
+  92           {
+  93            ROM_FUN();
+  94            }
+  95            while (1);
+  96          }
+  97          
+  98            
+  99            */
+ 100          typedef void (*FUNCT_PTR_V_V)(void);
+ 101          
+ 102          
+ 103          
+ 104          unsigned char IntSrc0;
+ 105          static void function_0(void){ IntSrc0=0x00; }
+ 106          static void function_1(void){ IntSrc0=0x01; }
+ 107          
+C51 COMPILER V9.52.0.0   ROMCONST                                                          07/17/2015 13:32:37 PAGE 3   
+
+ 108          const  FUNCT_PTR_V_V code function_table2[2] ={ function_0, function_1 };
+ 109          #define FUNCT_PTR_V_V _at_ 0x2000
+ 110          
+ 111          void main(void)
+ 112          {
+ 113   1      
+ 114   1        function_table2[0]();   // function pointer is loaded with invalid value
+ 115   1        while(1);
+ 116   1      
+ 117   1      }
+ 118            
+ 119          /************************************************************
+ 120           To check FLASH 0x3890 data in memory1 window key in C:0x3880
+ 121          **************************************************************/
+ 122            
+ 123          
+ 124          
+ 125          
+ 126          
+ 127          
+ 128          
+ 129          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     27    ----
+   CONSTANT SIZE    =      6    ----
+   XDATA SIZE       =     12    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

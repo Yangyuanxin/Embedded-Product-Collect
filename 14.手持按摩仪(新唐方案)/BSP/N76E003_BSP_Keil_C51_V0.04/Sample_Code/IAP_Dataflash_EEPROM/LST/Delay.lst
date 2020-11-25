@@ -1,0 +1,161 @@
+C51 COMPILER V9.52.0.0   DELAY                                                             06/06/2016 14:24:21 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE DELAY
+OBJECT MODULE PLACED IN .\Output\Delay.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\Common\Delay.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_221184) DEBUG
+                    - OBJECTEXTEND PRINT(.\LST\Delay.lst) TABS(2) OBJECT(.\Output\Delay.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          #include "N76E885.h"
+  15          #include "Typedef.h"
+  16          #include "Define.h"
+  17          #include "SFR_Macro.h"
+  18          #include "Common.h"
+  19          #include "Delay.h"
+  20          
+  21          #ifdef FOSC_110592
+                  #define VALUE_10us          65536-9     //9*12/11.0592 = 10 uS,  Timer Clock = Fsys/12
+                  #define VALUE_1ms           65536-923   //923*12/11.0592 = 1 mS, Timer Clock = Fsys/12
+                  #define TM3_VALUE_10us      65536-28    //28*4/11.0592 = 10 uS,  Timer Clock = Fsys/4
+                  #define TM3_VALUE_1ms       65536-2765  //2765*4/11.0592 = 1 mS, Timer Clock = Fsys/4
+              #endif
+  27          #ifdef FOSC_184320
+                  #define VALUE_10us          65536-15    //15*12/18.432 = 10 uS,  Timer Clock = Fsys/12
+                  #define VALUE_1ms           65536-1536  //1536*12/18.432 = 1 mS, Timer Clock = Fsys/12
+                  #define TM3_VALUE_10us      65536-46    //46*4/18.432 = 10 uS,   Timer Clock = Fsys/4
+                  #define TM3_VALUE_1ms       65536-4608  //4608*4/18.432 = 1 mS,  Timer Clock = Fsys/4
+              #endif
+  33          #ifdef FOSC_200000
+                  #define VALUE_10us          65536-17    //17*12/20.0000 = 10 uS,  Timer Clock = Fsys/12
+                  #define VALUE_1ms           65536-1666  //1666*12/20.0000 = 1 mS, Timer Clock = Fsys/12
+                  #define TM3_VALUE_10us      65536-50    //50*4/20.000 = 10 uS,    Timer Clock = Fsys/4
+                  #define TM3_VALUE_1ms       65536-5000  //5000*4/20.000 = 1 mS,   Timer Clock = Fsys/4
+              #endif
+  39          #ifdef FOSC_221184
+  40              #define VALUE_10us          65536-18    //18*12/22.1184 = 10 uS,  Timer Clock = Fsys/12
+  41              #define VALUE_1ms           65536-1843  //1843*12/22.1184 = 1 mS, Timer Clock = Fsys/12
+  42              #define TM3_VALUE_10us      65536-56    //9*4/22.1184 = 10 uS,    Timer Clock = Fsys/4
+  43              #define TM3_VALUE_1ms       65536-5530  //923*4/22.1184 = 1 mS,   Timer Clock = Fsys/4
+  44          #endif
+  45          
+  46          //-------------------------------------------------------------------------
+  47          void Delay10us(UINT16 u16CNT)
+C51 COMPILER V9.52.0.0   DELAY                                                             06/06/2016 14:24:21 PAGE 2   
+
+  48          {
+  49   1          clr_T0M;                                //T0M=0, Timer0 Clock = Fsys/12
+  50   1          TMOD |= 0x01;                           //Timer0 is 16-bit mode
+  51   1          set_TR0;                                //Trigger Timer0
+  52   1          while (u16CNT != 0)
+  53   1          {
+  54   2              TL0 = LOBYTE(VALUE_10us);   
+  55   2              TH0 = HIBYTE(VALUE_10us);
+  56   2              while (TF0 != 1);                   //Check Timer0 Time-Out Flag
+  57   2              clr_TF0;
+  58   2              u16CNT --;
+  59   2          }
+  60   1          clr_TR0;                                //Stop the Timer0
+  61   1      }
+  62          //------------------------------------------------------------------------------
+  63          void Timer0_Delay1ms(UINT32 u32CNT)
+  64          {
+  65   1          clr_T0M;                                //T0M=0, Timer0 Clock = Fsys/12
+  66   1          TMOD |= 0x01;                           //Timer0 is 16-bit mode
+  67   1          set_TR0;                                //Trigger Timer0
+  68   1          while (u32CNT != 0)
+  69   1          {
+  70   2              TL0 = LOBYTE(VALUE_1ms); 
+  71   2              TH0 = HIBYTE(VALUE_1ms);
+  72   2              while (TF0 != 1);                   //Check Timer0 Time-Out Flag
+  73   2              clr_TF0;
+  74   2              u32CNT --;
+  75   2          }
+  76   1          clr_TR0;                                //Stop the Timer0
+  77   1      }
+  78          //------------------------------------------------------------------------------
+  79          void Timer1_Delay1ms(UINT32 u32CNT)
+  80          {
+  81   1          clr_T1M;                                //T1M=0, Timer1 Clock = Fsys/12
+  82   1          TMOD |= 0x10;                           //Timer1 is 16-bit mode
+  83   1          set_TR1;                                //Trigger Timer1
+  84   1          while (u32CNT != 0)
+  85   1          {
+  86   2              TL1 = LOBYTE(VALUE_1ms); 
+  87   2              TH1 = HIBYTE(VALUE_1ms);
+  88   2              while (TF1 != 1);                   //Check Timer1 Time-Out Flag
+  89   2              clr_TF1;
+  90   2              u32CNT --;
+  91   2          }
+  92   1          clr_TR1;                                //Stop the Timer1
+  93   1      }
+  94          //------------------------------------------------------------------------------
+  95          void Timer2_Delay1ms(UINT32 u32CNT)
+  96          {
+  97   1          /*                                      //Timer2 Clock = Fsys/4 */
+  98   1          clr_T2DIV2;
+  99   1          clr_T2DIV1;
+ 100   1          set_T2DIV0;
+ 101   1          set_TR2;                                //Trigger Timer2
+ 102   1          while (u32CNT != 0)
+ 103   1          {
+ 104   2              TL2 = LOBYTE(TM3_VALUE_1ms); 
+ 105   2              TH2 = HIBYTE(TM3_VALUE_1ms);
+ 106   2              while (TF2 != 1);                   //Check Timer2 Time-Out Flag
+ 107   2              clr_TF2;
+ 108   2              u32CNT --;
+ 109   2          }
+C51 COMPILER V9.52.0.0   DELAY                                                             06/06/2016 14:24:21 PAGE 3   
+
+ 110   1          TR2 =0 ;                                //Stop the Timer2
+ 111   1      }
+ 112          //------------------------------------------------------------------------------
+ 113          void Timer3_Delay1ms(UINT32 u32CNT)
+ 114          {
+ 115   1          T3CON = 0x02;                           //Timer3 Clock = Fsys/4
+ 116   1          set_TR3;                                //Trigger Timer3
+ 117   1          while (u32CNT != 0)
+ 118   1          {
+ 119   2              RL3 = LOBYTE(TM3_VALUE_1ms); 
+ 120   2              RH3 = HIBYTE(TM3_VALUE_1ms);
+ 121   2              while ((T3CON&SET_BIT4) != SET_BIT4);//Check Timer3 Time-Out Flag
+ 122   2              clr_TF3;
+ 123   2              u32CNT --;
+ 124   2          }
+ 125   1          clr_TR3;                                //Stop the Timer3
+ 126   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    338    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      16
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

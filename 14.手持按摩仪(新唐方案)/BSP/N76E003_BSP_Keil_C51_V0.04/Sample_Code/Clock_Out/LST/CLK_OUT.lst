@@ -1,0 +1,84 @@
+C51 COMPILER V9.52.0.0   CLK_OUT                                                           11/02/2016 11:17:04 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE CLK_OUT
+OBJECT MODULE PLACED IN .\Output\CLK_OUT.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\CLK_OUT.c OPTIMIZE(0,SPEED) BROWSE INCDIR(..\..\Include) DEFINE(FOSC_1
+                    -60000) DEBUG OBJECTEXTEND PRINT(.\LST\CLK_OUT.lst) TABS(2) OBJECT(.\Output\CLK_OUT.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 Clock Output demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_define.h"
+  24          
+  25          
+  26          //======================================================================================================
+  27          
+  28          void main(void)
+  29          {
+  30   1        
+  31   1          /* Note
+  32   1             MCU power on system clock is HIRC (16.0000MHz), if need change Fsys source pleaes copy hange system
+             - closk source demo
+  33   1          */
+  34   1          
+  35   1          Set_All_GPIO_Quasi_Mode;                    //in Function_define.h
+  36   1          set_CLOEN;                                  //System Clock Output Enable
+  37   1      //     Please measure P1.1 (CLO) pin for system clock output, it should as system clock;
+  38   1      
+  39   1          while(1)
+  40   1          {
+  41   2              clr_GPIO1;
+  42   2              Timer0_Delay1ms(500);
+  43   2              set_GPIO1;
+  44   2              Timer0_Delay1ms(500);
+C51 COMPILER V9.52.0.0   CLK_OUT                                                           11/02/2016 11:17:04 PAGE 2   
+
+  45   2          }
+  46   1      /* =================== */
+  47   1      }
+  48          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     50    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

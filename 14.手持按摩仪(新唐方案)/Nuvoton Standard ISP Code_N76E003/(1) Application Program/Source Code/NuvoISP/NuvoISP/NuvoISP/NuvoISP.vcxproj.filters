@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ISPTool">
+      <UniqueIdentifier>{33c61930-25a8-4d46-ae12-025411eab585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ISPTool\Interface">
+      <UniqueIdentifier>{8795e54d-6e0d-4705-bddd-1105a367c343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ISPTool\NuvoISP">
+      <UniqueIdentifier>{6d4df4ab-74d9-4b7c-a8c3-5acf54a5d545}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{23dd6b27-ba5e-40af-92b4-02ee453c4bfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\DialogConfiguration">
+      <UniqueIdentifier>{0034f4e7-1a36-4d9e-8d27-62a0913f885b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\DataBase">
+      <UniqueIdentifier>{2cc743b8-cd54-4d80-93dc-21214ce6546d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="External\PPTooltip">
+      <UniqueIdentifier>{8bf539e9-6469-494a-b3d5-fb2507a6bc10}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PPTooltip.h">
+      <Filter>External\PPTooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="PPDrawManager.h">
+      <Filter>External\PPTooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="PPHtmlDrawer.h">
+      <Filter>External\PPTooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="CeXDib.h">
+      <Filter>External\PPTooltip</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileinfo.cpp">
+      <Filter>ISPTool</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogResize.cpp">
+      <Filter>ISPTool</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogHex.cpp">
+      <Filter>ISPTool</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\CHidIO.cpp">
+      <Filter>ISPTool\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\CUartIO.cpp">
+      <Filter>ISPTool\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgInterfaceSel.cpp">
+      <Filter>ISPTool</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgNuvoISP.cpp">
+      <Filter>ISPTool\NuvoISP</Filter>
+    </ClCompile>
+    <ClCompile Include="ISPProc.cpp">
+      <Filter>ISPTool\NuvoISP</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\AppConfig.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_AU9100.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M05x.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M05xCN.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M058.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M451.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Mini51.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Mini51BN.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Mini51CN.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_MT500.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_N570.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_N572.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano100.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano100BN.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano103.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano112.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NM1120.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NM1200.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC1xx.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC2xx.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC4xx.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC102.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC103.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC103BN.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC131.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogResize2.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="NumEdit.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="HyperLink.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="Lang.cpp">
+      <Filter>External</Filter>
+    </ClCompile>
+    <ClCompile Include="NuvoISPTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_N76E1T.cpp">
+      <Filter>External\DialogConfiguration</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase\FlashInfo.cpp">
+      <Filter>External\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="DataBase\PartNumID.cpp">
+      <Filter>External\DataBase</Filter>
+    </ClCompile>
+    <ClCompile Include="About.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PPDrawManager.cpp">
+      <Filter>External\PPTooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="PPHtmlDrawer.cpp">
+      <Filter>External\PPTooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="PPTooltip.cpp">
+      <Filter>External\PPTooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="CeXDib.cpp">
+      <Filter>External\PPTooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="ISPLdCMD.cpp">
+      <Filter>ISPTool\NuvoISP</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\k-cm-memory.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\1373459379_4852.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\nulink.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\banner.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\nuvoton.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\chips.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\xp_style.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ISPTool.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

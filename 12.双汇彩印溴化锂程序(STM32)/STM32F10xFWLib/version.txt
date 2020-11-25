@@ -1,0 +1,389 @@
+/******************** (C) COPYRIGHT 2008 STMicroelectronics ********************
+* File Name          : version.txt
+* Author             : MCD Application Team
+* Version            : V2.0.3
+* Date               : 09/22/2008
+* Description        : Version file for STM32F10x Firmware Library (FWLib).
+*                      The enclosed firmware and all the related documentation
+*                      are not covered by a License Agreement, if you need such
+*                      License you can contact your local STMicroelectronics
+*                      office.
+********************************************************************************
+* THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+* WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE TIME.
+* AS A RESULT, STMICROELECTRONICS SHALL NOT BE HELD LIABLE FOR ANY DIRECT,
+* INDIRECT OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING FROM THE
+* CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE CODING
+* INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+*******************************************************************************/
+
+* V2.0.3 - 09/22/2008
+=====================
+   
+General
+*******
+     + stm32f10xfwlib_contents_html file updated:
+        - Description of firmware library package content
+        - Easy-to-use firmware library examples: add description of
+          how to use the project template to run the selected example
+
+
+< library >
+***********
+
+     + stm32f10x_map.h: add all STM32 Hardware registers bits definitions
+
+     + stm32f10x_conf.h: add a define for HSEStartUp_TimeOut
+
+     + stm32f10x_fsmc.h/.c:
+       - FSMC_MemoryType_CRAM is changed to FSMC_MemoryType_PSRAM
+       - FSMC_AsyncWait member removed from FSMC_NORSRAMInitTypeDef structure
+       - FSMC_BusTurnAroundDuration parameter removed in case of write configuration
+
+     + stm32f10x_rcc.h/.c:
+       - RCC_FLAG_HSIRDY define value changed to 0x21.
+       - StartUpCounterand HSEStatus variables are now local for RCC_WaitForHSEStartUp
+         function. 
+
+     + stm32f10x_i2c.h/.c: 
+       - Add new event: EV8: I2C_EVENT_MASTER_BYTE_TRANSMITTING
+
+     + stm32f10x_tim.c: 
+       - "=" operator changed to "|=" inside TIM_SelectOCxM function
+
+     + stm32f10x_can.c: Definitions names changed
+         
+
+< examples >
+************
+   + I2C Interrupt example
+     - Example updated according to I2C driver update
+
+   + I2C M24C08_EEPROM example
+     - i2c_ee.c file: add a loop on I2C_FLAG_BUSY in I2C_EE_PageWrite and
+       I2C_EE_BufferRead functions
+     - i2c_ee.c file: add STOP condition in I2C_EE_WaitEepromStandbyState
+       function
+
+   + SDIO example
+     - Example updated to support SD Card V2.0 and SD High Capacity cards.
+
+   + USART Polling example
+     - USART TC flag check changed by USART TXE flag check
+
+
+* V2.0.2 - 07/11/2008
+=====================
+   
+< library >
+***********
+     + stm32f10x_spi.c /.h
+       - SPI_I2S_ClearFlag function: some flags are removed from the possible 
+         flags parameters list. 
+         This function can clear only CRCERR flag.
+         
+       - SPI_I2S_ClearITPendingBit function: some pending bits are removed from 
+         the possible pending bits parameters list. 
+         This function can clear only CRCERR pending bit.         
+     
+    + stm32f10x_i2c.c /.h
+       - I2C_ClearFlag function: some flags are removed from the possible 
+         flags parameters list.
+         This function can clear only SMBALER, TIMEOUT, PECERR, OVR, AF, ARLO and
+         BERR flags. The passed parameter can be any combination of above flags.
+        
+      - I2C_GetITStatus function checks on interrupt pending bit and the interrupt
+        enable bit.
+         
+       - I2C_ClearITPendingBit function: some pending bits are removed from the 
+         possible pending bits parameters list.
+         This function can clear only SMBALER, TIMEOUT, PECERR, OVR, AF, ARLO and
+         BERR pending bits. The passed parameter can be any combination of above 
+         pending bits.         
+
+    + stm32f10x_usart.c /.h
+       - USART_ClearFlag function: some flags are removed from the possible flags 
+         parameters list. 
+         This function can clear only CTS, LBD, TC and RXNE flags.
+             
+       - USART_GetITStatus function: IS_USART_IT macro is changed to IS_USART_GET_IT
+       
+       - USART_ClearITPendingBit function: some pending bits are removed from 
+         the possible pending bits parameters list. 
+         This function can clear only CTS, LBD, TC and RXNE pending bits.
+          
+    + stm32f10x_tim.c
+       - remove IS_TIM_PERIPH_FLAG(TIMx, TIM_FLAG) macro from TIM_ClearFlag 
+         function
+         
+    + stm32f10x_wwdg.c
+       - use register direct access in the WWDG_GetFlagStatus function instead
+         of bit banding access
+
+    + stm32f10x_gpio.c
+       - GPIO_Init function update        
+
+            
+< examples >
+************
+   + I2C Interrupt example
+     - The example is changed to provide a description of how to manage data 
+       transfer from master transmitter to slave receiver and from slave 
+       transmitter to master receiver using interrupts.
+     - add main.h file
+       
+   + I2C 10bitAddress example
+     - Updated according to the I2C driver update
+     
+   + I2C DualAddress example
+     - Updated according to the I2C driver update
+     
+   + I2C SMBus example
+     - Updated according to the I2C driver update
+     
+   + USART DMA_Interrupt example
+     - Updated according to the USART driver update
+     
+   + USART Smartcard example
+     - Updated according to the USART driver update
+     
+   + DAC Examples
+     - GPIO_Configuration function updated: Once the DAC channel is enabled, 
+       the corresponding GPIO pin is automatically connected to the DAC 
+       converter. In order to avoid parasitic consumption, the GPIO pin should 
+       be configured in analog.
+     
+   + RTC LSI_Calib example
+     - Example Update: add main.h file
+
+  
+* V2.0.1 - 06/13/2008
+=====================
+    + Remove the Firmware License Agreement file
+    
+    + Update the source files's header to remove reference to the License
+
+
+
+* V2.0 - 05/23/2008
+===================
+
+General
+***********
+    + The FWLib V2.0 is an update of the V1.0 to support the extra peripherals
+      and features embedded in the STM32 High-density devices.
+    
+    + Add Firmware License Agreement file
+
+    + For more details about the Firmware Library, please refer to the User
+      manual "UM0427 ARM®-based 32-bit MCU STM32F101xx and STM32F103xx Firmware
+      Library"  available for download from the ST microcontrollers website: www.st.com/stm32
+           
+   Glossary
+       - Medium-density devices are STM32F101xx and STM32F103xx microcontrollers
+         where the Flash memory density ranges between 32 and 128 Kbytes.
+       - High-density devices are STM32F101xx and STM32F103xx microcontrollers
+         where the Flash memory density ranges between 256 and 512 Kbytes.
+
+    
+< library >
+***********
+    + Add driver for new peripherals: FSMC, SDIO and DAC. 
+ 
+    + stm32f10x_spi.c /.h
+       - driver update to support new I2S functionality
+
+    + Add driver for DBGMCU and CRC modules
+     
+    + stm32f10x_dma.c /.h
+       - driver update to support DMA2 channels
+
+    + stm32f10x_adc.c /.h
+       - driver update to support ADC3    
+
+    + stm32f10x_usart.c /.h
+       - driver update to support UART4 and UART5
+       - new USART_ClockInitTypeDef structure derived from USART_InitTypeDef one
+         (for USART synchronous parameters) 
+
+    + Timer peripherals driver
+       - stm32f10x_tim1.c /.h and stm32f10x_tim.c /.h drivers merged in one single
+         driver: stm32f10x_tim.c /.h
+       - update to support new timer peripherals: TIM5, TIM6, TIM7 and TIM8
+       - add new macro for function parameters test      
+       - TIM_TimeBaseInit, TIM_PrescalerConfig and TIM_GenerateEvent functions
+         updated
+       - TIM_TIxExternalClockConfig, TIM_ETRClockMode1Config, TIM_ETRClockMode2Config,
+         TIM_ETRConfig, TIM_SetIC1Prescaler, TIM_SetIC2Prescaler, TIM_SetIC3Prescaler
+         and TIM_SetIC4Prescaler functions prototype update
+      
+    + stm32f10x_gpio.c /.h
+       - driver update to support GPIOF and GPIOG 
+   
+    + stm32f10x_lib.c /.h, stm32f10x_map.h, stm32f10x_conf.h
+       - update to add new peripheral’s register declarations and header files
+         inclusion
+
+    + stm32f10x_nvic.c /.h           
+    + stm32f10x_itc.c /.h
+    + stm32f10x_vector.c /.s            
+       - update to support the new peripherals interrupt vector
+
+    + stm32f10x_rcc.c /.h
+       - driver update to support new peripherals clock & reset enable/disable 
+       - HSE Oscillator start up timeout increased to 0x01FF
+       - RCC_DeInit function update 
+ 
+    + stm32f10x_bkp.c /.h
+       - driver update to support the new 32 backup registers 
+
+    + stm32f10x_map.h
+    + stm32f10x_can.c     
+       - CAN register numbering update
+
+    + stm32f10x_flash.h 
+       - update macro "IS_FLASH_ADDRESS" to support memory size up to 512KB
+
+    + stm32f10x_flash.c 
+       - FLASH_EnableWriteProtection function: update "FLASH_Pages" paramter values
+         description
+
+    + stm32f10x_exti.c
+       - EXTI_Init function update
+    
+    + stm32f10x_type.h
+       - 'S32_MIN' type corrected to "#define S32_MIN    ((s32)-2147483648)"
+
+    + stm32f10x_ppp.h
+       - in all macros, put the passed parameter between parenthesis
+     
+    + stm32f10x_can.c
+       - extended ID coded in 29-bit long
+       - CAN initialization acknowledge error fixed
+ 
+    + stm32f10x_usart.c
+       - change "&=" instead of "="  in USART_ClearITPendingBit  and USART_ClearFlag functions
+       
+    + stm32f10x_adc.c
+       - replace "&=" by "="  in ADC_ClearITPendingBit and ADC_ClearFlag functions
+       
+    + stm32f10x_i2c.c
+       - replace "&=" by "="  in I2C_ClearITPendingBit and I2C_ClearFlag functions 
+
+    + stm32f10x_tim.c
+       - replace "&=" by "="  in TIM_ClearITPendingBit and TIM_ClearFlag functions 
+
+
+< project >
+***********
+   + stm32f10x_it.c
+      - update file description    
+
+   + Add template projects for EWARM v5 and HiTOP toolchains 
+             
+
+< examples >
+************
+   + FWLib V1.0 examples ported to run on STMicroelectronics STM3210E-EVAL
+     evaluation board (in addition to STM3210B-EVAL)
+
+   + Add new examples for FSMC, SDIO, DAC and I2S (run only on High-density devices)     
+   
+   + Add new examples for ADC, DMA and RTC peripherals
+    
+   + Add new example for CRC module  
+   
+   + Examples folder renamed, use of short name instead of examplex (x: 1 2 ...)  
+
+  
+                 
+* V1.0 - 10/08/2007
+====================
+ + Add template project with RIDE toolchain 
+
+ + In all stm32f10x_ppp.c and stm32f10x_conf.h files: change "assert" macro name 
+  to "assert_param"
+  Note: If you are using the FW Library V0.3 in your application and you want to
+        migrate to V1.0, you have to update your application’s “stm32f10x_conf.h”
+        file with the latest one (provided with V1.0).
+
+ + stm32f10x_conf.h
+   - Remove '#undef assert' 
+   - Change '#define DEBUG' by '#define DEBUG    1'
+ 
+ + stm32f10x_type.h
+   - Add new types: sc32, sc16, sc8, vsc32, vsc16 and vsc8  
+ 
+ + stm32f10x_it.c 
+    - Add basic fault exception handling: in "HardFaultException", "MemManageException",
+     "BusFaultException" and "UsageFaultException" ISR the following code was added:
+     /* Go to infinite loop when exception occurs */
+     while (1)
+     {
+     }
+
+ + stm32f10x_rcc.c
+    - "RCC_WaitForHSEStartUp()" function updated to resolve issue with high GNU 
+      compiler optimization 
+
+ + stm32f10x_gpio.h
+    - '#define GPIO_Remap1_CAN            ((u32)0x001D2000)' changed to 
+      '#define GPIO_Remap1_CAN            ((u32)0x001D4000)'
+    
+ + stm32f10x_rtc.c/.h
+   - "RTC_GetPrescaler" function removed
+
+ + stm32f10x_bkp.c/.h
+    - add "BKP_RTCOutputConfig()" function to allow to select the RTC output
+      source(Calib clock, RTC Alarm or RTC Second) to output on Tamper pin and
+      remove "BKP_RTCCalibrationClockOutputCmd()" function  
+       
+ + stm32f10x_can.h
+    - CAN synchronization jump width defines updated
+      - '#define CAN_SJW_0tq'   ==> '#define CAN_SJW_1tq' 
+      - '#define CAN_SJW_1tq'   ==> '#define CAN_SJW_2tq' 
+      - '#define CAN_SJW_2tq'   ==> '#define CAN_SJW_3tq' 
+      - '#define CAN_SJW_3tq'   ==> '#define CAN_SJW_4tq' 
+      
+ + stm32f10x_tim1.c/.h
+    - "TIM1_OCxNPolarityConfig(u16 TIM1_OCPolarity)" function: change parameter 
+      name to 'TIM1_OCNPolarity' 
+    - change 'TIM1_ICSelection_TRGI' by 'TIM1_ICSelection_TRC'
+
+ + stm32f10x_tim.c/.h
+    - change 'TIM_ICSelection_TRGI' by 'TIM_ICSelection_TRC'
+              
+ + examples
+    - ADC examples 3 & 4 updated    
+    - DEBUG example
+      - Example modified to support RIDE specific printf function implementation
+    - I2C example5
+      - i2c_ee.c: add the following function prototypes: "void GPIO_Configuration(void)"
+         add "void I2C_Configuration(void)"
+    - Add GPIO pin toggle example
+    - BKP, CAN, DMA, NVIC and I2C examples readme files updated
+    - Use decimal (instead of hexadecimal) values constants in TIM, TIM1 and
+      IWDG examples
+    - USART
+      - example 12
+        - USART3 ISR updated 
+        - Timeout define "SC_Receive_Timeout" updated to 0x4000
+      - example 7
+        - Example modified to support RIDE specific printf function implementation
+    - RTC example
+      - Example modified to support RIDE specific printf function implementation
+      - Change "BKP_RTCCalibrationClockOutputCmd()" function  by "RTC_ClockOutput()"
+      - LSI removed as RTC clock source
+    - IWDG example
+      - LSI frequency value changed from 32 KHz to 40 KHz  
+    - Update the STM32F10x evaluation board name from STM32F10x-EVAL to STM3210B-EVAL 
+
+   
+* V0.3 - 05/21/2007 
+====================
+  Created.
+  
+
+******************* (C) COPYRIGHT 2008 STMicroelectronics *****END OF FILE******
+
+

@@ -1,0 +1,103 @@
+C51 COMPILER V9.52.0.0   UID_CHECK_CHENGDA                                                 04/11/2016 17:56:49 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE UID_CHECK_CHENGDA
+OBJECT MODULE PLACED IN .\Output\UID_check_chengda.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\UID_check_chengda.C OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include;..\.
+                    -.\Common) DEFINE(FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\List\UID_check_chengda.lst) TABS(2) OBJECT(.\Output\UID_check_c
+                    -hengda.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E885.h"
+   3          #include "Define.h"
+   4          #include "UID_check.h"
+   5          
+   6          typedef unsigned char         UINT8;
+   7          typedef unsigned char xdata   UXD8;
+   8          
+   9          UXD8 STR_TMP;
+  10          UXD8 u8unib;
+  11          
+  12          #define set_IAPEN   STR_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON |= 0x01 ;EA=STR_TMP;
+  13          #define set_IAPGO   STR_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG |= 0X01 ;EA=STR_TMP;
+  14          #define clr_IAPEN   STR_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON &= 0XFE ;EA=STR_TMP;
+  15          #define UNC_READ    0x04
+  16          
+  17          void  UCID_check(void)
+  18          {
+  19   1          set_IAPEN;
+  20   1          IAPAH = 0x00;
+  21   1        
+  22   1          IAPAL = 0x20;
+  23   1          IAPCN = UNC_READ;
+  24   1          set_IAPGO;
+  25   1          u8unib = IAPFD;
+  26   1          while(u8unib!=0xCD);
+  27   1        
+  28   1          IAPAL = 0x21;
+  29   1          IAPCN = UNC_READ;
+  30   1          set_IAPGO;
+  31   1          u8unib = IAPFD;
+  32   1          while (u8unib!=0x8B);
+  33   1          
+  34   1          
+  35   1          set_IAPEN;
+  36   1          IAPAL = 0x22;
+  37   1          IAPCN = UNC_READ;
+  38   1          set_IAPGO;
+  39   1          u8unib = IAPFD;
+  40   1          while (u8unib!=0xB9);
+  41   1        
+  42   1          IAPAL = 0x23;
+  43   1          IAPCN = UNC_READ;
+  44   1          set_IAPGO;
+  45   1          u8unib = IAPFD;
+  46   1          while (u8unib!=0x64);
+  47   1          
+  48   1          IAPAL = 0x24;
+  49   1          IAPCN = UNC_READ;
+  50   1          set_IAPGO;
+  51   1          u8unib = IAPFD;
+  52   1          while (u8unib!=0x49);
+  53   1          
+C51 COMPILER V9.52.0.0   UID_CHECK_CHENGDA                                                 04/11/2016 17:56:49 PAGE 2   
+
+  54   1          IAPAL = 0x25;
+  55   1          IAPCN = UNC_READ;
+  56   1          set_IAPGO;
+  57   1          u8unib = IAPFD;
+  58   1          while (u8unib!=0x5A);
+  59   1          
+  60   1          IAPAL = 0x26;
+  61   1          IAPCN = UNC_READ;
+  62   1          set_IAPGO;
+  63   1          u8unib = IAPFD;
+  64   1          while (u8unib!=0x6B);
+  65   1          
+  66   1          IAPAL = 0x27;
+  67   1          IAPCN = UNC_READ;
+  68   1          set_IAPGO;
+  69   1          u8unib = IAPFD;
+  70   1          while (u8unib!=0x7C);
+  71   1          
+  72   1            
+  73   1          clr_IAPEN;
+  74   1          while(1);
+  75   1        }
+  76          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    399    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      2    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

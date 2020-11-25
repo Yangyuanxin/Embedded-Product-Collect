@@ -1,0 +1,127 @@
+C51 COMPILER V9.52.0.0   WDT                                                               11/02/2016 13:16:58 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE WDT
+OBJECT MODULE PLACED IN .\Output\WDT.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\WDT.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJECTEXT
+                    -END PRINT(.\LST\WDT.lst) TABS(2) OBJECT(.\Output\WDT.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 Watch Dog as pure timer with interrupt demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          
+  26          /*********************************************************************************************************
+             -***
+  27          *    WDT interrupt sub-routine
+  28          **********************************************************************************************************
+             -**/
+  29          void WDT_ISR (void)   interrupt 10
+  30          {
+  31   1      
+  32   1        //---------toggle GPIO1---------  
+  33   1          clr_GPIO1;
+  34   1          Timer0_Delay1ms(50);
+  35   1          set_GPIO1;
+  36   1          Timer0_Delay1ms(50);
+  37   1          clr_GPIO1;
+  38   1          Timer0_Delay1ms(50);
+  39   1          set_GPIO1;
+  40   1          Timer0_Delay1ms(50);
+  41   1        //---------end toggle GPIO1--------
+  42   1          clr_WDTF;
+  43   1          set_WDCLR;
+C51 COMPILER V9.52.0.0   WDT                                                               11/02/2016 13:16:58 PAGE 2   
+
+  44   1      }
+  45          
+  46          /*********************************************************************************************************
+             -***
+  47          *    Main function 
+  48          **********************************************************************************************************
+             -**/
+  49          void main (void)
+  50          {
+  51   1      /* Note
+  52   1        WDT timer base is LIRC 10Khz
+  53   1      */
+  54   1          
+  55   1        Set_All_GPIO_Quasi_Mode;
+  56   1        
+  57   1      //WDT init
+  58   1      //--------------------------------------------------------
+  59   1      //Warning:
+  60   1      //Pleaes always check CONFIG WDT disable first 
+  61   1      //only when WDT reset disable, WDT use as pure timer
+  62   1      //--------------------------------------------------------
+  63   1          TA=0xAA;TA=0x55;WDCON=0x06;     //Setting WDT prescale 
+  64   1          set_WDTR;                       //WDT run
+  65   1          set_WDCLR;                      //Clear WDT timer
+  66   1          set_EWDT;
+  67   1          EA =1;
+  68   1      
+  69   1      #if 1
+  70   1          while(1);
+  71   1      #else
+                  set_WIDPD;                      //WDT run in POWER DOWM mode setting if needed
+                  while (1)
+                  {
+                    set_PD;
+                  //---------toggle GPIO1---------  
+                    clr_GPIO1;
+                    Timer1_Delay1ms(100);
+                    set_GPIO1;
+                    Timer1_Delay1ms(100);
+                    clr_GPIO1;
+                    Timer1_Delay1ms(100);
+                    set_GPIO1;
+                    Timer1_Delay1ms(100);
+                  //---------end toggle GPIO1---------
+                  }
+              #endif
+  88   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    213    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+".\Output\xRAM_768byte.obj",
+"C:\Keil\C51\LIB\C51L.LIB" 
+TO ".\Output\xRAM_768" 
+PRINT(".\LST\xRAM_768.m51") RAMSIZE(256) 

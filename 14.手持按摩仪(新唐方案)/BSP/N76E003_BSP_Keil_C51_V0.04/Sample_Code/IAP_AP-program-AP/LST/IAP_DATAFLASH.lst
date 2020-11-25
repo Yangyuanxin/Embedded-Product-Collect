@@ -1,0 +1,276 @@
+C51 COMPILER V9.52.0.0   IAP_DATAFLASH                                                     11/02/2016 11:28:38 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE IAP_DATAFLASH
+OBJECT MODULE PLACED IN .\Output\IAP_DATAFLASH.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\IAP_DATAFLASH.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG
+                    - OBJECTEXTEND PRINT(.\LST\IAP_DATAFLASH.lst) TABS(2) OBJECT(.\Output\IAP_DATAFLASH.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 APROM program DATAFLASH (APROM) demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          
+  26          #define     CID_READ            0x0B
+  27          #define     DID_READ            0x0C
+  28          
+  29          /*
+  30            Since the DATAFLASH is in the APROM. Program command is same as program APROM
+  31          */
+  32          #define     PAGE_ERASE_AP       0x22
+  33          #define     BYTE_READ_AP        0x00
+  34          #define     BYTE_PROGRAM_AP     0x21
+  35          #define     PAGE_SIZE           128
+  36          
+  37          #define     ERASE_FAIL          0x70
+  38          #define     PROGRAM_FAIL        0x71
+  39          #define     IAPFF_FAIL          0x72
+  40          #define     IAP_PASS            0x00
+  41          
+  42          //---------------------------------------------------------------
+  43          // Following define by customer
+  44          // Please confirm the start addresss not over your code size
+  45          //---------------------------------------------------------------
+C51 COMPILER V9.52.0.0   IAP_DATAFLASH                                                     11/02/2016 11:28:38 PAGE 2   
+
+  46          #define     DATA_SIZE           4096   
+  47          #define     DATA_START_ADDR     0x3800          
+  48          
+  49          /********************************************************************************************
+  50           Following IAP command register is also define in SFR_Macro.h
+  51           
+  52            #define set_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON |= SET_BIT0 ;EA=BIT_TMP
+  53            #define clr_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON &= ~SET_BIT0;EA=BIT_TMP
+  54            #define set_APUEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN |= SET_BIT0 ;EA=BIT_TMP
+  55            #define clr_APUEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN &= ~SET_BIT0;EA=BIT_TMP
+  56            
+  57          **********************************************************************************************/
+  58          
+  59          
+  60          
+  61          void IAP_ERROR_LED(void)
+  62          {
+  63   1        while (1)
+  64   1        {
+  65   2          clr_P03;
+  66   2          Timer1_Delay1ms(100);
+  67   2          set_P03;
+  68   2          Timer1_Delay1ms(100);
+  69   2        }
+  70   1      
+  71   1      }
+  72          
+  73          //--------------------------------------------------------------------------------------------------------
+             ----/
+  74          void Trigger_IAP(void)
+  75          {   
+  76   1          set_IAPGO;                                  //trigger IAP
+  77   1          if((CHPCON&SET_BIT6)==SET_BIT6)             // if fail flag is set, toggle error LED and IAP stop
+  78   1          {
+  79   2            clr_IAPFF;
+  80   2            IAP_ERROR_LED();
+  81   2          }
+  82   1      }
+  83          /*
+  84              WARNING:
+  85            No matter read or writer, when IAPFF is set 1, 
+  86            this step process is fail. DATA should be ignore.
+  87          */
+  88          //--------------------------------------------------------------------------------------------------------
+             ----/
+  89          
+  90          /*********************************************************************************************************
+             -********
+  91          Erase APROM subroutine:
+  92            
+  93          
+  94          **********************************************************************************************************
+             -********/    
+  95          void Erase_APROM(void)
+  96          {   
+  97   1          UINT16 u16Count;
+  98   1      
+  99   1          set_IAPEN;                          // Enable IAP function
+ 100   1          IAPFD = 0xFF;                       // IMPORTANT !! To erase function must setting IAPFD = 0xFF 
+ 101   1          IAPCN = PAGE_ERASE_AP;
+ 102   1          set_APUEN;                          //  APROM modify Enable
+ 103   1        
+C51 COMPILER V9.52.0.0   IAP_DATAFLASH                                                     11/02/2016 11:28:38 PAGE 3   
+
+ 104   1          for(u16Count=0x0000;u16Count<DATA_SIZE/PAGE_SIZE;u16Count++)    //
+ 105   1          {        
+ 106   2              IAPAL = LOBYTE(u16Count*PAGE_SIZE + DATA_START_ADDR);
+ 107   2              IAPAH = HIBYTE(u16Count*PAGE_SIZE + DATA_START_ADDR);
+ 108   2              Trigger_IAP(); 
+ 109   2          } 
+ 110   1          clr_APUEN;
+ 111   1          clr_IAPEN;
+ 112   1      }
+ 113          //--------------------------------------------------------------------------------------------------------
+             ----
+ 114          void Erase_APROM_Verify(void)
+ 115          {   
+ 116   1          UINT16 u16Count;
+ 117   1          set_IAPEN;
+ 118   1          IAPAL = LOBYTE(DATA_START_ADDR);
+ 119   1          IAPAH = HIBYTE(DATA_START_ADDR);
+ 120   1          IAPCN = BYTE_READ_AP;
+ 121   1      
+ 122   1          for(u16Count=0;u16Count<DATA_SIZE/PAGE_SIZE;u16Count++)
+ 123   1          {   
+ 124   2              IAPFD = 0x00;    
+ 125   2              Trigger_IAP();
+ 126   2              if(IAPFD != 0xFF)
+ 127   2                IAP_ERROR_LED();
+ 128   2              IAPAL++;
+ 129   2              if(IAPAL == 0x00)
+ 130   2                IAPAH++;
+ 131   2          } 
+ 132   1          
+ 133   1          clr_IAPEN;
+ 134   1          
+ 135   1      }
+ 136          //--------------------------------------------------------------------------------------------------------
+             ----
+ 137          void Program_APROM(void)
+ 138          {   
+ 139   1          UINT16 u16Count;
+ 140   1      
+ 141   1          set_IAPEN;
+ 142   1          set_APUEN;    
+ 143   1          IAPAL = LOBYTE(DATA_START_ADDR);
+ 144   1          IAPAH = HIBYTE(DATA_START_ADDR);
+ 145   1          IAPCN = BYTE_PROGRAM_AP;
+ 146   1          
+ 147   1          for(u16Count=0;u16Count<DATA_SIZE;u16Count++)
+ 148   1          {   
+ 149   2              IAPFD++;     
+ 150   2              Trigger_IAP();
+ 151   2             
+ 152   2              IAPAL++;
+ 153   2              if(IAPAL == 0)
+ 154   2              {
+ 155   3                  IAPAH++;
+ 156   3              }
+ 157   2          } 
+ 158   1          
+ 159   1          clr_APUEN;
+ 160   1          clr_IAPEN;
+ 161   1      }
+ 162          //--------------------------------------------------------------------------------------------------------
+             ----
+C51 COMPILER V9.52.0.0   IAP_DATAFLASH                                                     11/02/2016 11:28:38 PAGE 4   
+
+ 163          void Program_APROM_Verify(void)
+ 164          {   
+ 165   1          UINT16 u16Count;
+ 166   1          UINT8  u8Read_Data;
+ 167   1      
+ 168   1          set_IAPEN;
+ 169   1          IAPAL = LOBYTE(DATA_START_ADDR);
+ 170   1          IAPAH = HIBYTE(DATA_START_ADDR);
+ 171   1          IAPCN = BYTE_READ_AP;
+ 172   1          u8Read_Data = 0x00;
+ 173   1      
+ 174   1          for(u16Count=0;u16Count<DATA_SIZE;u16Count++)
+ 175   1          {   
+ 176   2              Trigger_IAP();
+ 177   2              if(IAPFD != u8Read_Data)
+ 178   2                IAP_ERROR_LED();
+ 179   2              IAPAL++;
+ 180   2              if(IAPAL == 0)
+ 181   2              {
+ 182   3                  IAPAH++;
+ 183   3              }
+ 184   2              u8Read_Data ++;
+ 185   2          } 
+ 186   1      
+ 187   1          clr_IAPEN;
+ 188   1      }
+ 189          //--------------------------------------------------------------------------------------------------------
+             ----
+ 190          
+ 191          //--------------------------------------------------------------------------------------------------------
+             ----
+ 192          void main (void) 
+ 193          {
+ 194   1      
+ 195   1        Set_All_GPIO_Quasi_Mode;
+ 196   1      //---------toggle GPIO1---------  
+ 197   1        clr_GPIO1;
+ 198   1        Timer0_Delay1ms(100);
+ 199   1        set_GPIO1;
+ 200   1        Timer0_Delay1ms(100);
+ 201   1        clr_GPIO1;
+ 202   1        Timer0_Delay1ms(100);
+ 203   1        set_GPIO1;
+ 204   1        Timer0_Delay1ms(100);
+ 205   1      //---------end toggle GPIO1---------
+ 206   1        
+ 207   1          Erase_APROM();
+ 208   1          Erase_APROM_Verify();
+ 209   1          Program_APROM();
+ 210   1          Program_APROM_Verify();
+ 211   1      
+ 212   1      //---------toggle GPIO1---------  
+ 213   1        clr_GPIO1;
+ 214   1        Timer0_Delay1ms(100);
+ 215   1        set_GPIO1;
+ 216   1        Timer0_Delay1ms(100);
+ 217   1        clr_GPIO1;
+ 218   1        Timer0_Delay1ms(100);
+ 219   1        set_GPIO1;
+ 220   1        Timer0_Delay1ms(100);
+ 221   1      //---------end toggle GPIO1---------
+ 222   1      
+C51 COMPILER V9.52.0.0   IAP_DATAFLASH                                                     11/02/2016 11:28:38 PAGE 5   
+
+ 223   1          while(1);
+ 224   1      }
+ 225          //--------------------------------------------------------------------------------------------------------
+             ----
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    637    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

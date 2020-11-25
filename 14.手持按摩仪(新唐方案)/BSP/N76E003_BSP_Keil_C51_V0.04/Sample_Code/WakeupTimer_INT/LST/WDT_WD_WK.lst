@@ -1,0 +1,140 @@
+C51 COMPILER V9.52.0.0   WDT_WD_WK                                                         05/31/2016 15:07:26 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE WDT_WD_WK
+OBJECT MODULE PLACED IN .\Output\WDT_WD_WK.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\WDT_WD_WK.c OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include) DEFINE(FOSC
+                    -_221184) DEBUG OBJECTEXTEND PRINT(.\LST\WDT_WD_WK.lst) TABS(2) OBJECT(.\Output\WDT_WD_WK.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 Watch Dog demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Typedef.h"
+  21          #include "Define.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Common.h"
+  24          #include "Delay.h"
+  25          
+  26          
+  27          
+  28          #define SYS_CLK_EN      0
+  29          #define SYS_SEL         2
+  30          #define SYS_DIV_EN      0                       //0: Fsys=Fosc, 1: Fsys = Fosc/(2*CKDIV)
+  31          #define SYS_DIV         1
+  32          #define PRE_SCALAR      7
+  33          #define WDT_MODE        0
+  34          
+  35          bit BIT_TMP;
+  36          
+  37          void WakeUp_Timer_ISR (void)   interrupt 17     //ISR for self wake-up timer
+  38          {
+  39   1          clr_WKTF;                                   //clear interrupt flag
+  40   1          printf ("\n WKT INT");
+  41   1        
+  42   1          set_P23;
+  43   1          Timer2_Delay1ms(10);
+  44   1          clr_P23;
+  45   1          Timer2_Delay1ms(10);
+C51 COMPILER V9.52.0.0   WDT_WD_WK                                                         05/31/2016 15:07:26 PAGE 2   
+
+  46   1          set_P23;
+  47   1          Timer2_Delay1ms(10);
+  48   1          clr_P23;
+  49   1       
+  50   1      }
+  51          
+  52          
+  53          /*********************************************************************************************************
+             -***
+  54          *    Main function 
+  55          **********************************************************************************************************
+             -**/
+  56          void main (void)
+  57          {
+  58   1          /* Note
+  59   1             MCU power on system clock is HIRC (22.1184MHz), so Fsys = 22.1184MHz
+  60   1          */
+  61   1          
+  62   1          Set_All_GPIO_Quasi_Mode();
+  63   1          InitialUART0_Timer1_Type4(115200);             /* 9600 Baud Rate*/
+*** WARNING C206 IN LINE 63 OF Code\WDT_WD_WK.c: 'InitialUART0_Timer1_Type4': missing function-prototype
+*** ERROR C267 IN LINE 63 OF Code\WDT_WD_WK.c: 'InitialUART0_Timer1_Type4': requires ANSI-style prototype
+  64   1      //    printf ("\n MCU RESET");
+  65   1        
+  66   1        
+  67   1      // toggel for check reset   
+  68   1        Timer0_Delay1ms(10);    
+  69   1          set_P30;
+  70   1        Timer0_Delay1ms(10);
+  71   1          clr_P30;
+  72   1        Timer0_Delay1ms(10);
+  73   1          set_P30;
+  74   1        Timer0_Delay1ms(10);
+  75   1          clr_P30;
+  76   1      
+  77   1      //Setting LXT enable for 32k time base WKT application    
+  78   1      //    TA=0xAA;TA=0x55;CKEN|=SET_BIT6; // Enable LXT     
+  79   1      //    while((CKSWT&SET_BIT6)==0);     // Wait LXT status stable
+  80   1        
+  81   1      
+  82   1      //WKT initial   
+  83   1      //    WKCON |= 0x20;  //timer base 32k, pre-scale = 1
+  84   1          WKCON = 0x02;     //timer base 10k, Pre-scale = 1/16
+  85   1      //    RWK = 0XFF;     //  if prescale is 0x00, never set RWK = 0xff
+  86   1          RWK = 0X00;
+  87   1          set_EWKT;         // enable WKT interrupt
+  88   1          set_WKTR; // Wake-up timer run 
+  89   1          EA = 1;
+  90   1          
+  91   1          
+  92   1          while(1)
+  93   1          {
+  94   2            
+  95   2          set_P22;
+  96   2          Timer0_Delay1ms(10);
+  97   2          clr_P22;
+  98   2          Timer0_Delay1ms(10);
+  99   2          set_P22;
+ 100   2          Timer0_Delay1ms(10);
+ 101   2          clr_P22;
+ 102   2            
+ 103   2            set_PD;
+C51 COMPILER V9.52.0.0   WDT_WD_WK                                                         05/31/2016 15:07:26 PAGE 3   
+
+ 104   2      
+ 105   2        
+ 106   2        //  printf ("\n* PD Wakeup");
+ 107   2        
+ 108   2          }
+ 109   1      
+ 110   1      }
+ 111          
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)

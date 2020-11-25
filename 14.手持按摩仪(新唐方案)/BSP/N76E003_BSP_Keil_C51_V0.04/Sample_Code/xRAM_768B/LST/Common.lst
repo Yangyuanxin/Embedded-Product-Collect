@@ -1,0 +1,428 @@
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE COMMON
+OBJECT MODULE PLACED IN .\Output\Common.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\Common\Common.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_221184) DEBU
+                    -G OBJECTEXTEND PRINT(.\LST\Common.lst) OBJECT(.\Output\Common.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Jan/07/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          #include "N76E885.h"
+  15          #include "Version.h"
+  16          #include "Typedef.h"
+  17          #include "Define.h"
+  18          #include "SFR_Macro.h"
+  19          #include "Common.h"
+  20          #include "Delay.h"
+  21          
+  22          /***************************************************************************************************
+  23              System Clock Source Select
+  24          ****************************************************************************************************/
+  25          void System_Clock_Select(E_SYSTEM_CLOCK clock)
+  26          {
+  27   1          switch (clock)
+  28   1          {
+  29   2              case    E_HXTEN:
+  30   2              {
+  31   3                      //step1: enable clock source
+  32   3                      set_EXTEN1;
+  33   3                      clr_EXTEN0;
+  34   3                      
+  35   3                      //step2: check ready
+  36   3                      while((CKSWT&SET_BIT7)==0);
+  37   3                      
+  38   3                      //step3: switching system clock source
+  39   3                      clr_OSC1;
+  40   3                      set_OSC0;
+  41   3              }break;
+  42   2      
+  43   2              case    E_LXTEN:
+  44   2              {
+  45   3                      //step1: enable clock source
+  46   3                      clr_EXTEN1;
+  47   3                      set_EXTEN0;
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 2   
+
+  48   3                      
+  49   3                      //step2: check ready
+  50   3                      while((CKSWT&SET_BIT6)==0);
+  51   3                      
+  52   3                      //step3: switching system clock source
+  53   3                      clr_OSC1;
+  54   3                      set_OSC0;
+  55   3              }break;
+  56   2      
+  57   2              case    E_OSCEN:
+  58   2              {
+  59   3                      //step1: enable clock source
+  60   3                      clr_EXTEN1;
+  61   3                      clr_EXTEN0;
+  62   3                      
+  63   3                      //step2: check ready
+  64   3                      while((CKSWT&SET_BIT3)==0);
+  65   3                      
+  66   3                      //step3: switching system clock source
+  67   3                      clr_OSC1;
+  68   3                      set_OSC0;
+  69   3              }break;
+  70   2              
+  71   2              case    E_HIRCEN: //power on default
+  72   2              {
+  73   3                      //step1: enable clock source
+  74   3                      set_HIRCEN;
+  75   3                      
+  76   3                      //step2: check ready
+  77   3                      while((CKSWT&SET_BIT5)==0);
+  78   3                      
+  79   3                      //step3: switching system clock source
+  80   3                      clr_OSC1;
+  81   3                      clr_OSC0;
+  82   3              }break;
+  83   2      
+  84   2              case    E_LIRCEN:
+  85   2              {
+  86   3                      //step1: enable clock source
+  87   3                      set_LIRCEN;
+  88   3                      
+  89   3                      //step2: check ready
+  90   3                      while((CKSWT&SET_BIT4)==0);
+  91   3                      
+  92   3                      //step3: switching system clock source
+  93   3                      set_OSC1;
+  94   3                      clr_OSC0;
+  95   3              }break;
+  96   2          }
+  97   1          //step4: check system clock switching OK or NG?
+  98   1          while((CKEN&SET_BIT0)==1);  //Check Clock switch fault flag.
+  99   1      }
+ 100          //--------------------------------------------------------------------------------------------------------
+             ----
+ 101          /* use timer1 as Baudrate generator, Maxmum Baudrate can 57600 bps @ 22.1184MHz
+ 102          */
+ 103          void InitialUART0_Timer1_Type1(UINT32 u32Baudrate)    //T1M = 0, SMOD = 0
+ 104          {
+ 105   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 106   1          TMOD |= 0x20;    //Timer1 Mode1
+ 107   1          
+ 108   1          clr_SMOD;
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 3   
+
+ 109   1          clr_T1M;
+ 110   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+ 111   1          
+ 112   1      #ifdef FOSC_110592
+                  TH1 = 256 - (28800/u32Baudrate);                /*11.0592 MHz */
+              #endif    
+ 115   1      #ifdef FOSC_184320
+                  TH1 = 256 - (48000/u32Baudrate);                /*18.4320 MHz */
+              #endif
+ 118   1      #ifdef FOSC_200000
+                  TH1 = 256 - (52083/u32Baudrate);                /*20.0000 MHz */
+              #endif
+ 121   1      #ifdef FOSC_221184
+ 122   1          TH1 = 256 - (57600/u32Baudrate);                /*22.1184 MHz */
+ 123   1      #endif
+ 124   1          set_TR1;
+ 125   1      }
+ 126          
+ 127          //--------------------------------------------------------------------------------------------------------
+             ----
+ 128          /* use timer1 as Baudrate generator, Maxmum Baudrate can 115200 bps @ 22.1184MHz
+ 129          */
+ 130          void InitialUART0_Timer1_Type2(UINT32 u32Baudrate)    //T1M = 0, SMOD = 1
+ 131          {
+ 132   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 133   1          TMOD |= 0x20;    //Timer1 Mode1
+ 134   1          
+ 135   1          set_SMOD;        //UART0 Double Rate Enable
+ 136   1          clr_T1M;
+ 137   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+ 138   1      
+ 139   1      #ifdef FOSC_110592
+                  TH1 = 256 - (57600/u32Baudrate);                /*11.0592 MHz */
+              #endif    
+ 142   1      #ifdef FOSC_184320
+                  TH1 = 256 - (96000/u32Baudrate);                /*18.4320 MHz */ 
+              #endif
+ 145   1      #ifdef FOSC_200000
+                  TH1 = 256 - (104167/u32Baudrate);               /*20.0000 MHz */
+              #endif
+ 148   1      #ifdef FOSC_221184
+ 149   1          TH1 = 256 - (115200/u32Baudrate);               /*22.1184 MHz */
+ 150   1      #endif
+ 151   1          set_TR1;
+ 152   1      }
+ 153          
+ 154          //--------------------------------------------------------------------------------------------------------
+             ----
+ 155          /* use timer1 as Baudrate generator, Maxmum Baudrate can 691200 bps @ 22.1184MHz
+ 156          */
+ 157          void InitialUART0_Timer1_Type3(UINT32 u32Baudrate)    //T1M = 1, SMOD = 0
+ 158          {
+ 159   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 160   1          TMOD |= 0x20;    //Timer1 Mode1
+ 161   1          
+ 162   1          clr_SMOD;
+ 163   1          set_T1M;
+ 164   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+ 165   1      
+ 166   1      #ifdef FOSC_110592
+                  TH1 = 256 - (345600/u32Baudrate);               /*11.0592 MHz */
+              #endif    
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 4   
+
+ 169   1      #ifdef FOSC_184320
+                  TH1 = 256 - (576000/u32Baudrate);               /*18.4320 MHz */
+              #endif
+ 172   1      #ifdef FOSC_200000
+                  TH1 = 256 - (625000/u32Baudrate);               /*20.0000 MHz */
+              #endif
+ 175   1      #ifdef FOSC_221184
+ 176   1          TH1 = 256 - (691200/u32Baudrate);               /*22.1184 MHz */
+ 177   1      #endif
+ 178   1          set_TR1;
+ 179   1      }
+ 180          
+ 181          //--------------------------------------------------------------------------------------------------------
+             ----
+ 182          /* use timer1 as Baudrate generator, Maxmum Baudrate can 1382400 bps @ 22.1184MHz
+ 183          */
+ 184          void InitialUART0_Timer1_Type4(UINT32 u32Baudrate)    //T1M = 1, SMOD = 1
+ 185          {
+ 186   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 187   1          TMOD |= 0x20;    //Timer1 Mode1
+ 188   1          
+ 189   1          set_SMOD;        //UART0 Double Rate Enable
+ 190   1          set_T1M;
+ 191   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+ 192   1      
+ 193   1      #ifdef FOSC_110592
+                  TH1 = 256 - (691200/u32Baudrate);               /*11.0592 MHz */
+              #endif    
+ 196   1      #ifdef FOSC_184320
+                  TH1 = 256 - (1152000/u32Baudrate);              /*18.4320 MHz */
+              #endif
+ 199   1      #ifdef FOSC_200000
+                  TH1 = 256 - (1250000/u32Baudrate);              /*20.0000 MHz */
+              #endif
+ 202   1      #ifdef FOSC_221184
+ 203   1          TH1 = 256 - (1382400/u32Baudrate);              /*22.1184 MHz */
+ 204   1      #endif
+ 205   1          set_TR1;
+ 206   1      }
+ 207          //---------------------------------------------------------------
+ 208          void InitialUART0_Timer3_Type5(UINT32 u32Baudrate) //use timer3 as Baudrate generator
+ 209          {
+ 210   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 211   1          clr_SMOD;
+ 212   1          T3CON &= 0xF8;   //T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)
+ 213   1          set_BRCK;        //Serial port 0 baud rate clock source = Timer3
+ 214   1          
+ 215   1      #ifdef FOSC_110592
+                  RH3    = HIBYTE(65536 - (345600/u32Baudrate)); /*11.0592 MHz */
+                  RL3    = LOBYTE(65536 - (345600/u32Baudrate)); /*11.0592 MHz */
+              #endif
+ 219   1      #ifdef FOSC_184320
+                  RH3    = HIBYTE(65536 - (576000/u32Baudrate)); /*18.4320 MHz */
+                  RL3    = LOBYTE(65536 - (576000/u32Baudrate)); /*18.4320 MHz */
+              #endif
+ 223   1      #ifdef FOSC_200000
+                  RH3    = HIBYTE(65536 - (640000/u32Baudrate)); /*20.0000 MHz */
+                  RL3    = LOBYTE(65536 - (640000/u32Baudrate)); /*20.0000 MHz */
+              #endif
+ 227   1      #ifdef FOSC_221184
+ 228   1          RH3    = HIBYTE(65536 - (691200/u32Baudrate)); /*22.1184 MHz */
+ 229   1          RL3    = LOBYTE(65536 - (691200/u32Baudrate)); /*22.1184 MHz */
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 5   
+
+ 230   1      #endif
+ 231   1          set_TR3;         //Trigger Timer3
+ 232   1      }
+ 233          //---------------------------------------------------------------
+ 234          void InitialUART0_Timer3_Type6(UINT32 u32Baudrate) //use timer3 as Baudrate generator
+ 235          {
+ 236   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 237   1          set_SMOD;        //UART0 Double Rate Enable
+ 238   1          T3CON &= 0xF8;   //T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)
+ 239   1          set_BRCK;        //UART0 baud rate clock source = Timer3
+ 240   1          
+ 241   1      #ifdef FOSC_110592
+                  RH3    = HIBYTE(65536 - (691200/u32Baudrate));  /*11.0592 MHz */
+                  RL3    = LOBYTE(65536 - (691200/u32Baudrate));  /*11.0592 MHz */
+              #endif
+ 245   1      #ifdef FOSC_184320
+                  RH3    = HIBYTE(65536 - (1152000/u32Baudrate)); /*18.4320 MHz */
+                  RL3    = LOBYTE(65536 - (1152000/u32Baudrate)); /*18.4320 MHz */
+              #endif
+ 249   1      #ifdef FOSC_200000
+                  RH3    = HIBYTE(65536 - (1250000/u32Baudrate)); /*20.0000 MHz */
+                  RL3    = LOBYTE(65536 - (1250000/u32Baudrate)); /*20.0000 MHz */
+              #endif
+ 253   1      #ifdef FOSC_221184
+ 254   1          RH3    = HIBYTE(65536 - (1382400/u32Baudrate)); /*22.1184 MHz */
+ 255   1          RL3    = LOBYTE(65536 - (1382400/u32Baudrate)); /*22.1184 MHz */
+ 256   1      #endif
+ 257   1          set_TR3;         //Trigger Timer3
+ 258   1      }
+ 259          //---------------------------------------------------------------
+ 260          void InitialUART1_Timer3(UINT32 u32Baudrate) //use timer3 as Baudrate generator
+ 261          {
+ 262   1          SCON_1 = 0x52;   //UART1 Mode1,REN_1=1,TI_1=1
+ 263   1          T3CON &= 0xF8;   //T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)
+ 264   1          
+ 265   1      #ifdef FOSC_110592  //max BR=230400 bps
+                  RH3    = HIBYTE(65536 - (691200/u32Baudrate));  /*11.0592 MHz */
+                  RL3    = LOBYTE(65536 - (691200/u32Baudrate));  /*11.0592 MHz */
+              #endif
+ 269   1      #ifdef FOSC_184320
+                  RH3    = HIBYTE(65536 - (1152000/u32Baudrate)); /*18.4320 MHz */
+                  RL3    = LOBYTE(65536 - (1152000/u32Baudrate)); /*18.4320 MHz */
+              #endif
+ 273   1      #ifdef FOSC_200000
+                  RH3    = HIBYTE(65536 - (1250000/u32Baudrate)); /*20.0000 MHz */
+                  RL3    = LOBYTE(65536 - (1250000/u32Baudrate)); /*20.0000 MHz */
+              #endif
+ 277   1      #ifdef FOSC_221184  //max BR=460800 bps
+ 278   1          RH3    = HIBYTE(65536 - (1382400/u32Baudrate)); /*22.1184 MHz */
+ 279   1          RL3    = LOBYTE(65536 - (1382400/u32Baudrate)); /*22.1184 MHz */
+ 280   1      #endif
+ 281   1          set_TR3;         //Trigger Timer3
+ 282   1      }
+ 283          /**************************************************************************
+ 284           *
+ 285           *  Function Name: Receive_Data_From_UART0()
+ 286           *
+ 287           *  Descriptions: Receive PC data to SBUF of N76E885
+ 288           *
+ 289           *  Arguments:
+ 290           *
+ 291           *  Returns: PC Data
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 6   
+
+ 292           *
+ 293           **************************************************************************/
+ 294          UINT8 Receive_Data_From_UART0(void)
+ 295          {
+ 296   1          UINT8 c;
+ 297   1          
+ 298   1          while (!RI);
+ 299   1          c = SBUF;
+ 300   1          RI = 0;
+ 301   1          return (c);
+ 302   1      }
+ 303          /**************************************************************************
+ 304           *
+ 305           *  Function Name: Send_Data_To_UART0()
+ 306           *
+ 307           *  Descriptions: Send SBUF of N76E885 to PC
+ 308           *
+ 309           *  Arguments:
+ 310           *
+ 311           *  Returns: None
+ 312           *
+ 313           **************************************************************************/
+ 314          void Send_Data_To_UART0 (UINT8 c)
+ 315          {
+ 316   1          TI = 0;
+ 317   1          SBUF = c;
+ 318   1          while(TI==0);
+ 319   1      }
+ 320          /**************************************************************************
+ 321           *
+ 322           *  Function Name: Receive_Data_From_UART1()
+ 323           *
+ 324           *  Descriptions: Receive PC data to SBUF of N76E885
+ 325           *
+ 326           *  Arguments:
+ 327           *
+ 328           *  Returns: PC Data
+ 329           *
+ 330           **************************************************************************/
+ 331          UINT8 Receive_Data_From_UART1(void)
+ 332          {
+ 333   1          UINT8 c;
+ 334   1          
+ 335   1          while (!RI_1);
+ 336   1          c = SBUF_1;
+ 337   1          RI_1 = 0;
+ 338   1          return (c);
+ 339   1      }
+ 340          /**************************************************************************
+ 341           *
+ 342           *  Function Name: Send_Data_To_UART1()
+ 343           *
+ 344           *  Descriptions: Send SBUF of N76E885 to PC
+ 345           *
+ 346           *  Arguments:
+ 347           *
+ 348           *  Returns: None
+ 349           *
+ 350           **************************************************************************/
+ 351          void Send_Data_To_UART1 (UINT8 c)
+ 352          {
+ 353   1          TI_1 = 0;
+C51 COMPILER V9.51   COMMON                                                                01/07/2015 20:26:32 PAGE 7   
+
+ 354   1          SBUF_1 = c;
+ 355   1          while(TI_1==0);
+ 356   1      }
+ 357          /*==========================================================================*/
+ 358          void Set_All_GPIO_Quasi_Mode(void)
+ 359          {
+ 360   1          P0M1 = 0x00;
+ 361   1          P0M2 = 0x00;
+ 362   1          P1M1 = 0x00;
+ 363   1          P1M2 = 0x00;
+ 364   1          P2M1 = 0x00;
+ 365   1          P2M2 = 0x00;
+ 366   1          P3M1 = 0x00;
+ 367   1          P3M2 = 0x00;
+ 368   1      }
+ 369          
+ 370          /*==========================================================================*/
+ 371          void SW_Reset(void)
+ 372          {
+ 373   1          TA = 0xAA;
+ 374   1          TA = 0x55;
+ 375   1          set_SWRST;
+ 376   1      }
+ 377          /*==========================================================================*/
+ 378          void Fsys_Clock_Output_On_P26(void)
+ 379          {
+ 380   1          set_CLOEN;                                  //System Clock Output Enable
+ 381   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    830    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

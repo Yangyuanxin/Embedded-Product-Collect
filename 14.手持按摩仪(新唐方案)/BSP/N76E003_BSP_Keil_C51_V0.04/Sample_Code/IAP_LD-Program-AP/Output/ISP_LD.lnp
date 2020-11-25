@@ -1,0 +1,7 @@
+".\Output\ISP_LD-AP.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\ISP_LD" 
+PRINT(".\LST\ISP_LD.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 
+XDATA( 0X0000-0X00FF )

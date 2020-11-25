@@ -1,0 +1,6 @@
+
+#define TH0_INIT        0x00 //5.0ms@XTAL=12MHz, Period = (10.85/2) ms@XTAL=22.1184MHz
+#define TL0_INIT        0x80
+#define TH1_INIT        0x00 //2.5ms@XTAL=12MHz, Period = (5.425/2) ms@XTAL=22.1184MHz
+#define TL1_INIT        0xff
+void Time_Init(void);

@@ -1,0 +1,5 @@
+".\Output\Timer3.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\Timer3" 
+PRINT(".\LST\Timer3.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

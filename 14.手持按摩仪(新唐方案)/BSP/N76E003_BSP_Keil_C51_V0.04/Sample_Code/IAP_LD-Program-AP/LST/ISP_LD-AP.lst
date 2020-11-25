@@ -1,0 +1,312 @@
+C51 COMPILER V9.52.0.0   ISP_LD_AP                                                         11/02/2016 11:30:15 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE ISP_LD_AP
+OBJECT MODULE PLACED IN .\Output\ISP_LD-AP.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\ISP_LD-AP.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJ
+                    -ECTEXTEND PRINT(.\LST\ISP_LD-AP.lst) TABS(2) OBJECT(.\Output\ISP_LD-AP.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 LDROM program APROM demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          //********************************************************************************************************
+             -***
+  19          //  Before using this demo code, please remind below CONFOGs setting, thanks.
+  20          //                 CONFIG0.7 --> CBS=0
+  21          //                 CONFIG1 = 0xFC, because this demo code size is 2495 Byte
+  22          //********************************************************************************************************
+             -***
+  23          #include <stdio.h>
+  24          #include "N76E003.h"
+  25          #include "Common.h"
+  26          #include "Delay.h"
+  27          #include "SFR_Macro.h"
+  28          #include "Function_Define.h"
+  29          
+  30          #define     CID_READ            0x0B
+  31          #define     DID_READ            0x0C
+  32          #define     CFG_READ            0xC0
+  33          #define     CFG_ERASE           0xE2
+  34          
+  35          #define     PAGE_ERASE_AP       0x22
+  36          #define     BYTE_READ_AP        0x00
+  37          #define     BYTE_PROGRAM_AP     0x21
+  38          
+  39          #define     BYTE_PROGRAM_CFG    0xE1
+  40          #define     BYTE_READ_CFG       0xC0
+  41          
+  42          #define     PAGE_SIZE           128
+  43          
+C51 COMPILER V9.52.0.0   ISP_LD_AP                                                         11/02/2016 11:30:15 PAGE 2   
+
+  44          #define     APROM_SIZE          8192   
+  45          #define     APROM_START_ADDR    0x0000
+  46          
+  47          #define     ERASE_FAIL          0x70
+  48          #define     PROGRAM_FAIL        0x71
+  49          #define     IAPFF_FAIL          0x72
+  50          #define     IAP_PASS            0x00
+  51          
+  52          //--------------------------------------------------------------------------------------------------------
+             ----
+  53          void Trigger_IAP(void)
+  54          {   
+  55   1          set_IAPGO;                                  //trigger IAP
+  56   1          if((CHPCON&SET_BIT6)==SET_BIT6)             //check IAPFF (CHPCON.6), if flag = 1, the ISP process is 
+             -fail.
+  57   1          {
+  58   2              while(1)
+  59   2              {
+  60   3                clr_GPIO1;
+  61   3                Timer0_Delay1ms(100);
+  62   3                set_GPIO1;
+  63   3                Timer0_Delay1ms(100);
+  64   3              }
+  65   2          }
+  66   1      }                 
+  67          
+  68          //--------------------------------------------------------------------------------------------------------
+             ----
+  69          void Erase_CONFIG(void)
+  70          {   
+  71   1          set_IAPEN;
+  72   1          
+  73   1          IAPAL = 0x00;
+  74   1          IAPAH = 0x00;
+  75   1          IAPFD = 0xFF;
+  76   1          IAPCN = CFG_ERASE;
+  77   1          
+  78   1          set_CFUEN;
+  79   1          Trigger_IAP();
+  80   1          clr_CFUEN;
+  81   1          
+  82   1          clr_IAPEN;
+  83   1      }
+  84          //--------------------------------------------------------------------------------------------------------
+             ----
+  85          void Erase_APROM(void)
+  86          {   
+  87   1          UINT16 u16Count;
+  88   1      
+  89   1          set_IAPEN;
+  90   1          set_APUEN;                        // To erase or program APROM must enable APUEN
+  91   1        
+  92   1          IAPFD = 0xFF;                     // MUST setting IAPFD = 0xFF when do erase process.
+  93   1          IAPCN = PAGE_ERASE_AP;
+  94   1      
+  95   1          for(u16Count=0x0000;u16Count<APROM_SIZE/PAGE_SIZE;u16Count++)
+  96   1          {        
+  97   2              IAPAL = LOBYTE(u16Count*PAGE_SIZE + APROM_START_ADDR);
+  98   2              IAPAH = HIBYTE(u16Count*PAGE_SIZE + APROM_START_ADDR);
+  99   2              Trigger_IAP(); 
+ 100   2          } 
+ 101   1          
+C51 COMPILER V9.52.0.0   ISP_LD_AP                                                         11/02/2016 11:30:15 PAGE 3   
+
+ 102   1          clr_APUEN;
+ 103   1          clr_IAPEN;
+ 104   1      }
+ 105          //--------------------------------------------------------------------------------------------------------
+             ----
+ 106          BIT Erase_APROM_Verify(void)
+ 107          {   
+ 108   1          UINT16 u16Count;
+ 109   1          BIT    Error_Flag = 0;
+ 110   1      
+ 111   1          set_IAPEN;
+ 112   1          
+ 113   1          IAPAL = LOBYTE(APROM_START_ADDR);
+ 114   1          IAPAH = HIBYTE(APROM_START_ADDR);
+ 115   1          IAPCN = BYTE_READ_AP;
+ 116   1      
+ 117   1          for(u16Count=0;u16Count<APROM_SIZE/PAGE_SIZE;u16Count++)
+ 118   1          {   
+ 119   2              IAPFD = 0x00;    
+ 120   2              Trigger_IAP();
+ 121   2      
+ 122   2              if(IAPFD != 0xFF)
+ 123   2              {
+ 124   3                  Error_Flag = 1;
+ 125   3                  break;
+ 126   3              }
+ 127   2      
+ 128   2              IAPAL++;
+ 129   2              if(IAPAL == 0x00)
+ 130   2              {
+ 131   3                  IAPAH++;
+ 132   3              }
+ 133   2          } 
+ 134   1          
+ 135   1          clr_IAPEN;
+ 136   1          
+ 137   1          if(Error_Flag == 1)
+ 138   1              return FAIL;
+ 139   1          else
+ 140   1              return PASS;
+ 141   1      }
+ 142          //--------------------------------------------------------------------------------------------------------
+             ----
+ 143          void Program_APROM(void)
+ 144          {   
+ 145   1          UINT16 u16Count;
+ 146   1      
+ 147   1          set_IAPEN;
+ 148   1          set_APUEN;   
+ 149   1        
+ 150   1          IAPAL = LOBYTE(APROM_START_ADDR);
+ 151   1          IAPAH = HIBYTE(APROM_START_ADDR);
+ 152   1          IAPFD = 0xFF;
+ 153   1          IAPCN = BYTE_PROGRAM_AP;
+ 154   1      
+ 155   1          for(u16Count=0;u16Count<APROM_SIZE;u16Count++)
+ 156   1          {   
+ 157   2              IAPFD++;     
+ 158   2              Trigger_IAP();
+ 159   2             
+ 160   2              IAPAL++;
+ 161   2              if(IAPAL == 0)
+C51 COMPILER V9.52.0.0   ISP_LD_AP                                                         11/02/2016 11:30:15 PAGE 4   
+
+ 162   2              {
+ 163   3                  IAPAH++;
+ 164   3              }
+ 165   2          } 
+ 166   1          
+ 167   1          clr_APUEN;
+ 168   1          clr_IAPEN;
+ 169   1      }
+ 170          //--------------------------------------------------------------------------------------------------------
+             ----
+ 171          BIT Program_APROM_Verify(void)
+ 172          {   
+ 173   1          UINT16 u16Count;
+ 174   1          UINT8  u8Read_Data;
+ 175   1          BIT    Error_Flag = 0;
+ 176   1      
+ 177   1          set_IAPEN;
+ 178   1          
+ 179   1          IAPAL = LOBYTE(APROM_START_ADDR);
+ 180   1          IAPAH = HIBYTE(APROM_START_ADDR);
+ 181   1          IAPCN = BYTE_READ_AP;
+ 182   1      
+ 183   1          u8Read_Data = 0x00;
+ 184   1      
+ 185   1          for(u16Count=0;u16Count<APROM_SIZE;u16Count++)
+ 186   1          {   
+ 187   2              Trigger_IAP();
+ 188   2              if(IAPFD != u8Read_Data)
+ 189   2              {
+ 190   3                  Error_Flag = 1;
+ 191   3                  break;
+ 192   3              }
+ 193   2      
+ 194   2              IAPAL++;
+ 195   2              if(IAPAL == 0)
+ 196   2              {
+ 197   3                  IAPAH++;
+ 198   3              }
+ 199   2              u8Read_Data ++;
+ 200   2          } 
+ 201   1      
+ 202   1          clr_IAPEN;
+ 203   1           
+ 204   1          if(Error_Flag == 1)
+ 205   1              return FAIL;
+ 206   1          else
+ 207   1              return PASS;
+ 208   1      }
+ 209          //--------------------------------------------------------------------------------------------------------
+             ----
+ 210          void Program_CONFIG(UINT8 u8Address,UINT8 u8Data)
+ 211          {   
+ 212   1          set_IAPEN;
+ 213   1          
+ 214   1          IAPAL = u8Address;
+ 215   1          IAPAH = 0x00;
+ 216   1          IAPFD = u8Data;
+ 217   1          IAPCN = BYTE_PROGRAM_CFG;
+ 218   1          
+ 219   1          set_CFUEN;
+ 220   1          Trigger_IAP();
+ 221   1          clr_CFUEN;
+C51 COMPILER V9.52.0.0   ISP_LD_AP                                                         11/02/2016 11:30:15 PAGE 5   
+
+ 222   1          
+ 223   1          clr_IAPEN;
+ 224   1      }
+ 225          
+ 226          //--------------------------------------------------------------------------------------------------------
+             ----
+ 227          void main (void) 
+ 228          {
+ 229   1          Set_All_GPIO_Quasi_Mode;
+ 230   1        
+ 231   1          clr_GPIO1;
+ 232   1          Timer0_Delay1ms(300);
+ 233   1          set_GPIO1;
+ 234   1          Timer0_Delay1ms(300);
+ 235   1          clr_GPIO1;
+ 236   1          Timer0_Delay1ms(300);
+ 237   1          set_GPIO1;
+ 238   1      
+ 239   1        
+ 240   1          Erase_APROM();
+ 241   1      //    if(Erase_APROM_Verify() == FAIL)
+ 242   1      //    {
+ 243   1      //        DISPLAY_LED = ERASE_FAIL;
+ 244   1      //        while(1);
+ 245   1      //    }
+ 246   1      
+ 247   1          Program_APROM();
+ 248   1      //    if(Program_APROM_Verify() == FAIL)
+ 249   1      //    {
+ 250   1      //        DISPLAY_LED = PROGRAM_FAIL;
+ 251   1      //        while(1);
+ 252   1      //    }   
+ 253   1          Program_CONFIG(0x04,0x0F);              //Program CONFIG4 =  0x0F; Enable WDT reset function. 
+ 254   1          //Please always very carefully about the CONFIG program function. espcially about the CBS bit / LDROM si
+             -ze...
+ 255   1          Timer0_Delay1ms(200);
+ 256   1          while(1);
+ 257   1      }
+ 258          //--------------------------------------------------------------------------------------------------------
+             ----
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    741    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       9
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

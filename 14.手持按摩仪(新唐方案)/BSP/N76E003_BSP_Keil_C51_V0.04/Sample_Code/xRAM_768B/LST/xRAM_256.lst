@@ -1,0 +1,80 @@
+C51 COMPILER V9.52.0.0   XRAM_256                                                          05/05/2016 15:55:33 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE XRAM_256
+NO OBJECT MODULE REQUESTED
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\xRAM_256.c BROWSE INCDIR(..\..\Include) DEBUG OBJECTEXTEND PRINT(.\LST
+                    -\xRAM_256.lst) TABS(2) SRC(.\Output\xRAM_256.SRC)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E885.h"
+   3          
+   4          
+   5          unsigned char xdata *ptemp;
+   6          unsigned int count;
+   7          
+   8          
+   9          /*-----------------------------------d-------------
+  10          The main C function.  Program execution starts
+  11          here after stack initialization.
+  12          ------------------------------------------------*/
+  13          void main (void) 
+  14          {
+  15   1      
+  16   1              DPH=0;
+  17   1              DPL=0;
+  18   1                     
+  19   1      #pragma asm 
+  20   1        L1:
+  21   1        MOV A,DPL
+  22   1        MOVX @DPTR,A
+  23   1        INC DPTR
+  24   1        MOV A,DPH
+  25   1        CJNE A,#01H,L1
+  26   1      
+  27   1      
+  28   1      ;read check
+  29   1        MOV DPL,#0
+  30   1        MOV DPH,#0
+  31   1      L2:
+  32   1        MOV A,DPL
+  33   1        MOV 11H,A
+  34   1        MOVX A,@DPTR
+  35   1        CJNE A,11H,L3
+  36   1        INC DPTR
+  37   1        MOV A,DPH
+  38   1        CJNE A,#01H,L2
+  39   1        sjmp $
+  40   1      ;read check end 
+  41   1      
+  42   1      
+  43   1      
+  44   1      L3:
+  45   1        MOV R0,#05h
+  46   1        MOV A,#55H
+  47   1        MOVX @R0,A
+  48   1        sjmp $
+  49   1      #pragma endasm 
+  50   1      
+  51   1                    
+  52   1      //        }
+  53   1              while(1);
+  54   1      }
+C51 COMPILER V9.52.0.0   XRAM_256                                                          05/05/2016 15:55:33 PAGE 2   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     94    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,6 @@
+".\Output\IAP_BYTE.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\IAP_BYTE" 
+PRINT(".\LST\IAP_BYTE.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 
+XDATA( 0X0000-0X00FF )

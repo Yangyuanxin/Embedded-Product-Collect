@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\°´Ä¦ÒÇ\BSP\N76E003_BSP_Keil_C51_V0.04\Sample_Code\Timer01_mode_1\Timer01_m1.uvproj
+Project File Date:  11/08/2016
+
+<h2>Output:</h2>
+Build target 'Timer01_M1'
+compiling Timer01_M1.c...
+compiling Delay.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=29.1 xdata=0 code=472
+creating hex file from ".\Output\Timer01"...
+".\Output\Timer01" - 0 Error(s), 0 Warning(s).
+Load "D:\\°´Ä¦ÒÇ\\BSP\\N76E003_BSP_Keil_C51_V0.04\\Sample_Code\\Timer01_mode_1\\Output\\Timer01" 
+Flash Erase Done.
+Flash Write Done: 472 bytes programmed.
+Flash Verify Done: 472 bytes verified.

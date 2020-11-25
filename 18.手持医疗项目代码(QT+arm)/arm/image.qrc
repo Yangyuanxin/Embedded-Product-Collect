@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>image/doctor.png</file>
+        <file>image/h1.PNG</file>
+        <file>image/h2.PNG</file>
+        <file>image/jibenxinxi.png</file>
+        <file>image/jsq.png</file>
+        <file>image/map.png</file>
+        <file>image/map1.PNG</file>
+        <file>image/map2.PNG</file>
+        <file>image/patient.png</file>
+        <file>image/quxiantu.png</file>
+        <file>image/xty.png</file>
+        <file>image/xyy.png</file>
+    </qresource>
+</RCC>

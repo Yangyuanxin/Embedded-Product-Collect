@@ -1,0 +1,173 @@
+C51 COMPILER V9.52.0.0   IAP_BYTE                                                          11/02/2016 11:29:19 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE IAP_BYTE
+OBJECT MODULE PLACED IN .\Output\IAP_BYTE.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\IAP_BYTE.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJE
+                    -CTEXTEND PRINT(.\LST\IAP_BYTE.lst) TABS(2) OBJECT(.\Output\IAP_BYTE.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 APROM program DATAFLASH as EEPROM way 
+  16          //********************************************************************************************************
+             -***
+  17          #include <stdio.h>
+  18          #include "N76E003.h"
+  19          #include "Common.h"
+  20          #include "Delay.h"
+  21          #include "SFR_Macro.h"
+  22          #include "Function_Define.h"
+  23          
+  24          bit BIT_TMP;
+  25          
+  26          //-------------------------------------------------------------------------
+  27          UINT8 read_APROM_BYTE(UINT16 code *u16_addr)
+  28          {
+  29   1        UINT8 rdata;
+  30   1        rdata = *u16_addr>>8;
+  31   1        return rdata;
+  32   1      }
+  33          //-------------------------------------------------------------------------
+  34          
+  35          
+  36          /*********************************************************************************************************
+             -********
+  37          write_DATAFLASH_BYTE :
+  38          user can copy all this subroutine into project, then call this function in main.
+  39          **********************************************************************************************************
+             -********/    
+  40          void write_DATAFLASH_BYTE(UINT16 u16_addr,UINT8 u8_data)
+  41          {
+  42   1        UINT8 looptmp=0,u8_addrl_r;
+  43   1        unsigned char code *cd_longaddr;
+C51 COMPILER V9.52.0.0   IAP_BYTE                                                          11/02/2016 11:29:19 PAGE 2   
+
+  44   1        unsigned char xdata *xd_tmp;
+  45   1        
+  46   1      //Check page start address
+  47   1        u8_addrl_r = u16_addr;
+  48   1        if (u8_addrl_r<0x80)
+  49   1        {
+  50   2          u8_addrl_r = 0;
+  51   2        }
+  52   1        else 
+  53   1        {
+  54   2          u8_addrl_r = 0x80;
+  55   2        }
+  56   1      //Save APROM data to XRAM
+  57   1        xd_tmp = 0x80;
+  58   1        cd_longaddr = (u16_addr&0xff00)+u8_addrl_r; 
+  59   1        while (xd_tmp !=0x100)
+  60   1        {
+  61   2          *xd_tmp = *cd_longaddr;
+  62   2          looptmp++;
+  63   2          xd_tmp++;
+  64   2          cd_longaddr++;
+  65   2        }
+  66   1      // Modify customer data in XRAM
+  67   1        u8_addrl_r = u16_addr;
+  68   1        if (u8_addrl_r<0x80)
+  69   1        {
+  70   2          xd_tmp = u8_addrl_r+0x80;
+  71   2        }
+  72   1        else
+  73   1        {
+  74   2          xd_tmp = u8_addrl_r+0;
+  75   2        }
+  76   1        *xd_tmp = u8_data;
+  77   1      //Erase APROM DATAFLASH page
+  78   1          IAPAL = u16_addr;
+  79   1          IAPAH = u16_addr>>8;
+  80   1          IAPFD = 0xFF;
+  81   1          set_IAPEN; 
+  82   1          set_APUEN;
+  83   1          IAPCN = 0x22;     
+  84   1          set_IAPGO; 
+  85   1      //Save changed RAM data to APROM DATAFLASH
+  86   1        u8_addrl_r = u16_addr;
+  87   1        if (u8_addrl_r<0x80)
+  88   1        {
+  89   2          u8_addrl_r =0;
+  90   2        }
+  91   1        else
+  92   1        {
+  93   2          u8_addrl_r = 0x80;
+  94   2        }
+  95   1          xd_tmp = 0x80;
+  96   1          IAPAL = u8_addrl_r;
+  97   1          IAPAH = u16_addr>>8;
+  98   1          set_IAPEN; 
+  99   1          set_APUEN;
+ 100   1          IAPCN = 0x21;
+ 101   1          while (xd_tmp !=0xFF)
+ 102   1          {
+ 103   2            IAPFD = *xd_tmp;
+ 104   2            set_IAPGO;
+ 105   2            IAPAL++;
+C51 COMPILER V9.52.0.0   IAP_BYTE                                                          11/02/2016 11:29:19 PAGE 3   
+
+ 106   2            xd_tmp++;
+ 107   2          }
+ 108   1          clr_APUEN;
+ 109   1          clr_IAPEN;
+ 110   1      } 
+ 111          /*********************************************************************************************************
+             -*********/    
+ 112          
+ 113          
+ 114          void main (void) 
+ 115          {
+ 116   1          UINT8 datatemp;
+ 117   1      /* -------------------------------------------------------------------------*/
+ 118   1      /*  Dataflash use APROM area                                                */
+ 119   1      /*  APROM 0x3800~0x38FF demo as dataflash                                   */
+ 120   1      /* Please use Memory window key in C:0x3800 to check earse result           */        
+ 121   1      /* -------------------------------------------------------------------------*/
+ 122   1        
+ 123   1      //call write byte 
+ 124   1          write_DATAFLASH_BYTE (0x3881,0x55);
+ 125   1          write_DATAFLASH_BYTE (0x3882,0x56);
+ 126   1          write_DATAFLASH_BYTE (0x3855,0xaa);
+ 127   1          write_DATAFLASH_BYTE (0x3856,0x66);
+ 128   1      //call read byte
+ 129   1          datatemp = read_APROM_BYTE(0x3882);
+ 130   1          while(1);
+ 131   1      }
+ 132          //--------------------------------------------------------------------------------------------------------
+             ----
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    368    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

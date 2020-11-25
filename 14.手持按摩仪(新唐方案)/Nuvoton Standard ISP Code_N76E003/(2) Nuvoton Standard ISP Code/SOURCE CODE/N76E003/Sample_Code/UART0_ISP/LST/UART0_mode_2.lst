@@ -1,0 +1,435 @@
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE UART0_MODE_2
+OBJECT MODULE PLACED IN .\Output\UART0_mode_2.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Source\UART0_mode_2.c LARGE ROM(COMPACT) BROWSE INCDIR(..\..\Include) DEBUG
+                    - OBJECTEXTEND PRINT(.\LST\UART0_mode_2.lst) TABS(2) OBJECT(.\Output\UART0_mode_2.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 UART-0 Mode2 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Typedef.h"
+  21          #include "Define.h"
+  22          #include "SFR_Macro.h"
+  23           xdata volatile uint8_t uart_rcvbuf[64]; 
+  24           xdata volatile uint8_t uart_txbuf[64];
+  25           data volatile uint8_t bufhead=0;
+  26           data volatile uint16_t flash_address=0; 
+  27           data volatile uint16_t AP_size=0;
+  28           data volatile uint8_t g_timer1Counter;
+  29           data volatile uint8_t count; 
+  30           data volatile uint16_t g_timer0Counter;
+  31           data volatile uint32_t g_checksum;
+  32           data volatile uint32_t g_totalchecksum;
+  33           bit volatile bUartDataReady;
+  34           bit volatile g_timer0Over;
+  35           bit volatile g_timer1Over;
+  36           bit volatile g_progarmflag;
+  37          #define TRUE      (1)
+  38          #define FALSE     (0)
+  39          #define CMD_CONNECT     0xAE
+  40          #define CMD_SYNC_PACKNO    0xA4
+  41          #define CMD_GET_FWVER   0xA6
+  42          #define FW_VERSION    0x27
+  43          #define CMD_RUN_APROM   0xAB
+  44          #define CMD_GET_DEVICEID  0xB1
+  45          #define CMD_READ_CONFIG   0xA2
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 2   
+
+  46          #define CMD_UPDATE_APROM  0xA0
+  47          #define PAGE_ERASE_AP       0x22
+  48          #define BYTE_READ_AP        0x00
+  49          #define BYTE_PROGRAM_AP     0x21
+  50          
+  51          #define     PAGE_SIZE           128
+  52          
+  53          #define     APROM_SIZE          8*1024  
+  54          
+  55          bit BIT_TMP;
+  56          
+  57          void Package_checksum(void)
+  58          {
+  59   1        g_checksum=0;
+  60   1         for(count=0;count<64;count++)
+  61   1        {
+  62   2          g_checksum =g_checksum+ uart_rcvbuf[count];    
+  63   2        }
+  64   1        uart_txbuf[0]=g_checksum&0xff;
+  65   1        uart_txbuf[1]=(g_checksum>>8)&0xff;
+  66   1        uart_txbuf[4]=uart_rcvbuf[4]+1;
+  67   1        uart_txbuf[5]=uart_rcvbuf[5];
+  68   1        if(uart_txbuf[4]==0x00)
+  69   1        uart_txbuf[5]++;
+  70   1        
+  71   1      }
+  72          
+  73          void Send_64byte_To_UART0(void)
+  74          {
+  75   1         for(count=0;count<64;count++)
+  76   1        {
+  77   2          TI = 0;
+  78   2          SBUF = uart_txbuf[count];
+  79   2          while(TI==0);
+  80   2        }
+  81   1      }
+  82          
+  83          void Serial_ISR (void) interrupt 4 
+  84          {
+  85   1          if (RI == 1)
+  86   1          {   
+  87   2          uart_rcvbuf[bufhead++]= SBUF;   
+  88   2          clr_RI;                                         // Clear RI (Receive Interrupt).
+  89   2          }
+  90   1          if (TI == 1)
+  91   1          {       
+  92   2              clr_TI;                                         // Clear TI (Transmit Interrupt).
+  93   2          }
+  94   1          if(bufhead ==1)
+  95   1          {
+  96   2          g_timer1Over=0;
+  97   2          g_timer1Counter=90; //for check uart timeout using
+  98   2          }
+  99   1        if(bufhead == 64)
+ 100   1          {
+ 101   2            
+ 102   2            bUartDataReady = TRUE;
+ 103   2            g_timer1Counter=0;
+ 104   2            g_timer1Over=0;
+ 105   2            bufhead = 0;
+ 106   2            P10=P10^1;
+ 107   2          }   
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 3   
+
+ 108   1      }
+ 109          
+ 110          void Timer0_ISR (void) interrupt 1
+ 111          {
+ 112   1      if(g_timer0Counter)
+ 113   1        {
+ 114   2        g_timer0Counter--;
+ 115   2          if(!g_timer0Counter)
+ 116   2          {
+ 117   3          g_timer0Over=1;
+ 118   3          }
+ 119   2        }
+ 120   1        
+ 121   1        if(g_timer1Counter)
+ 122   1        {
+ 123   2        g_timer1Counter--;
+ 124   2          if(!g_timer1Counter)
+ 125   2          {
+ 126   3          g_timer1Over=1;
+ 127   3          }
+ 128   2        }
+ 129   1        
+ 130   1      } 
+ 131          /*********************************************************************************************************
+             -***
+ 132          *    Main function 
+ 133          **********************************************************************************************************
+             -**/
+ 134          void main (void)
+ 135          {
+ 136   1         //initial GPIO for quasi mode.  
+ 137   1         P0M1 = 0x00;
+ 138   1         P0M2 = 0x00;
+ 139   1         P1M1 = 0x00;
+ 140   1         P1M2 = 0x00;
+ 141   1         P2M1 = 0x00;
+ 142   1         P2M2 = 0x00;
+ 143   1         P3M1 = 0x00;
+ 144   1         P3M2 = 0x00;
+ 145   1         //uart initial 
+ 146   1         SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+ 147   1         TMOD |= 0x22;    //Timer1 Mode1, TIMER 0 MODE2
+ 148   1          
+ 149   1         set_SMOD;
+ 150   1         set_T1M;
+ 151   1         clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+ 152   1         TH1 = 256 - (1382400/115200);                /*22.1184 MHz */
+ 153   1         set_TR1;           //Start timer1
+ 154   1            
+ 155   1          TH0=TL0=0; //interrupt timer 140us
+ 156   1          set_TR0;   //Start timer0
+ 157   1          set_PSH;   // Serial port 0 interrupt level2
+ 158   1          IE = 0x92;                                      //EA=1, ES=1,ET0=1
+ 159   1          //IE = 0x90;                                      //EA=1, ES=1,ET0=1
+ 160   1          g_timer0Over=0;
+ 161   1          g_timer0Counter=5000;
+ 162   1          g_progarmflag=0;
+ 163   1      
+ 164   1      while(1)
+ 165   1      {
+ 166   2              if(bUartDataReady == TRUE)
+ 167   2              {
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 4   
+
+ 168   3              EA=0; //DISABLE ALL INTERRUPT                 
+ 169   3              P11=P11^1;
+ 170   3              if(g_progarmflag==1)
+ 171   3              {
+ 172   4      
+ 173   4              for(count=8;count<64;count++)
+ 174   4              {
+ 175   5              IAPCN = BYTE_PROGRAM_AP;
+ 176   5              IAPAL = flash_address&0xff;
+ 177   5              IAPAH = (flash_address>>8)&0xff;
+ 178   5              IAPFD=uart_rcvbuf[count];
+ 179   5              //trigger IAP
+ 180   5              TA=0xAA;
+ 181   5              TA=0x55;
+ 182   5              IAPTRG |= SET_BIT0 ;                                 
+ 183   5          
+ 184   5              IAPCN = BYTE_READ_AP;
+ 185   5              //trigger IAP
+ 186   5              TA=0xAA;
+ 187   5              TA=0x55;
+ 188   5              IAPTRG |= SET_BIT0 ;                                  //trigger IAP
+ 189   5              if(IAPFD!=uart_rcvbuf[count])
+ 190   5              while(1);         
+ 191   5              g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
+ 192   5              flash_address++;
+ 193   5              if(flash_address==AP_size)
+ 194   5              {
+ 195   6                g_progarmflag=0;
+ 196   6                 goto END_2;          
+ 197   6              }
+ 198   5              }
+ 199   4              
+ 200   4      END_2:                
+ 201   4              Package_checksum();
+ 202   4              uart_txbuf[8]=g_totalchecksum&0xff;
+ 203   4              uart_txbuf[9]=(g_totalchecksum>>8)&0xff;
+ 204   4              Send_64byte_To_UART0();
+ 205   4                  
+ 206   4              }
+ 207   3              
+ 208   3              
+ 209   3                
+ 210   3                switch(uart_rcvbuf[0])
+ 211   3                {               
+ 212   4                  case CMD_CONNECT:
+ 213   4                  case CMD_SYNC_PACKNO:
+ 214   4                  {
+ 215   5                  Package_checksum();
+ 216   5      
+ 217   5                  Send_64byte_To_UART0();   
+ 218   5                  g_timer0Counter=0; //clear timer 0 for no reset
+ 219   5                  g_timer0Over=0;
+ 220   5      //set_IAPEN;
+ 221   5      TA=0xAA;
+ 222   5      TA=0x55;
+ 223   5      CHPCON|=SET_BIT0;
+ 224   5      //set_APUEN;
+ 225   5      TA=0xAA;
+ 226   5      TA=0x55;
+ 227   5      IAPUEN|=SET_BIT0;             
+ 228   5                  break;
+ 229   5                  }
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 5   
+
+ 230   4                              
+ 231   4                  case CMD_GET_FWVER:           
+ 232   4                  {
+ 233   5                  Package_checksum();
+ 234   5                  uart_txbuf[8]=FW_VERSION; 
+ 235   5                  Send_64byte_To_UART0(); 
+ 236   5                  break;
+ 237   5                  }
+ 238   4                  
+ 239   4                  case CMD_RUN_APROM:           
+ 240   4                  {
+ 241   5                  //Package_checksum();
+ 242   5                  //uart_txbuf[8]=FW_VERSION; 
+ 243   5                  //Send_64byte_To_UART0(); 
+ 244   5                    goto _APROM;
+ 245   5                  break;
+ 246   5                  }
+ 247   4                  
+ 248   4                  
+ 249   4                  //please tool must define devices value
+ 250   4                  case CMD_GET_DEVICEID:            
+ 251   4                  {
+ 252   5                  Package_checksum();
+ 253   5                  uart_txbuf[8]=0x00; 
+ 254   5                  uart_txbuf[8]=0x5a; 
+ 255   5                  uart_txbuf[8]=0x00; 
+ 256   5                  uart_txbuf[8]=0x20; 
+ 257   5                  Send_64byte_To_UART0(); 
+ 258   5                  break;
+ 259   5                  }
+ 260   4                  
+ 261   4                  
+ 262   4                  case CMD_READ_CONFIG:           
+ 263   4                  {
+ 264   5                  Package_checksum();
+ 265   5                  uart_txbuf[8]=0x7f; 
+ 266   5                  uart_txbuf[9]=0xff; 
+ 267   5                  uart_txbuf[10]=0xff;  
+ 268   5                  uart_txbuf[11]=0xff;  
+ 269   5                  uart_txbuf[12]=0xff;  
+ 270   5                  uart_txbuf[13]=0xff;  
+ 271   5                  uart_txbuf[14]=0xff;            
+ 272   5                  uart_txbuf[15]=0xff;
+ 273   5                  Send_64byte_To_UART0(); 
+ 274   5                  break;
+ 275   5                  }
+ 276   4                  
+ 277   4                  case CMD_UPDATE_APROM:            
+ 278   4                  {
+ 279   5        //lucia modify
+ 280   5                      set_IAPEN;
+ 281   5                    IAPFD = 0xFF;    
+ 282   5                    IAPCN = PAGE_ERASE_AP;
+ 283   5                    set_APUEN;
+ 284   5                    for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+ 285   5                    {        
+ 286   6                          IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+ 287   6                          IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+ 288   6                        set_IAPGO;  
+ 289   6                    }           
+ 290   5                    
+ 291   5                  
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 6   
+
+ 292   5                    
+ 293   5      //       IAPCN = PAGE_ERASE_AP;   
+ 294   5      //              
+ 295   5      //        set_APUEN;                
+ 296   5      //            //aprom erase
+ 297   5      //            for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+ 298   5      //            {        
+ 299   5      //        IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+ 300   5      //        IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+ 301   5      //        //trigger IAP
+ 302   5      //        TA=0xAA;
+ 303   5      //        TA=0x55;
+ 304   5      //        IAPTRG |= SET_BIT0 ;
+ 305   5      //      }
+ 306   5                  g_totalchecksum=0;
+ 307   5              flash_address=0;
+ 308   5              AP_size=0;
+ 309   5              AP_size=uart_rcvbuf[12];
+ 310   5              AP_size|=(uart_rcvbuf[13]<<8);  
+ 311   5              g_progarmflag=1;
+ 312   5      
+ 313   5              for(count=16;count<64;count++)
+ 314   5              {
+ 315   6              IAPCN = BYTE_PROGRAM_AP;
+ 316   6              IAPAL = flash_address&0xff;
+ 317   6              IAPAH = (flash_address>>8)&0xff;
+ 318   6              IAPFD=uart_rcvbuf[count];
+ 319   6              //trigger IAP
+ 320   6              TA=0xAA;
+ 321   6              TA=0x55;
+ 322   6              IAPTRG |= SET_BIT0 ;                                 
+ 323   6          
+ 324   6              IAPCN = BYTE_READ_AP;
+ 325   6              //trigger IAP
+ 326   6              TA=0xAA;
+ 327   6              TA=0x55;
+ 328   6              IAPTRG |= SET_BIT0 ;                                  //trigger IAP
+ 329   6              if(IAPFD!=uart_rcvbuf[count])
+ 330   6              while(1);         
+ 331   6              g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
+ 332   6              flash_address++;
+ 333   6              if(flash_address==AP_size)
+ 334   6              {
+ 335   7                g_progarmflag=0;
+ 336   7                 goto END_1;          
+ 337   7              }
+ 338   6              }
+ 339   5              
+ 340   5      END_1:                
+ 341   5              Package_checksum();
+ 342   5              uart_txbuf[8]=g_totalchecksum&0xff;
+ 343   5              uart_txbuf[9]=(g_totalchecksum>>8)&0xff;
+ 344   5              Send_64byte_To_UART0(); 
+ 345   5              break;
+ 346   5              }
+ 347   4                  
+ 348   4                } 
+ 349   3                bUartDataReady = FALSE;
+ 350   3                bufhead = 0;            
+ 351   3                EA=1;
+ 352   3            }
+ 353   2            //For connect timer out 
+C51 COMPILER V9.52.0.0   UART0_MODE_2                                                      02/24/2016 15:00:07 PAGE 7   
+
+ 354   2            #if 1
+ 355   2            if(g_timer0Over==1)
+ 356   2            {      
+ 357   3             goto _APROM;
+ 358   3            }
+ 359   2            #endif
+ 360   2            
+ 361   2            //for uart time out or buffer error
+ 362   2            if(g_timer1Over==1)
+ 363   2            {      
+ 364   3             if((bufhead<64)&&(bufhead>0)||(bufhead>64))
+ 365   3               {
+ 366   4               bufhead=0;        
+ 367   4               }
+ 368   3            } 
+ 369   2        
+ 370   2        
+ 371   2      }   
+ 372   1      
+ 373   1      
+ 374   1      
+ 375   1      _APROM:
+ 376   1      
+ 377   1          TA = 0xAA;
+ 378   1          TA = 0x55;
+ 379   1          CHPCON &= 0xFD;                  //set boot from AP
+ 380   1          TA = 0xAA;
+ 381   1          TA = 0x55;
+ 382   1          CHPCON |= 0x80;                   //software reset enable
+ 383   1      
+ 384   1          /* Trap the CPU */
+ 385   1          while(1); 
+ 386   1      }
+ 387          
+ 388          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    999    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    128    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      5    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

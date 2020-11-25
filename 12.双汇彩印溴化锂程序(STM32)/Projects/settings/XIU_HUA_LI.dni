@@ -1,0 +1,20 @@
+[Disassemble mode]
+mode=1
+[Breakpoints]
+Count=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[TraceHelper]
+Enabled=0
+ShowSource=1
+[DriverProfiling]
+Enabled=0
+Source=2
+Graph=0

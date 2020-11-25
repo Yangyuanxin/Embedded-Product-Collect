@@ -1,0 +1,60 @@
+C51 COMPILER V9.52.0.0   CHECKID_MAIN                                                      10/19/2015 13:25:38 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE CHECKID_MAIN
+OBJECT MODULE PLACED IN .\Output\checkID_MAIN.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\checkID_MAIN.c OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include;..\..\Com
+                    -mon) DEFINE(FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\List\checkID_MAIN.lst) TABS(2) OBJECT(.\Output\checkID_MAIN.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E885.h"
+   3          #include "Define.h"
+   4          #include "UID_check.h"
+   5          
+   6          
+   7          void Timer0_Delay1ms(unsigned int u32CNT)
+   8          {
+   9   1          CKCON &= 0xF7;                                //T0M=0, Timer0 Clock = Fsys/12
+  10   1          TMOD |= 0x01;                           //Timer0 is 16-bit mode
+  11   1          TR0 =1;                                //Trigger Timer0
+  12   1          while (u32CNT != 0)
+  13   1          {
+  14   2              TL0 = 0xCD; 
+  15   2              TH0 = 0xF8;
+  16   2              while (TF0 != 1);                   //Check Timer0 Time-Out Flag
+  17   2              TF0 = 0;;
+  18   2              u32CNT --;
+  19   2          }
+  20   1          TR0 = 0;                                //Stop the Timer0
+  21   1      }
+  22          
+  23          
+  24          void main(void)
+  25          {
+  26   1              P0M1 = 0x00;
+  27   1              P0M2 = 0x00;
+  28   1        
+  29   1        while(1)
+  30   1        {
+  31   2          UID_check();
+  32   2          P0 = ~P0;
+  33   2          Timer0_Delay1ms(500);
+  34   2        }
+  35   1        
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     54    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

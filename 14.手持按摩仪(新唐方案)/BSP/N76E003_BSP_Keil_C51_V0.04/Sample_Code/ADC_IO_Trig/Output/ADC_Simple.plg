@@ -1,0 +1,113 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\WorkFolder\0.Product_all\00.FA8265\Release_201610\N76E003_BSP_Keil_C51_V1.0\Sample_Code\ADC_IO_Trig\ADC.uvproj
+Project File Date:  08/23/2016
+
+<h2>Output:</h2>
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=38.1 xdata=0 code=1729
+creating hex file from ".\Output\ADC_Simple"...
+".\Output\ADC_Simple" - 0 Error(s), 0 Warning(s).
+Rebuild target 'ADC'
+compiling ADC.C...
+..\..\Include\SFR_Macro.h(1259): warning C317: attempt to redefine macro 'set_P07'
+..\..\Include\SFR_Macro.h(1260): warning C317: attempt to redefine macro 'set_P06'
+..\..\Include\SFR_Macro.h(1261): warning C317: attempt to redefine macro 'set_P05'
+..\..\Include\SFR_Macro.h(1262): warning C317: attempt to redefine macro 'set_P04'
+..\..\Include\SFR_Macro.h(1263): warning C317: attempt to redefine macro 'set_P03'
+..\..\Include\SFR_Macro.h(1264): warning C317: attempt to redefine macro 'set_P02'
+..\..\Include\SFR_Macro.h(1265): warning C317: attempt to redefine macro 'set_P01'
+..\..\Include\SFR_Macro.h(1266): warning C317: attempt to redefine macro 'set_P00'
+..\..\Include\SFR_Macro.h(1268): warning C317: attempt to redefine macro 'clr_P07'
+..\..\Include\SFR_Macro.h(1269): warning C317: attempt to redefine macro 'clr_P06'
+..\..\Include\SFR_Macro.h(1270): warning C317: attempt to redefine macro 'clr_P05'
+..\..\Include\SFR_Macro.h(1271): warning C317: attempt to redefine macro 'clr_P04'
+..\..\Include\SFR_Macro.h(1272): warning C317: attempt to redefine macro 'clr_P03'
+..\..\Include\SFR_Macro.h(1273): warning C317: attempt to redefine macro 'clr_P02'
+..\..\Include\SFR_Macro.h(1274): warning C317: attempt to redefine macro 'clr_P01'
+..\..\Include\SFR_Macro.h(1275): warning C317: attempt to redefine macro 'clr_P00'
+..\..\Include\SFR_Macro.h(1278): warning C317: attempt to redefine macro 'set_P12'
+..\..\Include\SFR_Macro.h(1279): warning C317: attempt to redefine macro 'set_P11'
+..\..\Include\SFR_Macro.h(1280): warning C317: attempt to redefine macro 'set_P10'
+..\..\Include\SFR_Macro.h(1282): warning C317: attempt to redefine macro 'clr_P12'
+..\..\Include\SFR_Macro.h(1283): warning C317: attempt to redefine macro 'clr_P11'
+..\..\Include\SFR_Macro.h(1284): warning C317: attempt to redefine macro 'clr_P10'
+Code\ADC.C(70): error C141: syntax error near '='
+compiling Common.c...
+..\..\Include\SFR_Macro.h(1259): warning C317: attempt to redefine macro 'set_P07'
+..\..\Include\SFR_Macro.h(1260): warning C317: attempt to redefine macro 'set_P06'
+..\..\Include\SFR_Macro.h(1261): warning C317: attempt to redefine macro 'set_P05'
+..\..\Include\SFR_Macro.h(1262): warning C317: attempt to redefine macro 'set_P04'
+..\..\Include\SFR_Macro.h(1263): warning C317: attempt to redefine macro 'set_P03'
+..\..\Include\SFR_Macro.h(1264): warning C317: attempt to redefine macro 'set_P02'
+..\..\Include\SFR_Macro.h(1265): warning C317: attempt to redefine macro 'set_P01'
+..\..\Include\SFR_Macro.h(1266): warning C317: attempt to redefine macro 'set_P00'
+..\..\Include\SFR_Macro.h(1268): warning C317: attempt to redefine macro 'clr_P07'
+..\..\Include\SFR_Macro.h(1269): warning C317: attempt to redefine macro 'clr_P06'
+..\..\Include\SFR_Macro.h(1270): warning C317: attempt to redefine macro 'clr_P05'
+..\..\Include\SFR_Macro.h(1271): warning C317: attempt to redefine macro 'clr_P04'
+..\..\Include\SFR_Macro.h(1272): warning C317: attempt to redefine macro 'clr_P03'
+..\..\Include\SFR_Macro.h(1273): warning C317: attempt to redefine macro 'clr_P02'
+..\..\Include\SFR_Macro.h(1274): warning C317: attempt to redefine macro 'clr_P01'
+..\..\Include\SFR_Macro.h(1275): warning C317: attempt to redefine macro 'clr_P00'
+..\..\Include\SFR_Macro.h(1278): warning C317: attempt to redefine macro 'set_P12'
+..\..\Include\SFR_Macro.h(1279): warning C317: attempt to redefine macro 'set_P11'
+..\..\Include\SFR_Macro.h(1280): warning C317: attempt to redefine macro 'set_P10'
+..\..\Include\SFR_Macro.h(1282): warning C317: attempt to redefine macro 'clr_P12'
+..\..\Include\SFR_Macro.h(1283): warning C317: attempt to redefine macro 'clr_P11'
+..\..\Include\SFR_Macro.h(1284): warning C317: attempt to redefine macro 'clr_P10'
+..\..\Common\Common.c(43): error C141: syntax error near '='
+assembling STARTUP.A51...
+Target not created
+Rebuild target 'ADC'
+compiling ADC.C...
+Code\ADC.C(70): error C141: syntax error near '='
+compiling Common.c...
+..\..\Common\Common.c(43): error C141: syntax error near '='
+assembling STARTUP.A51...
+Target not created
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+..\..\Common\Common.c(43): error C141: syntax error near '='
+assembling STARTUP.A51...
+Target not created
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=38.1 xdata=0 code=1731
+creating hex file from ".\Output\ADC_Simple"...
+".\Output\ADC_Simple" - 0 Error(s), 0 Warning(s).
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=38.1 xdata=0 code=1731
+creating hex file from ".\Output\ADC_Simple"...
+".\Output\ADC_Simple" - 0 Error(s), 0 Warning(s).
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=38.1 xdata=0 code=1731
+creating hex file from ".\Output\ADC_Simple"...
+".\Output\ADC_Simple" - 0 Error(s), 0 Warning(s).
+Rebuild target 'ADC'
+compiling ADC.C...
+compiling Common.c...
+assembling STARTUP.A51...
+linking...
+Program Size: data=38.1 xdata=0 code=1731
+creating hex file from ".\Output\ADC_Simple"...
+".\Output\ADC_Simple" - 0 Error(s), 0 Warning(s).

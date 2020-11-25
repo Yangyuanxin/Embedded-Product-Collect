@@ -1,0 +1,176 @@
+C51 COMPILER V9.56.0.0   UART0_TRANSFER                                                    01/30/2018 15:53:26 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE UART0_TRANSFER
+OBJECT MODULE PLACED IN .\Output\UART0_transfer.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Source\UART0_transfer.c ROM(COMPACT) OPTIMIZE(1,SPEED) BROWSE INCDIR(..\
+                    -..\Include) DEBUG OBJECTEXTEND PRINT(.\LST\UART0_transfer.lst) TABS(2) OBJECT(.\Output\UART0_transfer.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 UART-0 Mode2 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Typedef.h"
+  21          #include "Define.h"
+  22          #include "SFR_Macro.h"
+  23          #include "UART0_transfer.h"
+  24          #include "ISP_USER.h"
+  25          
+  26            xdata volatile uint8_t uart_rcvbuf[64]; 
+  27            xdata volatile uint8_t uart_txbuf[64];
+  28           data volatile uint8_t bufhead;
+  29            data volatile uint16_t flash_address; 
+  30            data volatile uint16_t AP_size;
+  31            data volatile uint8_t g_timer1Counter;
+  32            data volatile uint8_t count; 
+  33            data volatile uint16_t g_timer0Counter;
+  34            data volatile uint32_t g_checksum;
+  35            data volatile uint32_t g_totalchecksum;
+  36            bit volatile bUartDataReady;
+  37            bit volatile g_timer0Over;
+  38            bit volatile g_timer1Over;
+  39            bit volatile g_progarmflag;
+  40          
+  41          bit BIT_TMP;
+  42          
+  43          
+  44          void TM0_ini(void)
+  45          {   
+C51 COMPILER V9.56.0.0   UART0_TRANSFER                                                    01/30/2018 15:53:26 PAGE 2   
+
+  46   1        TH0=TL0=0;    //interrupt timer 140us
+  47   1        set_TR0;      //Start timer0
+  48   1        set_PSH;      // Serial port 0 interrupt level2
+  49   1        IE = 0x92;    //EA=1, ES=1,ET0=1
+  50   1      }
+  51          
+  52          
+  53          void UART0_ini_115200(void)
+  54          {
+  55   1      
+  56   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  57   1          TMOD |= 0x22;    //Timer1 Mode1, TIMER 0 MODE2
+  58   1              
+  59   1          set_SMOD;
+  60   1          set_T1M;
+  61   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+  62   1          TH1 = 256 - (1000000/115200+1);                       /*16 MHz to 115200 Baudrate*/\
+  63   1      
+  64   1          set_TR1;          //Start timer1
+  65   1          ES=1;
+  66   1          EA=1;
+  67   1      }
+  68          
+  69          void UART0_ini_38400(void)
+  70          {
+  71   1          clr_UART0PX;
+  72   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  73   1          TMOD |= 0x22;    //Timer1 Mode1, TIMER 0 MODE2
+  74   1              
+  75   1          set_SMOD;
+  76   1          set_T1M;
+  77   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+  78   1          TH1 = 256 - (1000000/38400+1);                        /*16 MHz to 115200 Baudrate*/\
+  79   1      
+  80   1          set_TR1;          //Start timer1
+  81   1          ES=1;
+  82   1          EA=1;
+  83   1      }
+  84          void Send_64byte_To_UART0(void)
+  85          {
+  86   1         for(count=0;count<64;count++)
+  87   1        {
+  88   2          TI = 0; 
+  89   2          SBUF = uart_txbuf[count];
+  90   2          while(TI==0);
+  91   2        }
+  92   1      }
+  93          
+  94          void Serial_ISR (void) interrupt 4 
+  95          {
+  96   1          if (RI == 1)
+  97   1          {   
+  98   2            uart_rcvbuf[bufhead++]= SBUF;   
+  99   2            clr_RI;                                         // Clear RI (Receive Interrupt).
+ 100   2          }
+ 101   1          if (TI == 1)
+ 102   1          {       
+ 103   2              clr_TI;                                         // Clear TI (Transmit Interrupt).
+ 104   2          }
+ 105   1          if(bufhead ==1)
+ 106   1          {
+ 107   2            g_timer1Over=0;
+C51 COMPILER V9.56.0.0   UART0_TRANSFER                                                    01/30/2018 15:53:26 PAGE 3   
+
+ 108   2            g_timer1Counter=90; //for check uart timeout using
+ 109   2          }
+ 110   1        if(bufhead == 64)
+ 111   1          {
+ 112   2            
+ 113   2            bUartDataReady = TRUE;
+ 114   2            g_timer1Counter=0;
+ 115   2            g_timer1Over=0;
+ 116   2            bufhead = 0;
+ 117   2          }   
+ 118   1      }
+ 119          
+ 120          void Timer0_ISR (void) interrupt 1
+ 121          {
+ 122   1      if(g_timer0Counter)
+ 123   1        {
+ 124   2        g_timer0Counter--;
+ 125   2          if(!g_timer0Counter)
+ 126   2          {
+ 127   3          g_timer0Over=1;
+ 128   3          }
+ 129   2        }
+ 130   1        
+ 131   1        if(g_timer1Counter)
+ 132   1        {
+ 133   2        g_timer1Counter--;
+ 134   2          if(!g_timer1Counter)
+ 135   2          {
+ 136   3          g_timer1Over=1;
+ 137   3          }
+ 138   2        }
+ 139   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    219    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    128    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      5    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

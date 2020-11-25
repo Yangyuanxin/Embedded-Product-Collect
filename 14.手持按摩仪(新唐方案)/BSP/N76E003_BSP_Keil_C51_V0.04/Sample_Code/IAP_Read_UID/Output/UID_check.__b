@@ -1,0 +1,5 @@
+TRANSFER
+".\Output\checkID_MAIN.obj",
+".\Output\UID_check.LIB",
+".\Output\STARTUP.obj" 
+TO ".\Output\UID_check.LIB"

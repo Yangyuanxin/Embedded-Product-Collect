@@ -1,0 +1,490 @@
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Output\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Source\main.c ROM(COMPACT) OPTIMIZE(1,SPEED) BROWSE INCDIR(..\..\Include
+                    -) DEBUG OBJECTEXTEND PRINT(.\LST\main.lst) TABS(2) OBJECT(.\Output\main.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 UART-0 Mode2 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Typedef.h"
+  21          #include "Define.h"
+  22          #include "SFR_Macro.h"
+  23          #include "UART0_transfer.h"
+  24          #include "ISP_USER.h"
+  25          
+  26          sfr RCTRIM0   = 0x84;
+  27          sfr RCTRIM1   = 0x85; 
+  28          
+  29          
+  30          unsigned char hircmap0,hircmap1;
+  31          unsigned int  trimvalue16bit;
+  32          
+  33          unsigned char temp0;
+  34          unsigned char idata temp1  _at_ 0x90;
+  35          unsigned char xdata temp2;
+  36          unsigned char PID_highB,PID_lowB,CONF0,CONF1,CONF2,CONF4;
+  37          unsigned char recv_CONF0,recv_CONF1,recv_CONF2,recv_CONF4;
+  38          
+  39          
+  40          
+  41          void READ_ID_CONFIG(void)
+  42          {
+  43   1          set_IAPEN;
+  44   1          IAPCN = BYTE_READ_ID;
+  45   1          IAPAL = 0x00;
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 2   
+
+  46   1          IAPAH = 0x00;
+  47   1          TA=0xAA;    //trigger IAP
+  48   1          TA=0x55;
+  49   1          IAPTRG |= SET_BIT0;
+  50   1          PID_lowB = IAPFD;
+  51   1          IAPAL = 0x01;
+  52   1          TA=0xAA;    //trigger IAP
+  53   1          TA=0x55;
+  54   1          IAPTRG |= SET_BIT0;
+  55   1          PID_highB = IAPFD;
+  56   1      
+  57   1          IAPCN = BYTE_READ_CONFIG;
+  58   1          IAPAL = 0x00;
+  59   1          IAPAH = 0x00;
+  60   1          TA=0xAA;    //trigger IAP
+  61   1          TA=0x55;
+  62   1          IAPTRG |= SET_BIT0;
+  63   1          CONF0 = IAPFD;
+  64   1          IAPAL = 0x01;
+  65   1          TA=0xAA;    //trigger IAP
+  66   1          TA=0x55;
+  67   1          IAPTRG |= SET_BIT0;
+  68   1          CONF1 = IAPFD;
+  69   1          IAPAL = 0x02;
+  70   1          TA=0xAA;    //trigger IAP
+  71   1          TA=0x55;
+  72   1          IAPTRG |= SET_BIT0;
+  73   1          CONF2 = IAPFD;
+  74   1          IAPAL = 0x04;
+  75   1          TA=0xAA;    //trigger IAP
+  76   1          TA=0x55;
+  77   1          IAPTRG |= SET_BIT0;
+  78   1          CONF4 = IAPFD;
+  79   1          clr_IAPEN;
+  80   1      }
+  81          
+  82          void Package_checksum(void)
+  83          {
+  84   1        g_checksum=0;
+  85   1         for(count=0;count<64;count++)
+  86   1        {
+  87   2          g_checksum =g_checksum+ uart_rcvbuf[count];    
+  88   2        }
+  89   1        uart_txbuf[0]=g_checksum&0xff;
+  90   1        uart_txbuf[1]=(g_checksum>>8)&0xff;
+  91   1        uart_txbuf[4]=uart_rcvbuf[4]+1;
+  92   1        uart_txbuf[5]=uart_rcvbuf[5];
+  93   1        if(uart_txbuf[4]==0x00)
+  94   1        uart_txbuf[5]++;
+  95   1        
+  96   1      }
+  97          
+  98          void MODIFY_HIRC_16588(void)
+  99          {
+ 100   1          set_IAPEN;
+ 101   1          IAPAL = 0x30;
+ 102   1          IAPAH = 0x00;
+ 103   1          IAPCN = READ_UID;
+ 104   1          set_IAPGO;
+ 105   1          hircmap0 = IAPFD;
+ 106   1          IAPAL = 0x31;
+ 107   1          IAPAH = 0x00;
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 3   
+
+ 108   1          set_IAPGO;
+ 109   1          hircmap1 = IAPFD;
+ 110   1          clr_IAPEN;
+ 111   1          hircmap1 = hircmap1&0x01;
+ 112   1          trimvalue16bit = ((hircmap0<<1)+(hircmap1&0x01));
+ 113   1          trimvalue16bit = trimvalue16bit - 15;
+ 114   1          hircmap1 = trimvalue16bit&0x01;
+ 115   1          hircmap0 = trimvalue16bit>>1;
+ 116   1          TA=0XAA;
+ 117   1          TA=0X55;
+ 118   1          RCTRIM0 = hircmap0;
+ 119   1          TA=0XAA;
+ 120   1          TA=0X55;
+ 121   1          RCTRIM1 = hircmap1;
+ 122   1      }
+ 123           
+ 124          /*********************************************************************************************************
+             -***
+ 125          *    Main function 
+ 126          **********************************************************************************************************
+             -**/
+ 127          void main (void)
+ 128          {
+ 129   1         //initial GPIO for quasi mode.  
+ 130   1         P0M1 = 0x00;
+ 131   1         P0M2 = 0x00;
+ 132   1         P1M1 = 0x00;
+ 133   1         P1M2 = 0x00;
+ 134   1         P2M1 = 0x00;
+ 135   1         P2M2 = 0x00;
+ 136   1         P3M1 = 0x00;
+ 137   1         P3M2 = 0x00;
+ 138   1          MODIFY_HIRC_16588();
+ 139   1         //uart initial 
+ 140   1          READ_ID_CONFIG();
+ 141   1      //  UART0_ini_38400();
+ 142   1          UART0_ini_115200();
+ 143   1      //    TM0_ini();
+ 144   1      
+ 145   1          temp1 = 0xaa;
+ 146   1          g_timer0Over=0;
+ 147   1          g_timer0Counter=5000;
+ 148   1          g_progarmflag=0;
+ 149   1      
+ 150   1      while(1)
+ 151   1      {
+ 152   2              if(bUartDataReady == TRUE)
+ 153   2              {
+ 154   3                EA=0; //DISABLE ALL INTERRUPT                 
+ 155   3                if(g_progarmflag==1)
+ 156   3                {
+ 157   4                  for(count=8;count<64;count++)
+ 158   4                  {
+ 159   5                    IAPCN = BYTE_PROGRAM_AP;          //program byte
+ 160   5                    IAPAL = flash_address&0xff;
+ 161   5                    IAPAH = (flash_address>>8)&0xff;
+ 162   5                    IAPFD=uart_rcvbuf[count];
+ 163   5                    TA=0xAA;    //trigger IAP
+ 164   5                    TA=0x55;
+ 165   5                    IAPTRG |= SET_BIT0 ;   
+ 166   5      
+ 167   5                
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 4   
+
+ 168   5                    IAPCN = BYTE_READ_AP;             //program byte verify
+ 169   5                    TA=0xAA;      //trigger IAP
+ 170   5                    TA=0x55;
+ 171   5                    IAPTRG |= SET_BIT0 ;  
+ 172   5                    if(IAPFD!=uart_rcvbuf[count])
+ 173   5                    while(1);                         
+ 174   5                    if (CHPCON==0x43)             //if error flag set, program error stop ISP
+ 175   5                    while(1);
+ 176   5                    
+ 177   5                    g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
+ 178   5                    flash_address++;
+ 179   5        
+ 180   5                    if(flash_address==AP_size)
+ 181   5                    {
+ 182   6                      g_progarmflag=0;
+ 183   6                       goto END_2;          
+ 184   6                    }
+ 185   5                  } 
+ 186   4      END_2:                
+ 187   4                  Package_checksum();
+ 188   4                  uart_txbuf[8]=g_totalchecksum&0xff;
+ 189   4                  uart_txbuf[9]=(g_totalchecksum>>8)&0xff;
+ 190   4                  Send_64byte_To_UART0();
+ 191   4                  
+ 192   4                }
+ 193   3                  
+ 194   3                switch(uart_rcvbuf[0])
+ 195   3                {               
+ 196   4                  case CMD_CONNECT:
+ 197   4                  case CMD_SYNC_PACKNO:
+ 198   4                  {
+ 199   5                    Package_checksum();
+ 200   5                    Send_64byte_To_UART0();   
+ 201   5                    g_timer0Counter=0; //clear timer 0 for no reset
+ 202   5                    g_timer0Over=0;
+ 203   5                    
+ 204   5      //              TA=0xAA;            //set_IAPEN;
+ 205   5      //              TA=0x55;
+ 206   5      //              CHPCON|=SET_BIT0;
+ 207   5      //              TA=0xAA;            //set_APUEN;
+ 208   5      //              TA=0x55;
+ 209   5      //              IAPUEN|=SET_BIT0;             
+ 210   5                  break;
+ 211   5                  }
+ 212   4                              
+ 213   4                  case CMD_GET_FWVER:           
+ 214   4                  {
+ 215   5                    Package_checksum();
+ 216   5                    uart_txbuf[8]=FW_VERSION; 
+ 217   5                    Send_64byte_To_UART0(); 
+ 218   5                  break;
+ 219   5                  }
+ 220   4                  
+ 221   4                  case CMD_RUN_APROM:           
+ 222   4                  {
+ 223   5                  //Package_checksum();
+ 224   5                  //uart_txbuf[8]=FW_VERSION; 
+ 225   5                  //Send_64byte_To_UART0(); 
+ 226   5                    goto _APROM;
+ 227   5                  break;
+ 228   5                  }
+ 229   4          
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 5   
+
+ 230   4                  //please tool must define devices value
+ 231   4                  case CMD_GET_DEVICEID:            
+ 232   4                  {
+ 233   5                    Package_checksum();
+ 234   5                    uart_txbuf[8]=PID_lowB; 
+ 235   5                    uart_txbuf[9]=PID_highB;  
+ 236   5                    uart_txbuf[10]=0x00;  
+ 237   5                    uart_txbuf[11]=0x00;  
+ 238   5                    Send_64byte_To_UART0(); 
+ 239   5                  break;
+ 240   5                  }
+ 241   4        
+ 242   4                  case CMD_READ_CONFIG:           
+ 243   4                  {
+ 244   5                    Package_checksum();
+ 245   5      
+ 246   5                    uart_txbuf[8]=CONF0;  
+ 247   5                    uart_txbuf[9]=CONF1;  
+ 248   5                    uart_txbuf[10]=CONF2; 
+ 249   5                    uart_txbuf[11]=0xff;  
+ 250   5                    uart_txbuf[12]=CONF4; 
+ 251   5                    uart_txbuf[13]=0xff;  
+ 252   5                    uart_txbuf[14]=0xff;            
+ 253   5                    uart_txbuf[15]=0xff;
+ 254   5                    Send_64byte_To_UART0(); 
+ 255   5                  break;
+ 256   5                  }
+ 257   4                  
+ 258   4                  case CMD_UPDATE_CONFIG:
+ 259   4                  {
+ 260   5                    recv_CONF0 = uart_rcvbuf[8];
+ 261   5                    recv_CONF1 = uart_rcvbuf[9];
+ 262   5                    recv_CONF2 = uart_rcvbuf[10];
+ 263   5                    recv_CONF4 = uart_rcvbuf[12];
+ 264   5                    
+ 265   5                    set_IAPEN;
+ 266   5                    set_CFUEN;
+ 267   5                    IAPCN = PAGE_ERASE_CONFIG;
+ 268   5                    IAPAL = 0x00;
+ 269   5                    IAPAH = 0x00;
+ 270   5                    IAPFD = 0xFF;
+ 271   5                    TA=0xAA;    //trigger IAP
+ 272   5                    TA=0x55;
+ 273   5                    IAPTRG |= SET_BIT0;
+ 274   5      
+ 275   5                    IAPCN = BYTE_PROGRAM_CONFIG;
+ 276   5                    IAPAL = 0x00;
+ 277   5                    IAPAH = 0x00;
+ 278   5                    IAPFD = recv_CONF0;
+ 279   5                    TA=0xAA;    //trigger IAP
+ 280   5                    TA=0x55;
+ 281   5                    IAPTRG |= SET_BIT0;
+ 282   5                    IAPFD = recv_CONF1;
+ 283   5                    IAPAL = 0x01;
+ 284   5                    TA=0xAA;    //trigger IAP
+ 285   5                    TA=0x55;
+ 286   5                    IAPTRG |= SET_BIT0;
+ 287   5                    IAPAL = 0x02;
+ 288   5                    IAPFD = recv_CONF2;
+ 289   5                    TA=0xAA;    //trigger IAP
+ 290   5                    TA=0x55;
+ 291   5                    IAPTRG |= SET_BIT0;
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 6   
+
+ 292   5                    IAPAL = 0x04;
+ 293   5                    IAPFD = recv_CONF4;
+ 294   5                    TA=0xAA;    //trigger IAP
+ 295   5                    TA=0x55;
+ 296   5                    IAPTRG |= SET_BIT0;
+ 297   5                    clr_CFUEN;
+ 298   5      
+ 299   5                    IAPCN = BYTE_READ_CONFIG;
+ 300   5                    IAPAL = 0x00;
+ 301   5                    TA=0xAA;    //trigger IAP
+ 302   5                    TA=0x55;
+ 303   5                    IAPTRG |= SET_BIT0;
+ 304   5                    CONF0 = IAPFD;
+ 305   5                    IAPAL = 0x01;
+ 306   5                    TA=0xAA;    //trigger IAP
+ 307   5                    TA=0x55;
+ 308   5                    IAPTRG |= SET_BIT0;
+ 309   5                    CONF1 = IAPFD;
+ 310   5                    IAPAL = 0x02;
+ 311   5                    TA=0xAA;    //trigger IAP
+ 312   5                    TA=0x55;
+ 313   5                    IAPTRG |= SET_BIT0;
+ 314   5                    CONF2 = IAPFD;
+ 315   5                    IAPAL = 0x04;
+ 316   5                    TA=0xAA;    //trigger IAP
+ 317   5                    TA=0x55;
+ 318   5                    IAPTRG |= SET_BIT0;
+ 319   5                    CONF4 = IAPFD;
+ 320   5                    clr_IAPEN;
+ 321   5                    
+ 322   5                    Package_checksum();
+ 323   5                    uart_txbuf[8]=CONF0;  
+ 324   5                    uart_txbuf[9]=CONF1;  
+ 325   5                    uart_txbuf[10]=CONF2; 
+ 326   5                    uart_txbuf[11]=0xff;  
+ 327   5                    uart_txbuf[12]=CONF4; 
+ 328   5                    uart_txbuf[13]=0xff;  
+ 329   5                    uart_txbuf[14]=0xff;            
+ 330   5                    uart_txbuf[15]=0xff;
+ 331   5                    Send_64byte_To_UART0(); 
+ 332   5                    break;
+ 333   5                  }
+ 334   4                  
+ 335   4                  case CMD_UPDATE_APROM:            
+ 336   4                  {
+ 337   5                  
+ 338   5                    TA=0xAA;  //set_IAPEN;    
+ 339   5                    TA=0x55;
+ 340   5                    CHPCON |= SET_BIT0 ;  
+ 341   5                    TA=0xAA;  //set_APUEN;
+ 342   5                    TA=0x55;
+ 343   5                    IAPUEN |= SET_BIT0;
+ 344   5                    
+ 345   5                    IAPFD = 0xFF;         //Erase must set IAPFD = 0xFF
+ 346   5                    IAPCN = PAGE_ERASE_AP;
+ 347   5                    
+ 348   5                    for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+ 349   5                    {        
+ 350   6                      IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+ 351   6                      IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+ 352   6                      TA=0xAA;      //trigger IAP
+ 353   6                      TA=0x55;
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 7   
+
+ 354   6                      IAPTRG |= SET_BIT0 ;
+ 355   6                    }           
+ 356   5                    
+ 357   5                    g_totalchecksum=0;
+ 358   5                    flash_address=0;
+ 359   5                    AP_size=0;
+ 360   5                    AP_size=uart_rcvbuf[12];
+ 361   5                    AP_size|=(uart_rcvbuf[13]<<8);  
+ 362   5                    g_progarmflag=1;
+ 363   5      
+ 364   5                    for(count=16;count<64;count++)
+ 365   5                    {
+ 366   6                      IAPCN = BYTE_PROGRAM_AP;
+ 367   6                      IAPAL = flash_address&0xff;
+ 368   6                      IAPAH = (flash_address>>8)&0xff;
+ 369   6                      IAPFD=uart_rcvbuf[count];
+ 370   6                      //trigger IAP
+ 371   6                      TA=0xAA;
+ 372   6                      TA=0x55;
+ 373   6                      IAPTRG |= SET_BIT0 ;                                 
+ 374   6            
+ 375   6                      IAPCN = BYTE_READ_AP;               //program byte verify
+ 376   6                      //trigger IAP
+ 377   6                      TA=0xAA;
+ 378   6                      TA=0x55;
+ 379   6                      IAPTRG |= SET_BIT0 ;                               
+ 380   6                      if(IAPFD!=uart_rcvbuf[count])
+ 381   6                      while(1);         
+ 382   6                      if (CHPCON==0x43)               //if error flag set, program error stop ISP
+ 383   6                      while(1);
+ 384   6                      
+ 385   6                      g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
+ 386   6                      flash_address++;
+ 387   6                      
+ 388   6                      if(flash_address==AP_size)
+ 389   6                      {
+ 390   7                        g_progarmflag=0;
+ 391   7                         goto END_1;          
+ 392   7                      }
+ 393   6                    }
+ 394   5      END_1:                
+ 395   5                    Package_checksum();
+ 396   5                    uart_txbuf[8]=g_totalchecksum&0xff;
+ 397   5                    uart_txbuf[9]=(g_totalchecksum>>8)&0xff;
+ 398   5                    Send_64byte_To_UART0(); 
+ 399   5                    break;
+ 400   5                  }
+ 401   4                  
+ 402   4                } 
+ 403   3                bUartDataReady = FALSE;
+ 404   3                bufhead = 0;            
+ 405   3                EA=1;
+ 406   3            }
+ 407   2            //For connect timer out 
+ 408   2            #if 0
+                    if(g_timer0Over==1)
+                    {      
+                     goto _APROM;
+                    }
+                    #endif
+ 414   2            
+ 415   2            //for uart time out or buffer error
+C51 COMPILER V9.56.0.0   MAIN                                                              01/30/2018 15:53:26 PAGE 8   
+
+ 416   2            if(g_timer1Over==1)
+ 417   2            {      
+ 418   3             if((bufhead<64)&&(bufhead>0)||(bufhead>64))
+ 419   3               {
+ 420   4               bufhead=0;        
+ 421   4               }
+ 422   3            } 
+ 423   2      
+ 424   2      }   
+ 425   1      
+ 426   1      
+ 427   1      
+ 428   1      _APROM:
+ 429   1      
+ 430   1          TA = 0xAA;
+ 431   1          TA = 0x55;
+ 432   1          CHPCON &= 0xFD;                  //set boot from AP
+ 433   1          TA = 0xAA;
+ 434   1          TA = 0x55;
+ 435   1          CHPCON |= 0x80;                   //software reset enable
+ 436   1      
+ 437   1          /* Trap the CPU */
+ 438   1          while(1); 
+ 439   1      }
+ 440          
+ 441          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1659    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      1    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>XIU_HUA_LI/Flash</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>243</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      <PreferedWindows><Position>0</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>SourceBrowser</Factory></Window></Windows></PreferedWindows></Workspace>
+      <Build>
+        
+        
+        
+        
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Debug-Log</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>915</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+    <Debug-Log><ColumnWidth0>31</ColumnWidth0><ColumnWidth1>1193</ColumnWidth1><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window></Windows></PreferedWindows></Debug-Log><SourceBrowser><PreferedWindows><Position>0</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Workspace</Factory></Window></Windows></PreferedWindows></SourceBrowser></Static>
+    <Windows>
+      
+      
+    <Wnd0><Tabs><Tab><Identity>TabID-9094-1327</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd0><Wnd3><Tabs><Tab><Identity>TabID-12062-8295</Identity><TabName>Workspace</TabName><Factory>Workspace</Factory><Session><NodeDict><ExpandedNode>XIU_HUA_LI</ExpandedNode></NodeDict></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\App\main.c</Filename><XPos>0</XPos><YPos>87</YPos><SelStart>2341</SelStart><SelEnd>2357</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\GUI\LCD_FORM\LCD_INTERFACE.C</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>366</SelStart><SelEnd>366</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\GUI\ZLG_GUI\GUI_StockC.C</Filename><XPos>0</XPos><YPos>55</YPos><SelStart>1943</SelStart><SelEnd>1943</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\lcd\SPI_12864LCD.H</Filename><XPos>0</XPos><YPos>32</YPos><SelStart>1075</SelStart><SelEnd>1088</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\PARA\para.h</Filename><XPos>0</XPos><YPos>82</YPos><SelStart>2139</SelStart><SelEnd>2139</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\RELAY\relay.h</Filename><XPos>0</XPos><YPos>43</YPos><SelStart>1120</SelStart><SelEnd>1120</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\VIEW\view.c</Filename><XPos>0</XPos><YPos>66</YPos><SelStart>991</SelStart><SelEnd>991</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\gui\zlg_gui\font16_16.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>184</SelStart><SelEnd>184</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\VIEW\view.h</Filename><XPos>0</XPos><YPos>135</YPos><SelStart>2005</SelStart><SelEnd>2005</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\GUI\ZLG_GUI\FONT16_16.C</Filename><XPos>0</XPos><YPos>735</YPos><SelStart>85643</SelStart><SelEnd>85643</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\measure\measure.h</Filename><XPos>0</XPos><YPos>110</YPos><SelStart>3411</SelStart><SelEnd>3411</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>F:\&#x516C;&#x53F8;&#x8D44;&#x6599;--&#x5F20;&#x670B;&#x98De;\&#x6F2F;&#x6CB3;&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;5&#x53F0;\&#x7A0B;&#x5e8F;\&#x53CC;&#x6C47;&#x5F69;&#x5370;&#x6eB4;&#x5316;&#x9502;&#x7A0B;&#x5e8F;\GUI\LCD_FORM\lcd_interface.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00b09738><key>iaridepm.enu1</key></Toolbar-00b09738></Sizes></Row0></Top><Left><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>505</Bottom><Right>317</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>200</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>289017</sizeHorzCY><sizeVertCX>233529</sizeVertCX><sizeVertCY>732659</sizeVertCY></Rect></Wnd3></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>142</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>144</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>208092</sizeHorzCY><sizeVertCX>210102</sizeVertCX><sizeVertCY>401734</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

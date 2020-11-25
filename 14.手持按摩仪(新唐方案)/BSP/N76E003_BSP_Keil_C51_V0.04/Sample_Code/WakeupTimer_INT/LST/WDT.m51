@@ -1,0 +1,209 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/31/2016  14:52:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\Output\WDT_WD_WK.obj TO .\Output\WDT PRINT (.\LST\WDT.m51) RAMSIZE (256) DISABLEWARNING (16)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Output\WDT (WDT_WD_WK)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0018H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?WDT_WD_WK
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0073H     UNIT         ?PR?MAIN?WDT_WD_WK
+            CODE    0076H     000CH     UNIT         ?C_C51STARTUP
+                    0082H     0009H                  *** GAP ***
+            CODE    008BH     0003H     ABSOLUTE     
+            CODE    008EH     0064H     UNIT         ?PR?WAKEUP_TIMER_ISR?WDT_WD_WK
+
+
+
+OVERLAY MAP OF MODULE:   .\Output\WDT (WDT_WD_WK)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?WDT_WD_WK
+
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   SET_ALL_GPIO_QUASI_MODE
+   _TIMER0_DELAY1MS
+   _TIMER2_DELAY1MS
+
+
+
+SYMBOL TABLE OF MODULE:  .\Output\WDT (WDT_WD_WK)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/31/2016  14:52:49  PAGE 2
+
+
+  -------         MODULE        WDT_WD_WK
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:008FH         PUBLIC        WKCON
+  C:008EH         PUBLIC        WakeUp_Timer_ISR
+  D:009CH         PUBLIC        EIE1
+  B:00A8H.7       PUBLIC        EA
+  D:00D8H         PUBLIC        PWMCON0
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0003H         PUBLIC        main
+  D:0087H         PUBLIC        PCON
+  B:0020H.0       PUBLIC        BIT_TMP
+  B:00B0H.0       PUBLIC        P30
+  B:00A0H.2       PUBLIC        P22
+  D:0098H         PUBLIC        SCON
+  B:00A0H.3       PUBLIC        P23
+  D:0088H         PUBLIC        TCON
+  D:00F8H         PUBLIC        SCON_1
+  D:00E8H         PUBLIC        ADCCON0
+  D:00C0H         PUBLIC        I2CON
+  D:00C8H         PUBLIC        T2CON
+  D:0086H         PUBLIC        RWK
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          WAKEUP_TIMER_ISR
+  C:008EH         LINE#         37
+  C:00ABH         LINE#         39
+  C:00AEH         LINE#         41
+  C:00B0H         LINE#         42
+  C:00BBH         LINE#         43
+  C:00BDH         LINE#         44
+  C:00C8H         LINE#         45
+  C:00CAH         LINE#         46
+  C:00D5H         LINE#         47
+  C:00D7H         LINE#         49
+  -------         ENDPROC       WAKEUP_TIMER_ISR
+  -------         PROC          MAIN
+  C:0003H         LINE#         55
+  C:0003H         LINE#         56
+  C:0003H         LINE#         61
+  C:0006H         LINE#         67
+  C:0011H         LINE#         68
+  C:0013H         LINE#         69
+  C:001EH         LINE#         70
+  C:0020H         LINE#         71
+  C:002BH         LINE#         72
+  C:002DH         LINE#         73
+  C:0038H         LINE#         74
+  C:003AH         LINE#         84
+  C:003DH         LINE#         86
+  C:0040H         LINE#         87
+  C:0043H         LINE#         88
+  C:0046H         LINE#         89
+  C:0048H         LINE#         92
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/31/2016  14:52:49  PAGE 3
+
+
+  C:0048H         LINE#         93
+  C:0048H         LINE#         95
+  C:004AH         LINE#         96
+  C:0055H         LINE#         97
+  C:0057H         LINE#         98
+  C:0062H         LINE#         99
+  C:0064H         LINE#         100
+  C:006FH         LINE#         101
+  C:0071H         LINE#         103
+  C:0074H         LINE#         108
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        WDT_WD_WK
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SET_ALL_GPIO_QUASI_MODE
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _TIMER2_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER2_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 00B9H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER2_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 00C6H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER2_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 00D3H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SET_ALL_GPIO_QUASI_MODE
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 0004H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 000FH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 001CH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/31/2016  14:52:49  PAGE 4
+
+
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 0029H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 0036H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 0053H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 0060H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _TIMER0_DELAY1MS
+    MODULE:  .\Output\WDT_WD_WK.obj (WDT_WD_WK)
+    ADDRESS: 006DH
+
+Program Size: data=9.1 xdata=0 code=233
+LINK/LOCATE RUN COMPLETE.  14 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,6 @@
+".\Output\I2C_M.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\I2C_M" 
+PRINT(".\LST\I2C_M.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

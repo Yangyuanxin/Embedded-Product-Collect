@@ -1,0 +1,151 @@
+C51 COMPILER V9.52.0.0   COMMON                                                            07/26/2016 16:56:04 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE COMMON
+OBJECT MODULE PLACED IN .\Output\Common.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\Common\Common.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_110592) DEBU
+                    -G OBJECTEXTEND PRINT(.\LST\Common.lst) TABS(2) OBJECT(.\Output\Common.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          #include <stdio.h>
+  15          #include "N76E003.h"
+  16          #include "Define.h"
+  17          #include "Common.h"
+  18          #include "Delay.h"
+  19          #include "SFR_Macro.h"
+  20          #include "Function_define.h"
+  21          
+  22          //----------------------------------------------------------------------------------
+  23          // use timer1 as Baudrate generator, Maxmum Baudrate can 1382400 bps @ 22.1184MHz
+  24          //----------------------------------------------------------------------------------
+  25          void InitialUART0_Timer1(UINT32 u32Baudrate)    //T1M = 1, SMOD = 1
+  26          {
+  27   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  28   1          TMOD |= 0x20;    //Timer1 Mode1
+  29   1          
+  30   1          set_SMOD;        //UART0 Double Rate Enable
+  31   1          set_T1M;
+  32   1          clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+  33   1      
+  34   1       
+  35   1      #ifdef FOSC_160000
+                  TH1 = 256 - (1000000/u32Baudrate);               /*11.0592 MHz */
+              #endif      
+  38   1          set_TR1;
+  39   1      }
+*** WARNING C280 IN LINE 25 OF ..\..\Common\Common.c: 'u32Baudrate': unreferenced local variable
+  40          //---------------------------------------------------------------
+  41          void InitialUART0_Timer3(UINT32 u32Baudrate) //use timer3 as Baudrate generator
+  42          {
+  43   1          SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  44   1          set_SMOD;        //UART0 Double Rate Enable
+  45   1          T3CON &= 0xF8;   //T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)
+  46   1          set_BRCK;        //UART0 baud rate clock source = Timer3
+C51 COMPILER V9.52.0.0   COMMON                                                            07/26/2016 16:56:04 PAGE 2   
+
+  47   1      
+  48   1      #ifdef FOSC_160000
+                RH3    = HIBYTE(65536 - (1000000/u32Baudrate));     /*16 MHz */
+                RL3    = LOBYTE(65536 - (1000000/u32Baudrate));     /*16 MHz */
+              #endif
+  52   1          set_TR3;         //Trigger Timer3
+  53   1      }
+*** WARNING C280 IN LINE 41 OF ..\..\Common\Common.c: 'u32Baudrate': unreferenced local variable
+  54          
+  55          UINT8 Receive_Data_From_UART0(void)
+  56          {
+  57   1          UINT8 c;
+  58   1          
+  59   1          while (!RI);
+  60   1          c = SBUF;
+  61   1          RI = 0;
+  62   1          return (c);
+  63   1      }
+  64          
+  65          void Send_Data_To_UART0 (UINT8 c)
+  66          {
+  67   1          TI = 0;
+  68   1          SBUF = c;
+  69   1          while(TI==0);
+  70   1      }
+  71          
+  72          
+  73          //---------------------------------------------------------------
+  74          void InitialUART1_Timer3(UINT32 u32Baudrate) //use timer3 as Baudrate generator
+  75          {
+  76   1          SCON_1 = 0x52;   //UART1 Mode1,REN_1=1,TI_1=1
+  77   1          T3CON &= 0xF8;   //T3PS2=0,T3PS1=0,T3PS0=0(Prescale=1)
+  78   1         
+  79   1      #ifdef FOSC_160000
+                RH3    = HIBYTE(65536 - (1000000/u32Baudrate));     /*16 MHz */
+                RL3    = LOBYTE(65536 - (1000000/u32Baudrate));     /*16 MHz */
+              #endif
+  83   1          set_TR3;         //Trigger Timer3
+  84   1      }
+*** WARNING C280 IN LINE 74 OF ..\..\Common\Common.c: 'u32Baudrate': unreferenced local variable
+  85          
+  86          UINT8 Receive_Data_From_UART1(void)
+  87          {
+  88   1          UINT8 c;
+  89   1          
+  90   1          while (!RI_1);
+  91   1          c = SBUF_1;
+  92   1          RI_1 = 0;
+  93   1          return (c);
+  94   1      }
+  95          
+  96          void Send_Data_To_UART1 (UINT8 c)
+  97          {
+  98   1          TI_1 = 0;
+  99   1          SBUF_1 = c;
+ 100   1          while(TI_1==0);
+ 101   1      }
+ 102          
+ 103          
+ 104          /*==========================================================================*/
+ 105          #ifdef SW_Reset
+              void SW_Reset(void)
+C51 COMPILER V9.52.0.0   COMMON                                                            07/26/2016 16:56:04 PAGE 3   
+
+              {
+                  TA = 0xAA;
+                  TA = 0x55;
+                  set_SWRST;
+              }
+              #endif
+ 113          /*==========================================================================*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    100    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      12
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)

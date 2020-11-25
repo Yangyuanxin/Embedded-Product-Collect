@@ -1,0 +1,58 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.20.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: xiaoyuan, Otouch, LIC=MPPDY-I7TF5-3ZTW1-CUJCZ-Q36TX-9PMUR
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.20
+Toolchain Path:  D:\Program Files\Keil_v5_MDK\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 2 (build 183)
+Assembler:       Armasm.exe V5.06 update 2 (build 183)
+Linker/Locator:  ArmLink.exe V5.06 update 2 (build 183)
+Library Manager: ArmAr.exe V5.06 update 2 (build 183)
+Hex Converter:   FromElf.exe V5.06 update 2 (build 183)
+CPU DLL:         SARMCM3.DLL V5.20
+Dialog DLL:      DCM.DLL V1.13.7.0
+Target DLL:      Segger\JL2CM3.dll V2.99.20.0
+Dialog DLL:      TCM.DLL V1.14.9.0
+ 
+<h2>Project:</h2>
+C:\Users\xiaoyuan\Desktop\STM32 3D printer\Project\STM32_3DPrinter_firmware.uvprojx
+Project File Date:  03/07/2017
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Program Files\Keil_v5_MDK\ARM\ARMCC\Bin'
+Build target '3Dprinter_firmware'
+compiling main.c...
+compiling ConfigurationStore.c...
+compiling marlin_main.c...
+..\USER\marlin_main.c(185): warning:  #177-D: variable "nextRecordMillis" was declared but never referenced
+  static uint32_t nextRecordMillis = 0; //??À´??Â¼?Â´???flashÐ´?ë²??ýµ?Ê±??
+..\USER\marlin_main.c: 1 warning, 0 errors
+compiling cardreader.c...
+compiling planner.c...
+compiling stepper.c...
+compiling motion_control.c...
+compiling temperature.c...
+compiling lcd12864_menu.c...
+..\HARDWARE\LCD12864\lcd12864_menu.c(1686): warning:  #177-D: variable "tempStr2" was declared but never referenced
+  	char tempStr1[16],tempStr2[16];
+..\HARDWARE\LCD12864\lcd12864_menu.c: 1 warning, 0 errors
+linking...
+Program Size: Code=85112 RO-data=5184 RW-data=2764 ZI-data=55564  
+FromELF: creating hex file...
+".\Objects\STM32_3DPrinter_firmware.axf" - 0 Error(s), 2 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\xiaoyuan\Desktop\STM32 3D printer\Project\RTE
+  D:\Program Files\Keil_v5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:09
+</pre>
+</body>
+</html>

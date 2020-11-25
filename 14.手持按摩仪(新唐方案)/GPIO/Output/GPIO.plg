@@ -1,0 +1,107 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\按摩仪 - 副本\GPIO\ammo.uvproj
+Project File Date:  03/06/2018
+
+<h2>Output:</h2>
+Load "D:\\按摩仪 - 副本\\GPIO\\Output\\GPIO" 
+Flash Erase Done.
+Flash Write Done: 2516 bytes programmed.
+Flash Verify Done: 2516 bytes verified.
+Load "D:\\按摩仪 - 副本\\GPIO\\Output\\GPIO" 
+Flash Erase Done.
+Flash Write Done: 2516 bytes programmed.
+Flash Verify Done: 2516 bytes verified.
+Build target 'GPIO'
+compiling time.c...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0031H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 004AH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0050H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0069H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0927H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0934H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0940H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 094DH
+Program Size: data=80.0 xdata=0 code=2516
+creating hex file from ".\Output\GPIO"...
+".\Output\GPIO" - 0 Error(s), 9 Warning(s).
+Load "D:\\按摩仪 - 副本\\GPIO\\Output\\GPIO" 
+Flash Erase Done.
+Flash Write Done: 2516 bytes programmed.
+Flash Verify Done: 2516 bytes verified.
+Build target 'GPIO'
+compiling time.c...
+linking...
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0031H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 004AH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0050H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0069H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0927H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0934H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 0940H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  BIT_TMP
+    MODULE:  .\Output\pwm.obj (PWM)
+    ADDRESS: 094DH
+Program Size: data=80.0 xdata=0 code=2516
+creating hex file from ".\Output\GPIO"...
+".\Output\GPIO" - 0 Error(s), 9 Warning(s).
+Load "D:\\按摩仪 - 副本\\GPIO\\Output\\GPIO" 
+Flash Erase Done.
+Flash Write Done: 2516 bytes programmed.
+Flash Verify Done: 2516 bytes verified.

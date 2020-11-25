@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>image/doctor.png</file>
+        <file>image/grey.png</file>
+        <file>image/image_background.jpg</file>
+        <file>image/jibenxinxi.png</file>
+        <file>image/laba.png</file>
+        <file>image/patient.png</file>
+        <file>image/quxiantu.png</file>
+        <file>image/remind.png</file>
+        <file>image/sos.png</file>
+        <file>image/welcome.gif</file>
+        <file>image/white.png</file>
+        <file>image/map.png</file>
+        <file>image/15.PNG</file>
+        <file>image/background.png</file>
+        <file>image/h2.PNG</file>
+        <file>image/h1.PNG</file>
+    </qresource>
+</RCC>

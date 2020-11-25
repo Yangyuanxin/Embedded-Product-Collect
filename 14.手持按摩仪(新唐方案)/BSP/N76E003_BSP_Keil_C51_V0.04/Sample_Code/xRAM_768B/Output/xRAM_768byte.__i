@@ -1,0 +1,1 @@
+"Code\xRAM_768byte.c" BROWSE INCDIR(..\..\Include) DEBUG OBJECTEXTEND PRINT(.\LST\xRAM_768byte.lst) TABS (2) SRC (.\Output\xRAM_768byte.SRC)

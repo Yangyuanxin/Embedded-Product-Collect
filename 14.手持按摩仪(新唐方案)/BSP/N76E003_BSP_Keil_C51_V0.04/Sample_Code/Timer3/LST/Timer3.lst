@@ -1,0 +1,92 @@
+C51 COMPILER V9.52.0.0   TIMER3                                                            11/02/2016 11:51:51 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE TIMER3
+OBJECT MODULE PLACED IN .\Output\Timer3.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\Timer3.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJECT
+                    -EXTEND PRINT(.\LST\Timer3.lst) TABS(2) OBJECT(.\Output\Timer3.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 Timer3 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          #define RELOAD_VALUE_H  (65536-50)/256
+  26          #define RELOAD_VALUE_L  (65536-50)%256
+  27          
+  28          /*********************************************************************************************************
+             -***
+  29          *    TIMER 2 interrupt subroutine
+  30          **********************************************************************************************************
+             -**/
+  31          void Timer3_ISR (void) interrupt 16 
+  32          {
+  33   1          clr_TF3;
+  34   1          P02 = ~P02;                                 //P0.2 toggle when TF3 interrupt
+  35   1      }
+  36          
+  37          /*********************************************************************************************************
+             -***
+  38          *    Main function 16 bit auto reload Timer 3
+  39          **********************************************************************************************************
+             -**/
+  40          void main (void)
+  41          {
+C51 COMPILER V9.52.0.0   TIMER3                                                            11/02/2016 11:51:51 PAGE 2   
+
+  42   1          Set_All_GPIO_Quasi_Mode;
+  43   1        
+  44   1          RH3 = RELOAD_VALUE_H;                       //initial counter values 
+  45   1          RL3 = RELOAD_VALUE_L;    
+  46   1          
+  47   1          set_ET3;                                    //enable Timer3 interrupt
+  48   1          set_EA;                                     //enable interrupts
+  49   1          set_TR3;                                    //Timer3 run
+  50   1      
+  51   1          while(1);
+  52   1      }
+  53          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     35    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

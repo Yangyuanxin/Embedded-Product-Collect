@@ -1,0 +1,6 @@
+".\Output\Capture.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\Timer2" 
+PRINT(".\LST\Timer2.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

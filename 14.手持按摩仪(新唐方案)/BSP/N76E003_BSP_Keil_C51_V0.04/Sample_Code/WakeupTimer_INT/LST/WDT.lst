@@ -1,0 +1,166 @@
+C51 COMPILER V9.52.0.0   WDT                                                               08/04/2015 13:46:23 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE WDT
+OBJECT MODULE PLACED IN .\Output\WDT.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\WDT.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_221184) DEBUG OBJECTEXT
+                    -END PRINT(.\LST\WDT.lst) TABS(2) OBJECT(.\Output\WDT.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 Watch Dog demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Version.h"
+  21          #include "Typedef.h"
+  22          #include "Define.h"
+  23          #include "SFR_Macro.h"
+  24          #include "Common.h"
+  25          #include "Delay.h"
+  26          
+  27          /*
+  28          //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
+  29          //
+  30          //<e0> System Clock Source Configuration
+  31          // <o1> System Clock Source Selection
+  32          //      <0=> 2~25MHz    XTAL
+  33          //      <1=> 32.768KHz  XTAL
+  34          //      <2=> 22.1184MHz Internal
+  35          //      <3=> 10KHz      Internal
+  36          //      <4=> OSC-In     External
+  37          //</e>
+  38          //
+  39          //<e2> Clock Divider Configuration
+  40          //     <o3.0..7>  System Clock Source Devider
+  41          //                     <i> Fsys = (System Clock Source) / (2 * Devider)
+  42          //                     <1-255>
+  43          //</e>
+  44          //
+  45          // <o4> Pre-Scalar Divider
+C51 COMPILER V9.52.0.0   WDT                                                               08/04/2015 13:46:23 PAGE 2   
+
+  46          //      <0=> 1/2     
+  47          //      <1=> 1/4     
+  48          //      <2=> 1/8     
+  49          //      <3=> 1/16    
+  50          //      <4=> 1/32    
+  51          //      <5=> 1/64    
+  52          //      <6=> 1/128   
+  53          //      <7=> 1/256   
+  54          //
+  55          //-------- <<< end of configuration section >>> ------------------------------
+  56          */
+  57          
+  58          #define SYS_CLK_EN      0
+  59          #define SYS_SEL         2
+  60          #define SYS_DIV_EN      0                       //0: Fsys=Fosc, 1: Fsys = Fosc/(2*CKDIV)
+  61          #define SYS_DIV         1
+  62          #define PRE_SCALAR      7
+  63          #define WDT_MODE        0
+  64          
+  65          bit BIT_TMP;
+  66          /*********************************************************************************************************
+             -***
+  67          *    Main function 
+  68          **********************************************************************************************************
+             -**/
+  69          void main (void)
+  70          {
+  71   1          /* Note
+  72   1             MCU power on system clock is HIRC (22.1184MHz), so Fsys = 22.1184MHz
+  73   1          */
+  74   1          
+  75   1          Set_All_GPIO_Quasi_Mode();
+  76   1          InitialUART0_Timer1_Type1(9600);             /* 9600 Baud Rate*/
+  77   1      
+  78   1          Show_FW_Version_Number_To_PC();
+  79   1      
+  80   1          printf ("\n*===================================================================");
+  81   1          printf ("\n*  Name: N76E885 Watch Dog Timer Demo Code.");
+  82   1          printf ("\n*===================================================================\n");
+  83   1          
+  84   1          /* Change system closk source */
+  85   1          #if SYS_CLK_EN == 1
+                      #if   SYS_SEL == 0
+                          System_Clock_Select(E_HXTEN);   //Fosc = 2~25MHz XTAL
+                      #elif SYS_SEL == 1
+                          System_Clock_Select(E_LXTEN);   //Fosc = 32.768KHz XTAL
+                      #elif SYS_SEL == 2
+                          System_Clock_Select(E_HIRCEN);  //Fosc = 22.1184MHz Internal RC
+                      #elif SYS_SEL == 3
+                          System_Clock_Select(E_LIRCEN);  //Fosc = 10KHz Internal RC
+                      #elif SYS_SEL == 4
+                          System_Clock_Select(E_OSCEN);   //Fosc = OSC-In External OSC
+                      #endif
+                  #endif
+  98   1          
+  99   1          #if SYS_DIV_EN == 1
+                      CKDIV = SYS_DIV;                        //Fsys = Fosc / (2* CLKDIV) = Fcpu
+                  #endif
+ 102   1      
+ 103   1              TA = 0x0AA;
+ 104   1              TA = 0x055;
+ 105   1          #if   PRE_SCALAR == 0
+C51 COMPILER V9.52.0.0   WDT                                                               08/04/2015 13:46:23 PAGE 3   
+
+                      WDCON = 0x00;
+                  #elif PRE_SCALAR == 1
+                      WDCON = 0x01;
+                  #elif PRE_SCALAR == 2
+                      WDCON = 0x02;
+                  #elif PRE_SCALAR == 3
+                      WDCON = 0x03;
+                  #elif PRE_SCALAR == 4
+                      WDCON = 0x04;
+                  #elif PRE_SCALAR == 5
+                      WDCON = 0x05;
+                  #elif PRE_SCALAR == 6
+                      WDCON = 0x06;
+                  #elif PRE_SCALAR == 7
+ 120   1              WDCON = 0x07;
+ 121   1          #endif
+ 122   1          
+ 123   1          set_WDTEN;                                  //WDT run
+ 124   1      
+ 125   1          while(1);
+ 126   1      }
+ 127          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     74    ----
+   CONSTANT SIZE    =    186    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

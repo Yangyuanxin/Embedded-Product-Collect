@@ -1,0 +1,6 @@
+".\Output\WDT.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\WDT" 
+PRINT(".\LST\WDT.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

@@ -1,0 +1,6 @@
+".\Output\CLK_OUT.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\CLK_OUT" 
+PRINT(".\LST\CLK_OUT.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

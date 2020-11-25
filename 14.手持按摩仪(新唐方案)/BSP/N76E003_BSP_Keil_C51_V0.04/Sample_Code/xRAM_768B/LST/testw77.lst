@@ -1,0 +1,152 @@
+C51 COMPILER V9.52.0.0   TESTW77                                                           08/03/2016 09:49:06 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE TESTW77
+NO OBJECT MODULE REQUESTED
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\testw77.c BROWSE INCDIR(..\..\Include) DEBUG OBJECTEXTEND PRINT(.\LST\
+                    -testw77.lst) TABS(2) SRC(.\Output\testw77.SRC)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E885.h"
+   3          
+   4          
+   5          /*-----------------------------------d-------------
+   6          The main C function.  Program execution starts
+   7          here after stack initialization.
+   8          ------------------------------------------------*/
+   9          void main (void) 
+  10          {
+  11   1      
+  12   1              DPH=0;
+  13   1              DPL=0;
+  14   1      //  P1M1= 0X00;
+  15   1      //  P1M2= 0X00;
+  16   1                     
+  17   1      #pragma asm 
+  18   1        
+  19   1        ORL 0C4H,#01H
+  20   1      
+  21   1      L7:
+  22   1        MOV DPH,#0
+  23   1        MOV DPL,#0
+  24   1        MOV A,#1
+  25   1        MOVX @DPTR,A
+  26   1        INC DPL
+  27   1        MOV A,DPL
+  28   1        CJNE A,#0FFH,L7
+  29   1      
+  30   1      L71:
+  31   1        MOV DPH,#1
+  32   1        MOV DPL,#0
+  33   1        MOV A,#2
+  34   1        MOVX @DPTR,A
+  35   1        INC DPL
+  36   1        MOV A,DPL
+  37   1        CJNE A,#0FFH,L71
+  38   1      
+  39   1      L72:
+  40   1        MOV DPH,#2
+  41   1        MOV DPL,#0
+  42   1        MOV A,#3
+  43   1        MOVX @DPTR,A
+  44   1        INC DPL
+  45   1        MOV A,DPL
+  46   1        CJNE A,#0FFH,L72
+  47   1        
+  48   1      
+  49   1        MOV DPL,#0
+  50   1        MOV DPH,#0
+  51   1      L8:
+  52   1        MOV A,DPH
+  53   1        INC A
+  54   1        MOV 11H,A
+C51 COMPILER V9.52.0.0   TESTW77                                                           08/03/2016 09:49:06 PAGE 2   
+
+  55   1        MOV A,#0
+  56   1        MOVX A,@DPTR
+  57   1        CJNE A,11H,L9
+  58   1        INC DPTR
+  59   1        MOV A,#0
+  60   1        MOV A,DPH
+  61   1        CJNE A,#03H,L8
+  62   1        MOV P1,DPH
+  63   1        sjmp $
+  64   1        
+  65   1      L9:
+  66   1        MOV P1,#69H
+  67   1        SJMP $
+  68   1        
+  69   1      
+  70   1      ;read check
+  71   1        MOV DPL,#0
+  72   1        MOV DPH,#0
+  73   1      L2:
+  74   1        MOV A,DPL
+  75   1        MOV 11H,A
+  76   1        MOV A,#0
+  77   1        MOVX A,@DPTR
+  78   1        CJNE A,11H,L3
+  79   1        INC DPTR
+  80   1        MOV A,#0
+  81   1        MOV A,DPH
+  82   1        CJNE A,#07H,L2
+  83   1        MOV P1,DPH
+  84   1        sjmp $
+  85   1      ;read check end 
+  86   1      
+  87   1      
+  88   1      L3:
+  89   1        MOV P1,#69H
+  90   1        SJMP $
+  91   1        
+  92   1      ; 
+  93   1        MOV DPL,#0
+  94   1        MOV DPH,#0
+  95   1        
+  96   1      L4:
+  97   1        MOV A,DPH
+  98   1        MOVX @DPTR,A
+  99   1        INC DPH
+ 100   1        MOV A,DPH
+ 101   1        CJNE A,#10H,L4
+ 102   1        
+ 103   1        MOV DPL,#00H
+ 104   1        MOV DPH,#00H
+ 105   1      L5:
+ 106   1        MOV A,DPH
+ 107   1        MOV 11H,A
+ 108   1        MOV A,#0
+ 109   1        MOVX A,@DPTR
+ 110   1        CJNE A,11H,L6
+ 111   1        INC DPH
+ 112   1        MOV A,DPH
+ 113   1        CJNE A,#05H,L5
+ 114   1        MOV P1,DPH
+ 115   1        sjmp $
+ 116   1      ;read check end 
+C51 COMPILER V9.52.0.0   TESTW77                                                           08/03/2016 09:49:06 PAGE 3   
+
+ 117   1      
+ 118   1      L6:
+ 119   1        MOV P1,#69H
+ 120   1        SJMP $
+ 121   1      #pragma endasm 
+ 122   1                   
+ 123   1      
+ 124   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    315    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

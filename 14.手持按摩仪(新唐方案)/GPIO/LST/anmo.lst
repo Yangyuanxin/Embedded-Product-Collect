@@ -1,0 +1,105 @@
+C51 COMPILER V9.56.0.0   ANMO                                                              04/11/2018 16:32:05 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE ANMO
+OBJECT MODULE PLACED IN .\Output\anmo.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Code\anmo.C OPTIMIZE(4,SPEED) BROWSE INCDIR(.\Include) DEFINE(FOSC_16000
+                    -0) DEBUG OBJECTEXTEND PRINT(.\LST\anmo.lst) TABS(2) OBJECT(.\Output\anmo.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 GPIO demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "SFR_Macro.h"
+  22          #include "Function_Define.h"
+  23          #include "time.h"
+  24          #include "adc.h"
+  25          #include "pwm.h"
+  26          
+  27          void main (void) 
+  28          {
+  29   1          
+  30   1        P05_Input_Mode;
+  31   1        P06_Input_Mode;
+  32   1        P16_Input_Mode;
+  33   1        P04_PushPull_Mode;
+  34   1        P00_PushPull_Mode;
+  35   1        P03_PushPull_Mode;
+  36   1        
+  37   1        P07_PushPull_Mode;
+  38   1        P30_PushPull_Mode;
+  39   1        P10_PushPull_Mode;
+  40   1        P11_PushPull_Mode;
+  41   1        P12_PushPull_Mode;
+  42   1        P13_PushPull_Mode;
+  43   1        P14_PushPull_Mode;
+  44   1        P15_PushPull_Mode;
+  45   1        P17_PushPull_Mode;  
+C51 COMPILER V9.56.0.0   ANMO                                                              04/11/2018 16:32:05 PAGE 2   
+
+  46   1        P00_PushPull_Mode;
+  47   1        P01_PushPull_Mode;
+  48   1        
+  49   1        FDC633_CTL=0;
+  50   1      //  P01=1;
+  51   1        AIC3415_CTL=0;
+  52   1        //P07=1 ;
+  53   1        BUZ=0;  
+  54   1        P03=0;
+  55   1        //P04=0;
+  56   1        RED=BLUE=YELLOW=0;
+  57   1        CKDIV=1;      //Fsys=Fosc/(2*CKDIV) When CKDIV is 00,Fsys is Fosc.CKDIV between 0x00 to 0xff
+  58   1        clr_CLOEN; //DISABLE clk output 
+  59   1        pwm_init();
+  60   1        pwm_stop();//CLOSE PWMOUT
+  61   1        moto_stop();
+  62   1        Time_Init();
+  63   1        
+  64   1          
+  65   1        while(1)
+  66   1        {
+  67   2        }
+  68   1      } 
+  69          
+  70          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    137    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

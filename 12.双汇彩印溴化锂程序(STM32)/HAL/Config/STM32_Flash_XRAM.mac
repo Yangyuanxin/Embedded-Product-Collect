@@ -1,0 +1,51 @@
+//*
+//*********************************************************************************************************
+//* File    : stm32f10x_flash.mac
+//* Describe: 
+//* By      : SuperMario
+//* Compiler: IAR ARM V5.11
+//* Version : 1.0V
+//*********************************************************************************************************
+//execUserPreload       Called after communication with the target system is established
+//                      but before downloading the target application.
+//                      Implement this macro to initialize memory locations and/or
+//                      registers which are vital for loading data properly.
+//execUserFlashInit     Called once before the flash loader is downloaded to RAM.
+//                      Implement this macro typically for setting up the memory map
+//                      required by the flash loader. This macro is only called when you are
+//                      programming flash, and it should only be used for flash loader
+//                      functionality.
+//execUserSetup         Called once after the target application is downloaded.
+//                      Implement this macro to set up the memory map, breakpoints,
+//                      interrupts, register macro files, etc.
+//execUserFlashReset    Called once after the flash loader is downloaded to RAM, but
+//                      before execution of the flash loader. This macro is only called when
+//                      you are programming flash, and it should only be used for flash
+//                      loader functionality.
+//execUserReset         Called each time the reset command is issued.
+//                      Implement this macro to set up and restore data.
+//execUserExit          Called once when the debug session ends.
+//                      Implement this macro to save status data etc.
+//execUserFlashExit     Called once when the debug session ends.
+//                      Implement this macro to save status data etc. This macro is useful
+//                      for flash loader functionality.
+//*********************************************************************************************************
+
+
+
+/*********************************************************************
+*
+*       execUserReset() : JTAG set initially to Full Speed
+*/
+execUserReset() {
+    __message "÷¥––∏¥Œª√¸¡Ó...";
+    __emulatorSpeed(0);                 // Set JTAG speed to full speed
+}
+
+/*********************************************************************
+*
+*       execUserPreload() : JTAG set initially to 32kHz
+*/
+execUserPreload() {
+    __message "±‡“Î∆˜÷¥––Flashº”‘ÿ‘§¥¶¿Ì...";
+}

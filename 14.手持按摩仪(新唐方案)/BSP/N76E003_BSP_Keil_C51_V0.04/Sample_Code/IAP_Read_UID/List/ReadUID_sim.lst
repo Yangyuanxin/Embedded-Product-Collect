@@ -1,0 +1,151 @@
+C51 COMPILER V9.52.0.0   READUID_SIM                                                       01/06/2016 17:37:22 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE READUID_SIM
+OBJECT MODULE PLACED IN .\Output\ReadUID_sim.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\ReadUID_sim.C OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include;..\..\Comm
+                    -on) DEFINE(FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\List\ReadUID_sim.lst) TABS(2) OBJECT(.\Output\ReadUID_sim.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E885.h"
+   3          #include "Define.h"
+   4          
+   5          typedef unsigned char         UINT8;
+   6          typedef unsigned char xdata   UXD8;
+   7          
+   8          UXD8 BIT_TMP;
+   9          UXD8 u8unib11,u8unib10,u8unib9,u8unib8,u8unib7,u8unib6,u8unib5,u8unib4,u8unib3,u8unib2,u8unib1,u8unib0;
+  10          
+  11          #define set_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON |= 0x01 ;EA=BIT_TMP;
+  12          #define set_IAPGO   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG |= 0X01 ;EA=BIT_TMP;
+  13          #define clr_IAPEN   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON &= 0XFE ;EA=BIT_TMP;
+  14          #define     UNC_READ            0x04
+  15          #define     UNC_PRO             0x05
+  16          
+  17          void  read_UNICODE(UINT8 *pu8unib11,UINT8 *pu8unib10,UINT8 *pu8unib9,UINT8 *pu8unib8,UINT8 *pu8unib7,UINT8 
+             -*pu8unib6,UINT8 *pu8unib5,UINT8 *pu8unib4,UINT8 *pu8unib3,UINT8 *pu8unib2,UINT8 *pu8unib1,UINT8 *pu8unib0)
+  18          {
+  19   1          set_IAPEN;
+  20   1          IAPAL = 0x00;
+  21   1          IAPAH = 0x00;
+  22   1          IAPCN = UNC_READ;
+  23   1          set_IAPGO;
+  24   1          *pu8unib0 = IAPFD;
+  25   1      
+  26   1        
+  27   1          IAPAL = 0x01;
+  28   1          IAPAH = 0x00;
+  29   1          IAPCN = UNC_READ;
+  30   1          set_IAPGO;
+  31   1          *pu8unib1 = IAPFD;
+  32   1      
+  33   1        
+  34   1          IAPAL = 0x02;
+  35   1          IAPAH = 0x00;
+  36   1          IAPCN = UNC_READ;
+  37   1          set_IAPGO;
+  38   1          *pu8unib2 = IAPFD;
+  39   1      
+  40   1          IAPAL = 0x03;
+  41   1          IAPAH = 0x00;
+  42   1          IAPCN = UNC_READ;
+  43   1          set_IAPGO;
+  44   1          *pu8unib3 = IAPFD;
+  45   1          
+  46   1          IAPAL = 0x04;
+  47   1          IAPAH = 0x00;
+  48   1          IAPCN = UNC_READ;
+  49   1          set_IAPGO;
+  50   1          *pu8unib4 = IAPFD;
+  51   1          
+  52   1          IAPAL = 0x05;
+  53   1          IAPAH = 0x00;
+C51 COMPILER V9.52.0.0   READUID_SIM                                                       01/06/2016 17:37:22 PAGE 2   
+
+  54   1          IAPCN = UNC_READ;
+  55   1          set_IAPGO;
+  56   1          *pu8unib5 = IAPFD;
+  57   1      
+  58   1      
+  59   1          IAPAL = 0x06;
+  60   1          IAPAH = 0x00;
+  61   1          IAPCN = UNC_READ;
+  62   1          set_IAPGO;
+  63   1          *pu8unib6 = IAPFD;
+  64   1      
+  65   1          IAPAL = 0x07;
+  66   1          IAPAH = 0x00;
+  67   1          IAPCN = UNC_READ;
+  68   1          set_IAPGO;
+  69   1          *pu8unib7 = IAPFD;
+  70   1      
+  71   1          IAPAL = 0x08;
+  72   1          IAPAH = 0x00;
+  73   1          IAPCN = UNC_READ;
+  74   1          set_IAPGO;
+  75   1          *pu8unib8 = IAPFD;
+  76   1          
+  77   1          IAPAL = 0x09;
+  78   1          IAPAH = 0x00;
+  79   1          IAPCN = UNC_READ;
+  80   1          set_IAPGO;
+  81   1          *pu8unib9 = IAPFD;
+  82   1          
+  83   1      
+  84   1          IAPAL = 0x0a;
+  85   1          IAPAH = 0x00;
+  86   1          IAPCN = UNC_READ;
+  87   1          set_IAPGO;
+  88   1          *pu8unib10 = IAPFD;
+  89   1      
+  90   1      
+  91   1          IAPAL = 0x0b;
+  92   1          IAPAH = 0x00;
+  93   1          IAPCN = UNC_READ;
+  94   1          set_IAPGO;
+  95   1          *pu8unib11 = IAPFD;
+  96   1          
+  97   1          clr_IAPEN;
+  98   1        }
+  99          
+ 100            
+ 101          
+ 102            
+ 103          void main (void) 
+ 104          {
+ 105   1      
+ 106   1        unsigned char u8unib;
+ 107   1        
+ 108   1       read_UNICODE(&u8unib11,&u8unib10,&u8unib9,&u8unib8,&u8unib7,&u8unib6,&u8unib5,&u8unib4,&u8unib3,&u8unib2,
+             -&u8unib1,&u8unib0);
+ 109   1        
+ 110   1            set_IAPEN;
+ 111   1          IAPAL = 0x48;
+ 112   1          IAPAH = 0x01;
+ 113   1          IAPCN = UNC_READ;
+ 114   1          set_IAPGO;
+C51 COMPILER V9.52.0.0   READUID_SIM                                                       01/06/2016 17:37:22 PAGE 3   
+
+ 115   1          u8unib = IAPFD;
+ 116   1        
+ 117   1        while (1);
+ 118   1      // data store in XRAM name from u8unib0 ~ u8unib11
+ 119   1      
+ 120   1      }
+ 121          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    735    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     13    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      37
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

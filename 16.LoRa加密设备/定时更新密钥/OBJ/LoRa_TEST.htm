@@ -1,0 +1,2922 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<title>Static Call Graph - [..\OBJ\LoRa_TEST.axf]</title></head>
+<body><HR>
+<H1>Static Call Graph for image ..\OBJ\LoRa_TEST.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Thu Mar 14 17:43:16 2019
+<BR><P>
+<H3>Maximum Stack Usage =        356 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+Call chain for Maximum Stack Depth:</H3>
+main &rArr; TheLoRaEncryptDeviceTask &rArr; LoRaNodeHandleCommunicateData &rArr; HandleLoRaCommunicateProtocol &rArr; LoRaRequestUpdateSM4KeyACK &rArr; CalCrc16 &rArr; CRC16InRam
+<P>
+<H3>
+Mutually Recursive functions
+</H3> <LI><a href="#[1c]">ADC1_2_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1c]">ADC1_2_IRQHandler</a><BR>
+</UL>
+<P>
+<H3>
+Function Pointers
+</H3><UL>
+ <LI><a href="#[1c]">ADC1_2_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[39]">ADC3_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[4]">BusFault_Handler</a> from stm32f10x_it.o(i.BusFault_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[1f]">CAN1_RX1_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[20]">CAN1_SCE_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[15]">DMA1_Channel1_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[16]">DMA1_Channel2_IRQHandler</a> from usart.o(i.DMA1_Channel2_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[17]">DMA1_Channel3_IRQHandler</a> from usart.o(i.DMA1_Channel3_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[18]">DMA1_Channel4_IRQHandler</a> from usart.o(i.DMA1_Channel4_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[19]">DMA1_Channel5_IRQHandler</a> from usart.o(i.DMA1_Channel5_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[1a]">DMA1_Channel6_IRQHandler</a> from usart.o(i.DMA1_Channel6_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[1b]">DMA1_Channel7_IRQHandler</a> from usart.o(i.DMA1_Channel7_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[42]">DMA2_Channel1_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[43]">DMA2_Channel2_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[44]">DMA2_Channel3_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[45]">DMA2_Channel4_5_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[7]">DebugMon_Handler</a> from stm32f10x_it.o(i.DebugMon_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[10]">EXTI0_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[32]">EXTI15_10_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[11]">EXTI1_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[12]">EXTI2_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[13]">EXTI3_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[14]">EXTI4_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[21]">EXTI9_5_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[e]">FLASH_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3a]">FSMC_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2]">HardFault_Handler</a> from stm32f10x_it.o(i.HardFault_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2a]">I2C1_ER_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[29]">I2C1_EV_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2c]">I2C2_ER_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2b]">I2C2_EV_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3]">MemManage_Handler</a> from stm32f10x_it.o(i.MemManage_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[1]">NMI_Handler</a> from stm32f10x_it.o(i.NMI_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[b]">PVD_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[8]">PendSV_Handler</a> from stm32f10x_it.o(i.PendSV_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[f]">RCC_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[33]">RTCAlarm_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[d]">RTC_IRQHandler</a> from rtc.o(i.RTC_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[0]">Reset_Handler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3b]">SDIO_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2d]">SPI1_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2e]">SPI2_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3d]">SPI3_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[6]">SVC_Handler</a> from stm32f10x_it.o(i.SVC_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[9]">SysTick_Handler</a> from stm32f10x_it.o(i.SysTick_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[47]">SystemInit</a> from system_stm32f10x.o(i.SystemInit) referenced from startup_stm32f10x_hd.o(.text)
+ <LI><a href="#[c]">TAMPER_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[22]">TIM1_BRK_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[25]">TIM1_CC_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[24]">TIM1_TRG_COM_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[23]">TIM1_UP_IRQHandler</a> from advance_timer.o(i.TIM1_UP_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[26]">TIM2_IRQHandler</a> from ordinary_timer.o(i.TIM2_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[27]">TIM3_IRQHandler</a> from ordinary_timer.o(i.TIM3_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[28]">TIM4_IRQHandler</a> from ordinary_timer.o(i.TIM4_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3c]">TIM5_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[40]">TIM6_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[41]">TIM7_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[35]">TIM8_BRK_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[38]">TIM8_CC_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[37]">TIM8_TRG_COM_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[36]">TIM8_UP_IRQHandler</a> from advance_timer.o(i.TIM8_UP_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3e]">UART4_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[3f]">UART5_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[2f]">USART1_IRQHandler</a> from hostcomprotocol.o(i.USART1_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[30]">USART2_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[31]">USART3_IRQHandler</a> from hostcomprotocol.o(i.USART3_IRQHandler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[34]">USBWakeUp_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[1d]">USB_HP_CAN1_TX_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[1e]">USB_LP_CAN1_RX0_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[5]">UsageFault_Handler</a> from stm32f10x_it.o(i.UsageFault_Handler) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[a]">WWDG_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
+ <LI><a href="#[48]">__main</a> from entry.o(.ARM.Collect$$$$00000000) referenced from startup_stm32f10x_hd.o(.text)
+ <LI><a href="#[49]">fputc</a> from usart.o(i.fputc) referenced from printf5.o(i.__0printf$5)
+ <LI><a href="#[46]">main</a> from main.o(i.main) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
+</UL>
+<P>
+<H3>
+Global Symbols
+</H3>
+<P><STRONG><a name="[48]"></a>__main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry.o(.ARM.Collect$$$$00000000))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
+</UL>
+<P><STRONG><a name="[14f]"></a>_main_stk</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry2.o(.ARM.Collect$$$$00000001))
+
+<P><STRONG><a name="[4a]"></a>_main_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<BR><BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+</UL>
+
+<P><STRONG><a name="[57]"></a>__main_after_scatterload</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry5.o(.ARM.Collect$$$$00000004))
+<BR><BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__scatterload
+</UL>
+
+<P><STRONG><a name="[150]"></a>_main_clock</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry7b.o(.ARM.Collect$$$$00000008))
+
+<P><STRONG><a name="[151]"></a>_main_cpp_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry8b.o(.ARM.Collect$$$$0000000A))
+
+<P><STRONG><a name="[152]"></a>_main_init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry9a.o(.ARM.Collect$$$$0000000B))
+
+<P><STRONG><a name="[153]"></a>__rt_final_cpp</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry10a.o(.ARM.Collect$$$$0000000D))
+
+<P><STRONG><a name="[154]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
+
+<P><STRONG><a name="[0]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[1c]"></a>ADC1_2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1_2_IRQHandler
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC1_2_IRQHandler
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[39]"></a>ADC3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[1f]"></a>CAN1_RX1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[20]"></a>CAN1_SCE_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[15]"></a>DMA1_Channel1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[42]"></a>DMA2_Channel1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[43]"></a>DMA2_Channel2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[44]"></a>DMA2_Channel3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[45]"></a>DMA2_Channel4_5_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[10]"></a>EXTI0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[11]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[12]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[13]"></a>EXTI3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[14]"></a>EXTI4_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[21]"></a>EXTI9_5_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[e]"></a>FLASH_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[3a]"></a>FSMC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[2a]"></a>I2C1_ER_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[29]"></a>I2C1_EV_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[2c]"></a>I2C2_ER_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[2b]"></a>I2C2_EV_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[b]"></a>PVD_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[f]"></a>RCC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[33]"></a>RTCAlarm_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[3b]"></a>SDIO_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[2d]"></a>SPI1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[2e]"></a>SPI2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[3d]"></a>SPI3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[c]"></a>TAMPER_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[22]"></a>TIM1_BRK_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[25]"></a>TIM1_CC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[24]"></a>TIM1_TRG_COM_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[3c]"></a>TIM5_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[40]"></a>TIM6_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[41]"></a>TIM7_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[35]"></a>TIM8_BRK_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[38]"></a>TIM8_CC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[37]"></a>TIM8_TRG_COM_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[3e]"></a>UART4_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[3f]"></a>UART5_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[30]"></a>USART2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[34]"></a>USBWakeUp_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[1d]"></a>USB_HP_CAN1_TX_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[1e]"></a>USB_LP_CAN1_RX0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[a]"></a>WWDG_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f10x_hd.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[64]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreUserPassword
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MixEncryptLogData
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MixCommunicateLogData
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSm4KeyCmdACK
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireHSC32IDCmdACK
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportSystemLogCmdACK
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportOperateLogCmdACK
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportEncryptLogCmdACK
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportCommunicateLogCmdACK
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendTheDecryptedData
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSendEncryptedData
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDIDCmd
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDACK
+</UL>
+
+<P><STRONG><a name="[143]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UserInfoInitPowerOnDevice
+</UL>
+
+<P><STRONG><a name="[155]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+
+<P><STRONG><a name="[4d]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+</UL>
+
+<P><STRONG><a name="[156]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+
+<P><STRONG><a name="[157]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+
+<P><STRONG><a name="[4c]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSoftWareParaReset
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftwareReset
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLogoutCmd
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[158]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+
+<P><STRONG><a name="[159]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+
+<P><STRONG><a name="[4e]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
+</UL>
+
+<P><STRONG><a name="[b0]"></a>strstr</STRONG> (Thumb, 36 bytes, Stack size 12 bytes, strstr.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = strstr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[4f]"></a>__aeabi_ddiv</STRONG> (Thumb, 222 bytes, Stack size 32 bytes, ddiv.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __aeabi_ddiv &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFFrequency
+</UL>
+
+<P><STRONG><a name="[51]"></a>__aeabi_ui2d</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, dfltui.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFFrequency
+</UL>
+
+<P><STRONG><a name="[53]"></a>__aeabi_d2uiz</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, dfixui.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_d2uiz
+</UL>
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFFrequency
+</UL>
+
+<P><STRONG><a name="[55]"></a>__aeabi_uldivmod</STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[56]"></a>__aeabi_llsl</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+
+<P><STRONG><a name="[15a]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
+
+<P><STRONG><a name="[54]"></a>__aeabi_llsr</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+
+<P><STRONG><a name="[15b]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+
+<P><STRONG><a name="[15c]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, iusefp.o(.text), UNUSED)
+
+<P><STRONG><a name="[50]"></a>_double_round</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, depilogue.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _double_round
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+
+<P><STRONG><a name="[52]"></a>_double_epilogue</STRONG> (Thumb, 156 bytes, Stack size 32 bytes, depilogue.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+</UL>
+<BR>[Called By]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+</UL>
+
+<P><STRONG><a name="[4b]"></a>__scatterload</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, init.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main_after_scatterload
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
+</UL>
+
+<P><STRONG><a name="[15d]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
+
+<P><STRONG><a name="[15e]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+
+<P><STRONG><a name="[15f]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+
+<P><STRONG><a name="[58]"></a>AdvanceTimerInit</STRONG> (Thumb, 156 bytes, Stack size 48 bytes, advance_timer.o(i.AdvanceTimerInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = AdvanceTimerInit &rArr; NVIC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ITConfig
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearFlag
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[5f]"></a>AlamKeyPinInit</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, alam.o(i.AlamKeyPinInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = AlamKeyPinInit &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[61]"></a>BKP_DeInit</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, stm32f10x_bkp.o(i.BKP_DeInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = BKP_DeInit
+</UL>
+<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_BackupResetCmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[e9]"></a>BKP_ReadBackupRegister</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, stm32f10x_bkp.o(i.BKP_ReadBackupRegister))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = BKP_ReadBackupRegister
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoadWriteAddrPowerOnDevice
+</UL>
+
+<P><STRONG><a name="[10a]"></a>BKP_WriteBackupRegister</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, stm32f10x_bkp.o(i.BKP_WriteBackupRegister))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = BKP_WriteBackupRegister
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWriteAddr
+</UL>
+
+<P><STRONG><a name="[4]"></a>BusFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.BusFault_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[65]"></a>CRC16InRam</STRONG> (Thumb, 38 bytes, Stack size 12 bytes, updata_crc.o(i.CRC16InRam))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = CRC16InRam
+</UL>
+<BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+
+<P><STRONG><a name="[63]"></a>CalCrc16</STRONG> (Thumb, 74 bytes, Stack size 280 bytes, updata_crc.o(i.CalCrc16))
+<BR><BR>[Stack]<UL><LI>Max Depth = 292<LI>Call Chain = CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CRC16InRam
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestUpdateSM4KeyCmd
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetUserInfoCmdACK
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetSysTimeCmdACK
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetLoRaParaCmdACK
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdErrorACK
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdACK
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetATCmdACK
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComLogoutCmdACK
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireUartParaCmdACK
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSysTimeCmdACK
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSm4KeyCmdACK
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireLoRaParaCmdACK
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireHSC32IDCmdACK
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireDestIdCmdACK
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportSystemLogCmdACK
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportOperateLogCmdACK
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportEncryptLogCmdACK
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportCommunicateLogCmdACK
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoERRACK
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoACK
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTimeSynchronizationCmd
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSendEncryptedData
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestUpdateSM4KeyACK
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDIDCmd
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDACK
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaCtrlNetLedCmdACK
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaBeforeSendEncryptedData
+</UL>
+
+<P><STRONG><a name="[85]"></a>ClearExportLogTimer</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, my_delay.o(i.ClearExportLogTimer))
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[66]"></a>ComStatusChangeKeyInit</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, com_status_key_init.o(i.ComStatusChangeKeyInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = ComStatusChangeKeyInit &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[bb]"></a>ConfirmUartx</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, dip_switch.o(i.ConfirmUartx))
+<BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+</UL>
+
+<P><STRONG><a name="[67]"></a>DIP_SwitchInit</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, dip_switch.o(i.DIP_SwitchInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = DIP_SwitchInit &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_PinRemapConfig
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JudgeMasterOrSlave
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[16]"></a>DMA1_Channel2_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, usart.o(i.DMA1_Channel2_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA1_Channel2_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetFlagStatus
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ClearITPendingBit
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[17]"></a>DMA1_Channel3_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, usart.o(i.DMA1_Channel3_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA1_Channel3_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetFlagStatus
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[18]"></a>DMA1_Channel4_IRQHandler</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, usart.o(i.DMA1_Channel4_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA1_Channel4_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetFlagStatus
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ClearITPendingBit
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[19]"></a>DMA1_Channel5_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, usart.o(i.DMA1_Channel5_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA1_Channel5_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetFlagStatus
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[1a]"></a>DMA1_Channel6_IRQHandler</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, usart.o(i.DMA1_Channel6_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA1_Channel6_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetFlagStatus
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[1b]"></a>DMA1_Channel7_IRQHandler</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, usart.o(i.DMA1_Channel7_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA1_Channel7_IRQHandler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetFlagStatus
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ClearITPendingBit
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[6b]"></a>DMA_ClearITPendingBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_ClearITPendingBit))
+<BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel7_IRQHandler
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel6_IRQHandler
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel5_IRQHandler
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel4_IRQHandler
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel3_IRQHandler
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel2_IRQHandler
+</UL>
+
+<P><STRONG><a name="[6c]"></a>DMA_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+<LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel7_IRQHandler
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel6_IRQHandler
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel5_IRQHandler
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel4_IRQHandler
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel3_IRQHandler
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel2_IRQHandler
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetUserInfoCmdACK
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetSysTimeCmdACK
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetLoRaParaCmdACK
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdErrorACK
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdACK
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetATCmdACK
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComLogoutCmdACK
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireUartParaCmdACK
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSysTimeCmdACK
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSm4KeyCmdACK
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireLoRaParaCmdACK
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireHSC32IDCmdACK
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireDestIdCmdACK
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportSystemLogCmdACK
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportOperateLogCmdACK
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportEncryptLogCmdACK
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportCommunicateLogCmdACK
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoERRACK
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoACK
+</UL>
+
+<P><STRONG><a name="[71]"></a>DMA_DeInit</STRONG> (Thumb, 324 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_DeInit))
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+</UL>
+
+<P><STRONG><a name="[13e]"></a>DMA_GetCurrDataCounter</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_GetCurrDataCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+</UL>
+
+<P><STRONG><a name="[6a]"></a>DMA_GetFlagStatus</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_GetFlagStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel7_IRQHandler
+<LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel6_IRQHandler
+<LI><a href="#[19]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel5_IRQHandler
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel4_IRQHandler
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel3_IRQHandler
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel2_IRQHandler
+</UL>
+
+<P><STRONG><a name="[76]"></a>DMA_ITConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_ITConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+</UL>
+
+<P><STRONG><a name="[73]"></a>DMA_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f10x_dma.o(i.DMA_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = DMA_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+</UL>
+
+<P><STRONG><a name="[6e]"></a>DMA_RX_Init</STRONG> (Thumb, 232 bytes, Stack size 80 bytes, usart.o(i.DMA_RX_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = DMA_RX_Init &rArr; NVIC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_DMACmd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_StructInit
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Init
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_DeInit
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableDMA1Channelx
+</UL>
+
+<P><STRONG><a name="[a6]"></a>DMA_SetCurrDataCounter</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_SetCurrDataCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetUserInfoCmdACK
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetSysTimeCmdACK
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetLoRaParaCmdACK
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdErrorACK
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdACK
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetATCmdACK
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComLogoutCmdACK
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireUartParaCmdACK
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSysTimeCmdACK
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSm4KeyCmdACK
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireLoRaParaCmdACK
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireHSC32IDCmdACK
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireDestIdCmdACK
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportSystemLogCmdACK
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportOperateLogCmdACK
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportEncryptLogCmdACK
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportCommunicateLogCmdACK
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoERRACK
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoACK
+</UL>
+
+<P><STRONG><a name="[72]"></a>DMA_StructInit</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_dma.o(i.DMA_StructInit))
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+</UL>
+
+<P><STRONG><a name="[75]"></a>DMA_TX_Init</STRONG> (Thumb, 210 bytes, Stack size 80 bytes, usart.o(i.DMA_TX_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = DMA_TX_Init &rArr; NVIC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_DMACmd
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_AHBPeriphClockCmd
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_StructInit
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Init
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_ITConfig
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_DeInit
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableDMA1Channelx
+</UL>
+
+<P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.DebugMon_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[77]"></a>DecryptTheText</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, my_sm2.o(i.DecryptTheText))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = DecryptTheText &rArr; HSC32I1_WriteLenByte &rArr; IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+</UL>
+
+<P><STRONG><a name="[79]"></a>EnableDMA1Channelx</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, update_sm4key.o(i.EnableDMA1Channelx))
+<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = EnableDMA1Channelx &rArr; Usart_X_Init &rArr; Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_X_Init
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+</UL>
+
+<P><STRONG><a name="[7b]"></a>EncryptTheText</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, my_sm2.o(i.EncryptTheText))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = EncryptTheText &rArr; HSC32I1_WriteLenByte &rArr; IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitComDataToEncryptedData
+</UL>
+
+<P><STRONG><a name="[7c]"></a>ExportLogHandle</STRONG> (Thumb, 528 bytes, Stack size 8 bytes, hostcomprotocol.o(i.ExportLogHandle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 316<LI>Call Chain = ExportLogHandle &rArr; HostComExportSystemLogCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetExportLogTimerValue
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ClearExportLogTimer
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportWhichLog
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JudgeDataIseFfective
+<LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportSystemLogCmdACK
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportOperateLogCmdACK
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportEncryptLogCmdACK
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComExportCommunicateLogCmdACK
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[7e]"></a>ExportWhichLog</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, xlog.o(i.ExportWhichLog))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = ExportWhichLog &rArr; W25QXX_Read &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[60]"></a>GPIO_Init</STRONG> (Thumb, 278 bytes, Stack size 24 bytes, stm32f10x_gpio.o(i.GPIO_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaPWR_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSPI_Init
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32RstInit
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIP_SwitchInit
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComStatusChangeKeyInit
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AlamKeyPinInit
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276InitIo
+</UL>
+
+<P><STRONG><a name="[68]"></a>GPIO_PinRemapConfig</STRONG> (Thumb, 138 bytes, Stack size 20 bytes, stm32f10x_gpio.o(i.GPIO_PinRemapConfig))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = GPIO_PinRemapConfig
+</UL>
+<BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIP_SwitchInit
+</UL>
+
+<P><STRONG><a name="[125]"></a>GPIO_ReadInputDataBit</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_ReadInputDataBit))
+<BR><BR>[Called By]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadDio0
+</UL>
+
+<P><STRONG><a name="[c3]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_gpio.o(i.GPIO_SetBits))
+<BR><BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaPWR_Init
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276InitIo
+</UL>
+
+<P><STRONG><a name="[87]"></a>GetDecryptedText</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, my_sm2.o(i.GetDecryptedText))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = GetDecryptedText &rArr; HSC32I1_ReadLenByte &rArr; IIC_Read_Byte &rArr; IIC_NAck
+</UL>
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+</UL>
+
+<P><STRONG><a name="[89]"></a>GetEncryptedText</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, my_sm2.o(i.GetEncryptedText))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = GetEncryptedText &rArr; HSC32I1_ReadLenByte &rArr; IIC_Read_Byte &rArr; IIC_NAck
+</UL>
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitComDataToEncryptedData
+</UL>
+
+<P><STRONG><a name="[7d]"></a>GetExportLogTimerValue</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, my_delay.o(i.GetExportLogTimerValue))
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[8a]"></a>GetSlaveID</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, masterlorahandle.o(i.GetSlaveID))
+<BR><BR>[Stack]<UL><LI>Max Depth = 316<LI>Call Chain = GetSlaveID &rArr; LoRaRequestIDIDCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDIDCmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResendGetSlaveIdCmdProcess
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[8d]"></a>GetTheAID</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, my_sm2.o(i.GetTheAID))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = GetTheAID &rArr; HSC32I1_ReadLenByte &rArr; IIC_Read_Byte &rArr; IIC_NAck
+</UL>
+<BR>[Calls]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32i1Init
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[8e]"></a>HSC32I1BaseInit</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, hsc32i1.o(i.HSC32I1BaseInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HSC32I1BaseInit &rArr; IIC_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32RstInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32i1Init
+</UL>
+
+<P><STRONG><a name="[88]"></a>HSC32I1_ReadLenByte</STRONG> (Thumb, 124 bytes, Stack size 24 bytes, hsc32i1.o(i.HSC32I1_ReadLenByte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = HSC32I1_ReadLenByte &rArr; IIC_Read_Byte &rArr; IIC_NAck
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTheAID
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetEncryptedText
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDecryptedText
+</UL>
+
+<P><STRONG><a name="[78]"></a>HSC32I1_WriteLenByte</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, hsc32i1.o(i.HSC32I1_WriteLenByte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = HSC32I1_WriteLenByte &rArr; IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetTheBID
+<LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetAgreementX
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncryptTheText
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DecryptTheText
+</UL>
+
+<P><STRONG><a name="[90]"></a>HSC32RstInit</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, hsc32_rst_io.o(i.HSC32RstInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = HSC32RstInit &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1BaseInit
+</UL>
+
+<P><STRONG><a name="[97]"></a>HSC32i1Init</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, my_sm2.o(i.HSC32i1Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = HSC32i1Init &rArr; RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSM2AgreementProtocol
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTheAID
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1BaseInit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[99]"></a>HandleLoRaCommunicateProtocol</STRONG> (Thumb, 746 bytes, Stack size 32 bytes, slavelorahandle.o(i.HandleLoRaCommunicateProtocol))
+<BR><BR>[Stack]<UL><LI>Max Depth = 340<LI>Call Chain = HandleLoRaCommunicateProtocol &rArr; LoRaRequestUpdateSM4KeyACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestHSC32Module
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSoftWareParaReset
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftwareReset
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSM2AgreementProtocol
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTheAID
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestUpdateSM4KeyACK
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDACK
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaCtrlNetLedCmdACK
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleCommunicateData
+</UL>
+
+<P><STRONG><a name="[a3]"></a>HandleLogoutCmd</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, hostcomprotocol.o(i.HandleLogoutCmd))
+<BR><BR>[Stack]<UL><LI>Max Depth = 316<LI>Call Chain = HandleLogoutCmd &rArr; HostComLogoutCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComLogoutCmdACK
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.HardFault_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[a5]"></a>HostComConfirmUserCmdInfoACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComConfirmUserCmdInfoACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComConfirmUserCmdInfoACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[a7]"></a>HostComConfirmUserCmdInfoERRACK</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComConfirmUserCmdInfoERRACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComConfirmUserCmdInfoERRACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[83]"></a>HostComExportCommunicateLogCmdACK</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComExportCommunicateLogCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComExportCommunicateLogCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[84]"></a>HostComExportEncryptLogCmdACK</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComExportEncryptLogCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComExportEncryptLogCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[80]"></a>HostComExportOperateLogCmdACK</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComExportOperateLogCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComExportOperateLogCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[82]"></a>HostComExportSystemLogCmdACK</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComExportSystemLogCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComExportSystemLogCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[a8]"></a>HostComInquireDestIdCmdACK</STRONG> (Thumb, 106 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComInquireDestIdCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComInquireDestIdCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[a9]"></a>HostComInquireHSC32IDCmdACK</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComInquireHSC32IDCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComInquireHSC32IDCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[aa]"></a>HostComInquireLoRaParaCmdACK</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComInquireLoRaParaCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComInquireLoRaParaCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[ab]"></a>HostComInquireSm4KeyCmdACK</STRONG> (Thumb, 110 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComInquireSm4KeyCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComInquireSm4KeyCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[ac]"></a>HostComInquireSysTimeCmdACK</STRONG> (Thumb, 144 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComInquireSysTimeCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComInquireSysTimeCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[ad]"></a>HostComInquireUartParaCmdACK</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComInquireUartParaCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComInquireUartParaCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[a4]"></a>HostComLogoutCmdACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComLogoutCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComLogoutCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLogoutCmd
+</UL>
+
+<P><STRONG><a name="[ae]"></a>HostComProtocol</STRONG> (Thumb, 1868 bytes, Stack size 24 bytes, hostcomprotocol.o(i.HostComProtocol))
+<BR><BR>[Stack]<UL><LI>Max Depth = 340<LI>Call Chain = HostComProtocol &rArr; GetSlaveID &rArr; LoRaRequestIDIDCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSpreadingFactor
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSignalBandwidth
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSlaveID
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreUserPassword
+<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strstr
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetUserInfoCmdACK
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetSysTimeCmdACK
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetLoRaParaCmdACK
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdErrorACK
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetDestDeviceIDCmdACK
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSetATCmdACK
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireUartParaCmdACK
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSysTimeCmdACK
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireSm4KeyCmdACK
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireLoRaParaCmdACK
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireHSC32IDCmdACK
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComInquireDestIdCmdACK
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoERRACK
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComConfirmUserCmdInfoACK
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLogoutCmd
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTimeSynchronizationCmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[af]"></a>HostComSetATCmdACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComSetATCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComSetATCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[b8]"></a>HostComSetDestDeviceIDCmdACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComSetDestDeviceIDCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComSetDestDeviceIDCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[b9]"></a>HostComSetDestDeviceIDCmdErrorACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComSetDestDeviceIDCmdErrorACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComSetDestDeviceIDCmdErrorACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[b7]"></a>HostComSetLoRaParaCmdACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComSetLoRaParaCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComSetLoRaParaCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[b4]"></a>HostComSetSysTimeCmdACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComSetSysTimeCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComSetSysTimeCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[b2]"></a>HostComSetUserInfoCmdACK</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, hostcomprotocol.o(i.HostComSetUserInfoCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = HostComSetUserInfoCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[ba]"></a>HostComSoftWareInit</STRONG> (Thumb, 168 bytes, Stack size 8 bytes, hostcomprotocol.o(i.HostComSoftWareInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = HostComSoftWareInit &rArr; Usart_X_Init &rArr; Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_X_Init
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485Uart1SendData
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetUartBound
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ConfirmUartx
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UserInfoInitPowerOnDevice
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SaveUartParaToMemChip
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[9e]"></a>HostComSoftwareReset</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, update_sm4key.o(i.HostComSoftwareReset))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = HostComSoftwareReset
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[13a]"></a>HostComTimeOutHandle</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, hostcomprotocol.o(i.HostComTimeOutHandle))
+<BR><BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[c2]"></a>IIC_Ack</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, iic.o(i.IIC_Ack))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Ack
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+</UL>
+
+<P><STRONG><a name="[8f]"></a>IIC_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, iic.o(i.IIC_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = IIC_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1BaseInit
+</UL>
+
+<P><STRONG><a name="[c4]"></a>IIC_NAck</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, iic.o(i.IIC_NAck))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_NAck
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+</UL>
+
+<P><STRONG><a name="[95]"></a>IIC_Read_Byte</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, iic.o(i.IIC_Read_Byte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = IIC_Read_Byte &rArr; IIC_NAck
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+</UL>
+<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+
+<P><STRONG><a name="[92]"></a>IIC_Send_Byte</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, iic.o(i.IIC_Send_Byte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = IIC_Send_Byte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+
+<P><STRONG><a name="[91]"></a>IIC_Start</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, iic.o(i.IIC_Start))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Start
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+
+<P><STRONG><a name="[94]"></a>IIC_Stop</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, iic.o(i.IIC_Stop))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+</UL>
+<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+
+<P><STRONG><a name="[93]"></a>IIC_Wait_Ack</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, iic.o(i.IIC_Wait_Ack))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+</UL>
+<BR>[Called By]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+
+<P><STRONG><a name="[13b]"></a>IndicatorLightMainHandle</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, led.o(i.IndicatorLightMainHandle))
+<BR><BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[d2]"></a>IsComChangeToAT_WorkMode</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, com_status_key_init.o(i.IsComChangeToAT_WorkMode))
+<BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+</UL>
+
+<P><STRONG><a name="[fb]"></a>Is_Leap_Year</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, rtc.o(i.Is_Leap_Year))
+<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Get
+</UL>
+
+<P><STRONG><a name="[7f]"></a>JudgeDataIseFfective</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, hostcomprotocol.o(i.JudgeDataIseFfective))
+<BR><BR>[Called By]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+
+<P><STRONG><a name="[69]"></a>JudgeMasterOrSlave</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, dip_switch.o(i.JudgeMasterOrSlave))
+<BR><BR>[Called By]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIP_SwitchInit
+</UL>
+
+<P><STRONG><a name="[137]"></a>JudgeTheHostComWorkMode</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, hostcomprotocol.o(i.JudgeTheHostComWorkMode))
+<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+</UL>
+
+<P><STRONG><a name="[c5]"></a>LED_Init</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, led.o(i.LED_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LED_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[c6]"></a>LoRaBeforeSendEncryptedData</STRONG> (Thumb, 96 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaBeforeSendEncryptedData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaBeforeSendEncryptedData &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaHandleEncryptedData
+</UL>
+
+<P><STRONG><a name="[9a]"></a>LoRaCtrlNetLedCmdACK</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaCtrlNetLedCmdACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaCtrlNetLedCmdACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[c8]"></a>LoRaFreqSet</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sx1276-lora.o(i.LoRaFreqSet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = LoRaFreqSet &rArr; SX1276LoRaSetRFFrequency &rArr; __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFFrequency
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276FreqSet
+</UL>
+
+<P><STRONG><a name="[ca]"></a>LoRaHandleEncryptedData</STRONG> (Thumb, 166 bytes, Stack size 16 bytes, masterlorahandle.o(i.LoRaHandleEncryptedData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = LoRaHandleEncryptedData &rArr; LoRaSendEncryptedData &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitComDataToEncryptedData
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSendEncryptedData
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaBeforeSendEncryptedData
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+</UL>
+
+<P><STRONG><a name="[cd]"></a>LoRaMasterHandleSm2KeyAgreement</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, masterlorahandle.o(i.LoRaMasterHandleSm2KeyAgreement))
+<BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = LoRaMasterHandleSm2KeyAgreement &rArr; EnableDMA1Channelx &rArr; Usart_X_Init &rArr; Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485Uart1SendData
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableDMA1Channelx
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetTheBID
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[cf]"></a>LoRaNodeHandleCommunicateData</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, slavelorahandle.o(i.LoRaNodeHandleCommunicateData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 348<LI>Call Chain = LoRaNodeHandleCommunicateData &rArr; HandleLoRaCommunicateProtocol &rArr; LoRaRequestUpdateSM4KeyACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReceiveData
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[d1]"></a>LoRaNodeHandleHostComData</STRONG> (Thumb, 176 bytes, Stack size 8 bytes, masterlorahandle.o(i.LoRaNodeHandleHostComData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 332<LI>Call Chain = LoRaNodeHandleHostComData &rArr; LoRaHandleEncryptedData &rArr; LoRaSendEncryptedData &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_SetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IsComChangeToAT_WorkMode
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaHandleEncryptedData
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[d3]"></a>LoRaPWR_Init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, lora_pwr.o(i.LoRaPWR_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LoRaPWR_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+</UL>
+
+<P><STRONG><a name="[9b]"></a>LoRaRequestIDACK</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaRequestIDACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaRequestIDACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[8b]"></a>LoRaRequestIDIDCmd</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaRequestIDIDCmd))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaRequestIDIDCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSlaveID
+</UL>
+
+<P><STRONG><a name="[a2]"></a>LoRaRequestUpdateSM4KeyACK</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaRequestUpdateSM4KeyACK))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaRequestUpdateSM4KeyACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[d4]"></a>LoRaRequestUpdateSM4KeyCmd</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaRequestUpdateSM4KeyCmd))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaRequestUpdateSM4KeyCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+</UL>
+
+<P><STRONG><a name="[d5]"></a>LoRaRxDataRead</STRONG> (Thumb, 178 bytes, Stack size 16 bytes, sx1276-lora.o(i.LoRaRxDataRead))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = LoRaRxDataRead &rArr; SX1276ReadFifo &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadFifo
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadDio0
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxDataReadCRC32
+</UL>
+
+<P><STRONG><a name="[da]"></a>LoRaRxStateEnter</STRONG> (Thumb, 134 bytes, Stack size 8 bytes, sx1276-lora.o(i.LoRaRxStateEnter))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = LoRaRxStateEnter &rArr; SX1276LoRaSetOpMode &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetOpMode
+</UL>
+<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+</UL>
+
+<P><STRONG><a name="[dd]"></a>LoRaSPI_Init</STRONG> (Thumb, 162 bytes, Stack size 32 bytes, lora_spi_init.o(i.LoRaSPI_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LoRaSPI_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276InitIo
+</UL>
+
+<P><STRONG><a name="[cc]"></a>LoRaSendEncryptedData</STRONG> (Thumb, 126 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaSendEncryptedData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaSendEncryptedData &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaHandleEncryptedData
+</UL>
+
+<P><STRONG><a name="[e0]"></a>LoRaSlaveHandleSm2KeyAgreement</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, slavelorahandle.o(i.LoRaSlaveHandleSm2KeyAgreement))
+<BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = LoRaSlaveHandleSm2KeyAgreement &rArr; EnableDMA1Channelx &rArr; Usart_X_Init &rArr; Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485Uart1SendData
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableDMA1Channelx
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetTheBID
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_ReadLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[9f]"></a>LoRaSoftWareParaReset</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, update_sm4key.o(i.LoRaSoftWareParaReset))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LoRaSoftWareParaReset
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[b3]"></a>LoRaTimeSynchronizationCmd</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.LoRaTimeSynchronizationCmd))
+<BR><BR>[Stack]<UL><LI>Max Depth = 308<LI>Call Chain = LoRaTimeSynchronizationCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CalCrc16
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[e1]"></a>LoRaTxData</STRONG> (Thumb, 302 bytes, Stack size 32 bytes, sx1276-lora.o(i.LoRaTxData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LoRaTxData &rArr; SX1276LoRaSetOpMode &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteFifo
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadDio0
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetOpMode
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+</UL>
+
+<P><STRONG><a name="[e4]"></a>LoRaTxPower</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, sx1276-lora.o(i.LoRaTxPower))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = LoRaTxPower &rArr; SX1276LoRaSetRFPower &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFPower
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPa20dBm
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPAOutput
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxPower
+</UL>
+
+<P><STRONG><a name="[e8]"></a>LoadWriteAddrPowerOnDevice</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, xlog.o(i.LoadWriteAddrPowerOnDevice))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = LoadWriteAddrPowerOnDevice &rArr; BKP_ReadBackupRegister
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_ReadBackupRegister
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[3]"></a>MemManage_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.MemManage_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[ea]"></a>MixCommunicateLogData</STRONG> (Thumb, 88 bytes, Stack size 16 bytes, xlog.o(i.MixCommunicateLogData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MixCommunicateLogData
+</UL>
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+
+<P><STRONG><a name="[eb]"></a>MixEncryptLogData</STRONG> (Thumb, 90 bytes, Stack size 16 bytes, xlog.o(i.MixEncryptLogData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = MixEncryptLogData
+</UL>
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+
+<P><STRONG><a name="[110]"></a>MixOpreateLogData</STRONG> (Thumb, 56 bytes, Stack size 12 bytes, xlog.o(i.MixOpreateLogData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = MixOpreateLogData
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+
+<P><STRONG><a name="[112]"></a>MixSystemLogData</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, xlog.o(i.MixSystemLogData))
+<BR><BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+
+<P><STRONG><a name="[ec]"></a>ModulesInit</STRONG> (Thumb, 104 bytes, Stack size 8 bytes, modules_init.o(i.ModulesInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = ModulesInit &rArr; HostComSoftWareInit &rArr; Usart_X_Init &rArr; Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysNVIC_Config
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxFlashInit
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoadWriteAddrPowerOnDevice
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32i1Init
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIP_SwitchInit
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComStatusChangeKeyInit
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AlamKeyPinInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[f2]"></a>MyLoRaInit</STRONG> (Thumb, 92 bytes, Stack size 8 bytes, lora.o(i.MyLoRaInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = MyLoRaInit &rArr; SetLoRaStruPara &rArr; RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaPWR_Init
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276CheckSPI
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxPower
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Reset
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Init
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276FreqSet
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetLoRaStruPara
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[1]"></a>NMI_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.NMI_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[5d]"></a>NVIC_Init</STRONG> (Thumb, 100 bytes, Stack size 16 bytes, misc.o(i.NVIC_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = NVIC_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_NVIC_Config
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+</UL>
+
+<P><STRONG><a name="[12d]"></a>NVIC_PriorityGroupConfig</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, misc.o(i.NVIC_PriorityGroupConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysNVIC_Config
+</UL>
+
+<P><STRONG><a name="[ef]"></a>OrdinaryTimerInit</STRONG> (Thumb, 172 bytes, Stack size 48 bytes, ordinary_timer.o(i.OrdinaryTimerInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = OrdinaryTimerInit &rArr; NVIC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_TimeBaseInit
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ITConfig
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_Cmd
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearFlag
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[100]"></a>PWR_BackupAccessCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_pwr.o(i.PWR_BackupAccessCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[8]"></a>PendSV_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.PendSV_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[70]"></a>RCC_AHBPeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_AHBPeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+</UL>
+
+<P><STRONG><a name="[6f]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB1PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+</UL>
+
+<P><STRONG><a name="[59]"></a>RCC_APB2PeriphClockCmd</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaPWR_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSPI_Init
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Init
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32RstInit
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Init
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DIP_SwitchInit
+<LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ComStatusChangeKeyInit
+<LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AlamKeyPinInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276InitIo
+</UL>
+
+<P><STRONG><a name="[62]"></a>RCC_BackupResetCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_BackupResetCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_DeInit
+</UL>
+
+<P><STRONG><a name="[140]"></a>RCC_GetClocksFreq</STRONG> (Thumb, 192 bytes, Stack size 12 bytes, stm32f10x_rcc.o(i.RCC_GetClocksFreq))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = RCC_GetClocksFreq
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
+</UL>
+
+<P><STRONG><a name="[102]"></a>RCC_GetFlagStatus</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, stm32f10x_rcc.o(i.RCC_GetFlagStatus))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RCC_GetFlagStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[101]"></a>RCC_LSEConfig</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_LSEConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[104]"></a>RCC_RTCCLKCmd</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_RTCCLKCmd))
+<BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[103]"></a>RCC_RTCCLKConfig</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rcc.o(i.RCC_RTCCLKConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[bf]"></a>RS485Uart1SendData</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, usart.o(i.RS485Uart1SendData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = RS485Uart1SendData
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendTheDecryptedData
+</UL>
+
+<P><STRONG><a name="[fe]"></a>RTC_ClearITPendingBit</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ClearITPendingBit))
+<BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+</UL>
+
+<P><STRONG><a name="[107]"></a>RTC_EnterConfigMode</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_EnterConfigMode))
+<BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[109]"></a>RTC_ExitConfigMode</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ExitConfigMode))
+<BR><BR>[Called By]<UL><LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[f9]"></a>RTC_Get</STRONG> (Thumb, 240 bytes, Stack size 16 bytes, rtc.o(i.RTC_Get))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = RTC_Get &rArr; RTC_Get_Week
+</UL>
+<BR>[Calls]<UL><LI><a href="#[fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetCounter
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Get_Week
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Is_Leap_Year
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[fa]"></a>RTC_GetCounter</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_GetCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Get
+</UL>
+
+<P><STRONG><a name="[fd]"></a>RTC_GetITStatus</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_GetITStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+</UL>
+
+<P><STRONG><a name="[fc]"></a>RTC_Get_Week</STRONG> (Thumb, 116 bytes, Stack size 20 bytes, rtc.o(i.RTC_Get_Week))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = RTC_Get_Week
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Get
+</UL>
+
+<P><STRONG><a name="[d]"></a>RTC_IRQHandler</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, rtc.o(i.RTC_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = RTC_IRQHandler &rArr; RTC_Get &rArr; RTC_Get_Week
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForLastTask
+<LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_GetITStatus
+<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ClearITPendingBit
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Get
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[106]"></a>RTC_ITConfig</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_ITConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[f0]"></a>RTC_Init</STRONG> (Thumb, 192 bytes, Stack size 16 bytes, rtc.o(i.RTC_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = RTC_Init &rArr; RTC_Set &rArr; RTC_SetCounter
+</UL>
+<BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_RTCCLKConfig
+<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_RTCCLKCmd
+<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_LSEConfig
+<LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetFlagStatus
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWR_BackupAccessCmd
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_WriteBackupRegister
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_ReadBackupRegister
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_DeInit
+<LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForSynchro
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForLastTask
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetPrescaler
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ITConfig
+<LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Get
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_NVIC_Config
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[9c]"></a>RTC_Set</STRONG> (Thumb, 184 bytes, Stack size 40 bytes, rtc.o(i.RTC_Set))
+<BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = RTC_Set &rArr; RTC_SetCounter
+</UL>
+<BR>[Calls]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWR_BackupAccessCmd
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForLastTask
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_SetCounter
+<LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Is_Leap_Year
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[10c]"></a>RTC_SetCounter</STRONG> (Thumb, 24 bytes, Stack size 4 bytes, stm32f10x_rtc.o(i.RTC_SetCounter))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = RTC_SetCounter
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+</UL>
+
+<P><STRONG><a name="[108]"></a>RTC_SetPrescaler</STRONG> (Thumb, 26 bytes, Stack size 4 bytes, stm32f10x_rtc.o(i.RTC_SetPrescaler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = RTC_SetPrescaler
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ExitConfigMode
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_EnterConfigMode
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[ff]"></a>RTC_WaitForLastTask</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_WaitForLastTask))
+<BR><BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Set
+<LI><a href="#[d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_IRQHandler
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[105]"></a>RTC_WaitForSynchro</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, stm32f10x_rtc.o(i.RTC_WaitForSynchro))
+<BR><BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[12a]"></a>ReadDeviceID</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, dip_switch.o(i.ReadDeviceID))
+<BR><BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetLoRaStruPara
+</UL>
+
+<P><STRONG><a name="[d0]"></a>ReceiveData</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, lora.o(i.ReceiveData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = ReceiveData &rArr; SX1276RxDataReadCRC32 &rArr; LoRaRxDataRead &rArr; SX1276ReadFifo &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadDio0
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxDataReadCRC32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleCommunicateData
+</UL>
+
+<P><STRONG><a name="[10e]"></a>ResendGetSlaveIdCmdProcess</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, update_sm4key.o(i.ResendGetSlaveIdCmdProcess))
+<BR><BR>[Stack]<UL><LI>Max Depth = 324<LI>Call Chain = ResendGetSlaveIdCmdProcess &rArr; GetSlaveID &rArr; LoRaRequestIDIDCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSlaveID
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[a0]"></a>RestHSC32Module</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, hsc32_rst_io.o(i.RestHSC32Module))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = RestHSC32Module
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[b1]"></a>RestoreUserPassword</STRONG> (Thumb, 44 bytes, Stack size 32 bytes, xlog.o(i.RestoreUserPassword))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = RestoreUserPassword &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+</UL>
+
+<P><STRONG><a name="[81]"></a>RestoreWhichLog</STRONG> (Thumb, 348 bytes, Stack size 24 bytes, xlog.o(i.RestoreWhichLog))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWriteAddr
+<LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MixSystemLogData
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MixOpreateLogData
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MixEncryptLogData
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MixCommunicateLogData
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32i1Init
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+<LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SaveUartParaToMemChip
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitComDataToEncryptedData
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaHandleEncryptedData
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetLoRaStruPara
+</UL>
+
+<P><STRONG><a name="[111]"></a>RestoreWriteAddr</STRONG> (Thumb, 132 bytes, Stack size 8 bytes, xlog.o(i.RestoreWriteAddr))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = RestoreWriteAddr &rArr; BKP_WriteBackupRegister
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BKP_WriteBackupRegister
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+
+<P><STRONG><a name="[133]"></a>RunCalcOneHourCounter</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, update_sm4key.o(i.RunCalcOneHourCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[130]"></a>RunComAtModeTimer</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, hostcomprotocol.o(i.RunComAtModeTimer))
+<BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[131]"></a>RunComStatusChangeTimer</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, com_status_key_init.o(i.RunComStatusChangeTimer))
+<BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[132]"></a>RunDelayCounter</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, my_delay.o(i.RunDelayCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[134]"></a>RunLEDCounter</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, led.o(i.RunLEDCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+</UL>
+
+<P><STRONG><a name="[136]"></a>RunLoRaTransCounter</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lora.o(i.RunLoRaTransCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+</UL>
+
+<P><STRONG><a name="[135]"></a>RunWaitIDCounter</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, lora.o(i.RunWaitIDCounter))
+<BR><BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+</UL>
+
+<P><STRONG><a name="[113]"></a>SPIX_ReadWriteByte</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, w25qxx_init.o(i.SPIX_ReadWriteByte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_SendData
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_ReceiveData
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_GetFlagStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Page
+<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Enable
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_ReadSR
+<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_ReadID
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Read
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Erase_Sector
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+</UL>
+
+<P><STRONG><a name="[117]"></a>SPIX_SetSpeed</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, w25qxx_init.o(i.SPIX_SetSpeed))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPIX_SetSpeed
+</UL>
+<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxFlashInit
+</UL>
+
+<P><STRONG><a name="[df]"></a>SPI_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_SetSpeed
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSPI_Init
+</UL>
+
+<P><STRONG><a name="[114]"></a>SPI_I2S_GetFlagStatus</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_I2S_GetFlagStatus))
+<BR><BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIx_InOut
+</UL>
+
+<P><STRONG><a name="[116]"></a>SPI_I2S_ReceiveData</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_I2S_ReceiveData))
+<BR><BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIx_InOut
+</UL>
+
+<P><STRONG><a name="[115]"></a>SPI_I2S_SendData</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_spi.o(i.SPI_I2S_SendData))
+<BR><BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIx_InOut
+</UL>
+
+<P><STRONG><a name="[de]"></a>SPI_Init</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, stm32f10x_spi.o(i.SPI_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPI_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSPI_Init
+</UL>
+
+<P><STRONG><a name="[118]"></a>SPIx_InOut</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, lora_spi_init.o(i.SPIx_InOut))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_SendData
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_ReceiveData
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_I2S_GetFlagStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+</UL>
+
+<P><STRONG><a name="[6]"></a>SVC_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SVC_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[f5]"></a>SX1276CheckSPI</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, sx1276.o(i.SX1276CheckSPI))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = SX1276CheckSPI &rArr; SX1276InitIo &rArr; LoRaSPI_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276InitIo
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Reset
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+</UL>
+
+<P><STRONG><a name="[f7]"></a>SX1276FreqSet</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sx1276.o(i.SX1276FreqSet))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = SX1276FreqSet &rArr; LoRaFreqSet &rArr; SX1276LoRaSetRFFrequency &rArr; __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaFreqSet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+</UL>
+
+<P><STRONG><a name="[f6]"></a>SX1276Init</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, sx1276.o(i.SX1276Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = SX1276Init &rArr; SX1276LoRaInit &rArr; SX1276LoRaSetRFFrequency &rArr; __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276InitIo
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276SetLoRaOn
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Reset
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+</UL>
+
+<P><STRONG><a name="[119]"></a>SX1276InitIo</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, sx1276-hal.o(i.SX1276InitIo))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SX1276InitIo &rArr; LoRaSPI_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSPI_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276CheckSPI
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Init
+</UL>
+
+<P><STRONG><a name="[11c]"></a>SX1276LoRaInit</STRONG> (Thumb, 178 bytes, Stack size 8 bytes, sx1276-lora.o(i.SX1276LoRaInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = SX1276LoRaInit &rArr; SX1276LoRaSetRFFrequency &rArr; __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSymbTimeout
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSpreadingFactor
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSignalBandwidth
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFPower
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFFrequency
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPayloadLength
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPacketCrcOn
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPa20dBm
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPAOutput
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetLowDatarateOptimize
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetImplicitHeaderOn
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetErrorCoding
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetDefaults
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Init
+</UL>
+
+<P><STRONG><a name="[11d]"></a>SX1276LoRaSetDefaults</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, sx1276-lora.o(i.SX1276LoRaSetDefaults))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetDefaults &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[11e]"></a>SX1276LoRaSetErrorCoding</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetErrorCoding))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetErrorCoding &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[120]"></a>SX1276LoRaSetImplicitHeaderOn</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetImplicitHeaderOn))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetImplicitHeaderOn &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[123]"></a>SX1276LoRaSetLowDatarateOptimize</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetLowDatarateOptimize))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetLowDatarateOptimize &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[124]"></a>SX1276LoRaSetNbTrigPeaks</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetNbTrigPeaks))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetNbTrigPeaks &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSpreadingFactor
+</UL>
+
+<P><STRONG><a name="[db]"></a>SX1276LoRaSetOpMode</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, sx1276-lora.o(i.SX1276LoRaSetOpMode))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SX1276LoRaSetOpMode &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxStateEnter
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276SetLoRaOn
+</UL>
+
+<P><STRONG><a name="[e5]"></a>SX1276LoRaSetPAOutput</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetPAOutput))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetPAOutput &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxPower
+</UL>
+
+<P><STRONG><a name="[e6]"></a>SX1276LoRaSetPa20dBm</STRONG> (Thumb, 84 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetPa20dBm))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetPa20dBm &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxPower
+</UL>
+
+<P><STRONG><a name="[11f]"></a>SX1276LoRaSetPacketCrcOn</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetPacketCrcOn))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetPacketCrcOn &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[122]"></a>SX1276LoRaSetPayloadLength</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetPayloadLength))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetPayloadLength &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[c9]"></a>SX1276LoRaSetRFFrequency</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, sx1276-loramisc.o(i.SX1276LoRaSetRFFrequency))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = SX1276LoRaSetRFFrequency &rArr; __aeabi_ui2d &rArr; _double_epilogue &rArr; _double_round
+</UL>
+<BR>[Calls]<UL><LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaFreqSet
+</UL>
+
+<P><STRONG><a name="[e7]"></a>SX1276LoRaSetRFPower</STRONG> (Thumb, 252 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetRFPower))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetRFPower &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxPower
+</UL>
+
+<P><STRONG><a name="[b5]"></a>SX1276LoRaSetSignalBandwidth</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetSignalBandwidth))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SX1276LoRaSetSignalBandwidth &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[b6]"></a>SX1276LoRaSetSpreadingFactor</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetSpreadingFactor))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SX1276LoRaSetSpreadingFactor &rArr; SX1276LoRaSetNbTrigPeaks &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetNbTrigPeaks
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[121]"></a>SX1276LoRaSetSymbTimeout</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, sx1276-loramisc.o(i.SX1276LoRaSetSymbTimeout))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = SX1276LoRaSetSymbTimeout &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+</UL>
+
+<P><STRONG><a name="[d8]"></a>SX1276Read</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, sx1276-hal.o(i.SX1276Read))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSpreadingFactor
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSignalBandwidth
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFPower
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPacketCrcOn
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPa20dBm
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPAOutput
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetLowDatarateOptimize
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetImplicitHeaderOn
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetErrorCoding
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetDefaults
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxDataRead
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetNbTrigPeaks
+</UL>
+
+<P><STRONG><a name="[11a]"></a>SX1276ReadBuffer</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, sx1276-hal.o(i.SX1276ReadBuffer))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIx_InOut
+</UL>
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSymbTimeout
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadFifo
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Read
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276SetLoRaOn
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276CheckSPI
+</UL>
+
+<P><STRONG><a name="[d6]"></a>SX1276ReadDio0</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sx1276-hal.o(i.SX1276ReadDio0))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SX1276ReadDio0
+</UL>
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ReadInputDataBit
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxDataRead
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReceiveData
+</UL>
+
+<P><STRONG><a name="[d9]"></a>SX1276ReadFifo</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, sx1276-hal.o(i.SX1276ReadFifo))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SX1276ReadFifo &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxDataRead
+</UL>
+
+<P><STRONG><a name="[f4]"></a>SX1276Reset</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, sx1276.o(i.SX1276Reset))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SX1276Reset
+</UL>
+<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276SetReset
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276CheckSPI
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Init
+</UL>
+
+<P><STRONG><a name="[10d]"></a>SX1276RxDataReadCRC32</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, sx1276.o(i.SX1276RxDataReadCRC32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = SX1276RxDataReadCRC32 &rArr; LoRaRxDataRead &rArr; SX1276ReadFifo &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxDataRead
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReceiveData
+</UL>
+
+<P><STRONG><a name="[8c]"></a>SX1276RxStateEnter</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, sx1276.o(i.SX1276RxStateEnter))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = SX1276RxStateEnter &rArr; LoRaRxStateEnter &rArr; SX1276LoRaSetOpMode &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxStateEnter
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSlaveID
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[11b]"></a>SX1276SetLoRaOn</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, sx1276.o(i.SX1276SetLoRaOn))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = SX1276SetLoRaOn &rArr; SX1276LoRaSetOpMode &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276ReadBuffer
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetOpMode
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Init
+</UL>
+
+<P><STRONG><a name="[126]"></a>SX1276SetReset</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, sx1276-hal.o(i.SX1276SetReset))
+<BR><BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Reset
+</UL>
+
+<P><STRONG><a name="[c7]"></a>SX1276TxDataCRC32</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, sx1276.o(i.SX1276TxDataCRC32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = SX1276TxDataCRC32 &rArr; LoRaTxData &rArr; SX1276LoRaSetOpMode &rArr; SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;crc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestUpdateSM4KeyCmd
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTimeSynchronizationCmd
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSendEncryptedData
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestUpdateSM4KeyACK
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDIDCmd
+<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestIDACK
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaCtrlNetLedCmdACK
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaBeforeSendEncryptedData
+</UL>
+
+<P><STRONG><a name="[f8]"></a>SX1276TxPower</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sx1276.o(i.SX1276TxPower))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = SX1276TxPower &rArr; LoRaTxPower &rArr; SX1276LoRaSetRFPower &rArr; SX1276Read &rArr; SX1276ReadBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxPower
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+</UL>
+
+<P><STRONG><a name="[d7]"></a>SX1276Write</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, sx1276-hal.o(i.SX1276Write))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SX1276Write &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSpreadingFactor
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSignalBandwidth
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFPower
+<LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPayloadLength
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPacketCrcOn
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPa20dBm
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetPAOutput
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetLowDatarateOptimize
+<LI><a href="#[120]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetImplicitHeaderOn
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetErrorCoding
+<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetOpMode
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxPower
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxStateEnter
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxDataRead
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276SetLoRaOn
+<LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetNbTrigPeaks
+</UL>
+
+<P><STRONG><a name="[dc]"></a>SX1276WriteBuffer</STRONG> (Thumb, 52 bytes, Stack size 24 bytes, sx1276-hal.o(i.SX1276WriteBuffer))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIx_InOut
+</UL>
+<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetSymbTimeout
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaSetRFFrequency
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteFifo
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Write
+<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276LoRaInit
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRxStateEnter
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276SetLoRaOn
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276CheckSPI
+</UL>
+
+<P><STRONG><a name="[e2]"></a>SX1276WriteFifo</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, sx1276-hal.o(i.SX1276WriteFifo))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SX1276WriteFifo &rArr; SX1276WriteBuffer &rArr; SPIx_InOut
+</UL>
+<BR>[Calls]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276WriteBuffer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+</UL>
+
+<P><STRONG><a name="[bd]"></a>SaveUartParaToMemChip</STRONG> (Thumb, 240 bytes, Stack size 8 bytes, hostcomprotocol.o(i.SaveUartParaToMemChip))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = SaveUartParaToMemChip &rArr; RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+</UL>
+
+<P><STRONG><a name="[139]"></a>ScanComStatusKey</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, com_status_key_init.o(i.ScanComStatusKey))
+<BR><BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[128]"></a>SendTheDecryptedData</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, loraprotocolcmd.o(i.SendTheDecryptedData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = SendTheDecryptedData &rArr; RS485Uart1SendData
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485Uart1SendData
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+</UL>
+
+<P><STRONG><a name="[129]"></a>SetAgreementX</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, my_sm2.o(i.SetAgreementX))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = SetAgreementX &rArr; HSC32I1_WriteLenByte &rArr; IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSM2AgreementProtocol
+</UL>
+
+<P><STRONG><a name="[f3]"></a>SetLoRaStruPara</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, masterlorahandle.o(i.SetLoRaStruPara))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = SetLoRaStruPara &rArr; RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadDeviceID
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MyLoRaInit
+</UL>
+
+<P><STRONG><a name="[98]"></a>SetSM2AgreementProtocol</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, my_sm2.o(i.SetSM2AgreementProtocol))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SetSM2AgreementProtocol &rArr; SetAgreementX &rArr; HSC32I1_WriteLenByte &rArr; IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetAgreementX
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32i1Init
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[ce]"></a>SetTheBID</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, my_sm2.o(i.SetTheBID))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = SetTheBID &rArr; HSC32I1_WriteLenByte &rArr; IIC_Wait_Ack &rArr; IIC_Stop
+</UL>
+<BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32I1_WriteLenByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+</UL>
+
+<P><STRONG><a name="[bc]"></a>SetUartBound</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, dip_switch.o(i.SetUartBound))
+<BR><BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+</UL>
+
+<P><STRONG><a name="[cb]"></a>SplitComDataToEncryptedData</STRONG> (Thumb, 352 bytes, Stack size 24 bytes, masterlorahandle.o(i.SplitComDataToEncryptedData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = SplitComDataToEncryptedData &rArr; RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetEncryptedText
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EncryptTheText
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaHandleEncryptedData
+</UL>
+
+<P><STRONG><a name="[9d]"></a>SplitLoRaDataToDecryptedData</STRONG> (Thumb, 344 bytes, Stack size 32 bytes, slavelorahandle.o(i.SplitLoRaDataToDecryptedData))
+<BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = SplitLoRaDataToDecryptedData &rArr; RestoreWhichLog &rArr; W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDecryptedText
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DecryptTheText
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendTheDecryptedData
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+</UL>
+
+<P><STRONG><a name="[ed]"></a>SysNVIC_Config</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, sys.o(i.SysNVIC_Config))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysNVIC_Config
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_PriorityGroupConfig
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[14e]"></a>SysTick_CLKSourceConfig</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, misc.o(i.SysTick_CLKSourceConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
+</UL>
+
+<P><STRONG><a name="[9]"></a>SysTick_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f10x_it.o(i.SysTick_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[47]"></a>SystemInit</STRONG> (Thumb, 78 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SystemInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = SystemInit &rArr; SetSysClock &rArr; SetSysClockTo72
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(.text)
+</UL>
+<P><STRONG><a name="[23]"></a>TIM1_UP_IRQHandler</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, advance_timer.o(i.TIM1_UP_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TIM1_UP_IRQHandler &rArr; TIM_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunComStatusChangeTimer
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunComAtModeTimer
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunCalcOneHourCounter
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunDelayCounter
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, ordinary_timer.o(i.TIM2_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TIM2_IRQHandler &rArr; TIM_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[27]"></a>TIM3_IRQHandler</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, ordinary_timer.o(i.TIM3_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TIM3_IRQHandler &rArr; TIM_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunWaitIDCounter
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunLoRaTransCounter
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;JudgeTheHostComWorkMode
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RunLEDCounter
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[28]"></a>TIM4_IRQHandler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, ordinary_timer.o(i.TIM4_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TIM4_IRQHandler &rArr; TIM_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[36]"></a>TIM8_UP_IRQHandler</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, advance_timer.o(i.TIM8_UP_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = TIM8_UP_IRQHandler &rArr; TIM_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_GetITStatus
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM_ClearITPendingBit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[5b]"></a>TIM_ClearFlag</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ClearFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+</UL>
+
+<P><STRONG><a name="[12f]"></a>TIM_ClearITPendingBit</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ClearITPendingBit))
+<BR><BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM8_UP_IRQHandler
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[5e]"></a>TIM_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+</UL>
+
+<P><STRONG><a name="[12e]"></a>TIM_GetITStatus</STRONG> (Thumb, 34 bytes, Stack size 12 bytes, stm32f10x_tim.o(i.TIM_GetITStatus))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = TIM_GetITStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
+<LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM3_IRQHandler
+<LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM8_UP_IRQHandler
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_UP_IRQHandler
+</UL>
+
+<P><STRONG><a name="[5c]"></a>TIM_ITConfig</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_ITConfig))
+<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+</UL>
+
+<P><STRONG><a name="[5a]"></a>TIM_TimeBaseInit</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, stm32f10x_tim.o(i.TIM_TimeBaseInit))
+<BR><BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OrdinaryTimerInit
+<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AdvanceTimerInit
+</UL>
+
+<P><STRONG><a name="[138]"></a>TheLoRaEncryptDeviceTask</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, loradevicetask.o(i.TheLoRaEncryptDeviceTask))
+<BR><BR>[Stack]<UL><LI>Max Depth = 356<LI>Call Chain = TheLoRaEncryptDeviceTask &rArr; LoRaNodeHandleCommunicateData &rArr; HandleLoRaCommunicateProtocol &rArr; LoRaRequestUpdateSM4KeyACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ScanComStatusKey
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResendGetSlaveIdCmdProcess
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleHostComData
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaNodeHandleCommunicateData
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IndicatorLightMainHandle
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComTimeOutHandle
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComProtocol
+<LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportLogHandle
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[13c]"></a>TheTimeUptoUpdateSM4KeyHandle</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, update_sm4key.o(i.TheTimeUptoUpdateSM4KeyHandle))
+<BR><BR>[Stack]<UL><LI>Max Depth = 316<LI>Call Chain = TheTimeUptoUpdateSM4KeyHandle &rArr; LoRaRequestUpdateSM4KeyCmd &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestHSC32Module
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerDelay_Ms
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxStateEnter
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaRequestUpdateSM4KeyCmd
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSoftWareParaReset
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftwareReset
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSM2AgreementProtocol
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetTheAID
+</UL>
+<BR>[Called By]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+</UL>
+
+<P><STRONG><a name="[a1]"></a>TimerDelay_Ms</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, my_delay.o(i.TimerDelay_Ms))
+<BR><BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestHSC32Module
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheTimeUptoUpdateSM4KeyHandle
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResendGetSlaveIdCmdProcess
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaSlaveHandleSm2KeyAgreement
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaMasterHandleSm2KeyAgreement
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitLoRaDataToDecryptedData
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleLoRaCommunicateProtocol
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SplitComDataToEncryptedData
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaHandleEncryptedData
+</UL>
+
+<P><STRONG><a name="[2f]"></a>USART1_IRQHandler</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, hostcomprotocol.o(i.USART1_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = USART1_IRQHandler &rArr; USART_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
+<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[31]"></a>USART3_IRQHandler</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, hostcomprotocol.o(i.USART3_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = USART3_IRQHandler &rArr; USART_GetITStatus
+</UL>
+<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
+<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_GetCurrDataCounter
+<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[c0]"></a>USART_ClearFlag</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_ClearFlag))
+<BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485Uart1SendData
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftwareReset
+</UL>
+
+<P><STRONG><a name="[c1]"></a>USART_Cmd</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_Cmd))
+<BR><BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftwareReset
+</UL>
+
+<P><STRONG><a name="[74]"></a>USART_DMACmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f10x_usart.o(i.USART_DMACmd))
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_TX_Init
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_RX_Init
+</UL>
+
+<P><STRONG><a name="[13d]"></a>USART_GetITStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, stm32f10x_usart.o(i.USART_GetITStatus))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = USART_GetITStatus
+</UL>
+<BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
+<LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
+</UL>
+
+<P><STRONG><a name="[142]"></a>USART_ITConfig</STRONG> (Thumb, 74 bytes, Stack size 20 bytes, stm32f10x_usart.o(i.USART_ITConfig))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = USART_ITConfig
+</UL>
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+</UL>
+
+<P><STRONG><a name="[13f]"></a>USART_Init</STRONG> (Thumb, 210 bytes, Stack size 56 bytes, stm32f10x_usart.o(i.USART_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 68<LI>Call Chain = USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
+</UL>
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+</UL>
+
+<P><STRONG><a name="[5]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f10x_it.o(i.UsageFault_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
+</UL>
+<P><STRONG><a name="[141]"></a>Usart_Init</STRONG> (Thumb, 310 bytes, Stack size 80 bytes, usart.o(i.Usart_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 148<LI>Call Chain = Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Init
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_Cmd
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ClearFlag
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_X_Init
+</UL>
+
+<P><STRONG><a name="[7a]"></a>Usart_X_Init</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, usart.o(i.Usart_X_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = Usart_X_Init &rArr; Usart_Init &rArr; USART_Init &rArr; RCC_GetClocksFreq
+</UL>
+<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Usart_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableDMA1Channelx
+</UL>
+
+<P><STRONG><a name="[be]"></a>UserInfoInitPowerOnDevice</STRONG> (Thumb, 260 bytes, Stack size 24 bytes, hostcomprotocol.o(i.UserInfoInitPowerOnDevice))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = UserInfoInitPowerOnDevice &rArr; W25QXX_Read &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Read
+<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HostComSoftWareInit
+</UL>
+
+<P><STRONG><a name="[144]"></a>W25QXX_Erase_Sector</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, w25qxx_flash.o(i.W25QXX_Erase_Sector))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = W25QXX_Erase_Sector &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Enable
+<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Wait_Busy
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write
+</UL>
+
+<P><STRONG><a name="[86]"></a>W25QXX_Read</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, w25qxx_flash.o(i.W25QXX_Read))
+<BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = W25QXX_Read &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ExportWhichLog
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UserInfoInitPowerOnDevice
+</UL>
+
+<P><STRONG><a name="[147]"></a>W25QXX_ReadID</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, w25qxx_flash.o(i.W25QXX_ReadID))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = W25QXX_ReadID &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxFlashInit
+</UL>
+
+<P><STRONG><a name="[148]"></a>W25QXX_ReadSR</STRONG> (Thumb, 36 bytes, Stack size 8 bytes, w25qxx_flash.o(i.W25QXX_ReadSR))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Wait_Busy
+</UL>
+
+<P><STRONG><a name="[146]"></a>W25QXX_Wait_Busy</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, w25qxx_flash.o(i.W25QXX_Wait_Busy))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_ReadSR
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Page
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Erase_Sector
+</UL>
+
+<P><STRONG><a name="[10f]"></a>W25QXX_Write</STRONG> (Thumb, 180 bytes, Stack size 40 bytes, w25qxx_flash.o(i.W25QXX_Write))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = W25QXX_Write &rArr; W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_NoCheck
+<LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Read
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Erase_Sector
+</UL>
+<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreWhichLog
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RestoreUserPassword
+</UL>
+
+<P><STRONG><a name="[145]"></a>W25QXX_Write_Enable</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, w25qxx_flash.o(i.W25QXX_Write_Enable))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = W25QXX_Write_Enable &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Page
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Erase_Sector
+</UL>
+
+<P><STRONG><a name="[149]"></a>W25QXX_Write_NoCheck</STRONG> (Thumb, 70 bytes, Stack size 24 bytes, w25qxx_flash.o(i.W25QXX_Write_NoCheck))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = W25QXX_Write_NoCheck &rArr; W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Page
+</UL>
+<BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write
+</UL>
+
+<P><STRONG><a name="[14a]"></a>W25QXX_Write_Page</STRONG> (Thumb, 80 bytes, Stack size 24 bytes, w25qxx_flash.o(i.W25QXX_Write_Page))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = W25QXX_Write_Page &rArr; W25QXX_Wait_Busy &rArr; W25QXX_ReadSR &rArr; SPIX_ReadWriteByte
+</UL>
+<BR>[Calls]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_Enable
+<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Wait_Busy
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Write_NoCheck
+</UL>
+
+<P><STRONG><a name="[f1]"></a>W25QxxFlashInit</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, w25qxx_flash.o(i.W25QxxFlashInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = W25QxxFlashInit &rArr; W25QxxSPI_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_ReadID
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxSPI_Init
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_SetSpeed
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[14b]"></a>W25QxxSPI_Init</STRONG> (Thumb, 206 bytes, Stack size 32 bytes, w25qxx_init.o(i.W25QxxSPI_Init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = W25QxxSPI_Init &rArr; GPIO_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Init
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_Cmd
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB2PeriphClockCmd
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIX_ReadWriteByte
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxFlashInit
+</UL>
+
+<P><STRONG><a name="[14c]"></a>__0printf$5</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+</UL>
+
+<P><STRONG><a name="[160]"></a>__1printf$5</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5), UNUSED)
+
+<P><STRONG><a name="[e3]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QXX_Erase_Sector
+<LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;W25QxxFlashInit
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LoRaTxData
+</UL>
+
+<P><STRONG><a name="[161]"></a>__scatterload_copy</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_copy), UNUSED)
+
+<P><STRONG><a name="[162]"></a>__scatterload_null</STRONG> (Thumb, 2 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_null), UNUSED)
+
+<P><STRONG><a name="[163]"></a>__scatterload_zeroinit</STRONG> (Thumb, 14 bytes, Stack size unknown bytes, handlers.o(i.__scatterload_zeroinit), UNUSED)
+
+<P><STRONG><a name="[127]"></a>crc32</STRONG> (Thumb, 56 bytes, Stack size 12 bytes, sx1276.o(i.crc32))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = crc32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276TxDataCRC32
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276RxDataReadCRC32
+</UL>
+
+<P><STRONG><a name="[ee]"></a>delay_init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, delay.o(i.delay_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = delay_init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_CLKSourceConfig
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+
+<P><STRONG><a name="[96]"></a>delay_ms</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, delay.o(i.delay_ms))
+<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32RstInit
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HSC32i1Init
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SX1276Reset
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UserInfoInitPowerOnDevice
+</UL>
+
+<P><STRONG><a name="[6d]"></a>delay_us</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, delay.o(i.delay_us))
+<BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel7_IRQHandler
+<LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel4_IRQHandler
+<LI><a href="#[16]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA1_Channel2_IRQHandler
+<LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
+<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
+<LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Send_Byte
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Read_Byte
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_NAck
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Ack
+</UL>
+
+<P><STRONG><a name="[49]"></a>fputc</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, usart.o(i.fputc))
+<BR>[Address Reference Count : 1]<UL><LI> printf5.o(i.__0printf$5)
+</UL>
+<P><STRONG><a name="[46]"></a>main</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 356<LI>Call Chain = main &rArr; TheLoRaEncryptDeviceTask &rArr; LoRaNodeHandleCommunicateData &rArr; HandleLoRaCommunicateProtocol &rArr; LoRaRequestUpdateSM4KeyACK &rArr; CalCrc16 &rArr; CRC16InRam
+</UL>
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TheLoRaEncryptDeviceTask
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ModulesInit
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
+</UL><P>
+<H3>
+Local Symbols
+</H3>
+<P><STRONG><a name="[12b]"></a>SetSysClock</STRONG> (Thumb, 8 bytes, Stack size 8 bytes, system_stm32f10x.o(i.SetSysClock))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = SetSysClock &rArr; SetSysClockTo72
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClockTo72
+</UL>
+<BR>[Called By]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
+</UL>
+
+<P><STRONG><a name="[12c]"></a>SetSysClockTo72</STRONG> (Thumb, 214 bytes, Stack size 12 bytes, system_stm32f10x.o(i.SetSysClockTo72))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SetSysClockTo72
+</UL>
+<BR>[Called By]<UL><LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetSysClock
+</UL>
+
+<P><STRONG><a name="[10b]"></a>RTC_NVIC_Config</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, rtc.o(i.RTC_NVIC_Config))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = RTC_NVIC_Config &rArr; NVIC_Init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_Init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_Init
+</UL>
+
+<P><STRONG><a name="[14d]"></a>_printf_core</STRONG> (Thumb, 658 bytes, Stack size 104 bytes, printf5.o(i._printf_core), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf$5
+</UL>
+<P>
+<H3>
+Undefined Global Symbols
+</H3><HR></body></html>

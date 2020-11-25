@@ -1,0 +1,134 @@
+C51 COMPILER V9.56.0.0   ADC                                                               03/22/2018 15:57:56 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\Output\ADC.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Code\ADC.C OPTIMIZE(8,SPEED) BROWSE INCDIR(..\..\Include) DEFINE(FOSC_16
+                    -0000) DEBUG OBJECTEXTEND PRINT(.\LST\ADC.lst) TABS(2) OBJECT(.\Output\ADC.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 ADC demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          
+  26          
+  27          //*****************  The Following is in define in Fucntion_define.h  ***************************
+  28          //****** Always include Function_define.h call the define you want, detail see main(void) *******
+  29          //***********************************************************************************************
+  30          #if 0
+              //#define Enable_ADC_AIN0     ADCCON0&=0xF0;P17_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT0;ADCCON1|=SET_BIT0 
+             -                //P17
+              //#define Enable_ADC_AIN1     ADCCON0&=0xF0;ADCCON0|=0x01;P30_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT1;ADCC
+             -ON1|=SET_BIT0    //P30
+              //#define Enable_ADC_AIN2     ADCCON0&=0xF0;ADCCON0|=0x02;P07_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT2;ADCC
+             -ON1|=SET_BIT0    //P07
+              //#define Enable_ADC_AIN3     ADCCON0&=0xF0;ADCCON0|=0x03;P06_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT3;ADCC
+             -ON1|=SET_BIT0    //P06
+              //#define Enable_ADC_AIN4     ADCCON0&=0xF0;ADCCON0|=0x04;P05_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT4;ADCC
+             -ON1|=SET_BIT0    //P05
+              //#define Enable_ADC_AIN5     ADCCON0&=0xF0;ADCCON0|=0x05;P04_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT5;ADCC
+             -ON1|=SET_BIT0    //P04
+              //#define Enable_ADC_AIN6     ADCCON0&=0xF0;ADCCON0|=0x06;P03_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT6;ADCC
+             -ON1|=SET_BIT0    //P03
+              //#define Enable_ADC_AIN7     ADCCON0&=0xF0;ADCCON0|=0x07;P11_Input_Mode;AINDIDS=0x00;AINDIDS|=SET_BIT7;ADCC
+C51 COMPILER V9.56.0.0   ADC                                                               03/22/2018 15:57:56 PAGE 2   
+
+             -ON1|=SET_BIT0    //P11
+              //#define Enable_ADC_BandGap  ADCCON0|=SET_BIT3;ADCCON0&=0xF8;                                                              //Band-gap 1.2
+             -2V
+              
+              //#define PWM0_FALLINGEDGE_TRIG_ADC   ADCCON0&=~SET_BIT5;ADCCON0&=~SET_BIT4;ADCCON1&=~SET_BIT3;ADCCON1&=~SE
+             -T_BIT2;ADCCON1|=SET_BIT1
+              //#define PWM2_FALLINGEDGE_TRIG_ADC   ADCCON0&=~SET_BIT5;ADCCON0|=SET_BIT4;ADCCON1&=~SET_BIT3;ADCCON1&=~SET
+             -_BIT2;ADCCON1|=SET_BIT1
+              //#define PWM4_FALLINGEDGE_TRIG_ADC   ADCCON0|=SET_BIT5;ADCCON0&=~SET_BIT4;ADCCON1&=~SET_BIT3;ADCCON1&=~SET
+             -_BIT2;ADCCON1|=SET_BIT1
+              //#define PWM0_RISINGEDGE_TRIG_ADC    ADCCON0&=~SET_BIT5;ADCCON0&=~SET_BIT4;ADCCON1&=~SET_BIT3;ADCCON1|=SET_
+             -BIT2;ADCCON1|=SET_BIT1
+              //#define PWM2_RISINGEDGE_TRIG_ADC    ADCCON0&=~SET_BIT5;ADCCON0|=SET_BIT4;ADCCON1&=~SET_BIT3;ADCCON1|=SET_B
+             -IT2;ADCCON1|=SET_BIT1
+              //#define PWM4_RISINGEDGE_TRIG_ADC    ADCCON0|=SET_BIT5;ADCCON0&=~SET_BIT4;ADCCON1&=~SET_BIT3;ADCCON1|=SET_B
+             -IT2;ADCCON1|=SET_BIT1
+              
+              //#define P04_FALLINGEDGE_TRIG_ADC    ADCCON0|=0x30;ADCCON1&=0xF3;ADCCON1|=SET_BIT1;ADCCON1&=~SET_BIT6
+              //#define P13_FALLINGEDGE_TRIG_ADC    ADCCON0|=0x30;ADCCON1&=0xF3;ADCCON1|=SET_BIT1;ADCCON1|=SET_BIT6
+              //#define P04_RISINGEDGE_TRIG_ADC     ADCCON0|=0x30;ADCCON1&=~SET_BIT3;ADCCON1|=SET_BIT2;ADCCON1|=SET_BIT1;A
+             -DCCON1&=~SET_BIT6
+              //#define P13_RISINGEDGE_TRIG_ADC     ADCCON0|=0x30;ADCCON1&=~SET_BIT3;ADCCON1|=SET_BIT2;ADCCON1|=SET_BIT1;A
+             -DCCON1|=SET_BIT6
+              #endif
+  53          
+  54          /******************************************************************************
+  55          The main C function.  Program execution starts
+  56          here after stack initialization.
+  57          ******************************************************************************/
+  58          void main (void) 
+  59          {
+  60   1          Set_All_GPIO_Quasi_Mode;
+  61   1          InitialUART0_Timer1(115200);
+  62   1          
+  63   1      /*-------------------------------------------
+  64   1        ADC simply initial setting
+  65   1      --------------------------------------------*/
+  66   1      //    Enable_ADC_AIN3;                            // Enable AIN0 P1.7 as ADC input
+  67   1          Enable_ADC_BandGap;
+  68   1      
+  69   1          while(1)
+  70   1          {
+  71   2            clr_ADCF;
+  72   2            set_ADCS;                                 // Each time ADC start trig signal
+  73   2            while(ADCF == 0);
+  74   2            printf ("\n Value = 0x%bx",ADCRH);
+  75   2              printf ("\n Value = 0x%bx",ADCRL);
+  76   2            Timer0_Delay1ms(100);
+  77   2          }
+  78   1      }
+  79          
+  80          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     75    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.56.0.0   ADC                                                               03/22/2018 15:57:56 PAGE 3   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,240 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/02/2016  11:29:20  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\Output\IAP_BYTE.obj, .\Output\STARTUP.obj TO .\Output\IAP_BYTE PRINT (.\LST\IAP_BYTE.m51) RAM
+>> SIZE (256) DISABLEWARNING (16) XDATA (0X0000-0X00FF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Output\IAP_BYTE.obj (IAP_BYTE)
+  .\Output\STARTUP.obj (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Output\IAP_BYTE (IAP_BYTE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         _DATA_GROUP_
+                    000FH     0011H                  *** GAP ***
+            BIT     0020H.0   0000H.1   UNIT         ?BI?IAP_BYTE
+                    0020H.1   0000H.7                *** GAP ***
+            IDATA   0021H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0141H     UNIT         ?PR?_WRITE_DATAFLASH_BYTE?IAP_BYTE
+            CODE    0144H     0027H     UNIT         ?PR?MAIN?IAP_BYTE
+            CODE    016BH     001AH     UNIT         ?C_C51STARTUP
+            CODE    0185H     0008H     UNIT         ?PR?_READ_APROM_BYTE?IAP_BYTE
+
+
+
+OVERLAY MAP OF MODULE:   .\Output\IAP_BYTE (IAP_BYTE)
+
+
+SEGMENT                                      DATA_GROUP 
+  +--> CALLED SEGMENT                      START    LENGTH
+----------------------------------------------------------
+?C_C51STARTUP                              -----    -----
+  +--> ?PR?MAIN?IAP_BYTE
+
+?PR?MAIN?IAP_BYTE                          0008H    0001H
+  +--> ?PR?_WRITE_DATAFLASH_BYTE?IAP_BYTE
+  +--> ?PR?_READ_APROM_BYTE?IAP_BYTE
+
+?PR?_WRITE_DATAFLASH_BYTE?IAP_BYTE         0009H    0006H
+
+
+
+SYMBOL TABLE OF MODULE:  .\Output\IAP_BYTE (IAP_BYTE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:29:20  PAGE 2
+
+
+  -------         MODULE        IAP_BYTE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:00D8H         PUBLIC        PWMCON0
+  D:00A8H         PUBLIC        IE
+  D:00C7H         PUBLIC        TA
+  C:0185H         PUBLIC        _read_APROM_BYTE
+  D:00B8H         PUBLIC        IP
+  C:0144H         PUBLIC        main
+  C:0003H         PUBLIC        _write_DATAFLASH_BYTE
+  B:0020H.0       PUBLIC        BIT_TMP
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:009FH         PUBLIC        CHPCON
+  D:00A5H         PUBLIC        IAPUEN
+  D:00F8H         PUBLIC        SCON_1
+  D:00A4H         PUBLIC        IAPTRG
+  D:00E8H         PUBLIC        ADCCON0
+  D:00C0H         PUBLIC        I2CON
+  D:00A7H         PUBLIC        IAPAH
+  D:00AEH         PUBLIC        IAPFD
+  D:00C8H         PUBLIC        T2CON
+  D:00A6H         PUBLIC        IAPAL
+  D:00AFH         PUBLIC        IAPCN
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _READ_APROM_BYTE
+  D:0082H         SYMBOL        u16_addr
+  -------         DO            
+  D:0007H         SYMBOL        rdata
+  -------         ENDDO         
+  C:0185H         LINE#         27
+  C:0189H         LINE#         28
+  C:0189H         LINE#         30
+  C:018CH         LINE#         31
+  C:018CH         LINE#         32
+  -------         ENDPROC       _READ_APROM_BYTE
+  -------         PROC          _WRITE_DATAFLASH_BYTE
+  D:0009H         SYMBOL        u16_addr
+  D:000BH         SYMBOL        u8_data
+  -------         DO            
+  D:000CH         SYMBOL        looptmp
+  D:0001H         SYMBOL        u8_addrl_r
+  D:000DH         SYMBOL        cd_longaddr
+  D:0004H         SYMBOL        xd_tmp
+  -------         ENDDO         
+  C:0003H         LINE#         40
+  C:0009H         LINE#         41
+  C:0009H         LINE#         42
+  C:000CH         LINE#         47
+  C:000EH         LINE#         48
+  C:0014H         LINE#         49
+  C:0014H         LINE#         50
+  C:0016H         LINE#         51
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:29:20  PAGE 3
+
+
+  C:0018H         LINE#         53
+  C:0018H         LINE#         54
+  C:001AH         LINE#         55
+  C:001AH         LINE#         57
+  C:001EH         LINE#         58
+  C:002BH         LINE#         59
+  C:0033H         LINE#         60
+  C:0033H         LINE#         61
+  C:0040H         LINE#         62
+  C:0042H         LINE#         63
+  C:0047H         LINE#         64
+  C:004FH         LINE#         65
+  C:0051H         LINE#         67
+  C:0055H         LINE#         68
+  C:005CH         LINE#         69
+  C:005CH         LINE#         70
+  C:0064H         LINE#         71
+  C:0066H         LINE#         73
+  C:0066H         LINE#         74
+  C:0069H         LINE#         75
+  C:0069H         LINE#         76
+  C:0070H         LINE#         78
+  C:0072H         LINE#         79
+  C:0077H         LINE#         80
+  C:007AH         LINE#         81
+  C:008DH         LINE#         82
+  C:00A0H         LINE#         83
+  C:00A3H         LINE#         84
+  C:00B6H         LINE#         86
+  C:00B8H         LINE#         87
+  C:00BEH         LINE#         88
+  C:00BEH         LINE#         89
+  C:00C0H         LINE#         90
+  C:00C2H         LINE#         92
+  C:00C2H         LINE#         93
+  C:00C4H         LINE#         94
+  C:00C4H         LINE#         95
+  C:00C8H         LINE#         96
+  C:00CAH         LINE#         97
+  C:00CCH         LINE#         98
+  C:00DFH         LINE#         99
+  C:00F2H         LINE#         100
+  C:00F5H         LINE#         101
+  C:00FAH         LINE#         102
+  C:00FAH         LINE#         103
+  C:0101H         LINE#         104
+  C:0114H         LINE#         105
+  C:0116H         LINE#         106
+  C:011BH         LINE#         107
+  C:011DH         LINE#         108
+  C:0130H         LINE#         109
+  C:0143H         LINE#         110
+  -------         ENDPROC       _WRITE_DATAFLASH_BYTE
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        datatemp
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:29:20  PAGE 4
+
+
+  C:0144H         LINE#         114
+  C:0144H         LINE#         115
+  C:0144H         LINE#         124
+  C:014DH         LINE#         125
+  C:0154H         LINE#         126
+  C:015BH         LINE#         127
+  C:0162H         LINE#         129
+  C:0169H         LINE#         130
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        IAP_BYTE
+
+  -------         MODULE        ?C_STARTUP
+  C:016BH         SEGMENT       ?C_C51STARTUP
+  I:0021H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:016EH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:016BH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:02FFH         SYMBOL        XDATALEN
+  C:0179H         SYMBOL        XDATALOOP
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         92
+  C:016BH         LINE#         99
+  C:016DH         LINE#         100
+  C:016EH         LINE#         101
+  C:016FH         LINE#         102
+  C:0171H         LINE#         106
+  C:0174H         LINE#         107
+  C:0176H         LINE#         109
+  C:0178H         LINE#         113
+  C:0179H         LINE#         114
+  C:017AH         LINE#         115
+  C:017BH         LINE#         116
+  C:017DH         LINE#         117
+  C:017FH         LINE#         151
+  C:0182H         LINE#         155
+  -------         ENDMOD        ?C_STARTUP
+
+Program Size: data=16.1 xdata=0 code=397
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

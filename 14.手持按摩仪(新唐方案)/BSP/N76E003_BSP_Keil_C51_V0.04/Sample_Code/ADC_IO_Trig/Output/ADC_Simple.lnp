@@ -1,0 +1,6 @@
+".\Output\ADC.obj",
+".\Output\Common.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\ADC_Simple" 
+PRINT(".\LST\ADC_Simple.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

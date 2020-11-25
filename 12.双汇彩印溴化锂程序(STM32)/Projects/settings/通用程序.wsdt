@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>STANDARD/Flash</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>257</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>632</ColumnWidth1><ColumnWidth2>119</ColumnWidth2><ColumnWidth3>44</ColumnWidth3></Build>
+    </Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-30026-31452</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>STANDARD</ExpandedNode><ExpandedNode>STANDARD/App</ExpandedNode><ExpandedNode>STANDARD/DRIVER</ExpandedNode><ExpandedNode>STANDARD/DRIVER/GUI</ExpandedNode><ExpandedNode>STANDARD/DRIVER/RELAY</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-18232-31468</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\measure\measure.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>274</SelStart><SelEnd>274</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\App\main.c</Filename><XPos>0</XPos><YPos>93</YPos><SelStart>3088</SelStart><SelEnd>3088</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\measure\measure.h</Filename><XPos>0</XPos><YPos>66</YPos><SelStart>1207</SelStart><SelEnd>1207</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\KI\ki.h</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>764</SelStart><SelEnd>764</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\RELAY\relay.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>2718</SelStart><SelEnd>2718</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\MODBUS\MODBUS_MASTER.H</Filename><XPos>0</XPos><YPos>86</YPos><SelStart>354</SelStart><SelEnd>354</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\PARA\ALL_PARA.C</Filename><XPos>0</XPos><YPos>423</YPos><SelStart>10752</SelStart><SelEnd>10752</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\PARA\PARA.C</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>4068</SelStart><SelEnd>4068</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\Projects\&#x8F6F;&#x4eF6;&#x8BF4;&#x660e;.txt</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>9</SelStart><SelEnd>9</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\MODBUS\MODBUS.H</Filename><XPos>0</XPos><YPos>27</YPos><SelStart>274</SelStart><SelEnd>274</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\PARA\para.h</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>250</SelStart><SelEnd>250</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\MODBUS\MODBUS_MASTER.C</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>355</SelStart><SelEnd>355</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\MODBUS\MODBUS.C</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>44</SelStart><SelEnd>44</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\Projects\head.h</Filename><XPos>0</XPos><YPos>99</YPos><SelStart>1986</SelStart><SelEnd>1986</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\RELAY\relay.c</Filename><XPos>0</XPos><YPos>574</YPos><SelStart>13623</SelStart><SelEnd>13623</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\UART\uart.c</Filename><XPos>0</XPos><YPos>264</YPos><SelStart>9699</SelStart><SelEnd>9699</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\uart\uart.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>186</SelStart><SelEnd>186</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>D:\BEST-2010-ARM\2010-09-12\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\GUI\LCD_FORM\LCD_INTERFACE.C</Filename><XPos>0</XPos><YPos>102</YPos><SelStart>2095</SelStart><SelEnd>2095</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Documents and Settings\Administrator\&#x684C;&#x9762;\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\App\main.c</Filename><XPos>0</XPos><YPos>24</YPos><SelStart>496</SelStart><SelEnd>496</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>C:\Documents and Settings\Administrator\&#x684C;&#x9762;\&#x901A;&#x7528;&#x7A0B;&#x5e8F;\GUI\LCD_FORM\LCD_INTERFACE.C</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>806</SelStart><SelEnd>806</SelEnd></Tab><ActiveTab>19</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00bfae20><key>iaridepm.enu1</key></Toolbar-00bfae20></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>540</Bottom><Right>348</Right><x>-2</x><y>-2</y><xscreen>111</xscreen><yscreen>196</yscreen><sizeHorzCX>86719</sizeHorzCX><sizeHorzCY>270718</sizeHorzCY><sizeVertCX>273438</sizeVertCX><sizeVertCY>748619</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>139</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>141</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>194751</sizeHorzCY><sizeVertCX>86719</sizeVertCX><sizeVertCY>270718</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

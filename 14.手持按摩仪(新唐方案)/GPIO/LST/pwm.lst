@@ -1,0 +1,101 @@
+C51 COMPILER V9.56.0.0   PWM                                                               04/11/2018 16:32:06 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE PWM
+OBJECT MODULE PLACED IN .\Output\pwm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Code\pwm.c OPTIMIZE(4,SPEED) BROWSE INCDIR(.\Include) DEFINE(FOSC_160000
+                    -) DEBUG OBJECTEXTEND PRINT(.\LST\pwm.lst) TABS(2) OBJECT(.\Output\pwm.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include "N76E003.h"
+   3          #include "Common.h"
+   4          #include "SFR_Macro.h"
+   5          #include "Function_Define.h"
+   6          #include "pwm.h"
+   7          void pwm_init(void)
+   8          {
+   9   1        //PWM1_P14_OUTPUT_ENABLE; //MOS;
+  10   1        P14_PushPull_Mode;
+  11   1        P14=0;
+  12   1        PWM3_P04_OUTPUT_ENABLE;//rise voltage
+  13   1        PWM5_P03_OUTPUT_ENABLE;
+  14   1        PWM_IMDEPENDENT_MODE;
+  15   1        PWM_CLOCK_FSYS;
+  16   1        PWMPH = 0;
+  17   1        PWMPL = 221;//37.3KHZ
+  18   1        PWM1H=0x00; 
+  19   1        PWM1L=110;//duty is 50%
+  20   1        set_CLRPWM; 
+  21   1      }
+  22          
+  23          void moto_run(void)
+  24          {
+  25   1        PWM5_P03_OUTPUT_ENABLE;
+  26   1        set_SFRPAGE;
+  27   1        PWM5H=0x00; 
+  28   1        PWM5L=128;//duty is 74%
+  29   1        clr_SFRPAGE;
+  30   1        pwm_start();
+  31   1      }
+  32          void moto_stop(void)
+  33          {
+  34   1        PWM5_P03_OUTPUT_DISABLE;
+  35   1        P03=0;
+  36   1      }
+  37          /***************************************
+  38          *first voltage
+  39          ****************************************/
+  40          void voltage1(void)
+  41          {
+  42   1        PWM3H=0x00; 
+  43   1        PWM3L=50 ;//duty is 50%  66
+  44   1        pwm_start();
+  45   1      }
+  46          void voltage2(void)
+  47          {
+  48   1        PWM3H=0x00; 
+  49   1        PWM3L=20;//duty is 
+  50   1        pwm_start();
+  51   1      }
+  52          void voltage3(void)
+  53          {
+  54   1        PWM3H=0x00; 
+C51 COMPILER V9.56.0.0   PWM                                                               04/11/2018 16:32:06 PAGE 2   
+
+  55   1        PWM3L=10;//duty is 
+  56   1        pwm_start();
+  57   1      
+  58   1      }
+  59          void voltage4(void)
+  60          {
+  61   1        PWM3H=0x00; 
+  62   1        PWM3L=0;//duty is 
+  63   1        pwm_start();
+  64   1          
+  65   1      }
+  66          void pwm_start(void)
+  67          {
+  68   1        set_LOAD;
+  69   1        set_PWMRUN;
+  70   1      }
+  71          void pwm_stop(void)
+  72          {
+  73   1        clr_LOAD;
+  74   1        clr_PWMRUN;
+  75   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    168    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

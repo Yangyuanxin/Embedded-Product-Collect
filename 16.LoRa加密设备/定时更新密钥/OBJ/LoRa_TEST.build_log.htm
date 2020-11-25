@@ -1,0 +1,883 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.20.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: adsd zwq, asd, LIC=4ZLPC-7T07S-66KQS-LYA2L-V7YG6-DQRQD
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.20
+Toolchain Path:  e:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 2 (build 183)
+Assembler:       Armasm.exe V5.06 update 2 (build 183)
+Linker/Locator:  ArmLink.exe V5.06 update 2 (build 183)
+Library Manager: ArmAr.exe V5.06 update 2 (build 183)
+Hex Converter:   FromElf.exe V5.06 update 2 (build 183)
+CPU DLL:         SARMCM3.DLL V5.20
+Dialog DLL:      DCM.DLL V1.13.7.0
+Target DLL:      Segger\JL2CM3.dll V2.99.20.0
+Dialog DLL:      TCM.DLL V1.14.9.0
+ 
+<h2>Project:</h2>
+C:\Users\zwq\Desktop\定时更新密钥\USER\加密设备项目.uvprojx
+Project File Date:  03/13/2019
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 2 (build 183)', folder: 'e:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'LoRa加密设备'
+assembling startup_stm32f10x_hd.s...
+compiling core_cm3.c...
+compiling misc.c...
+compiling stm32f10x_gpio.c...
+compiling stm32f10x_spi.c...
+compiling stm32f10x_rcc.c...
+compiling stm32f10x_usart.c...
+compiling stm32f10x_i2c.c...
+compiling stm32f10x_tim.c...
+compiling stm32f10x_dma.c...
+compiling stm32f10x_rtc.c...
+compiling stm32f10x_bkp.c...
+compiling stm32f10x_pwr.c...
+compiling stm32f10x_exti.c...
+compiling stm32f10x_adc.c...
+compiling sys.c...
+compiling delay.c...
+compiling usart.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\SYSTEM\usart\usart.c: 14 warnings, 0 errors
+compiling my_delay.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\MyDelay\my_delay.c: 1 warning, 0 errors
+compiling dma_usart.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\MySelfAPI\DmaUsart\dma_usart.c: 14 warnings, 0 errors
+compiling mcu_id.c...
+compiling main.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.c: 13 warnings, 0 errors
+compiling modules_init.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+Modules_Init\modules_init.c: 13 warnings, 0 errors
+compiling updata_crc.c...
+compiling stm32f10x_it.c...
+compiling system_stm32f10x.c...
+compiling LoRaDeviceTask.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+TheLoRaDeviceTask\LoRaDeviceTask.c: 14 warnings, 0 errors
+compiling alam.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.c: 14 warnings, 0 errors
+compiling advance_timer.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.c(45): warning:  #111-D: statement is unreachable
+  		break;
+..\HARDWARE\AdvanceTimer\advance_timer.c: 17 warnings, 0 errors
+compiling CollectVoltage.c...
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.c: 1 warning, 0 errors
+compiling com_status_key_init.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.c: 15 warnings, 0 errors
+compiling dip_switch.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\DIPswitch\dip_switch.c: 14 warnings, 0 errors
+compiling hsc32_rst_io.c...
+compiling iic.c...
+compiling led.c...
+compiling lora_spi_init.c...
+compiling lora_pwr.c...
+..\HARDWARE\LoRa_PWR\lora_pwr.c(17): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\LoRa_PWR\lora_pwr.c: 1 warning, 0 errors
+compiling ordinary_timer.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\OrdinaryTimer\ordinary_timer.c: 13 warnings, 0 errors
+compiling rtc.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\RTC\rtc.c: 13 warnings, 0 errors
+compiling WatchDog.c...
+compiling w25qxx_init.c...
+compiling hsc32i1.c...
+..\HARDWARE\HSC32I1\hsc32i1.c(61): warning:  #177-D: variable "i" was declared but never referenced
+  	u8 i= 0;	  	 
+..\HARDWARE\HSC32I1\hsc32i1.c: 1 warning, 0 errors
+compiling w25qxx_flash.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\W25Qxx\w25qxx_flash\w25qxx_flash.c: 14 warnings, 0 errors
+compiling xLog.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\W25Qxx\RestoreLog\xLog.c: 13 warnings, 0 errors
+compiling radio.c...
+compiling my_sm2.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\my_sm2.c: 13 warnings, 0 errors
+compiling update_sm4key.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.c(143): warning:  #550-D: variable "Temp" was set but never used
+  	u16 Temp;
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.c: 15 warnings, 0 errors
+compiling sx1276-Hal.c...
+..\HARDWARE\ZM470SX1276\sx1276-Hal\sx1276-Hal.c(152): warning:  #940-D: missing return statement at end of non-void function "SX1276ReadDio1"
+  }
+..\HARDWARE\ZM470SX1276\sx1276-Hal\sx1276-Hal.c(159): warning:  #940-D: missing return statement at end of non-void function "SX1276ReadDio2"
+  }
+..\HARDWARE\ZM470SX1276\sx1276-Hal\sx1276-Hal.c(165): warning:  #940-D: missing return statement at end of non-void function "SX1276ReadDio3"
+  }
+..\HARDWARE\ZM470SX1276\sx1276-Hal\sx1276-Hal.c(171): warning:  #940-D: missing return statement at end of non-void function "SX1276ReadDio4"
+  }
+..\HARDWARE\ZM470SX1276\sx1276-Hal\sx1276-Hal.c(177): warning:  #940-D: missing return statement at end of non-void function "SX1276ReadDio5"
+  }
+..\HARDWARE\ZM470SX1276\sx1276-Hal\sx1276-Hal.c: 5 warnings, 0 errors
+compiling sx1276.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ZM470SX1276\sx1276\sx1276.c(14): warning:  #177-D: variable "LoRaOnState" was declared but never referenced
+  static bool LoRaOnState = false;
+..\HARDWARE\ZM470SX1276\sx1276\sx1276.c: 14 warnings, 0 errors
+compiling sx1276-LoRa.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ZM470SX1276\sx1276-LoRa\sx1276-LoRa.c: 14 warnings, 0 errors
+compiling sx1276-LoRaMisc.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ZM470SX1276\sx1276-LoRaMisc\sx1276-LoRaMisc.c: 13 warnings, 0 errors
+compiling lora.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRa\lora.c: 13 warnings, 0 errors
+compiling LoRaProtocolCmd.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.c: 14 warnings, 0 errors
+compiling MasterLoRaHandle.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\MasterHandle\MasterLoRaHandle.c: 13 warnings, 0 errors
+compiling SlaveLoRaHandle.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\SlaveHandle\SlaveLoRaHandle.c(61): warning:  #550-D: variable "led_status" was set but never used
+  	u8  led_status = 0x00;
+..\HARDWARE\LoRaDataHandle\SlaveHandle\SlaveLoRaHandle.c(309): warning:  #550-D: variable "pack_sum_size" was set but never used
+  	u32 pack_sum_size = 0x00;
+..\HARDWARE\LoRaDataHandle\SlaveHandle\SlaveLoRaHandle.c: 16 warnings, 0 errors
+compiling HostComDataHandle.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.c: 15 warnings, 0 errors
+compiling UpdateFirmware.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+UpdateFirmware\UpdateFirmware.h(6): warning:  #1-D: last line of file ends without a newline
+  #endif
+UpdateFirmware\UpdateFirmware.c: 14 warnings, 0 errors
+compiling hostcomprotocol.c...
+..\MySelfAPI\MyDelay\my_delay.h(14): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\AppTest\app_test.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\MySelfAPI\APIOfPath\MyApiPath.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Relay\relay_init.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\ComStatusKey\com_status_key_init.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\AdvanceTimer\advance_timer.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\LoRaProtocolCmd\LoRaProtocolCmd.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\TheLoRaDeviceTask\LoRaDeviceTask.h(10): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\LoRaDataHandle\HostComDataHandle\HostComDataHandle.h(28): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\CollectVoltage\CollectVoltage.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\Alam\alam.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\SM2-SM4\UpDateSM4Key\update_sm4key.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\HARDWARE\HostComProtocol\hostcomprotocol.h(98): warning:  #1295-D: Deprecated declaration JudgeTheHostComWorkMode - give arg types
+  void 	JudgeTheHostComWorkMode();
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(331): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					if(	( (strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.AuditUser))&&
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(331): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					if(	( (strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.AuditUser))&&
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(332): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  						  (strstr(&HostStruct->Comx_RxBuf[8],hostcom_struct.AuditPwd)) ) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(332): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  						  (strstr(&HostStruct->Comx_RxBuf[8],hostcom_struct.AuditPwd)) ) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(340): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( (strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SecUser))&&
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(340): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( (strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SecUser))&&
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(341): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  							 (strstr(&HostStruct->Comx_RxBuf[8],hostcom_struct.SecPwd)) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(341): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  							 (strstr(&HostStruct->Comx_RxBuf[8],hostcom_struct.SecPwd)) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(349): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( (strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SysUser))&&
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(349): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( (strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SysUser))&&
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(350): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  							 (strstr(&HostStruct->Comx_RxBuf[8],hostcom_struct.SysPwd)) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(350): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  							 (strstr(&HostStruct->Comx_RxBuf[8],hostcom_struct.SysPwd)) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(369): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					if( strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.AuditUser) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(369): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					if( strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.AuditUser) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(379): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SecUser) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(379): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SecUser) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(389): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SysUser) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c(389): warning:  #167-D: argument of type "u8 *" is incompatible with parameter of type "const char *"
+  					else if( strstr(&HostStruct->Comx_RxBuf[3],hostcom_struct.SysUser) )
+..\HARDWARE\HostComProtocol\hostcomprotocol.c: 32 warnings, 0 errors
+linking...
+Program Size: Code=25838 RO-data=1898 RW-data=1252 ZI-data=13596  
+FromELF: creating hex file...
+"..\OBJ\LoRa_TEST.axf" - 0 Error(s), 376 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\zwq\Desktop\定时更新密钥\USER\RTE
+  e:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:44
+</pre>
+</body>
+</html>

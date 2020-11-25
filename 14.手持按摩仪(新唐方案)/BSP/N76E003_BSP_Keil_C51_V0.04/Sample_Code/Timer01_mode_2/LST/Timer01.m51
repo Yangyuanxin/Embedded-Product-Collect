@@ -1,0 +1,171 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/02/2016  11:46:59  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\Output\Timer01_M2.obj, .\Output\STARTUP.obj TO .\Output\Timer01 PRINT (.\LST\Timer01.m51) RAM
+>> SIZE (256) DISABLEWARNING (16)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Output\Timer01_M2.obj (TIMER01_M2)
+  .\Output\STARTUP.obj (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Output\Timer01 (TIMER01_M2)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     UNIT         ?PR?TIMER0_ISR?TIMER01_M2
+            CODE    0006H     0003H     UNIT         ?PR?TIMER1_ISR?TIMER01_M2
+                    0009H     0002H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     000DH                  *** GAP ***
+            CODE    001BH     0003H     ABSOLUTE     
+            CODE    001EH     0031H     UNIT         ?PR?MAIN?TIMER01_M2
+            CODE    004FH     001AH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Output\Timer01 (TIMER01_M2)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TIMER01_M2
+
+
+
+SYMBOL TABLE OF MODULE:  .\Output\Timer01 (TIMER01_M2)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TIMER01_M2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B1H         PUBLIC        P0M1
+  D:00B3H         PUBLIC        P1M1
+  D:0080H         PUBLIC        P0
+  D:00B4H         PUBLIC        P1M2
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:46:59  PAGE 2
+
+
+  D:0090H         PUBLIC        P1
+  D:00ACH         PUBLIC        P3M1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00ADH         PUBLIC        P3M2
+  C:0003H         PUBLIC        Timer0_ISR
+  C:0006H         PUBLIC        Timer1_ISR
+  B:00A8H.7       PUBLIC        EA
+  D:00D8H         PUBLIC        PWMCON0
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:001EH         PUBLIC        main
+  B:0080H.3       PUBLIC        P03
+  B:0090H.2       PUBLIC        P12
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:00F8H         PUBLIC        SCON_1
+  B:00A8H.1       PUBLIC        ET0
+  B:00A8H.3       PUBLIC        ET1
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  D:008AH         PUBLIC        TL0
+  D:008BH         PUBLIC        TL1
+  B:0088H.4       PUBLIC        TR0
+  B:0088H.6       PUBLIC        TR1
+  D:00E8H         PUBLIC        ADCCON0
+  D:00C0H         PUBLIC        I2CON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          TIMER0_ISR
+  C:0003H         LINE#         50
+  C:0003H         LINE#         52
+  C:0005H         LINE#         53
+  -------         ENDPROC       TIMER0_ISR
+  -------         PROC          TIMER1_ISR
+  C:0006H         LINE#         58
+  C:0006H         LINE#         60
+  C:0008H         LINE#         61
+  -------         ENDPROC       TIMER1_ISR
+  -------         PROC          MAIN
+  C:001EH         LINE#         66
+  C:001EH         LINE#         67
+  C:001EH         LINE#         69
+  C:002BH         LINE#         70
+  C:0031H         LINE#         71
+  C:0037H         LINE#         73
+  C:003AH         LINE#         74
+  C:003DH         LINE#         75
+  C:0040H         LINE#         76
+  C:0043H         LINE#         78
+  C:0045H         LINE#         79
+  C:0047H         LINE#         80
+  C:0049H         LINE#         81
+  C:004BH         LINE#         82
+  C:004DH         LINE#         83
+  -------         ENDPROC       MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:46:59  PAGE 3
+
+
+  -------         ENDMOD        TIMER01_M2
+
+  -------         MODULE        ?C_STARTUP
+  C:004FH         SEGMENT       ?C_C51STARTUP
+  I:0008H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0052H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:004FH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:02FFH         SYMBOL        XDATALEN
+  C:005DH         SYMBOL        XDATALOOP
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         92
+  C:004FH         LINE#         99
+  C:0051H         LINE#         100
+  C:0052H         LINE#         101
+  C:0053H         LINE#         102
+  C:0055H         LINE#         106
+  C:0058H         LINE#         107
+  C:005AH         LINE#         109
+  C:005CH         LINE#         113
+  C:005DH         LINE#         114
+  C:005EH         LINE#         115
+  C:005FH         LINE#         116
+  C:0061H         LINE#         117
+  C:0063H         LINE#         151
+  C:0066H         LINE#         155
+  -------         ENDMOD        ?C_STARTUP
+
+Program Size: data=9.0 xdata=0 code=90
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,353 @@
+C51 COMPILER V9.52.0.0   WR_AP                                                             09/25/2015 17:57:10 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE WR_AP
+OBJECT MODULE PLACED IN .\Output\WR_AP.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ..\..\Common\WR_AP.c OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include;..\..\Co
+                    -mmon) DEFINE(FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\List\WR_AP.lst) TABS(2) OBJECT(.\Output\WR_AP.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          #include <stdio.h>
+  14          #include "N76E885.h"
+  15          #include "Version.h"
+  16          #include "Typedef.h"
+  17          #include "Define.h"
+  18          #include "SFR_Macro.h"
+  19          #include "Common.h"
+  20          #include "Delay.h"
+  21          #include "WR_AP.h"
+  22          
+  23          
+  24          #define     SYS_CLK_EN          0
+  25          #define     SYS_SEL             0
+  26          #define     SYS_DIV_EN          0                   //0: Fsys=Fosc, 1: Fsys = Fosc/(2*CKDIV)
+  27          #define     SYS_DIV             1
+  28          
+  29          #define     CID_READ            0x0B
+  30          #define     DID_READ            0x0C
+  31          #define     CFG_READ            0xC0
+  32          #define     CFG_ERASE           0xE2
+  33          #define     UNC_READ            0x04
+  34          
+  35          #define     PAGE_ERASE_AP       0x22
+  36          #define     BYTE_READ_AP        0x00
+  37          #define     BYTE_PROGRAM_AP     0x21
+  38          
+  39          
+  40            UXD8 *xd_tmp;
+  41            UCD8 *cd_tmp;
+  42            UCD16 *cd_longaddr;
+  43          
+  44          
+  45          void  read_UNICODE(UINT8 *pu8unib11,UINT8 *pu8unib10,UINT8 *pu8unib9,UINT8 *pu8unib8,UINT8 *pu8unib7,UINT8 
+             -*pu8unib6,UINT8 *pu8unib5,UINT8 *pu8unib4,UINT8 *pu8unib3,UINT8 *pu8unib2,UINT8 *pu8unib1,UINT8 *pu8unib0)
+  46          {
+C51 COMPILER V9.52.0.0   WR_AP                                                             09/25/2015 17:57:10 PAGE 2   
+
+  47   1          set_IAPEN;
+  48   1          IAPAL = 0x00;
+  49   1          IAPAH = 0x00;
+  50   1          IAPCN = UNC_READ;
+  51   1          set_IAPGO;
+  52   1          *pu8unib0 = IAPFD;
+  53   1        
+  54   1            set_IAPEN;
+  55   1          IAPAL = 0x00;
+  56   1          IAPAH = 0x01;
+  57   1          IAPCN = UNC_READ;
+  58   1          set_IAPGO;
+  59   1          *pu8unib1 = IAPFD;
+  60   1        
+  61   1            set_IAPEN;
+  62   1          IAPAL = 0x00;
+  63   1          IAPAH = 0x02;
+  64   1          IAPCN = UNC_READ;
+  65   1          set_IAPGO;
+  66   1          *pu8unib2 = IAPFD;
+  67   1        
+  68   1            set_IAPEN;
+  69   1          IAPAL = 0x00;
+  70   1          IAPAH = 0x03;
+  71   1          IAPCN = UNC_READ;
+  72   1          set_IAPGO;
+  73   1          *pu8unib3 = IAPFD;
+  74   1          
+  75   1              set_IAPEN;
+  76   1          IAPAL = 0x00;
+  77   1          IAPAH = 0x04;
+  78   1          IAPCN = UNC_READ;
+  79   1          set_IAPGO;
+  80   1          *pu8unib4 = IAPFD;
+  81   1          
+  82   1              set_IAPEN;
+  83   1          IAPAL = 0x00;
+  84   1          IAPAH = 0x05;
+  85   1          IAPCN = UNC_READ;
+  86   1          set_IAPGO;
+  87   1          *pu8unib5 = IAPFD;
+  88   1          
+  89   1              set_IAPEN;
+  90   1          IAPAL = 0x00;
+  91   1          IAPAH = 0x06;
+  92   1          IAPCN = UNC_READ;
+  93   1          set_IAPGO;
+  94   1          *pu8unib6 = IAPFD;
+  95   1          
+  96   1              set_IAPEN;
+  97   1          IAPAL = 0x00;
+  98   1          IAPAH = 0x07;
+  99   1          IAPCN = UNC_READ;
+ 100   1          set_IAPGO;
+ 101   1          *pu8unib7 = IAPFD;
+ 102   1          
+ 103   1              set_IAPEN;
+ 104   1          IAPAL = 0x00;
+ 105   1          IAPAH = 0x08;
+ 106   1          IAPCN = UNC_READ;
+ 107   1          set_IAPGO;
+ 108   1          *pu8unib8 = IAPFD;
+C51 COMPILER V9.52.0.0   WR_AP                                                             09/25/2015 17:57:10 PAGE 3   
+
+ 109   1          
+ 110   1              set_IAPEN;
+ 111   1          IAPAL = 0x00;
+ 112   1          IAPAH = 0x09;
+ 113   1          IAPCN = UNC_READ;
+ 114   1          set_IAPGO;
+ 115   1          *pu8unib9 = IAPFD;
+ 116   1          
+ 117   1              set_IAPEN;
+ 118   1          IAPAL = 0x00;
+ 119   1          IAPAH = 0x0a;
+ 120   1          IAPCN = UNC_READ;
+ 121   1          set_IAPGO;
+ 122   1          *pu8unib10 = IAPFD;
+ 123   1          
+ 124   1              set_IAPEN;
+ 125   1          IAPAL = 0x00;
+ 126   1          IAPAH = 0x0b;
+ 127   1          IAPCN = UNC_READ;
+ 128   1          set_IAPGO;
+ 129   1          *pu8unib11 = IAPFD;
+ 130   1          
+ 131   1          clr_IAPEN;
+ 132   1        }
+ 133          
+ 134          /***************************************************************************************************
+ 135              XRAM write FLASH return value in char code_data
+ 136          ****************************************************************************************************/
+ 137          void read_APROM_BYTE(UINT16 u16_addr,UINT8 *pu8rddata)
+ 138          {
+ 139   1        cd_longaddr = u16_addr+0;
+ 140   1        *pu8rddata = *cd_longaddr>>8;
+ 141   1      }
+ 142          
+ 143          
+ 144          /***************************************************************************************************
+ 145              write FLASH sigle byte
+ 146          ****************************************************************************************************/
+ 147          /*void write_APROM(UINT8 u8_addrh,UINT8 u8_addrl,UINT8 u8_data)
+ 148          {
+ 149            UINT8 looptmp=0,u8_addrl_r;
+ 150            //check page start address
+ 151            if (u8_addrl<0x80)
+ 152            {
+ 153              u8_addrl_r = 0x00;
+ 154            }
+ 155            else
+ 156            {
+ 157              u8_addrl_r = 0x80;
+ 158            }
+ 159            
+ 160            //Save APROM data to XRAM
+ 161            cd_longaddr = u8_addrh<<8;
+ 162            cd_longaddr += u8_addrl_r>>1;
+ 163            xd_tmp = 0x80;
+ 164            while (xd_tmp !=0x100)
+ 165            {
+ 166              *xd_tmp = *cd_longaddr>>8;
+ 167              looptmp++;
+ 168              xd_tmp++;
+ 169              *xd_tmp = *cd_longaddr;
+ 170              xd_tmp++;
+C51 COMPILER V9.52.0.0   WR_AP                                                             09/25/2015 17:57:10 PAGE 4   
+
+ 171              cd_longaddr++;
+ 172            }
+ 173            
+ 174            //Modify customer data in XRAM
+ 175              if (u8_addrl<0x80)
+ 176            {
+ 177              xd_tmp = u8_addrl+0x80;
+ 178              u8_addrl_r = 0x00;
+ 179            }
+ 180            else
+ 181            {
+ 182              xd_tmp = u8_addrl+0;
+ 183              u8_addrl_r = 0x80;
+ 184            }
+ 185              *xd_tmp = u8_data;
+ 186          
+ 187            
+ 188            
+ 189          //Erase APROM page
+ 190            if (u8_addrl<0x80)
+ 191            {
+ 192              IAPAL = 0x00;
+ 193              u8_addrl_r = 0x00;
+ 194            }
+ 195            else
+ 196            {
+ 197              IAPAL = 0x80;
+ 198              u8_addrl_r = 0x80;
+ 199            }
+ 200              IAPAH = u8_addrh;
+ 201              IAPFD = 0xFF;
+ 202            
+ 203              set_IAPEN; 
+ 204              set_APUEN;
+ 205              IAPCN = PAGE_ERASE_AP;    
+ 206              set_IAPGO; 
+ 207          
+ 208          
+ 209          //Save changed RAM data to FLASH
+ 210              xd_tmp = 0x80;
+ 211              IAPAL = u8_addrl_r;
+ 212              IAPAH = u8_addrh;
+ 213              set_IAPEN; 
+ 214              set_APUEN;
+ 215              IAPCN = BYTE_PROGRAM_AP;
+ 216              while (xd_tmp !=0xFF)
+ 217              {
+ 218                IAPFD = *xd_tmp;
+ 219                set_IAPGO;
+ 220                IAPAL++;
+ 221                xd_tmp++;
+ 222              }
+ 223              clr_APUEN;
+ 224              clr_IAPEN;
+ 225          } 
+ 226          */
+ 227          /***************************************************************************************************
+ 228              write FLASH
+ 229          ****************************************************************************************************/
+ 230          void write_DATAFLASH_BYTE(UINT16 u16_addr,UINT8 u8_data)
+ 231          {
+ 232   1        UINT8 looptmp=0,u8_addrl_r;
+C51 COMPILER V9.52.0.0   WR_AP                                                             09/25/2015 17:57:10 PAGE 5   
+
+ 233   1        
+ 234   1      //Check page start address
+ 235   1        u8_addrl_r = u16_addr;
+ 236   1        if (u8_addrl_r<0x80)
+ 237   1        {
+ 238   2          u8_addrl_r = 0;
+ 239   2        }
+ 240   1        else 
+ 241   1        {
+ 242   2          u8_addrl_r = 0x80;
+ 243   2        }
+ 244   1      
+ 245   1      //Save APROM data to XRAM
+ 246   1        xd_tmp = 0x80;
+ 247   1        cd_longaddr = (u16_addr&0xff00)+u8_addrl_r; 
+ 248   1        while (xd_tmp !=0x100)
+ 249   1        {
+ 250   2          *xd_tmp = *cd_longaddr>>8;
+ 251   2          looptmp++;
+ 252   2          xd_tmp++;
+ 253   2          *xd_tmp = *cd_longaddr;
+ 254   2          xd_tmp++;
+ 255   2          cd_longaddr++;
+ 256   2        }
+ 257   1        
+ 258   1      // Modify customer data in XRAM
+ 259   1        u8_addrl_r = u16_addr;
+ 260   1        if (u8_addrl_r<0x80)
+ 261   1        {
+ 262   2          xd_tmp = u8_addrl_r+0x80;
+ 263   2        }
+ 264   1        else
+ 265   1        {
+ 266   2          xd_tmp = u8_addrl_r+0;
+ 267   2        }
+ 268   1        *xd_tmp = u8_data;
+ 269   1          
+ 270   1      //Erase APROM page
+ 271   1          IAPAL = u16_addr;
+ 272   1          IAPAH = u16_addr>>8;
+ 273   1          IAPFD = 0xFF;
+ 274   1          set_IAPEN; 
+ 275   1          set_APUEN;
+ 276   1          IAPCN = PAGE_ERASE_AP;    
+ 277   1          set_IAPGO; 
+ 278   1      
+ 279   1      
+ 280   1      //Save changed RAM data to FLASH
+ 281   1        u8_addrl_r = u16_addr;
+ 282   1        if (u8_addrl_r<0x80)
+ 283   1        {
+ 284   2          u8_addrl_r =0;
+ 285   2        }
+ 286   1        else
+ 287   1        {
+ 288   2          u8_addrl_r = 0x80;
+ 289   2        }
+ 290   1          xd_tmp = 0x80;
+ 291   1          IAPAL = u8_addrl_r;
+ 292   1          IAPAH = u16_addr>>8;
+ 293   1          set_IAPEN; 
+ 294   1          set_APUEN;
+C51 COMPILER V9.52.0.0   WR_AP                                                             09/25/2015 17:57:10 PAGE 6   
+
+ 295   1          IAPCN = BYTE_PROGRAM_AP;
+ 296   1          while (xd_tmp !=0xFF)
+ 297   1          {
+ 298   2            IAPFD = *xd_tmp;
+ 299   2            set_IAPGO;
+ 300   2            IAPAL++;
+ 301   2            xd_tmp++;
+ 302   2          }
+ 303   1          clr_APUEN;
+ 304   1          clr_IAPEN;
+ 305   1      
+ 306   1      } 
+ 307          
+ 308          
+ 309          
+ 310          
+ 311            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1104    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6      38
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

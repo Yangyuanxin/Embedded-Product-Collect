@@ -1,0 +1,237 @@
+C51 COMPILER V9.52.0.0   PIN_INT                                                           11/02/2016 11:34:53 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE PIN_INT
+OBJECT MODULE PLACED IN .\Output\Pin_Int.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\Pin_Int.C BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJEC
+                    -TEXTEND PRINT(.\LST\Pin_Int.lst) TABS(2) OBJECT(.\Output\Pin_Int.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 I/O Interrupt demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "SFR_Macro.h"
+  21          #include "Common.h"
+  22          #include "Delay.h"
+  23          #include "Function_Define.h"
+  24          
+  25          #if 0
+              //Following setting in Function_define.h
+              
+              ///****************************************************************************
+              //   Enable INT port 0~3
+              //***************************************************************************/
+              //#define   Enable_INT_Port0          PICON &= 0xFB;
+              //#define   Enable_INT_Port1          PICON |= 0x01;
+              //#define   Enable_INT_Port2          PICON |= 0x02;
+              //#define   Enable_INT_Port3          PICON |= 0x03;
+              ///*****************************************************************************
+              // Enable each bit low level trig mode
+              //*****************************************************************************/
+              //#define   Enable_BIT7_LowLevel_Trig     PICON&=0x7F;PINEN|=0x80;PIPEN&=0x7F
+              //#define   Enable_BIT6_LowLevel_Trig     PICON&=0x7F;PINEN|=0x40;PIPEN&=0xBF
+              //#define   Enable_BIT5_LowLevel_Trig     PICON&=0xBF;PINEN|=0x20;PIPEN&=0xDF
+              //#define   Enable_BIT4_LowLevel_Trig     PICON&=0xBF;PINEN|=0x10;PIPEN&=0xEF
+              //#define   Enable_BIT3_LowLevel_Trig     PICON&=0xDF;PINEN|=0x08;PIPEN&=0xF7
+              //#define   Enable_BIT2_LowLevel_Trig     PICON&=0xEF;PINEN|=0x04;PIPEN&=0xFB
+              //#define   Enable_BIT1_LowLevel_Trig     PICON&=0xF7;PINEN|=0x02;PIPEN&=0xFD
+              //#define   Enable_BIT0_LowLevel_Trig     PICON&=0xFD;PINEN|=0x01;PIPEN&=0xFE
+C51 COMPILER V9.52.0.0   PIN_INT                                                           11/02/2016 11:34:53 PAGE 2   
+
+              ///*****************************************************************************
+              // Enable each bit high level trig mode
+              //*****************************************************************************/
+              //#define   Enable_BIT7_HighLevel_Trig      PICON&=0x7F;PINEN&=0x7F;PIPEN|=0x80
+              //#define   Enable_BIT6_HighLevel_Trig      PICON&=0x7F;PINEN&=0xBF;PIPEN|=0x40
+              //#define   Enable_BIT5_HighLevel_Trig      PICON&=0xBF;PINEN&=0xDF;PIPEN|=0x20
+              //#define   Enable_BIT4_HighLevel_Trig      PICON&=0xBF;PINEN&=0xEF;PIPEN|=0x10
+              //#define   Enable_BIT3_HighLevel_Trig      PICON&=0xDF;PINEN&=0xF7;PIPEN|=0x08
+              //#define   Enable_BIT2_HighLevel_Trig      PICON&=0xEF;PINEN&=0xFB;PIPEN|=0x04
+              //#define   Enable_BIT1_HighLevel_Trig      PICON&=0xF7;PINEN&=0xFD;PIPEN|=0x02
+              //#define   Enable_BIT0_HighLevel_Trig      PICON&=0xFD;PINEN&=0xFE;PIPEN|=0x01
+              ///*****************************************************************************
+              // Enable each bit falling edge trig mode
+              //*****************************************************************************/
+              //#define   Enable_BIT7_FallEdge_Trig     PICON|=0x80;PINEN|=0x80;PIPEN&=0x7F
+              //#define   Enable_BIT6_FallEdge_Trig     PICON|=0x80;PINEN|=0x40;PIPEN&=0xBF
+              //#define   Enable_BIT5_FallEdge_Trig     PICON|=0x40;PINEN|=0x20;PIPEN&=0xDF
+              //#define   Enable_BIT4_FallEdge_Trig     PICON|=0x40;PINEN|=0x10;PIPEN&=0xEF
+              //#define   Enable_BIT3_FallEdge_Trig     PICON|=0x20;PINEN|=0x08;PIPEN&=0xF7
+              //#define   Enable_BIT2_FallEdge_Trig     PICON|=0x10;PINEN|=0x04;PIPEN&=0xFB
+              //#define   Enable_BIT1_FallEdge_Trig     PICON|=0x08;PINEN|=0x02;PIPEN&=0xFD
+              //#define   Enable_BIT0_FallEdge_Trig     PICON|=0x04;PINEN|=0x01;PIPEN&=0xFE
+              ///*****************************************************************************
+              // Enable each bit rasing edge trig mode
+              //*****************************************************************************/
+              //#define   Enable_BIT7_RasingEdge_Trig     PICON|=0x80;PINEN&=0x7F;PIPEN|=0x80
+              //#define   Enable_BIT6_RasingEdge_Trig     PICON|=0x80;PINEN&=0xBF;PIPEN|=0x40
+              //#define   Enable_BIT5_RasingEdge_Trig     PICON|=0x40;PINEN&=0xDF;PIPEN|=0x20
+              //#define   Enable_BIT4_RasingEdge_Trig     PICON|=0x40;PINEN&=0xEF;PIPEN|=0x10
+              //#define   Enable_BIT3_RasingEdge_Trig     PICON|=0x20;PINEN&=0xF7;PIPEN|=0x08
+              //#define   Enable_BIT2_RasingEdge_Trig     PICON|=0x10;PINEN&=0xFB;PIPEN|=0x04
+              //#define   Enable_BIT1_RasingEdge_Trig     PICON|=0x08;PINEN|=0xFD;PIPEN&=0x02
+              //#define   Enable_BIT0_RasingEdge_Trig     PICON|=0x04;PINEN|=0xFE;PIPEN&=0x01
+              #endif
+  80          
+  81          /******************************************************************************
+  82           * FUNCTION_PURPOSE: I/O Pin interrupt Service Routine
+  83           ******************************************************************************/
+  84          void EXT_INT0(void) interrupt 0
+  85          {
+  86   1              clr_GPIO1;
+  87   1            Timer1_Delay1ms(100);
+  88   1            set_GPIO1;
+  89   1            Timer1_Delay1ms(100);
+  90   1            clr_GPIO1;
+  91   1            Timer1_Delay1ms(100);
+  92   1            set_GPIO1;
+  93   1            Timer1_Delay1ms(100);    
+  94   1            clr_GPIO1;
+  95   1            Timer1_Delay1ms(100);
+  96   1            set_GPIO1;
+  97   1            Timer1_Delay1ms(100);
+  98   1            clr_GPIO1;
+  99   1            Timer1_Delay1ms(100);
+ 100   1            set_GPIO1;
+ 101   1            Timer1_Delay1ms(100);  
+ 102   1              clr_GPIO1;
+ 103   1            Timer1_Delay1ms(100);
+ 104   1            set_GPIO1;
+ 105   1            Timer1_Delay1ms(100);
+ 106   1            clr_GPIO1;
+ 107   1            Timer1_Delay1ms(100);
+C51 COMPILER V9.52.0.0   PIN_INT                                                           11/02/2016 11:34:53 PAGE 3   
+
+ 108   1            set_GPIO1;
+ 109   1            Timer1_Delay1ms(100);    
+ 110   1            clr_GPIO1;
+ 111   1            Timer1_Delay1ms(100);
+ 112   1            set_GPIO1;
+ 113   1            Timer1_Delay1ms(100);
+ 114   1            clr_GPIO1;
+ 115   1            Timer1_Delay1ms(100);
+ 116   1            set_GPIO1;
+ 117   1            Timer1_Delay1ms(100);  
+ 118   1          }
+ 119          
+ 120          void PinInterrupt_ISR (void) interrupt 7
+ 121          {
+ 122   1        if(PIF == 0x01)
+ 123   1        {
+ 124   2          PIF = 0x00;                             //clear interrupt flag
+ 125   2            clr_GPIO1;
+ 126   2            Timer0_Delay1ms(100);
+ 127   2            set_GPIO1;
+ 128   2            Timer0_Delay1ms(100);
+ 129   2            clr_GPIO1;
+ 130   2            Timer0_Delay1ms(100);
+ 131   2            set_GPIO1;
+ 132   2            Timer0_Delay1ms(100);    
+ 133   2          
+ 134   2        }
+ 135   1        else if (PIF == 0x80)
+ 136   1        {
+ 137   2            clr_GPIO1;
+ 138   2            Timer0_Delay1ms(100);
+ 139   2            set_GPIO1;
+ 140   2            Timer0_Delay1ms(100);
+ 141   2            clr_GPIO1;
+ 142   2            Timer0_Delay1ms(100);
+ 143   2            set_GPIO1;
+ 144   2            Timer0_Delay1ms(100);    
+ 145   2            clr_GPIO1;
+ 146   2            Timer0_Delay1ms(100);
+ 147   2            set_GPIO1;
+ 148   2            Timer0_Delay1ms(100);
+ 149   2            clr_GPIO1;
+ 150   2            Timer0_Delay1ms(100);
+ 151   2            set_GPIO1;
+ 152   2            Timer0_Delay1ms(100);    
+ 153   2        }
+ 154   1      }
+ 155          /******************************************************************************
+ 156          The main C function.  Program execution starts
+ 157          here after stack initialization.
+ 158          ******************************************************************************/
+ 159          void main (void) 
+ 160          {
+ 161   1       
+ 162   1          P07_Input_Mode;
+ 163   1          set_P0S_7;
+ 164   1          P00_Input_Mode;
+ 165   1          P01_Input_Mode;
+ 166   1          set_P0S_1;
+ 167   1          P12_PushPull_Mode;
+ 168   1          P30_PushPull_Mode;
+ 169   1          P05_PushPull_Mode;
+C51 COMPILER V9.52.0.0   PIN_INT                                                           11/02/2016 11:34:53 PAGE 4   
+
+ 170   1        
+ 171   1          
+ 172   1      //----------------------------------------------------
+ 173   1      //  P0.5 set as highlevel trig pin interrupt function
+ 174   1      //  Keep P0.5 connect to VDD LED will tickle
+ 175   1      //  otherwise, MCU into power down mode.
+ 176   1      //----------------------------------------------------
+ 177   1          Enable_INT_Port0;
+ 178   1          Enable_BIT7_LowLevel_Trig;
+ 179   1          Enable_BIT0_LowLevel_Trig;
+ 180   1      
+ 181   1          P30 =1;
+ 182   1          P05 = 0;
+ 183   1      
+ 184   1          set_EPI;              // Enable pin interrupt
+ 185   1          set_EX0;
+ 186   1          set_EA;               // global enable bit
+ 187   1          
+ 188   1          while(1)
+ 189   1          {
+ 190   2            P01=0;
+ 191   2            P30=0;
+ 192   2            P01=1;
+ 193   2            P30=1;
+ 194   2          }
+ 195   1      
+ 196   1      }
+ 197          
+ 198          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    579    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

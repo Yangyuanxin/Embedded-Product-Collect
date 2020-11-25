@@ -1,0 +1,7 @@
+".\Output\UART0.obj",
+".\Output\STARTUP.obj",
+".\Output\Common.obj",
+".\Output\Delay.obj" 
+TO ".\Output\UART0" 
+PRINT(".\LST\UART0.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

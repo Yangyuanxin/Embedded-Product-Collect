@@ -1,0 +1,4 @@
+".\Output\testw77.obj",
+"C:\Keil\C51\LIB\CS51S.LIB" 
+TO ".\Output\xRAM_256" 
+PRINT(".\LST\xRAM_256.m51") RAMSIZE(256) 

@@ -1,0 +1,145 @@
+C51 COMPILER V9.00   UART0_MODE_3                                                          11/28/2016 11:52:20 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE UART0_MODE_3
+OBJECT MODULE PLACED IN .\Output\UART0_mode_3.obj
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE Source\UART0_mode_3.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBU
+                    -G OBJECTEXTEND PRINT(.\LST\UART0_mode_3.lst) TABS(2) OBJECT(.\Output\UART0_mode_3.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 UART-0 Mode3 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "SFR_Macro.h"
+  21          #include "Common.h"
+  22          #include "Delay.h"
+  23          #include "Function_Define.h"
+  24          
+  25          #define BUFFER_SIZE   16
+  26          
+  27          UINT8  UART_BUFFER[BUFFER_SIZE],temp,dataxx;
+  28          UINT16 u16CNT=0,u16CNT1=0;
+  29          bit riflag;
+  30          
+  31          /**
+  32           * FUNCTION_PURPOSE: serial interrupt, echo received data.
+  33           * FUNCTION_INPUTS: P3.0(RXD) serial input
+  34           * FUNCTION_OUTPUTS: P3.1(TXD) serial output
+  35           */
+  36           #if 0
+              void serial_IT(void) interrupt 4 
+              {
+                  if (RI) 
+                  {                                       /* if reception occur */
+                      clr_RI;                             /* clear reception flag for next reception */
+                      UART_BUFFER[u16CNT] = SBUF;
+                      u16CNT ++;
+                      if(u16CNT >= 6)
+                      riflag =1;
+C51 COMPILER V9.00   UART0_MODE_3                                                          11/28/2016 11:52:20 PAGE 2   
+
+                  }
+                  if(TI)
+                  {
+                      clr_TI;                             /* if emission occur */
+                  }
+              }
+              #else
+  53          void serial_IT(void) interrupt 4 
+  54          {
+  55   1          if (RI) 
+  56   1          {                                       /* if reception occur */
+  57   2              clr_RI;                             /* clear reception flag for next reception */
+  58   2              dataxx = SBUF;
+  59   2              SBUF = dataxx;
+  60   2          }
+  61   1          if(TI)
+  62   1          {
+  63   2              clr_TI;                             /* if emission occur */
+  64   2          }
+  65   1      }
+  66          #endif
+  67          /*********************************************************************************************************
+             -***
+  68          *    Main function 
+  69          **********************************************************************************************************
+             -**/
+  70          void main (void)
+  71          {
+  72   1        UINT8 i;
+  73   1         
+  74   1          P06_Quasi_Mode;                         //Set UART GPIO are Quasi Mode
+  75   1          P07_Quasi_Mode;
+  76   1          InitialUART0_Timer3(4800);            /* 115200 Baud Rate from timer1*/
+  77   1        
+  78   1       //   SCON = 0xD2;                            // Special setting the mode 3 
+  79   1          
+  80   1          set_ES;                                 //enable UART interrupt
+  81   1          set_EA;                                 //enable global interrupt
+  82   1       //   clr_TB8;
+  83   1      //    Send_Data_To_UART0(0x53);               //Send "start" ascii code show reset initial status
+  84   1      //    Send_Data_To_UART0(0x74);
+  85   1      //    Send_Data_To_UART0(0x61);
+  86   1      //    Send_Data_To_UART0(0x72);
+  87   1      //    Send_Data_To_UART0(0x74);
+  88   1      //    P10 = 1;
+  89   1      //  Timer0_Delay1ms(500);
+  90   1          while(1);
+  91   1          {
+  92   2            if (riflag)
+  93   2            {
+  94   3              for(i=0; i<u16CNT; i++)
+  95   3              {
+  96   4              temp = UART_BUFFER[i];                        //This part send the receive data from RXD to TXD 
+  97   4              Send_Data_To_UART0(temp);
+  98   4              }
+  99   3      
+ 100   3              riflag = 0;
+ 101   3              u16CNT = 0;
+ 102   3            }
+ 103   2          }
+ 104   1        
+ 105   1      }
+C51 COMPILER V9.00   UART0_MODE_3                                                          11/28/2016 11:52:20 PAGE 3   
+
+ 106          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     46    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     22       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

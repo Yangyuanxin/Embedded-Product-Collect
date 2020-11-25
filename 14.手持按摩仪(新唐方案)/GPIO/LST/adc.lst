@@ -1,0 +1,44 @@
+C51 COMPILER V9.56.0.0   ADC                                                               04/11/2018 16:32:06 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\Output\adc.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Code\adc.c OPTIMIZE(4,SPEED) BROWSE INCDIR(.\Include) DEFINE(FOSC_160000
+                    -) DEBUG OBJECTEXTEND PRINT(.\LST\adc.lst) TABS(2) OBJECT(.\Output\adc.obj)
+
+line level    source
+
+   1          #include <stdio.h>
+   2          #include  "N76E003.h"
+   3          #include "Common.h"
+   4          #include "SFR_Macro.h"
+   5          #include "Function_Define.h" 
+   6          #include "adc.h"
+   7          uint16_t Bat_Measure(void)
+   8          {
+   9   1          
+  10   1          uint16_t ad_result;
+  11   1          uint8_t temp;
+  12   1          ADC4;
+  13   1          clr_ADCF;
+  14   1          set_ADCS; 
+  15   1          while(ADCF == 0);
+  16   1          temp=ADCRL&0xf;   
+  17   1          ad_result=ADCRH<<4;
+  18   1          ad_result=ad_result+temp;
+  19   1          return ad_result;
+  20   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     49    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

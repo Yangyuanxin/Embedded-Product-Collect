@@ -1,0 +1,122 @@
+C51 COMPILER V9.01   CAPTURE                                                               02/02/2018 14:59:37 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE CAPTURE
+OBJECT MODULE PLACED IN .\Output\Capture.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\Capture.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OBJEC
+                    -TEXTEND PRINT(.\LST\Capture.lst) TABS(2) OBJECT(.\Output\Capture.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 Timer2 Auto reload Mode counter demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          
+  26          /******************************************************************
+  27          * Following define for timer 2 also in Function_define.h
+  28          ********************************************************************/
+  29          #if 0 
+              //#define TIMER_DIV4_VALUE_10us       65536-56        //9*4/22118400 = 10 uS,         // Timer divider = 4
+              //#define TIMER_DIV4_VALUE_1ms        65536-5530      //923*4/22118400 = 1 mS,        // Timer divider = 4
+              //#define TIMER_DIV4_VALUE_100us      65536-553       //553*4/22118400 = 100 us       // Timer divider = 4
+              //#define TIMER_DIV4_VALUE_200us      65536-1106      //1106*4/22118400 = 200 us      // Timer divider = 4
+              //#define TIMER_DIV4_VALUE_500us      65536-2765      //2765*4/22118400 = 500 us      // Timer divider = 4    
+              //#define TIMER_DIV16_VALUE_10ms      65536-13824     //1500*16/22118400 = 10 ms      // Timer divider = 16
+              //#define TIMER_DIV64_VALUE_30ms      65536-10368     //10368*64/22118400 = 30 ms     // Timer divider = 64
+              //#define TIMER_DIV128_VALUE_100ms    65536-17280     //17280*128/22118400 = 100 ms   // Timer divider = 128
+              //#define TIMER_DIV128_VALUE_200ms    65536-34560     //34560*128/22118400 = 200 ms   // Timer divider = 128
+              //#define TIMER_DIV256_VALUE_500ms    65536-43200     //43200*256/22118400 = 500 ms   // Timer divider = 256
+              //#define TIMER_DIV512_VALUE_1s       65536-43200     //43200*512/22118400 = 1 s      // Timer divider = 512
+              
+              //#define TIMER2_DIV_4      T2MOD|=0x10;T2MOD&=0x9F
+              //#define TIMER2_DIV_16     T2MOD|=0x20;T2MOD&=0xAF
+              //#define TIMER2_DIV_32     T2MOD|=0x30;T2MOD&=0xBF
+              //#define TIMER2_DIV_64     T2MOD|=0x40;T2MOD&=0xCF
+C51 COMPILER V9.01   CAPTURE                                                               02/02/2018 14:59:37 PAGE 2   
+
+              //#define TIMER2_DIV_128    T2MOD|=0x50;T2MOD&=0xDF
+              //#define TIMER2_DIV_256    T2MOD|=0x60;T2MOD&=0xEF
+              //#define TIMER2_DIV_512    T2MOD|=0x70
+              
+              //#define TIMER2_Auto_Reload_Delay_Mode       T2CON&=~SET_BIT0;T2MOD|=SET_BIT7;T2MOD|=SET_BIT3
+              //#define TIMER2_Auto_Reload_Capture_Mode     T2CON&=~SET_BIT0;T2MOD|=SET_BIT7
+              //#define TIMER2_Compare_Capture_Mode         T2CON|=SET_BIT0;T2MOD&=~SET_BIT7;T2MOD|=SET_BIT2
+              #endif
+  54          
+  55          /*********************************************************************************************************
+             -***
+  56          *    Timer2 interrupt subroutine
+  57          **********************************************************************************************************
+             -**/
+  58          void Timer2_ISR (void) interrupt 5
+  59          {
+  60   1          clr_TF2;                                //Clear Timer2 Interrupt Flag
+  61   1          P12 = ~P12;                             // GPIO1 toggle
+  62   1      }
+  63          /*********************************************************************************************************
+             -***
+  64          *    Main function 
+  65          **********************************************************************************************************
+             -**/
+  66          void main (void)
+  67          {
+  68   1          Set_All_GPIO_Quasi_Mode;
+  69   1      
+  70   1          TIMER2_DIV_128;
+  71   1          TIMER2_Auto_Reload_Delay_Mode;
+  72   1      
+  73   1          RCMP2L = TIMER_DIV128_VALUE_100ms;
+  74   1          RCMP2H = TIMER_DIV128_VALUE_100ms>>8;
+  75   1          TL2 = 0;
+  76   1          TH2 = 0;
+  77   1      
+  78   1          set_ET2;                                    // Enable Timer2 interrupt
+  79   1          set_EA;
+  80   1          set_TR2;                                    // Timer2 run
+  81   1          
+  82   1          while(1);
+  83   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     52    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

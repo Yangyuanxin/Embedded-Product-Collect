@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include "N76E003.h"
+#include "Common.h"
+#include "Delay.h"
+#include "SFR_Macro.h"
+#include "Function_Define.h"
+#include "pwm.h"
+void pwm_init(void)
+{
+	PWM1_P14_OUTPUT_ENABLE;
+	PWM_IMDEPENDENT_MODE;
+	PWM_CLOCK_DIV_2;
+	PWMPH = 0x00;
+	PWMPL = 0xaa;//46.8KHZ
+	PWM1H=0x00; 
+	PWM1L=0x55;//50%
+	
+}
+void pwm_start(void)
+{
+	set_LOAD;
+	set_PWMRUN;
+}
+void pwm_stop(void)
+{
+	set_LOAD;
+	set_PWMRUN;
+}

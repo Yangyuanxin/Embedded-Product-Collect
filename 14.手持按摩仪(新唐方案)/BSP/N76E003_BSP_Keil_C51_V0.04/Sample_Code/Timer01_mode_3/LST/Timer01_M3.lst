@@ -1,0 +1,133 @@
+C51 COMPILER V9.52.0.0   TIMER01_M3                                                        11/02/2016 11:47:31 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE TIMER01_M3
+OBJECT MODULE PLACED IN .\Output\Timer01_M3.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\Timer01_M3.c BROWSE INCDIR(..\..\Include) DEFINE(FOSC_160000) DEBUG OB
+                    -JECTEXTEND PRINT(.\LST\Timer01_M3.lst) TABS(2) OBJECT(.\Output\Timer01_M3.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 Timer0/1 Mode3 demo code
+  16          //********************************************************************************************************
+             -***
+  17          #include <stdio.h>
+  18          #include "N76E003.h"
+  19          #include "Common.h"
+  20          #include "Delay.h"
+  21          #include "SFR_Macro.h"
+  22          #include "Function_Define.h"
+  23          
+  24          //*****************  The Following is in define in Fucntion_define.h  ***************************
+  25          //****** Always include Function_define.h call the define you want, detail see main(void) *******
+  26          //***********************************************************************************************
+  27          #if 0
+              //#define   TIMER0_MODE0_ENABLE   TMOD&=0x0F
+              //#define   TIMER0_MODE1_ENABLE   TMOD&=0x0F;TMOD|=0x10
+              //#define   TIMER0_MODE2_ENABLE   TMOD&=0x0F;TMOD|=0x20
+              //#define   TIMER0_MODE3_ENABLE   TMOD&=0x0F;TMOD|=0x3F
+              
+              //#define   TIMER1_MODE0_ENABLE   TMOD&=0xF0
+              //#define   TIMER1_MODE1_ENABLE   TMOD&=0xF0;TMOD|=0x01
+              //#define   TIMER1_MODE2_ENABLE   TMOD&=0xF0;TMOD|=0x02
+              //#define   TIMER1_MODE3_ENABLE   TMOD&=0xF0;TMOD|=0xF3
+              #endif
+  38          
+  39          #define TH0_INIT        (256-100)
+  40          #define TL0_INIT        (256-50)
+  41          #define TH1_INIT        0x00
+  42          #define TL1_INIT        0x00
+  43          
+  44          /*********************************************************************************************************
+             -***
+C51 COMPILER V9.52.0.0   TIMER01_M3                                                        11/02/2016 11:47:31 PAGE 2   
+
+  45          *    TIMER 0 interrupt subroutine
+  46          **********************************************************************************************************
+             -**/
+  47          void Timer0_ISR (void) interrupt 1              // interrupt address is 0x000B
+  48          {              
+  49   1          TL0 = TL0_INIT;                             // reload by software    
+  50   1          P12 = ~P12;                                 // GPIO1 toggle when interrupt
+  51   1      }
+  52          
+  53          /*********************************************************************************************************
+             -***
+  54          *    TIMER 1 interrupt subroutine
+  55          **********************************************************************************************************
+             -**/
+  56          void Timer1_ISR (void) interrupt 3              //interrupt address is 0x001B
+  57          {           
+  58   1          TH0 = TH0_INIT;
+  59   1          P11 = ~P11;                                 //P1.1 toggle when interrupt
+  60   1      }
+  61          
+  62          /*********************************************************************************************************
+             -***
+  63          *    Main function 
+  64          **********************************************************************************************************
+             -**/
+  65          void main (void)
+  66          {
+  67   1         
+  68   1          Set_All_GPIO_Quasi_Mode;
+  69   1          TIMER0_MODE3_ENABLE;
+  70   1          TIMER1_MODE3_ENABLE;
+  71   1          
+  72   1          TH0 = TH0_INIT;                             //initial counter values 
+  73   1          TL0 = TL0_INIT;    
+  74   1          TH1 = TH1_INIT;
+  75   1          TL1 = TL1_INIT;    
+  76   1          
+  77   1          set_ET0;                                    //enable Timer0 counter interrupt
+  78   1          set_ET1;                                    //enable Timer1 counter interrupt
+  79   1          set_EA;                                     //enable interrupts
+  80   1          set_TR0;                                    //Timer0 run
+  81   1          set_TR1;                                    //Timer1 run
+  82   1          
+  83   1          while(1)
+  84   1          {
+  85   2              P1 = TH1;                               //for Timer 1 has no interrupt while Timer 0 in mode 3, sh
+             -ow on ports
+  86   2              P2 = TL1;
+  87   2          }
+  88   1      }
+  89          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     65    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V9.52.0.0   TIMER01_M3                                                        11/02/2016 11:47:31 PAGE 3   
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

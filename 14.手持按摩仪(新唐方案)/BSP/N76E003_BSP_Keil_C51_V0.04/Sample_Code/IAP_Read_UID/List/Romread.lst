@@ -1,0 +1,156 @@
+C51 COMPILER V9.52.0.0   ROMREAD                                                           09/03/2015 11:52:42 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE ROMREAD
+OBJECT MODULE PLACED IN .\Output\Romread.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\Romread.C OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include;..\..\Common) 
+                    -DEFINE(FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\List\Romread.lst) TABS(2) OBJECT(.\Output\Romread.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 GPIO demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Version.h"
+  21          #include "Typedef.h"
+  22          #include "Define.h"
+  23          #include "SFR_Macro.h"
+  24          #include "Common.h"
+  25          #include "Delay.h"
+  26          #include "WR_AP.h"
+  27          
+  28          
+  29          /*
+  30          //-------- <<< Use Configuration Wizard in Context Menu >>> ------------------
+  31          //
+  32          //<e0> System Clock Source Configuration
+  33          // <o1> System Clock Source Selection
+  34          //      <0=> 22.1184MHz Internal
+  35          //      <1=> 10KHz      Internal
+  36          //</e>
+  37          //
+  38          //<e2> Clock Divider Configuration
+  39          //     <o3.0..7>  System Clock Source Devider
+  40          //                     <i> Fsys = (System Clock Source) / (2 * Devider)
+  41          //                     <1-255>
+  42          //</e>
+  43          //
+  44          // <o4> Port0 Mode Selection (P0[3:0])
+  45          //      <0=> Quasi-Bidirectional
+C51 COMPILER V9.52.0.0   ROMREAD                                                           09/03/2015 11:52:42 PAGE 2   
+
+  46          //      <1=> Push-Pull
+  47          //      <2=> Input-Only (high-impedance)
+  48          //      <3=> Open-Drain
+  49          //
+  50          // <o6> Port2 Mode Selection (P2.0)
+  51          //      <0=> Quasi-Bidirectional
+  52          //      <1=> Push-Pull
+  53          //      <2=> Input-Only (high-impedance)
+  54          //      <3=> Open-Drain
+  55          //
+  56          // <o7> Port3 Mode Selection (P3.0)
+  57          //      <0=> Quasi-Bidirectional
+  58          //      <1=> Push-Pull
+  59          //      <2=> Input-Only (high-impedance)
+  60          //      <3=> Open-Drain
+  61          //-------- <<< end of configuration section >>> ------------------------------
+  62          */
+  63          bit BIT_TMP;
+  64          UINT8 code_data1,code_data2;
+  65          UINT8 u8rddata = 0xaa;
+  66          UXD8 u8unib11,u8unib10,u8unib9,u8unib8,u8unib7,u8unib6,u8unib5,u8unib4,u8unib3,u8unib2,u8unib1,u8unib0;
+  67          
+  68          
+  69          /*------------------------------------------------
+  70          The main C function.  Program execution starts
+  71          here after stack initialization.
+  72          ------------------------------------------------*/
+  73          void main (void) 
+  74          {
+  75   1      
+  76   1          /* Note
+  77   1             MCU power on system clock is HIRC (22.1184MHz), so Fsys = 22.1184MHz
+  78   1          */
+  79   1      
+  80   1        
+  81   1          Set_All_GPIO_Quasi_Mode();                   //in Common.c
+  82   1          InitialUART0_Timer1_Type1(9600);             /* 9600 Baud Rate*/
+  83   1      
+  84   1           Show_FW_Version_Number_To_PC();
+  85   1          
+  86   1          printf ("\n*===================================================================");
+  87   1          printf ("\n*  Name: N76E885 READ /WRITER FLASH Demo Code.");
+  88   1          printf ("\n*===================================================================\n");
+  89   1      
+  90   1        set_P30;
+  91   1        while (P30);  //wait trig signle
+  92   1        
+  93   1        read_APROM_BYTE(0x3891,&u8rddata); //befor write 0x3891 value is F5
+  94   1        code_data1 = u8rddata;
+  95   1        
+  96   1        write_DATAFLASH_BYTE(0x3890,0x55);    //write FLASH address 0x3890 value to 0x55
+  97   1        write_DATAFLASH_BYTE(0x3891,0xAA);    //write FLASH address 0x3891 value to 0xAA
+  98   1        write_DATAFLASH_BYTE(0x3892,0x55);    //write FLASH address 0x3892 value to 0x55
+  99   1        
+ 100   1        read_APROM_BYTE (0x3891,&u8rddata);   //After write 0x3891 value is AAH
+ 101   1        code_data2 = u8rddata;
+ 102   1      
+ 103   1        
+ 104   1        read_UNICODE(&u8unib11,&u8unib10,&u8unib9,&u8unib8,&u8unib7,&u8unib6,&u8unib5,&u8unib4,&u8unib3,&u8unib2,
+             -&u8unib1,&u8unib0);
+ 105   1        
+ 106   1      
+C51 COMPILER V9.52.0.0   ROMREAD                                                           09/03/2015 11:52:42 PAGE 3   
+
+ 107   1        
+ 108   1      /************************************************************
+ 109   1       To check FLASH 0x3890 data in memory1 window key in C:0x3880
+ 110   1      **************************************************************/
+ 111   1        
+ 112   1        while (1);
+ 113   1      
+ 114   1      
+ 115   1      }
+ 116          
+ 117          
+ 118          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    219    ----
+   CONSTANT SIZE    =    189    ----
+   XDATA SIZE       =     12    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

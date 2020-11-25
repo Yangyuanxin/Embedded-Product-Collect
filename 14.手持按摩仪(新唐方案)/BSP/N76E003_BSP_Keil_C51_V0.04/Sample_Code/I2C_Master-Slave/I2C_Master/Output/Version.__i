@@ -1,0 +1,1 @@
+"..\..\..\Common\Version.c" BROWSE INCDIR(..\..\..\Common;..\..\..\Include) DEFINE (FOSC_221184) DEBUG OBJECTEXTEND PRINT(.\LST\Version.lst) TABS (2) OBJECT(.\Output\Version.obj)

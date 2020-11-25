@@ -1,0 +1,264 @@
+//-----EEPROM 资源分配问题 ----------
+//0扇区用于存储正在进行作业的机种资料
+//每个扇区的最后一位用于标志该为扇区是否存有有效数据63bit,0x27
+//1~200扇区200*64字节   用作机种资料存储
+//每个扇区存放两个机种信息
+//255扇区64字节用作标志位
+//其余保留
+//----------颜色定义----------------
+// COLOR_RED    //-纯红---设备错误，流量超上限
+// COLOR_GREEN  //-纯绿---设备、流量正常工作
+// COLOR_BLUE   //-纯蓝---设备 ，流量低于下限
+// COLOR_YELLOW //-纯黄---设备、流量准备阶段
+// COLOR_WHITE  //-纯白---
+// COLOR_BLACK  //-纯黑---
+//----------------------------------
+#include "main.h"
+#include "adc.h"
+//extern void Adc_Init(void);
+//----------全局变量---------------
+u16 DeviceErrorCode=0;  //设备错误会置位该标志
+u8 ResetLinitFlag=0;    //设置上下限标志重新设置上下限标志,
+u8 Wifi_ConnetRightFlag=0;  //wifi连接正常会置位该标志位
+u8 Wifi_ConnetSeverFlag=0;  //wifi连接服务器正常会置位该标志位
+u8 ResetRomFlag=0;  //TIM2接收到置位ROM信息的数据会置位该标志
+u8 Cmd_Flag_OK=0;   //命令标志,应答OK
+u8 Cmd_SendErrorFlag=0;    //发送命令失败时置位该标志,可能发送不完整等
+u8 SendFluxDoingFlag=0; //正在发送流量监控信息时会置位该标志,防止回复中所包含的信息频繁访问ROM
+u8 Timer3_EnableFlag=0; //定时器3使能标志,置位该标志将使能定时器3做普通定时器
+u8 SolenoidValveOnFlag=0;   //电磁阀打开标准,电磁阀打开将置位该标志
+u8 FluxStartFlag=0; //开始监控流量数据标志,进入监控时会置位该标志
+
+char RecvicePN[32]="";  //保存接收到的PN
+u16 FluxValue_Now=0;    //实时流量值
+u16 Flowmeter_H=0;  //流量上下限
+u16 Flowmeter_L=0;  //流量上下限
+//--------------------------------
+
+//---------此C文件有效之变量-------
+u8 CommSuccess_Flag=0; //步骤一,建立通讯成功标志
+u8 RightRomOk_Flag=0; //步骤二,确定ROM值成功标志
+//--------------------------------
+
+// LED_RUN
+// LED_RGB
+// V_SIGNAL
+char data1[] = "CMD,PN9898989898E,H3009,L2001,LINE2,END";
+char ActivePN[32]="";  //用于存储当前机种信息
+int main(void)
+{
+    u8 iROMFlag=0;
+    char iDataBuf[128];
+    char iTempBuf[128];
+	char iTemp_Buf[64];
+	
+    u16 iTemp1,iTemp2,iTemp3,iTemp4;
+    u8 iTemp_Flag1;//,iTemp_Flag2;
+    u16 iTemp_Times=0;
+    u16 iTemp=0;
+
+    u16 iFluxValue_Before=0;
+
+
+
+    delay_init();	    	 //延时函数初始化
+    NVIC_Configuration(); 	 //设置NVIC中断分组2:2位抢占优先级，2位响应优先级
+    uart_init(115200);	 	//串口初始化
+    uart3_init(115200);
+    TIMx_Int_Init(TIM3,2000,7200);	//初始化3,用做普通定时功能 1000 = 100ms
+    TIMx_Int_Init(TIM2,2000,7200);	//初始化2,用于检测接收命令,1000=100ms
+    DeviceErrorCode = 0;
+    ResetLinitFlag = 1; //为1则需要获取上线限
+    ResetRomFlag = 1;   //初始时需要进行获取
+    CommSuccess_Flag=0; //步骤一,建立通讯成功标志,初始假设为OK
+    RightRomOk_Flag=0;  //步骤二,确定ROM值成功标志,初始假设为OK
+    Wifi_ConnetRightFlag = 0;//连接则为1
+    Cmd_Flag_OK = 0;
+
+    motor_Init();
+    LED_Init();			     //LED端口初始化
+    KEY_Init();              //初始化与按键连接的硬件接口
+    Adc_Init();
+    RED_MCU=0; YELLOW_MCU=0; GREEN_MCU=0; BEEP_MCU=0; SPEED_MOTOR=0; PN_MOTOR=0; POWER_MOTOR=0;
+	Cmd_SendErrorFlag=0;
+    test_mcu=1;
+    while(1)
+    {
+
+        while(0) //Debug
+        {
+
+        }
+
+        usart3_printf("Location 1\r\n");
+        while(0 == Wifi_ConnetRightFlag)    //WIFI 未连接是先连接WiFi
+        {
+            iTemp = WIFI_Config();
+            if(0 != iTemp)
+            {
+                DeviceErrorCode |= ERRORCODE_CONNECT;
+            }
+            else
+            {
+                DeviceErrorCode = 0;    //消除所有设备异常
+                Wifi_ConnetRightFlag = 1; //表明WiFi连接正常
+                CommSuccess_Flag = 0;   //允许下一步操作连接
+                TIM_Cmd(TIM2,ENABLE);	//开启定时器
+                break;
+            }
+            delay_ms(100);
+        }
+        while(Wifi_ConnetRightFlag)
+        {
+            while(1)
+            {
+                if((XWA_MCU==0) || (XWB_MCU==0)||(IR==0))
+                {
+                    delay_ms(10);
+                    if((XWA_MCU==0) || (XWB_MCU==0)||(IR==0))
+                    {
+                        break;
+                    }
+                }
+                else
+                    motor_P();
+            }
+            motor_S();
+            delay_ms(10);
+            while(START_MCU!=0)
+            {
+                YELLOW_MCU=1; RED_MCU=0; GREEN_MCU=0;
+                delay_ms(10);
+                while(START_MCU!=0);
+            }										//开始运行
+            YELLOW_MCU = 0;
+			motor_N();
+			delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+			delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+			delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+            while(1)
+            {
+                ////////////////////////////////////////
+                ////////////////////////////////////////
+                /**************锡块重量监测************/
+                weigh();											//称重
+				delay_ms(10);
+                if(w<=0.4)											//判断是否<=1KG
+                {
+
+                    while(1)
+                    {
+                        if((XWA_MCU==0) || (XWB_MCU==0)||(IR==0))
+                        {
+                            delay_ms(10);
+                            if((XWA_MCU==0) || (XWB_MCU==0)||(IR==0))
+                            {
+                                break;
+                            }
+                        }
+                        else
+                            motor_P();
+                    }
+
+                    motor_S();
+                    delay_ms(10);
+                    while(START_MCU!=0) 								//监测开始运行开关是否触发
+                    {
+                        delay_ms(10);
+                        while(START_MCU!=0) 								//监测开始运行开关是否触发
+                        {
+                            YELLOW_MCU = 1; RED_MCU=0; GREEN_MCU = 0;
+                        }
+                    }
+                    YELLOW_MCU = 0;
+					motor_N();
+					delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+					delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+					delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+                }
+                ////////////////////////////////////////
+                ////////////////////////////////////////
+                /**************锡位监测模块************/
+
+                if(TBA_MCU==0 && TBB_MCU==0) 					//锡量达到预警位置，加锡设备可能存在故障
+                {
+                    motor_S();
+                    RED_MCU=1; YELLOW_MCU=0; GREEN_MCU=0;
+                }
+                else if(TBA_MCU==0 && TBB_MCU==1)				//锡量正常，电机需停止转动
+                {
+                    motor_S();
+                    RED_MCU=0; YELLOW_MCU=0; GREEN_MCU=1;
+                }
+                else if(TBA_MCU==1 && TBB_MCU==0) 				//锡量达到预警位置，且探棒A异常
+                {
+                    motor_S();
+                    RED_MCU=1; YELLOW_MCU=0; GREEN_MCU=0;
+                }
+
+                else if(TBA_MCU==1 && TBB_MCU==1) 				//锡量过低，需要加锡
+                {                 
+                    GREEN_MCU = 1; RED_MCU=0; YELLOW_MCU=0;
+                    motor_N();
+                    weigh();
+					delay_ms(10);
+                    //sprintf(iTemp_Buf,"CMD,OFF%dFAILH,LINED-L3,END",w);
+					Str_DoubleToStr(iTemp_Buf,w,2);
+                    sprintf(iDataBuf,"CMD Weight,OFF,%sFAILH,LINED-L3,END",iTemp_Buf);
+					
+                    if(w<=0.4)
+                    {
+
+                        while(1)
+                        {
+                            if((XWA_MCU==0) || (XWB_MCU==0)||(IR==0))
+                            {
+                                delay_ms(10);
+                                if((XWA_MCU==0) || (XWB_MCU==0)||(IR==0))
+                                {
+
+                                    break;
+                                }
+                            }
+                            else
+                                motor_P();
+                        }
+                        motor_S();
+                        delay_ms(10);
+                        while(START_MCU!=0)
+                        {
+                            delay_ms(10);
+                            while(START_MCU!=0)
+                            {
+                                YELLOW_MCU = 1; RED_MCU=0; GREEN_MCU=0;
+                            }
+                        }
+                        YELLOW_MCU = 0;
+															motor_N();
+									delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+									delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+									delay_ms(1800);delay_ms(1800);delay_ms(1800);delay_ms(1800);
+                    }					
+                    delay_ms(1000); //电机反转加锡时间
+                    motor_S();
+                    delay_ms(1000); delay_ms(1000); delay_ms(1000); delay_ms(1000); delay_ms(1000); delay_ms(1000);	//电机停止等待锡块融化时间
+                    //		while(1)
+                    //	{
+                    iTemp1=WIFI_SendData(iDataBuf,"SEND OK",2000);
+					while(Cmd_SendErrorFlag)
+					{
+						
+					}
+                }
+
+                motor_S();
+            }
+
+
+        }
+
+    }
+}
+
+
+

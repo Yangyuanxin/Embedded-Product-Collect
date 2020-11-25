@@ -1,0 +1,8 @@
+".\Output\IAP_DATAFLASH.obj",
+".\Output\Common.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\IAP_DATAFLSH" 
+PRINT(".\LST\IAP_DATAFLSH.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 
+XDATA( 0X0000-0X00FF )

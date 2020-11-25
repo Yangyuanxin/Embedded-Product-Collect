@@ -1,0 +1,1 @@
+"Code\xRAM_256.c" BROWSE INCDIR(..\..\Include) DEBUG OBJECTEXTEND PRINT(.\LST\xRAM_256.lst) TABS (2) SRC (.\Output\xRAM_256.SRC)

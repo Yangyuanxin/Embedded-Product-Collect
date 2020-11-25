@@ -1,0 +1,6 @@
+".\Output\Timer01_M0.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\Timer01" 
+PRINT(".\LST\Timer01.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

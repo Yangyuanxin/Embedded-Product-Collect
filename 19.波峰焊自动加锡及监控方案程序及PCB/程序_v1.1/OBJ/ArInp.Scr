@@ -1,0 +1,23 @@
+--create ..\OBJ\IICNEW1.lib
+..\obj\main.o
+..\obj\stm32f10x_it.o
+..\obj\system_stm32f10x.o
+..\obj\led.o
+..\obj\key.o
+..\obj\lcd.o
+..\obj\myiic.o
+..\obj\24cxx.o
+..\obj\delay.o
+..\obj\sys.o
+..\obj\usart.o
+..\obj\core_cm3.o
+..\obj\startup_stm32f10x_hd.o
+..\obj\misc.o
+..\obj\stm32f10x_fsmc.o
+..\obj\stm32f10x_gpio.o
+..\obj\stm32f10x_rcc.o
+..\obj\stm32f10x_usart.o
+..\obj\stm32f10x_tim.o
+..\obj\usmart.o
+..\obj\usmart_config.o
+..\obj\usmart_str.o

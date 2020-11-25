@@ -1,0 +1,120 @@
+C51 COMPILER V9.52.0.0   FSYS_SEL                                                          11/02/2016 11:17:32 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE FSYS_SEL
+OBJECT MODULE PLACED IN .\Output\Fsys_SEL.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\Fsys_SEL.c OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\Include) DEFINE(FOSC_
+                    -160000) DEBUG OBJECTEXTEND PRINT(.\LST\Fsys_SEL.lst) TABS(2) OBJECT(.\Output\Fsys_SEL.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 System clock select demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_define.h"
+  24          
+  25          
+  26          //========================================================================
+  27          //  The test process:
+  28          //  1. Power on is run as default HIRC, show LED Fsys tickle faster
+  29          //  2. toggle P3.0 to GND.
+  30          //  2. call modify Fsys code to LIRC.
+  31          //  3. LED tickle speed slowly than before.
+  32          //========================================================================
+  33          void main(void)
+  34          {
+  35   1      
+  36   1      /* Note
+  37   1        MCU power on system clock is HIRC (16 MHz)
+  38   1        Please keep P3.0 HIGH before you want to modify Fsys to LIRC
+  39   1      */
+  40   1        
+  41   1          Set_All_GPIO_Quasi_Mode;                    // In Common.h define
+  42   1          set_CLOEN;                                  // Also can check P1.1 CLO pin for clock to find the Fsys change.
+  43   1          set_P30;
+  44   1          while (P30)                                 // when P3.0 keep high, clock out HIRC
+  45   1          {   
+C51 COMPILER V9.52.0.0   FSYS_SEL                                                          11/02/2016 11:17:32 PAGE 2   
+
+  46   2              clr_GPIO1;                              // Check LED output tickle time
+  47   2              Timer0_Delay1ms(200);
+  48   2              set_GPIO1;
+  49   2              Timer0_Delay1ms(200);
+  50   2          }
+  51   1        
+  52   1      ////------------------------------------------------------------------------------------------------------
+  53   1      ///*********************************** Change system closk source ***************************************/
+  54   1      ////------------------------------------------------------------------------------------------------------
+  55   1                    
+  56   1      ////***** HIRC enable part *****               
+  57   1      //    set_HIRCEN;                       //step1: enable HIRC clock source run
+  58   1      //    while((CKSWT&SET_BIT5)==0);       //step2: check ready
+  59   1      //    clr_OSC1;                         //step3: switching system clock source if needed
+  60   1      //    clr_OSC0;
+  61   1      //    while((CKEN&SET_BIT0)==1);        //step4: check system clock switching OK or NG
+  62   1      //
+  63   1      ////***** LIRC enable part*****
+  64   1      ////** Since LIRC is always enable, switch to LIRC directly
+  65   1          set_OSC1;                         //step3: switching system clock source if needed
+  66   1          clr_OSC0;  
+  67   1          while((CKEN&SET_BIT0)==1);        //step4: check system clock switching OK or NG  
+  68   1          clr_HIRCEN;
+  69   1         
+  70   1      ////------------------------------------------------------------------------------------------------------
+             ---
+  71   1          
+  72   1      /*
+  73   1        Now Fsys = LIRC , LED tickle slowly.
+  74   1      */
+  75   1          while(1)
+  76   1          {
+  77   2              clr_GPIO1;                              // Check LED output tickle time
+  78   2              Timer0_Delay1ms(20);
+  79   2              set_GPIO1;
+  80   2              Timer0_Delay1ms(20);
+  81   2          }
+  82   1      /* =================== */
+  83   1      }
+  84          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    140    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

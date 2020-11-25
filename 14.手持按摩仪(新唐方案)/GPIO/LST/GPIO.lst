@@ -1,0 +1,92 @@
+C51 COMPILER V9.01   GPIO                                                                  02/01/2018 10:15:10 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE GPIO
+OBJECT MODULE PLACED IN .\Output\GPIO.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\GPIO.C OPTIMIZE(4,SPEED) BROWSE INCDIR(.\Include) DEFINE(FOSC_160000) 
+                    -DEBUG OBJECTEXTEND PRINT(.\LST\GPIO.lst) TABS(2) OBJECT(.\Output\GPIO.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2016 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2016
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 GPIO demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          
+  26          
+  27          
+  28          void main (void) 
+  29          {
+  30   1      //  unsigned char i;
+  31   1        Set_All_GPIO_Quasi_Mode;          // Define in Function_define.h
+  32   1      //  InitialUART0_Timer3(115200);
+  33   1        set_CLOEN;  
+  34   1        
+  35   1        
+  36   1        while(1)
+  37   1        {
+  38   2        /*  i--;
+  39   2            clr_GPIO1;                        // Tiny board GPIO1 LED define in Common.h
+  40   2            Timer2_Delay1ms(300);
+  41   2            set_GPIO1;
+  42   2            Timer2_Delay1ms(300);
+  43   2            Send_Data_To_UART0(0x55);         //UART0 send ascii "U"
+  44   2          
+  45   2          P3M1 = 0xff;
+C51 COMPILER V9.01   GPIO                                                                  02/01/2018 10:15:10 PAGE 2   
+
+  46   2          P3M2 = 0x00;
+  47   2          P3M1 = 0x00;
+  48   2          P3M2 = 0x00;
+  49   2          if(P30) P10 = 1; 
+  50   2          else P10 = 0;
+  51   2          i += 6;
+  52   2          */
+  53   2        }
+  54   1      }
+  55          
+  56          
+  57          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     19    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

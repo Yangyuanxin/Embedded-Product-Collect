@@ -1,0 +1,5 @@
+".\Output\UART0_mode_2.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\UART0_M2" 
+PRINT(".\LST\UART0_M2.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

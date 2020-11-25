@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{958830F2-B29F-4553-9019-DA22CB94B751}</ProjectGuid>
+    <RootNamespace>ISPTool</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\DialogConfiguration\;$(SolutionDir)\DataBase\</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>Interface\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\DialogConfiguration\;$(SolutionDir)\DataBase\</AdditionalIncludeDirectories>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <DisableSpecificWarnings>4819</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>Interface\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="CeXDib.h" />
+    <ClInclude Include="PPDrawManager.h" />
+    <ClInclude Include="PPHtmlDrawer.h" />
+    <ClInclude Include="PPTooltip.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="About.cpp" />
+    <ClCompile Include="CeXDib.cpp" />
+    <ClCompile Include="DataBase\FlashInfo.cpp" />
+    <ClCompile Include="DataBase\PartNumID.cpp" />
+    <ClCompile Include="DialogConfiguration\AppConfig.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_AU9100.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M058.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M05x.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M05xCN.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_M451.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Mini51.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Mini51BN.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Mini51CN.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_MT500.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_N570.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_N572.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_N76E1T.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano100.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano100BN.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano103.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_Nano112.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NM1120.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NM1200.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC102.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC103.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC103BN.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC131.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC1xx.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC2xx.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogConfiguration_NUC4xx.cpp" />
+    <ClCompile Include="DialogConfiguration\DialogResize2.cpp" />
+    <ClCompile Include="ISPProc.cpp" />
+    <ClCompile Include="DialogHex.cpp" />
+    <ClCompile Include="DialogResize.cpp" />
+    <ClCompile Include="DlgInterfaceSel.cpp" />
+    <ClCompile Include="DlgNuvoISP.cpp" />
+    <ClCompile Include="fileinfo.cpp" />
+    <ClCompile Include="HyperLink.cpp" />
+    <ClCompile Include="Interface\CHidIO.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Interface\CUartIO.cpp" />
+    <ClCompile Include="ISPLdCMD.cpp" />
+    <ClCompile Include="Lang.cpp" />
+    <ClCompile Include="NumEdit.cpp" />
+    <ClCompile Include="NuvoISPTool.cpp" />
+    <ClCompile Include="PPDrawManager.cpp" />
+    <ClCompile Include="PPHtmlDrawer.cpp" />
+    <ClCompile Include="PPTooltip.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\1373459379_4852.ico" />
+    <None Include="res\banner.bmp" />
+    <None Include="res\chips.bmp" />
+    <None Include="res\k-cm-memory.ico" />
+    <None Include="res\nulink.ico" />
+    <None Include="res\nuvoton.bmp" />
+    <None Include="res\xp_style.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ISPTool.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="ISPTool.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

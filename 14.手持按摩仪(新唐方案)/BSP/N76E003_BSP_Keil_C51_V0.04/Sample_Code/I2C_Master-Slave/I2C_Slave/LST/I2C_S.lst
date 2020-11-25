@@ -1,0 +1,188 @@
+C51 COMPILER V9.52.0.0   I2C_S                                                             11/02/2016 11:27:13 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE I2C_S
+OBJECT MODULE PLACED IN .\Output\I2C_S.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code\I2C_S.c BROWSE INCDIR(..\..\..\Include) DEFINE(FOSC_160000) DEBUG OBJE
+                    -CTEXTEND PRINT(.\LST\I2C_S.lst) TABS(2) OBJECT(.\Output\I2C_S.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : May/1/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E003 I2C Slave demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E003.h"
+  20          #include "Common.h"
+  21          #include "Delay.h"
+  22          #include "SFR_Macro.h"
+  23          #include "Function_Define.h"
+  24          
+  25          //********************************************************************************************************
+             -***
+  26          //  N76E885-series I2C slave mode demo code, the Slave address = 0xA4
+  27          //
+  28          //   ____________            _____________ 
+  29          //  |            |   SDA    |             |
+  30          //  |            |<-------->|             |
+  31          //  |            |          |             |
+  32          //  |N76E003(M) |          | N76E003(S) |
+  33          //  |(I2C_Master)|          | (I2C_Slave) |
+  34          //  |            |   SCL    |             |
+  35          //  |            |--------->|             |
+  36          //  |____________|          |_____________|
+  37          //
+  38          //  The protocol of I2C is same the "24LC64"
+  39          //********************************************************************************************************
+             -***
+  40          
+  41          
+  42          #define I2C_CLOCK               13
+  43          #define EEPROM_SLA              0xA4
+C51 COMPILER V9.52.0.0   I2C_S                                                             11/02/2016 11:27:13 PAGE 2   
+
+  44          
+  45          
+  46          UINT8 data_received[34], data_num = 0;
+  47          
+  48          //========================================================================================================
+  49          void I2C_ISR(void) interrupt 6
+  50          {
+  51   1          switch (I2STAT)
+  52   1          {
+  53   2              case 0x00:
+  54   2                  STO = 1;
+  55   2                  break;
+  56   2      
+  57   2              case 0x60:
+  58   2                  AA = 1;
+  59   2                  //P3 = 0x60;
+  60   2                  break;
+  61   2              
+  62   2              case 0x68:
+  63   2                  P02 = 0;
+  64   2                  while(1);
+  65   2                  break;
+  66   2      
+  67   2              case 0x80:
+  68   2                  //P3 = 0x80;
+  69   2                  data_received[data_num] = I2DAT;
+  70   2                  data_num++;
+  71   2      
+  72   2                  if (data_num == 34)
+  73   2                      AA = 0;
+  74   2                  else
+  75   2                      AA = 1;
+  76   2                  break;
+  77   2      
+  78   2              case 0x88:
+  79   2                  //P3 = 0x88;
+  80   2                  data_received[data_num] = I2DAT;
+  81   2                  data_num = 0;
+  82   2                  AA = 1;
+  83   2                  break;
+  84   2      
+  85   2              case 0xA0:
+  86   2                  //P3 = 0xA0;
+  87   2                  AA = 1;
+  88   2                  break;
+  89   2      
+  90   2              case 0xA8:
+  91   2                  //P3 = 0xA0;
+  92   2                  I2DAT = data_received[data_num];
+  93   2                  data_num++;
+  94   2                  AA = 1;
+  95   2                  break;
+  96   2              
+  97   2              case 0xB8:
+  98   2                  //P3 = 0xB8;
+  99   2                  I2DAT = data_received[data_num];
+ 100   2                  data_num++;
+ 101   2                  AA = 1;
+ 102   2                  break;
+ 103   2      
+ 104   2              case 0xC0:
+ 105   2                  AA = 1;
+C51 COMPILER V9.52.0.0   I2C_S                                                             11/02/2016 11:27:13 PAGE 3   
+
+ 106   2                  break; 
+ 107   2      
+ 108   2              case 0xC8:
+ 109   2                  //P3 = 0xC8;
+ 110   2                  AA = 1;
+ 111   2                  break;        
+ 112   2          }
+ 113   1      
+ 114   1          SI = 0;
+ 115   1          while(STO);
+ 116   1      }
+ 117          
+ 118          //========================================================================================================
+ 119          void Init_I2C(void)
+ 120          {
+ 121   1          P13_Quasi_Mode;                         //set SCL (P13) is Quasi mode
+ 122   1          P14_Quasi_Mode;                         //set SDA (P14) is Quasi mode
+ 123   1          
+ 124   1          SDA = 1;                                //set SDA and SCL pins high
+ 125   1          SCL = 1;
+ 126   1          
+ 127   1          set_P0SR_6;                             //set SCL (P06) is  Schmitt triggered input select.
+ 128   1          
+ 129   1          set_EI2C;                               //enable      I2C interrupt by setting IE1 bit 0
+ 130   1          set_EA;
+ 131   1      
+ 132   1          I2ADDR = EEPROM_SLA;                    //define own slave address
+ 133   1          set_I2CEN;                              //enable I2C circuit
+ 134   1          set_AA;
+ 135   1      }
+ 136          
+ 137          //========================================================================================================
+ 138          void main(void)
+ 139          {
+ 140   1      
+ 141   1          Set_All_GPIO_Quasi_Mode;
+ 142   1          
+ 143   1          /* Initial I2C function */
+ 144   1          Init_I2C();                                 //initial I2C circuit
+ 145   1      
+ 146   1          while (1);
+ 147   1      /* =================== */
+ 148   1      }
+ 149          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    185    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     35    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

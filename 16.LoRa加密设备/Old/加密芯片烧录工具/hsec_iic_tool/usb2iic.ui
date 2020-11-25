@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>HSEC-USB-IIC-TOOL</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>new.ico</normaloff>new.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>621</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>IIC - low level</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>11</y>
+        <width>591</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0,0" rowminimumheight="0,0,0,0">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_Start">
+         <property name="text">
+          <string>START</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="lineEdit_DataWrite">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>要下发的数据(十六进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>data to write (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="pushButton_Read">
+         <property name="text">
+          <string>READ</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_Write">
+         <property name="text">
+          <string>WRITE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLineEdit" name="lineEdit_DataRead">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>要读取的长度(十进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>read length (dec)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="pushButton_Stop">
+         <property name="text">
+          <string>STOP</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>IIC - high level</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>6</y>
+        <width>591</width>
+        <height>121</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="lineEdit_slave_address">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>从机地址(十六进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>slave address (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="lineEdit_DataWrite_highlevel">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>要下发的数据(十六进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>data to write (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLineEdit" name="lineEdit_DataRead_highlevel">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>要读取的长度(十进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>read length (dec)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_Write_highlevel">
+         <property name="text">
+          <string>WRITE</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="pushButton_Read_highlevel">
+         <property name="text">
+          <string>READ</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>HSC32I1</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton_OpenDownload">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>10</y>
+        <width>171</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="statusTip">
+       <string>打开并下载COS文件</string>
+      </property>
+      <property name="text">
+       <string>Open and Download COS</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>6</y>
+        <width>401</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_crc">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>CRC校验值CCITT(Xmodem)(十六进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>crc (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLineEdit" name="lineEdit_flash_address">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>FLASH起始地址(0x0000~0xffff)(十六进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>flash address (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLineEdit" name="lineEdit_sector_size">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>块数(0x01~0x80)(十六进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>sector size (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="pushButton_crc_check">
+         <property name="statusTip">
+          <string>校验CRC</string>
+         </property>
+         <property name="text">
+          <string>CRC Check</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_crc_check_length">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
+         <property name="statusTip">
+          <string>CRC校验长度(十进制)</string>
+         </property>
+         <property name="placeholderText">
+          <string>check length (dec)</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="pushButton_sector_erase">
+         <property name="statusTip">
+          <string>擦除</string>
+         </property>
+         <property name="text">
+          <string>SectorErase</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="pushButton_read_sn">
+         <property name="statusTip">
+          <string>读序列号</string>
+         </property>
+         <property name="text">
+          <string>Read SN</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="pushButton_soft_reset">
+         <property name="statusTip">
+          <string>软复位</string>
+         </property>
+         <property name="text">
+          <string>Soft Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton_blow_fuse">
+         <property name="statusTip">
+          <string>烧熔丝</string>
+         </property>
+         <property name="text">
+          <string>Blow Fuse</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_OpenDownload_Binary">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>90</y>
+        <width>171</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="statusTip">
+       <string>打开并下载bin文件(需要指定地址)</string>
+      </property>
+      <property name="text">
+       <string>Open and Download Binary</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Utilities</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton_search">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="statusTip">
+       <string>自动侦测第一个从机的地址</string>
+      </property>
+      <property name="text">
+       <string>Search</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_RunScript">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>10</y>
+        <width>171</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="statusTip">
+       <string>打开并运行脚本</string>
+      </property>
+      <property name="text">
+       <string>Open and Run script</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_hard_reset">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="statusTip">
+       <string>通过转换器发送硬复位</string>
+      </property>
+      <property name="text">
+       <string>Hard reset</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>179</y>
+      <width>621</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Info</string>
+    </property>
+    <widget class="QPlainTextEdit" name="plainTextEdit_Info">
+     <property name="geometry">
+      <rect>
+       <x>13</x>
+       <y>20</y>
+       <width>591</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Consolas</family>
+      </font>
+     </property>
+     <property name="tabChangesFocus">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionConnect_converter"/>
+    <addaction name="actionDisconnect_converter"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="statusTip">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="actionConnect_converter">
+   <property name="text">
+    <string>Connect converter</string>
+   </property>
+   <property name="statusTip">
+    <string>连接转换器</string>
+   </property>
+  </action>
+  <action name="actionDisconnect_converter">
+   <property name="text">
+    <string>Disconnect converter</string>
+   </property>
+   <property name="statusTip">
+    <string>断开转换器连接</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>plainTextEdit_Info</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lineEdit_DataWrite</tabstop>
+  <tabstop>lineEdit_DataRead</tabstop>
+  <tabstop>pushButton_Start</tabstop>
+  <tabstop>pushButton_Write</tabstop>
+  <tabstop>pushButton_Read</tabstop>
+  <tabstop>pushButton_Stop</tabstop>
+  <tabstop>pushButton_Write_highlevel</tabstop>
+  <tabstop>pushButton_Read_highlevel</tabstop>
+  <tabstop>lineEdit_slave_address</tabstop>
+  <tabstop>lineEdit_DataWrite_highlevel</tabstop>
+  <tabstop>lineEdit_DataRead_highlevel</tabstop>
+  <tabstop>pushButton_OpenDownload</tabstop>
+  <tabstop>pushButton_read_sn</tabstop>
+  <tabstop>lineEdit_flash_address</tabstop>
+  <tabstop>lineEdit_sector_size</tabstop>
+  <tabstop>pushButton_sector_erase</tabstop>
+  <tabstop>lineEdit_crc</tabstop>
+  <tabstop>lineEdit_crc_check_length</tabstop>
+  <tabstop>pushButton_crc_check</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>159</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <designerdata>
+  <property name="gridDeltaX">
+   <number>10</number>
+  </property>
+  <property name="gridDeltaY">
+   <number>10</number>
+  </property>
+  <property name="gridSnapX">
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY">
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible">
+   <bool>true</bool>
+  </property>
+ </designerdata>
+</ui>

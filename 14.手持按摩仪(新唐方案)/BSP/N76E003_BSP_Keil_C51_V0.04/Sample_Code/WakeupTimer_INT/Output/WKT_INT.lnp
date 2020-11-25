@@ -1,0 +1,6 @@
+".\Output\WKT_INT.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\WKT_INT" 
+PRINT(".\LST\WKT_INT.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

@@ -1,0 +1,7 @@
+".\Output\I2C_EEPROM.obj",
+".\Output\Common.obj",
+".\Output\Delay.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\I2C_EEPROM" 
+PRINT(".\LST\I2C_EEPROM.m51") RAMSIZE(256) 
+DISABLEWARNING (16) 

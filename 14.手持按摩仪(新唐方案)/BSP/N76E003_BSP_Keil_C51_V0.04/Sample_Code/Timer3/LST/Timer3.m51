@@ -1,0 +1,151 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/02/2016  11:51:51  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE .\Output\Timer3.obj, .\Output\STARTUP.obj TO .\Output\Timer3 PRINT (.\LST\Timer3.m51) RAMSIZE (
+>> 256) DISABLEWARNING (16)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Output\Timer3.obj (TIMER3)
+  .\Output\STARTUP.obj (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Output\Timer3 (TIMER3)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001DH     UNIT         ?PR?MAIN?TIMER3
+            CODE    0020H     001AH     UNIT         ?C_C51STARTUP
+            CODE    003AH     0006H     UNIT         ?PR?TIMER3_ISR?TIMER3
+                    0040H     0043H                  *** GAP ***
+            CODE    0083H     0003H     ABSOLUTE     
+
+
+
+OVERLAY MAP OF MODULE:   .\Output\Timer3 (TIMER3)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?TIMER3
+
+
+
+SYMBOL TABLE OF MODULE:  .\Output\Timer3 (TIMER3)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        TIMER3
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B1H         PUBLIC        P0M1
+  D:00B3H         PUBLIC        P1M1
+  D:0080H         PUBLIC        P0
+  D:00B4H         PUBLIC        P1M2
+  D:0090H         PUBLIC        P1
+  D:00ACH         PUBLIC        P3M1
+  D:00A0H         PUBLIC        P2
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:51:51  PAGE 2
+
+
+  D:00B0H         PUBLIC        P3
+  D:00ADH         PUBLIC        P3M2
+  D:009CH         PUBLIC        EIE1
+  B:00A8H.7       PUBLIC        EA
+  C:003AH         PUBLIC        Timer3_ISR
+  D:00D8H         PUBLIC        PWMCON0
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0003H         PUBLIC        main
+  B:0080H.2       PUBLIC        P02
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00F8H         PUBLIC        SCON_1
+  D:00C6H         PUBLIC        RH3
+  D:00C5H         PUBLIC        RL3
+  D:00E8H         PUBLIC        ADCCON0
+  D:00C0H         PUBLIC        I2CON
+  D:00C8H         PUBLIC        T2CON
+  D:00C4H         PUBLIC        T3CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          TIMER3_ISR
+  C:003AH         LINE#         31
+  C:003AH         LINE#         33
+  C:003DH         LINE#         34
+  C:003FH         LINE#         35
+  -------         ENDPROC       TIMER3_ISR
+  -------         PROC          MAIN
+  C:0003H         LINE#         40
+  C:0003H         LINE#         41
+  C:0003H         LINE#         42
+  C:0010H         LINE#         44
+  C:0013H         LINE#         45
+  C:0016H         LINE#         47
+  C:0019H         LINE#         48
+  C:001BH         LINE#         49
+  C:001EH         LINE#         51
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        TIMER3
+
+  -------         MODULE        ?C_STARTUP
+  C:0020H         SEGMENT       ?C_C51STARTUP
+  I:0008H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0023H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/02/2016  11:51:51  PAGE 3
+
+
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0020H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:02FFH         SYMBOL        XDATALEN
+  C:002EH         SYMBOL        XDATALOOP
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         92
+  C:0020H         LINE#         99
+  C:0022H         LINE#         100
+  C:0023H         LINE#         101
+  C:0024H         LINE#         102
+  C:0026H         LINE#         106
+  C:0029H         LINE#         107
+  C:002BH         LINE#         109
+  C:002DH         LINE#         113
+  C:002EH         LINE#         114
+  C:002FH         LINE#         115
+  C:0030H         LINE#         116
+  C:0032H         LINE#         117
+  C:0034H         LINE#         151
+  C:0037H         LINE#         155
+  -------         ENDMOD        ?C_STARTUP
+
+Program Size: data=9.0 xdata=0 code=67
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

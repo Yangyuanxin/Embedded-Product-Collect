@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>LUOHEI_120T/Flash</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>233</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>666</ColumnWidth1><ColumnWidth2>244</ColumnWidth2><ColumnWidth3>61</ColumnWidth3></Build>
+    <Debug-Log><ColumnWidth0>23</ColumnWidth0><ColumnWidth1>1218</ColumnWidth1></Debug-Log><TerminalIO/></Static>
+    <Windows>
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-15956-27127</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>LUOHEI_120T</ExpandedNode><ExpandedNode>LUOHEI_120T/App</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/CUR</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/GUI</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/KI</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/LCD</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/MEASURE</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/MODBUS</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/PAIWU</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/PARA</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/RELAY</ExpandedNode><ExpandedNode>LUOHEI_120T/DRIVER/USER_FORM</ExpandedNode><ExpandedNode>LUOHEI_120T/HAL</ExpandedNode><ExpandedNode>LUOHEI_120T/HAL/Target</ExpandedNode><ExpandedNode>LUOHEI_120T/OS</ExpandedNode><ExpandedNode>LUOHEI_120T/OS/uCOS-II</ExpandedNode><ExpandedNode>LUOHEI_120T/OS/uCOS-II/Configuration</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-3640-27153</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-29279-30344</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\Projects\head.h</Filename><XPos>0</XPos><YPos>42</YPos><SelStart>1003</SelStart><SelEnd>1003</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\RELAY\relay.h</Filename><XPos>0</XPos><YPos>6</YPos><SelStart>434</SelStart><SelEnd>445</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\KI\ki.c</Filename><XPos>0</XPos><YPos>234</YPos><SelStart>3571</SelStart><SelEnd>3571</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\KI\ki.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>406</SelStart><SelEnd>406</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\MODBUS\MODBUS.C</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>246</SelStart><SelEnd>246</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\measure\measure.h</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>956</SelStart><SelEnd>956</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\PAIWU\PAIWU.C</Filename><XPos>0</XPos><YPos>86</YPos><SelStart>1760</SelStart><SelEnd>1760</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\HAL\target\BoardInit.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1029</SelStart><SelEnd>1029</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\MODBUS\MODBUS_MASTER.C</Filename><XPos>0</XPos><YPos>26</YPos><SelStart>592</SelStart><SelEnd>592</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\HAL\target\low_level_init.c</Filename><XPos>0</XPos><YPos>81</YPos><SelStart>3024</SelStart><SelEnd>3024</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\STM32F10xFWLib\FWLib\library\src\stm32f10x_rcc.c</Filename><XPos>1</XPos><YPos>354</YPos><SelStart>14087</SelStart><SelEnd>14087</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\STM32F10xFWLib\FWLib\library\inc\stm32f10x_type.h</Filename><XPos>5</XPos><YPos>44</YPos><SelStart>2446</SelStart><SelEnd>2446</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\KEY\key.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>170</SelStart><SelEnd>177</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\HAL\target\stm32f10x_it.c</Filename><XPos>0</XPos><YPos>491</YPos><SelStart>16701</SelStart><SelEnd>16701</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\GUI\LCD_FORM\LCD_INTERFACE.C</Filename><XPos>0</XPos><YPos>176</YPos><SelStart>5513</SelStart><SelEnd>5513</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\measure\measure.c</Filename><XPos>0</XPos><YPos>141</YPos><SelStart>3746</SelStart><SelEnd>3746</SelEnd></Tab><ActiveTab>15</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\PAIWU\PAIWU.H</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>162</SelStart><SelEnd>169</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\App\main.c</Filename><XPos>0</XPos><YPos>271</YPos><SelStart>7124</SelStart><SelEnd>7124</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\App\CreateMultiTask.C</Filename><XPos>0</XPos><YPos>53</YPos><SelStart>1540</SelStart><SelEnd>1540</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\App\CreateEvents.C</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1064</SelStart><SelEnd>1064</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x8D44;&#x6599;\BEST&#x5De5;&#x7A0B;&#x8D44;&#x6599;\&#x786e;&#x8BA4;&#x8FC7;&#x7684;&#x7A0B;&#x5e8F;\&#x6F2F;&#x6CB3;120T-&#x84B8;&#x53D1;&#x51B7;\RELAY\relay.c</Filename><XPos>0</XPos><YPos>592</YPos><SelStart>10302</SelStart><SelEnd>10302</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00bfadf8><key>iaridepm.enu1</key></Toolbar-00bfadf8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>586</Bottom><Right>324</Right><x>-2</x><y>-2</y><xscreen>27</xscreen><yscreen>27</yscreen><sizeHorzCX>21094</sizeHorzCX><sizeHorzCY>37293</sizeHorzCY><sizeVertCX>254688</sizeVertCX><sizeVertCY>812155</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>93</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>95</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>131215</sizeHorzCY><sizeVertCX>21094</sizeVertCX><sizeVertCY>37293</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

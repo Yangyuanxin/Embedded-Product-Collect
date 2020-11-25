@@ -1,0 +1,332 @@
+C51 COMPILER V9.52.0.0   ISP_USER                                                          03/08/2016 15:58:01 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE ISP_USER
+OBJECT MODULE PLACED IN .\Output\ISP_USER.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Source\ISP_USER.c LARGE ROM(COMPACT) BROWSE INCDIR(..\..\Include) DEBUG OBJ
+                    -ECTEXTEND PRINT(.\LST\ISP_USER.lst) TABS(2) OBJECT(.\Output\ISP_USER.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* Copyright(c) 2015 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   4          /*                                                                                                        
+             - */
+   5          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   6          
+   7          //********************************************************************************************************
+             -***
+   8          //  Nuvoton Technoledge Corp. 
+   9          //  Website: http://www.nuvoton.com
+  10          //  E-Mail : MicroC-8bit@nuvoton.com
+  11          //  Date   : Apr/21/2015
+  12          //********************************************************************************************************
+             -***
+  13          
+  14          //********************************************************************************************************
+             -***
+  15          //  File Function: N76E885 UART-0 Mode2 demo code
+  16          //********************************************************************************************************
+             -***
+  17          
+  18          #include <stdio.h>
+  19          #include "N76E885.h"
+  20          #include "Typedef.h"
+  21          #include "Define.h"
+  22          #include "SFR_Macro.h"
+  23          #include "ISP_USER.h"
+  24          #include "UART0_transfer.h"
+  25          
+  26          
+  27          
+  28          #define Trigger_IAP   BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPTRG|=SET_BIT0;EA=BIT_TMP
+  29          #define Set_IAPEN     BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CHPCON|=SET_BIT0;EA=BIT_TMP
+  30          //#define set_APUEN     BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;IAPUEN|=SET_BIT0;EA=BIT_TMP
+  31          
+  32          bit BIT_TMP;
+  33          
+  34          //void Package_checksum(void)
+  35          //{
+  36          //  g_checksum=0;
+  37          //   for(count=0;count<64;count++)
+  38          //  {
+  39          //    g_checksum =g_checksum+ uart_rcvbuf[count];    
+  40          //  }
+  41          //  uart_txbuf[0]=g_checksum&0xff;
+  42          //  uart_txbuf[1]=(g_checksum>>8)&0xff;
+  43          //  uart_txbuf[4]=uart_rcvbuf[4]+1;
+  44          //  uart_txbuf[5]=uart_rcvbuf[5];
+  45          //  if(uart_txbuf[4]==0x00)
+C51 COMPILER V9.52.0.0   ISP_USER                                                          03/08/2016 15:58:01 PAGE 2   
+
+  46          //  uart_txbuf[5]++;
+  47          //  
+  48          //}
+  49          
+  50          
+  51          ///*******************************************************************************************************
+             -*****
+  52          //*    Main function 
+  53          
+  54          //void main (void)
+  55          //{
+  56          //   //initial GPIO for quasi mode.  
+  57          //   P0M1 = 0x00;
+  58          //   P0M2 = 0x00;
+  59          //   P1M1 = 0x00;
+  60          //   P1M2 = 0x00;
+  61          //   P2M1 = 0x00;
+  62          //   P2M2 = 0x00;
+  63          //   P3M1 = 0x00;
+  64          //   P3M2 = 0x00;
+  65          //   //uart initial 
+  66          //   SCON = 0x52;     //UART0 Mode1,REN=1,TI=1
+  67          //   TMOD |= 0x22;    //Timer1 Mode1, TIMER 0 MODE2
+  68          //    
+  69          //   set_SMOD;
+  70          //   set_T1M;
+  71          //   clr_BRCK;        //Serial port 0 baud rate clock source = Timer1
+  72          //   TH1 = 256 - (1382400/115200);                /*22.1184 MHz */
+  73          //   set_TR1;           //Start timer1
+  74          //      
+  75          //    TH0=TL0=0; //interrupt timer 140us
+  76          //    set_TR0;   //Start timer0
+  77          //    set_PSH;   // Serial port 0 interrupt level2
+  78          //    IE = 0x92;                                      //EA=1, ES=1,ET0=1
+  79          //    //IE = 0x90;                                      //EA=1, ES=1,ET0=1
+  80          //    g_timer0Over=0;
+  81          //    g_timer0Counter=5000;
+  82          //    g_progarmflag=0;
+  83          
+  84          //while(1)
+  85          //{
+  86          //        if(bUartDataReady == TRUE)
+  87          //        {
+  88          //          EA=0; //DISABLE ALL INTERRUPT                 
+  89          //          P11=P11^1;
+  90          //          if(g_progarmflag==1)
+  91          //            {
+  92          //              for(count=8;count<64;count++)
+  93          //              {
+  94          //                IAPCN = BYTE_PROGRAM_AP;
+  95          //                IAPAL = flash_address&0xff;
+  96          //                IAPAH = (flash_address>>8)&0xff;
+  97          //                IAPFD=uart_rcvbuf[count];
+  98          //                Trigger_IAP;
+  99          //            
+ 100          //                IAPCN = BYTE_READ_AP;
+ 101          //                Trigger_IAP;                            
+ 102          //                if(IAPFD!=uart_rcvbuf[count])
+ 103          //                  while(1);         
+ 104          //                g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
+ 105          //                flash_address++;
+ 106          //                if(flash_address==AP_size)
+C51 COMPILER V9.52.0.0   ISP_USER                                                          03/08/2016 15:58:01 PAGE 3   
+
+ 107          //                  {
+ 108          //                    g_progarmflag=0;
+ 109          //                    goto END_2;         
+ 110          //                  }
+ 111          //              }       
+ 112          //END_2:                
+ 113          //              Package_checksum();
+ 114          //              uart_txbuf[8]=g_totalchecksum&0xff;
+ 115          //              uart_txbuf[9]=(g_totalchecksum>>8)&0xff;
+ 116          //              Send_64byte_To_UART0();           
+ 117          //            }
+ 118          //          switch(uart_rcvbuf[0])
+ 119          //          {               
+ 120          //            case CMD_CONNECT:
+ 121          //            case CMD_SYNC_PACKNO:
+ 122          //            {
+ 123          //              Package_checksum();
+ 124          //              Send_64byte_To_UART0();   
+ 125          //              g_timer0Counter=0; //clear timer 0 for no reset
+ 126          //              g_timer0Over=0;
+ 127          //              set_IAPEN;
+ 128          //              set_APUEN;
+ 129          //            break;
+ 130          //            }
+ 131          //            
+ 132          //            case CMD_GET_FWVER:           
+ 133          //            {
+ 134          //              Package_checksum();
+ 135          //              uart_txbuf[8]=FW_VERSION; 
+ 136          //              Send_64byte_To_UART0(); 
+ 137          //            break;
+ 138          //            }
+ 139          //            
+ 140          //            case CMD_RUN_APROM:           
+ 141          //            {
+ 142          //              //Package_checksum();
+ 143          //              //uart_txbuf[8]=FW_VERSION; 
+ 144          //              //Send_64byte_To_UART0(); 
+ 145          //              goto _APROM;
+ 146          //            break;
+ 147          //            }
+ 148          //            
+ 149          //            //please tool must define devices value
+ 150          //            case CMD_GET_DEVICEID:            
+ 151          //            {
+ 152          //            Package_checksum();
+ 153          //            uart_txbuf[8]=0x00; 
+ 154          //            uart_txbuf[8]=0x5a; 
+ 155          //            uart_txbuf[8]=0x00; 
+ 156          //            uart_txbuf[8]=0x20; 
+ 157          //            Send_64byte_To_UART0(); 
+ 158          //            break;
+ 159          //            }
+ 160          //            
+ 161          //            
+ 162          //            case CMD_READ_CONFIG:           
+ 163          //            {
+ 164          //            Package_checksum();
+ 165          //            uart_txbuf[8]=0x7f; 
+ 166          //            uart_txbuf[9]=0xff; 
+ 167          //            uart_txbuf[10]=0xff;  
+ 168          //            uart_txbuf[11]=0xff;  
+C51 COMPILER V9.52.0.0   ISP_USER                                                          03/08/2016 15:58:01 PAGE 4   
+
+ 169          //            uart_txbuf[12]=0xff;  
+ 170          //            uart_txbuf[13]=0xff;  
+ 171          //            uart_txbuf[14]=0xff;            
+ 172          //            uart_txbuf[15]=0xff;
+ 173          //            Send_64byte_To_UART0(); 
+ 174          //            break;
+ 175          //            }
+ 176          //            
+ 177          //            case CMD_UPDATE_APROM:            
+ 178          //            {
+ 179          //  //lucia modify
+ 180          //                set_IAPEN;
+ 181          //              IAPFD = 0xFF;    
+ 182          //              IAPCN = PAGE_ERASE_AP;
+ 183          //              set_APUEN;
+ 184          //              for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+ 185          //              {        
+ 186          //                    IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+ 187          //                    IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+ 188          //                  set_IAPGO;  
+ 189          //              }           
+ 190          //              
+ 191          //  //====================        
+ 192          //              
+ 193          ////       IAPCN = PAGE_ERASE_AP;   
+ 194          ////              
+ 195          ////        set_APUEN;                
+ 196          ////            //aprom erase
+ 197          ////            for(flash_address=0x0000;flash_address<APROM_SIZE/PAGE_SIZE;flash_address++)
+ 198          ////            {        
+ 199          ////        IAPAL = LOBYTE(flash_address*PAGE_SIZE);
+ 200          ////        IAPAH = HIBYTE(flash_address*PAGE_SIZE);
+ 201          ////        //trigger IAP
+ 202          ////        TA=0xAA;
+ 203          ////        TA=0x55;
+ 204          ////        IAPTRG |= SET_BIT0 ;
+ 205          ////      }
+ 206          //            g_totalchecksum=0;
+ 207          //        flash_address=0;
+ 208          //        AP_size=0;
+ 209          //        AP_size=uart_rcvbuf[12];
+ 210          //        AP_size|=(uart_rcvbuf[13]<<8);  
+ 211          //        g_progarmflag=1;
+ 212          
+ 213          //        for(count=16;count<64;count++)
+ 214          //        {
+ 215          //        IAPCN = BYTE_PROGRAM_AP;
+ 216          //        IAPAL = flash_address&0xff;
+ 217          //        IAPAH = (flash_address>>8)&0xff;
+ 218          //        IAPFD=uart_rcvbuf[count];
+ 219          //        //trigger IAP
+ 220          //        TA=0xAA;
+ 221          //        TA=0x55;
+ 222          //        IAPTRG |= SET_BIT0 ;                                 
+ 223          //    
+ 224          //        IAPCN = BYTE_READ_AP;
+ 225          //        //trigger IAP
+ 226          //        TA=0xAA;
+ 227          //        TA=0x55;
+ 228          //        IAPTRG |= SET_BIT0 ;                                  //trigger IAP
+ 229          //        if(IAPFD!=uart_rcvbuf[count])
+ 230          //        while(1);         
+C51 COMPILER V9.52.0.0   ISP_USER                                                          03/08/2016 15:58:01 PAGE 5   
+
+ 231          //        g_totalchecksum=g_totalchecksum+uart_rcvbuf[count];
+ 232          //        flash_address++;
+ 233          //        if(flash_address==AP_size)
+ 234          //        {
+ 235          //          g_progarmflag=0;
+ 236          //           goto END_1;          
+ 237          //        }
+ 238          //        }
+ 239          //        
+ 240          //END_1:                
+ 241          //        Package_checksum();
+ 242          //        uart_txbuf[8]=g_totalchecksum&0xff;
+ 243          //        uart_txbuf[9]=(g_totalchecksum>>8)&0xff;
+ 244          //        Send_64byte_To_UART0(); 
+ 245          //        break;
+ 246          //        }
+ 247          //            
+ 248          //          } 
+ 249          //          bUartDataReady = FALSE;
+ 250          //          bufhead = 0;            
+ 251          //          EA=1;
+ 252          //      }
+ 253          //      //For connect timer out 
+ 254          //      #if 1
+ 255          //      if(g_timer0Over==1)
+ 256          //      {      
+ 257          //       goto _APROM;
+ 258          //      }
+ 259          //      #endif
+ 260          //      
+ 261          //      //for uart time out or buffer error
+ 262          //      if(g_timer1Over==1)
+ 263          //      {      
+ 264          //       if((bufhead<64)&&(bufhead>0)||(bufhead>64))
+ 265          //         {
+ 266          //         bufhead=0;        
+ 267          //         }
+ 268          //      } 
+ 269          //  
+ 270          //  
+ 271          //}   
+ 272          
+ 273          
+ 274          
+ 275          //_APROM:
+ 276          
+ 277          //    TA = 0xAA;
+ 278          //    TA = 0x55;
+ 279          //    CHPCON &= 0xFD;                  //set boot from AP
+ 280          //    TA = 0xAA;
+ 281          //    TA = 0x55;
+ 282          //    CHPCON |= 0x80;                   //software reset enable
+ 283          
+ 284          //    /* Trap the CPU */
+ 285          //    while(1); 
+ 286          //}
+ 287          
+ 288          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+C51 COMPILER V9.52.0.0   ISP_USER                                                          03/08/2016 15:58:01 PAGE 6   
+
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    128    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      5    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
