@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>712</width>
+    <height>476</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>701</width>
+      <height>471</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="Main_Page">
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>20</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 20pt &quot;微软雅黑&quot;;
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>DTU串口设置</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>110</y>
+        <width>271</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>31</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>端口</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>70</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>波特率</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>校验位</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_5">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>150</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>数据位</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>190</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+       </property>
+       <property name="text">
+        <string>停止位</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="Serial_Port">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>30</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="Serial_Baurdrate">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>70</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="Serial_Parity">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>110</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="Serial_Data_Bit">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>150</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="Serial_Stop_Bit">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>190</y>
+         <width>131</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="Connect_Device">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>360</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>连接设备</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Main_Exit">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>360</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>退出</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Device_Mode">
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>120</y>
+        <width>421</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>411</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>设置模式</string>
+       </property>
+       <widget class="QComboBox" name="Select_Mode">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>30</y>
+          <width>131</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>91</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="text">
+         <string>模式选择</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>60</y>
+          <width>91</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="text">
+         <string>产品型号</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Setting_Mode">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>30</y>
+          <width>111</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>确认</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="Select_Model">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>60</y>
+          <width>131</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="mode_select_tip">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>60</y>
+          <width>151</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 85, 0);
+font: 10pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>120</y>
+         <width>411</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>查询模式</string>
+       </property>
+       <widget class="QPushButton" name="Find_Mode">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>50</y>
+          <width>111</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>查询</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Current_Mode_Display">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>241</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;微软雅黑&quot;;
+background-color: rgb(255, 255, 255);
+color: rgb(255, 85, 0);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_13">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>20</y>
+          <width>91</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+        </property>
+        <property name="text">
+         <string>当前模式</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="DTU_DEVICE_MODE_BACK">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>240</y>
+         <width>111</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>返回主页面</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="DTU_DEVICE_MODE_EXIT">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>240</y>
+         <width>111</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>退出</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="device_mode_title">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>80</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 16pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>DTU设备模式设置</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Esp8266_Page">
+     <widget class="QLabel" name="device_mode_title_2">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>20</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 16pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>ESP8266/ESP32模式</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>60</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>设置WIFI模式</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>60</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>查询当前WIFI模式</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>120</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>连接AP指令</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>130</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>查询当前AP</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>220</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>一键配置SoftAP参数</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>220</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>查询SoftAP指令</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>320</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>建立TCP连接，UDP传输或SSL连接</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="Wifi_Mode_Select">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>90</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="JAP_SSID">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>150</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="JAP_PWD">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>180</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Setting_Wifi_Mode">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>90</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>确定</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>150</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>SSID:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>170</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>PWD:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Setting_Connect_AP">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>160</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>确定</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>280</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>PWD:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>260</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>SSID:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Setting_SoftAP">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>270</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>确定</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="SAP_PWD">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>290</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="SAP_SSID">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>260</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>380</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>地址:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>350</y>
+        <width>51</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>类型:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Server_Addr">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>390</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Server_Port">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>420</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>410</y>
+        <width>61</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 14pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>端口号:</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="TCP_Type_Select">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>360</y>
+        <width>131</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Setting_Server_Connect">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>390</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>确定</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Find_Setting_Wifi_Mode">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>100</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>查询</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Find_Current_Ap">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>180</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>查询</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Find_Current_SortAp">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>260</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>查询</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Current_Wifi_Mode">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>100</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 85, 0);
+font: 10pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Current_Ap">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>180</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 85, 0);
+font: 10pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Current_SoftAp">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>260</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 85, 0);
+font: 10pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Setting_DTU_Tip">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>350</y>
+        <width>331</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 85, 0);
+font: 12pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Return_Dtu_Mode_Slect_Page">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>420</y>
+        <width>331</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>返回DTU设备模式设置</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
