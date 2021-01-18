@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="File-List" href="STM32H7xx_files/filelist.xml">
+<link rel="Edit-Time-Data" href="STM32H7xx_files/editdata.mso"><title>STM32H7xx</title></head>
+<body style="" lang="EN-US" link="blue" vlink="blue">
+<div class="Section1">
+<div style="margin-left: 30pt;">
+<p class="MsoNormal" style="text-align: center;" align="center"><img alt="" id="_x0000_i1025" src="STM32H7xx_files/ST.gif" style="border: 0px solid ; height: 58px; width: 766px;"><b><i><span style="font-size: 24pt;"><br>
+<strong>STM32H7xx Webserver Demo</strong></span></i></b><span style="font-size: 13.5pt;"> </span><b><span style="font-size: 18pt; font-family: Verdana; color: rgb(51, 51, 255);"><br>
+Based on the lwIP TCP/IP stack </span></b></p>
+<div class="MsoNormal" style="text-align: center;" align="center">
+<hr align="center" size="2" width="100%"></div>
+<div align="center">
+<table class="MsoNormalTable" style="width: 720.75pt;" border="1" cellpadding="0" width="961">
+<tbody>
+<tr style="">
+<td style="padding: 1.5pt; background: rgb(51, 51, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;">
+<p class="MsoNormal"><b><i><span style="font-size: 10pt; font-family: Verdana;"><a href="/index.html"><span style="color: white;">Home
+page</span></a></span></i></b><b><i><span style="font-family: Verdana;"><o:p></o:p></span></i></b></p>
+</td>
+<td style="padding: 1.5pt; background: rgb(51, 51, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;">
+<p class="MsoNormal"><b><i><span style="font-size: 10pt; font-family: Verdana;"><a href="STM32H7xxLED.html"><span style="color: white;">&nbsp;Led
+control</span></a></span></i></b><b><i><span style="font-family: Verdana;"><o:p></o:p></span></i></b></p>
+</td>
+<td style="padding: 1.5pt; background: rgb(51, 51, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;">
+<p class="MsoNormal"><b><i><span style="font-size: 10pt; font-family: Verdana;"><a href="STM32H7xxADC.shtml"><span style="color: white;">ADC
+status bar</span></a></span></i></b><b><i><span style="font-family: Verdana;"><o:p></o:p></span></i></b></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div align="center">
+<table class="MsoNormalTable" style="background: white none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; width: 574.5pt;" border="0" cellpadding="0" cellspacing="0" width="766">
+<tbody>
+<tr style="">
+<td style="padding: 0cm;" valign="top">
+<table class="MsoNormalTable" style="width: 100%;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr style="">
+<td style="padding: 2.25pt;">
+<table style="width: 943px; height: 196px;" border="0" cellpadding="3" cellspacing="0">
+<tbody>
+<tr>
+<td valign="top" width="72%">
+<h1><span style="color: rgb(51, 51, 255);">STM32H7
+Series</span></h1>
+<p>The STM32H7xx devices are based on the high
+performance ARM® Cortex®-M7 32-bit RISC core operating up to 400 MHz
+frequency</p>
+<p class="MsoNormal">Taking&nbsp;advantage
+of an L1 cache, STM32H7 devices deliver the maximum&nbsp;
+theoretical performance of the Cortex-M7 core, regardless if code is
+executed from embedded Flash or external memory: 2010 CoreMark /856
+DMIPS at 400 MHz Fcpu<big><span style="color: rgb(34, 34, 34); font-size: 14px; font-style: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 255, 255); display: inline ! important; float: none;">.</span></big><span style="font-size: 10pt; font-family: Verdana;"><br>
+</span></p>
+</td>
+<td width="2%"></td>
+<td align="right" valign="top" width="26%"><br>
+<br>
+<img style="height: 180px; width: 400px;" alt="" src="STM32H7xx_files/stm32.jpg"></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr style="">
+<td style="padding: 2.25pt;">
+The STM32H7 series unleashes the Cortex-M7 core:
+<ul>
+<li>AXI and multi-AHB bus matrixes for
+interconnecting core, peripherals and memories</li>
+</ul>
+<ul>
+<li>16 Kbytes +16 Kbytes of I-cache and D-cache
+</li>
+</ul>
+<ul>
+<li>Up to 2 Mbytes of embedded dual-bank Flash
+memory, with ECC and Read-While-Write capability</li>
+</ul>
+<ul>
+<li>A high-speed master direct memory access (MDMA)
+controller, two dual-port DMAs with FIFO and request router
+capabilities for optimal peripheral management, and one additional DMA</li>
+</ul>
+<ul>
+<li>Chrom-ART acceleration for efficient 2D image
+copy and double-precision FPU are also part of the acceleration
+features available in the device</li>
+</ul>
+<ul>
+<li>Peripheral speed independent from CPU speed
+(dual-clock support) allowing system clock changes without any impact
+on peripheral operations</li>
+</ul>
+<ul>
+<li>Even more peripherals, such as four serial
+audio interfaces (SAI) with SPDIF output support, three full-duplex I²S
+interfaces, a SPDIF input interface supporting four inputs, two USB OTG
+with dedicated power supply and Dual-mode Quad-SPI interface, two
+FD-CAN controllers, a high-resolution timer, a TFT-LCD controller, a
+JPEG codec, two SDIO interfaces and many other analog peripherals
+including three fast 14-bit ADCs, two comparators and two operational
+amplifiers.</li>
+<li>1 Mbyte of SRAM with a scattered architecture:</li>
+</ul>
+<ul>
+<li>192 Kbytes of TCM RAM (including 64 Kbytes of
+ITCM RAM and 128 Kbytes of DTCM RAM for time-critical routines and
+data), 512 Kbytes, 288 Kbytes and 64 Kbytes of user SRAM, and 4 Kbytes
+of SRAM in backup domain to keep data in the lowest power modes</li>
+</ul>
+<span style="font-size: 10pt; font-family: Verdana;"></span><br>
+<div style="margin-left: 40px;"><span style="font-size: 10pt; font-family: Verdana;"><a style="font-weight: bold;" href="http://www.st.com/en/microcontrollers/stm32h7-series.html" target="_blank">The STM32H7xx home page</a><br>
+<br>
+</span></div>
+</td>
+</tr>
+<tr style="">
+<td style="padding: 2.25pt;" valign="top">
+<table class="MsoNormalTable" style="width: 944px; height: 546px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="">
+<td style="padding: 2.25pt; background: rgb(51, 51, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; width: 504.2pt;" width="672">
+<p class="MsoNormal"><span style="color: white;">&nbsp;</span><strong><span style="font-family: Verdana; color: white;">About this
+demonstration</span></strong><span style="font-family: Verdana; color: white;"><o:p></o:p></span></p>
+</td>
+<td style="border: medium none ; padding: 0cm;" width="4">
+<p class="MsoNormal">&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 11.25pt;">
+<td style="padding: 2.25pt; width: 504.2pt; height: 11.25pt;" valign="top" width="672">
+<p class="MsoNormal"></p>
+<p class="MsoNormal">This&nbsp;demonstration
+presents HTTP webserver&nbsp;developed on the top
+level of the lwIP TCP/IP stack, it provides the possibilty to control
+LEDs toggling on the SM32H743I-EVAL board, also it allows to get
+continuously the ADC converted value which is connected to the
+potentiometer.</p>
+<p class="MsoNormal">This demonstration
+supports&nbsp;the following features:</p>
+<ul>
+<li>DHCP client (dynamic IP address
+allocation)</li>
+<li>Ethernet cable plug/unplug
+management</li>
+<li>Ethernet Zero-Copy interface</li>
+</ul>
+<ul type="disc">
+</ul>
+<p class="MsoNormal" style=""><o:p>&nbsp;</o:p></p>
+</td>
+<td style="border: medium none ; padding: 0cm;" width="4">
+<p class="MsoNormal">&nbsp;</p>
+</td>
+</tr>
+<tr style="">
+<td style="padding: 2.25pt; background: rgb(51, 51, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; width: 504.2pt;" width="672">
+<p class="MsoNormal"><span style="color: white;">&nbsp;</span><strong><span style="font-family: Verdana; color: white;">About LwIP</span></strong><span style="font-family: Verdana; color: white;"><o:p></o:p></span></p>
+</td>
+<td style="border: medium none ; padding: 0cm;" width="4">
+<p class="MsoNormal">&nbsp;</p>
+</td>
+</tr>
+<tr style="">
+<td colspan="2" style="padding: 2.25pt; width: 507.4pt; vertical-align: middle;">
+<p class="MsoNormal" style="margin-bottom: 12pt;">lwIP,
+pronounced lightweight IP, is an open source TCP/IP stack developed by
+Adam Dunkels at the Swedish Institute of Computer Science and is
+maintained now by a world wide community of developers.<br>
+<br>
+lwIP main features:<br>
+<br>
+</p>
+<ul>
+<li>Protocols: IP, ICMP, UDP, TCP, IGMP, ARP,
+PPPoS, PPPoE&nbsp;</li>
+<li>DHCP client, DNS client, AutoIP/APIPA
+(Zeroconf), SNMP agent (private MIB support)&nbsp;</li>
+<li>APIs: specialized APIs for enhanced
+performance, optional Berkeley-alike socket API&nbsp;</li>
+<li>Extended features: IP forwarding over
+multiple network interfaces, TCP congestion control, RTT estimation and
+fast recovery/fast retransmit&nbsp;</li>
+<li>Addon applications: HTTP server, MQTT
+client, SNTP client, SMTP client, ping, NetBIOS nameserver&nbsp;<br>
+</li>
+</ul>
+<p class="MsoNormal" style="margin-bottom: 12pt;">lwIP is licenced under a
+BSD-style license</p>
+<p class="MsoNormal" style="margin-bottom: 12pt;"><br>
+For more informations you can refer to the website: &nbsp;<a href="http://savannah.nongnu.org/projects/lwip/">http://savannah.nongnu.org/projects/lwip/</a><span style="font-size: 10pt; font-family: Verdana;"><a href="http://savannah.nongnu.org/projects/lwip/">
+</a><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="MsoNormal"><o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<span style="display: none;"><o:p></o:p></span></div>
+<div align="center">
+<table class="MsoNormalTable" style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; width: 574.5pt;" border="0" cellpadding="0" cellspacing="0" width="766">
+<tbody>
+<tr style="">
+<td style="padding: 0cm; width: 100%;" width="100%">
+<p class="MsoNormal"><img id="_x0000_i1028" src="inchtml-pages-stm32_connectivity_files/pixel.gif" border="0" height="1" width="1"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="MsoNormal" style="text-align: center;" align="center"><span style="display: none;"><o:p>&nbsp;</o:p></span></p>
+<div align="center">
+<table class="MsoNormalTable" style="width: 958px; height: 58px;" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="">
+<td style="padding: 0cm; width: 100%;" width="100%">
+<div id="footer">
+<p class="legal" style="text-align: center;" align="center">All rights reserved ©2017
+STMicroelectronics&nbsp;</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</body></html>

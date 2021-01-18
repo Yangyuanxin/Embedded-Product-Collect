@@ -1,0 +1,12 @@
+
+fonts.h    字库头文件，主程序需 #include "fonts.h" ，同时将.c文件加入工程。
+
+asc12.c    12点阵ASCII字符字库 （从UCDOS中提取的）
+asc16.c    16点阵ASCII字符字库 （从UCDOS中提取的）
+asc24.c    24点阵ASCII字符字库 （从UCDOS中提取的）
+asc32.c    32点阵中文汉字字库 （从UCDOS中提取的）
+
+hz12.c     12点阵中文汉字字库 （从UCDOS中提取的）
+hz16.c     16点阵中文汉字字库 （从UCDOS中提取的）
+hz24.c     16点阵中文汉字字库 （从UCDOS中提取的）
+hz32.c     16点阵中文汉字字库 （从UCDOS中提取的）

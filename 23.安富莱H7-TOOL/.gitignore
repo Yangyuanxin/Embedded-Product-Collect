@@ -1,0 +1,75 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# 忽略文件
+
+*.[OoDd]
+*.[Oo][Bb][Jj]
+*.[Mm][Aa][Pp]
+*.[Cc][Rr][Ff]
+*.[Hh][Tt][Mm]
+*.[Bb][Aa][Kk]
+*.[Dd][Ee][Pp]
+*.[Ll][Ss][Tt]
+*.[Ii][Ee][Xx]
+[Jj][Ll][Ii][Nn][Kk]*
+[Pp]roject.uvgui.*
+**/**/[Oo]bjects/*
+**/**/[Ll]istings/*
+**/**/[Dd]ebug[Cc]onfig/*
+**/**/[Dd]ebug/*
+**/**/[Ff]lash/*
+**/**/[Ss]ettings/*
+
+# 忽略Vnote 生成的 交换文件
+*.[Vv][Ss][Ww][Pp]
+
