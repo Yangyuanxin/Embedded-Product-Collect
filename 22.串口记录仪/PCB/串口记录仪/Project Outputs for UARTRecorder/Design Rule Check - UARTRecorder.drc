@@ -1,0 +1,84 @@
+Protel Design System Design Rule Check
+PCB File : G:\MyWork\My32Work\STM32_PROJECT\串口记录仪\UARTRecoder\PCB\打样\UARTRecorder.PcbDoc
+Date     : 2020/5/1
+Time     : 12:26:42
+
+Processing Rule : Clearance Constraint (Gap=0.762mm) ((OnLayer('Keep-Out Layer'))),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.2032mm) (inpoly),(All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=0.1524mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.3048mm) (Max=20mm) (Preferred=0.3048mm) (InNet('G+3V3'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (InDifferentialPair('VOUT2'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.1524mm) (Max=2.54mm) (Preferred=0.2032mm) (All)
+Rule Violations :0
+
+Processing Rule : Length Constraint (Min=0mm) (Max=152.4mm) (All)
+   Violation between Length Constraint: Net VCC_3.3V
+Rule Violations :1
+
+Processing Rule : Matched Net Lengths(Tolerance=25.4mm) (InDifferentialPair ('VOUT2'))
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.0254mm) (Max=5mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.0254mm) (Max=2.54mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0.0254mm) (Max=2.54mm) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.254mm) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Silkscreen Over Component Pads (Clearance=0mm) (All),(All)
+Rule Violations :0
+
+
+Violations Detected : 1
+Time Elapsed        : 00:00:01
